@@ -95,7 +95,8 @@ function aiex_print_page_meta_fields () {
 		if ('no_page_type' == $page_type){
 			return;
 		}
-		$author = get_the_author_meta('first_name') && get_the_author_meta('last_name') ? get_the_author_meta('first_name').' '.get_the_author_meta('last_name') : get_the_author_meta('display_name', get_post_field('post_author', get_the_ID()));
+		$author_id = get_post_field('post_author', get_the_ID());
+		$author = get_the_author_meta('first_name', $author_id) && get_the_author_meta('last_name', $author_id) ? get_the_author_meta('first_name', $author_id).' '.get_the_author_meta('last_name', $author_id) : get_the_author_meta('display_name', $author_id);
 		$creation_date = get_the_date();
 		$title = get_the_title();
 		$last_modification_date = get_the_modified_date();
