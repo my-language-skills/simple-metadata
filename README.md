@@ -1,6 +1,6 @@
 # AIOM Extensions
 
-* Contributors: danzhik
+* Contributors: danzhik, colomet
 * Donate link: 
 * Tags: aiom, extensions, metadata
 * Requires at least: 4.9.6
