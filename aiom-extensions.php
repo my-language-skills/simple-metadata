@@ -11,5 +11,5 @@ License: GPL 3.0
 
 defined ("ABSPATH") or die ("No script assholes!");
 
-include_once plugin_dir_path( __FILE__ ) . "core-functionality/core-functionality.php";
-include_once plugin_dir_path( __FILE__ ) . "webpage-elements/webpage-elements.php";
+include_once plugin_dir_path( __FILE__ ) . "aiom-webpage-related-content/aiom-webpage-related-content.php";
+include_once plugin_dir_path( __FILE__ ) . "aiom-news-related-content/aiom-news-related-content.php";

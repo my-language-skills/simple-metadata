@@ -1,8 +1,14 @@
 <?php
 
-/**
- *	Default functionality of plugin
- */
+/*
+Plugin Name: AIOM Webpage Realted Content
+Plugin URI: https://github.com/my-language-skills/aiom-extensions
+Description: This plugin makes your pages more understandable for search engines by telling wich kind of page the given one is and adding automatically generated metadata based on page information.
+Version: 0.1
+Author: Daniil Zhitnitskii (My Language Skills)
+Author URI: https://github.com/my-language-skills
+License: GPL 3.0
+*/
 
 defined ("ABSPATH") or die ("No script assholes!");
 
@@ -63,9 +69,6 @@ function aiex_save_page_type ($post_id, $post) {
 		return $post_id;
 	}
 
-
-	/* Get the post type object. */
-	$post_type = get_post_type_object( $post->post_type );
 
 	//if user is not administrator, exit function
 	if ( !current_user_can( 'administrator' ) ){
