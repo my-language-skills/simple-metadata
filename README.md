@@ -14,7 +14,7 @@ Extensions for All In One Metadata plugin.
  
 ## Description 
  
-This repository contains tiny extensions for [!All In One Metadata](https://github.com/my-language-skills/all-in-one-metadata) plugin - structured data creation tool. Each folder contains separate plugin, created for different type of content
+This repository contains tiny extensions for [All In One Metadata](https://github.com/my-language-skills/all-in-one-metadata) plugin - structured data creation tool. Each folder contains separate plugin, created for different type of content
  
 ## Installation 
  
@@ -25,7 +25,7 @@ This repository contains tiny extensions for [!All In One Metadata](https://gith
 
 ### Webpages Related Content
 
-This extension gives automatically generated data for posts of default WP post type 'page'. Added information is based on Schema.org 'WebPage' type. For every page you can select subtype of 'WebPage' type, depending on belonging of your content. The information added is following:
+This extension gives automatically generated data for posts of default WP post type 'page'. Added information is based on Schema.org 'WebPage' type. For every post you can select subtype of 'WebPage' type, depending on belonging of your content. The information added is following:
 * Author ('author' Schema.org property)
 * Last modifier ('editor' Schema.org property)
 * Creation date ('dateCreated' Schema.org property)
