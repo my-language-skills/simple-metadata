@@ -14,7 +14,7 @@ Extensions for All In One Metadata plugin.
  
 ## Description 
  
-This repository contains tiny extensions for [All In One Metadata](https://github.com/my-language-skills/all-in-one-metadata) plugin - structured data creation tool. Each folder contains separate plugin, created for different type of content
+This repository contains tiny extensions for [All In One Metadata](https://wordpress.org/plugins/all-in-one-metadata/) plugin - structured data creation tool. Each folder contains separate plugin, created for different type of content
  
 ## Installation 
  
