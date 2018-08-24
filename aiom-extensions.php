@@ -13,3 +13,4 @@ defined ("ABSPATH") or die ("No script assholes!");
 
 include_once plugin_dir_path( __FILE__ ) . "aiom-webpage-related-content/aiom-webpage-related-content.php";
 include_once plugin_dir_path( __FILE__ ) . "aiom-news-related-content/aiom-news-related-content.php";
+include_once plugin_dir_path( __FILE__ ) . "aiom-articles-related-content/aiom-articles-related-content.php";
