@@ -105,7 +105,7 @@ function aiex_print_page_meta_fields () {
 		$last_modification_date = get_the_modified_date();
 		$last_modifier = get_the_modified_author();
 		$thumbnail_url = get_the_post_thumbnail_url();
-		$publication_date = get_the_time(get_option( 'date_format' ));;
+		$publication_date = get_the_time(get_option( 'date_format' ));
 		?>
 
 		<div itemscope itemtype="http://schema.org/<?=$page_type;?>">
