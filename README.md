@@ -47,3 +47,17 @@ This extension gives automatically generated data for posts of default WP post t
 * Post tags ('keywords' Schema.org property)
 * Post categories ('articleSection' Schema.org property)
 * Wordcount of article ('wordcount' Schema.org property)
+
+### Articles Related Content
+
+This extension gives automatically generated data for posts of default WP post type 'post'. Added information is based on Schema.org 'Article' type. For all the posts you can select subtype of 'Article' type, depending on belonging of your content. Subtype can be chosen only from netowrk settings page of All In One Metadata, which means it will be applied to ALL posts on ALL blogs. The information added is following:
+* Author ('author' Schema.org property)
+* Last modifier ('editor' Schema.org property)
+* Creation date ('dateCreated' Schema.org property)
+* Publication date ('datePublished' Schema.org property)
+* Title of content ('headline' Schema.org property)
+* Featured image URL ('thumbnailUrl' Schema.org property)
+* Image URL ('image' Schema.org property,also utilizes thumbanail url) (added just because Google requires it)
+* Post tags ('keywords' Schema.org property)
+* Post categories ('articleSection' Schema.org property)
+* Wordcount of article ('wordcount' Schema.org property)
