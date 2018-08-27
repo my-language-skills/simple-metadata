@@ -19,22 +19,40 @@ defined ("ABSPATH") or die ("No script assholes!");
 function aiex_add_article_post_type_meta () {
 
 	add_meta_box (
-		'aiex_article_post_type', //Unique ID
-		'Type Of Article', //Title
-		'aiex_render_article_post_type_meta', //Callback function
-		'post', //for pages
-		'side', //Context
-		'high' //priority
+		'site_level_admin_article', //Unique ID
+		'Articles', //Title
+		'aiex_render_article_sec', //Callback function
+		'site_level_admin_display', //for network settigns of AIOM
+		'normal', //Context
+		'core' //priority
 	);
+
+	add_settings_section('article_type_sec', __('Choose type of articles used', 'all-in-one-metadata'), null, 'site_level_admin_display_article');
+    register_setting('site_level_admin_display_article', 'aiex_article_post_type');
+    add_settings_field('aiex_article_post_type', 'Type', 'aiex_render_article_post_type', 'site_level_admin_display_article', 'article_type_sec');
 }
 
-function aiex_render_article_post_type_meta ($object, $box) {
-	//creating nonce
-	wp_nonce_field( basename( __FILE__ ), 'aiex_render_article_post_type_meta' );
+/**
+ *	Function for rendering new section in network settings
+ */
+function aiex_render_article_sec (){
+	?>
+	    <form method="POST" action="edit.php?action=update_network_options_article_type"><?php
+	    settings_fields('site_level_admin_display_article');
+	    submit_button();
+	    do_settings_sections('site_level_admin_display_article');
+	    ?></form>
+    <p></p><?php
+}
 
-	$article_type = esc_attr(get_post_meta ($object->ID, 'aiex_article_post_type', true));
+/**
+ * Function for rendering Article type field
+ */
+function aiex_render_article_post_type () {
+
+	$article_type = esc_attr(get_blog_option (1, 'aiex_article_post_type'));
 	$article_types = array(
-					'no_type'					=> '--Select--'
+					'no_type'					=> '--Select--',
 					'Report'					=> 'Report',
 					'SatiricalArticle' 			=> 'Satirical Article',
 					'ScholarlyArticle' 			=> 'Scholarly Article',
@@ -45,8 +63,7 @@ function aiex_render_article_post_type_meta ($object, $box) {
 					'TechArticle'				=> 'Technology Article',
 				  );
 	?>
-		<p>Article Post Type</p>
-			<select style="width: 90%;" name="aiex_article_post_type" id="aiex_article_post_type">
+			<select  name="aiex_article_post_type" id="aiex_article_post_type">
 				<?php
 					foreach ($article_types as $key => $value) {
 						$selected = $article_type == $key ? 'selected' : '';
@@ -58,36 +75,15 @@ function aiex_render_article_post_type_meta ($object, $box) {
 }
 
 /**
- * Function for post saving/updating action
+ * Function for printing meta tags of Artile in post pages
  */
-function aiex_save_article_post_type ($post_id, $post) {
-
-	/* Verify the nonce before proceeding. */
-	if ( !isset( $_POST['aiex_render_article_post_type_meta'] ) || !wp_verify_nonce( $_POST['aiex_render_article_post_type_meta'], basename( __FILE__ ) ) ){
-		return $post_id;
-	}
-
-
-	//fetching old and new meta values if they exist
-	$new_meta_value = isset($_POST['aiex_article_post_type']) ? sanitize_text_field ($_POST['aiex_article_post_type']) : '';
-	$old_meta_value = get_post_meta ($post_id, 'aiex_article_post_type', true);
-
-	if ( $new_meta_value && '' == $old_meta_value && $new_meta_value != 'no_type' ) {
-		add_post_meta( $post_id, 'aiex_article_post_type', $new_meta_value, true ); 
-	} elseif ( $new_meta_value && $new_meta_value != $meta_value && $new_meta_value != 'no_type' ) {
-		update_post_meta( $post_id, 'aiex_article_post_type', $new_meta_value );
-	} elseif ( 'no_type' == $new_meta_value && $old_meta_value ) {
-		delete_post_meta( $post_id, 'aiex_article_post_type', $old_meta_value );
-	}
-}
-
 function aiex_print_article_post_meta_fields () {
 
 	if ('post' == get_post_type(get_the_ID())) {
 
-		$article_type = get_post_meta(get_the_ID(), 'aiex_article_post_type', true) ?: 'empty';
+		$article_type = get_blog_option(1, 'aiex_article_post_type');
 
-		if ('empty' == $news_type){
+		if (!$article_type){
 			return;
 		}
 
@@ -111,7 +107,7 @@ function aiex_print_article_post_meta_fields () {
 		$title = get_the_title();
 		$last_modifier = get_the_modified_author();
 		$thumbnail_url = get_the_post_thumbnail_url();
-		$publication_date = get_the_time(get_option( 'date_format' ));;
+		$publication_date = get_the_time(get_option( 'date_format' ));
 		?>
 
 		<div itemscope itemtype="http://schema.org/<?=$article_type;?>">
@@ -132,6 +128,33 @@ function aiex_print_article_post_meta_fields () {
 
 }
 
-add_action ('add_meta_boxes', 'aiex_add_article_post_type_meta');
-add_action ('save_post', 'aiex_save_article_post_type', 10, 2);
+/**
+ * Handler for updating option of article type
+ */
+function update_network_options_article_type() {
+
+	//checking if request was done by authorized user
+	check_admin_referer('site_level_admin_display_article-options');
+
+
+	//fetching old and new option values if they exist
+	$new_value = isset($_POST['aiex_article_post_type']) ? sanitize_text_field ($_POST['aiex_article_post_type']) : '';
+	$old_value = get_blog_option (1, 'aiex_article_post_type');
+
+	if ( $new_value && '' == $old_value && $new_value != 'no_type' ) {
+		add_blog_option( 1, 'aiex_article_post_type', $new_value); 
+	} elseif ( $new_value && $new_value != $old_value && $new_value != 'no_type' ) {
+		update_blog_option( 1, 'aiex_article_post_type', $new_value );
+	} elseif ( 'no_type' == $new_value && $old_value ) {
+		delete_blog_option( 1, 'aiex_article_post_type');
+	}
+
+	wp_redirect(add_query_arg(array('page' => 'site_level_admin_display',
+		                                'updated' => 'true'), network_admin_url('settings.php')));
+
+		exit;
+}
+
+add_action( 'network_admin_edit_update_network_options_article_type', 'update_network_options_article_type');
+add_action ('network_admin_menu', 'aiex_add_article_post_type_meta');
 add_action ('wp_head', 'aiex_print_article_post_meta_fields');
