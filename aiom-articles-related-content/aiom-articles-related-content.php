@@ -55,7 +55,6 @@ function aiex_render_article_post_type () {
 					'no_type'					=> '--Select--',
 					'Report'					=> 'Report',
 					'SatiricalArticle' 			=> 'Satirical Article',
-					'ScholarlyArticle' 			=> 'Scholarly Article',
 					'MedicalScholarlyArticle' 	=> 'Medical Scholarly Article',
 					'SocialMediaPosting'		=> 'Social Media Posting',
 					'BlogPosting'				=> 'Blog Posting',
