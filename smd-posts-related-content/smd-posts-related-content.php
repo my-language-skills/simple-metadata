@@ -39,12 +39,14 @@ function smd_render_article_type_meta (){
 
 	$post_type = esc_attr(get_post_meta (get_the_ID(), 'smd_post_type', true));
 	$post_meta_types = array(
-					'BlogPosting'					=> '--Select--',
+					'Artcle'					=> 'Article',
+					'AdvertiserContentArticle'	=> 'Advertisement',
+					'BlogPosting'				=> 'Blog Posting',
+					'DiscussionForumPosting'	=> 'Discussion Forum Posting',
+					'LiveBlogPosting'			=> 'Live Blog Posting',
 					'Report'					=> 'Report',
 					'SatiricalArticle' 			=> 'Satirical Article',
 					'SocialMediaPosting'		=> 'Social Media Posting',
-					'LiveBlogPosting'			=> 'Live Blog Posting',
-					'DiscussionForumPosting'	=> 'Discussion Forum Posting',
 					'TechArticle'				=> 'Technology Article',
 				  );
 	?>
@@ -117,14 +119,17 @@ function smd_print_post_meta_fields () {
 		$author_id = get_post_field('post_author', $post_id);
 		$author = get_the_author_meta('first_name', $author_id) && get_the_author_meta('last_name', $author_id) ? get_the_author_meta('first_name', $author_id).' '.get_the_author_meta('last_name', $author_id) : get_the_author_meta('display_name', $author_id);
 		$creation_date = get_the_date();
+		$last_modification_date = get_the_modified_date();
 		$title = get_the_title();
 		$last_modifier = get_the_modified_author();
 		$thumbnail_url = get_the_post_thumbnail_url();
 
 		//getting logo image 
 		$custom_logo_id = get_theme_mod( 'custom_logo' );
-		$image = isset(wp_get_attachment_image_src( $custom_logo_id , 'full' )[0]) ? wp_get_attachment_image_src( $custom_logo_id , 'full' )[0] : $thumbnail_url;
-		$publisher = $author;
+		$logo = isset(wp_get_attachment_image_src( $custom_logo_id , 'full' )[0]) ? wp_get_attachment_image_src( $custom_logo_id , 'full' )[0] : (get_avatar_url($author_id) ?: '');
+
+		$publisher = get_bloginfo();
+		$type = 'Organization';
 		$publication_date = get_the_time(get_option( 'date_format' ));
 
 		//include to check if YOAST or SEO Framework are installed
@@ -132,14 +137,32 @@ function smd_print_post_meta_fields () {
 		
 		//if YOAST plugin is active, get company or person name to set for publisher property
 		if (is_plugin_active('wordpress-seo/wp-seo.php')){
+
 			$all_vals = get_option('wpseo_titles');
-			$publisher = 'company' == $all_vals['company_or_person'] ? $all_vals['company_name'] : ('person' == $all_vals['company_or_person'] ? $all_vals['person_name'] : '') ;
+
+			if (!empty($all_vals)){
+
+				$publisher = 'company' == $all_vals['company_or_person'] ? $all_vals['company_name'] : ('person' == $all_vals['company_or_person'] ? $all_vals['person_name'] : get_bloginfo()) ;
+
+				if ($all_vals['company_logo'] && 'company' == $all_vals['company_or_person']){
+					$logo = $all_vals['company_logo'];
+				}
+			}
 		}
 
 		//if SEO Framework plugin is active, get company or person name to set for publisher property
 		if (is_plugin_active('autodescription/autodescription.php')){
+
 			$all_vals = get_option('autodescription-site-settings');
-			$publisher = isset($all_vals['knowledge_name']) ? $all_vals['knowledge_name'] : '';
+
+			if (!empty($all_vals)){
+
+				$publisher = $all_vals['knowledge_name'] ?: get_bloginfo();
+
+				if ($all_vals['knowledge_logo_url'] && 'organization' == $all_vals['knowledge_type']){
+					$logo = $all_vals['knowledge_logo_url'];
+				}
+			}
 		}
 		?>
 
@@ -149,12 +172,17 @@ function smd_print_post_meta_fields () {
 			<meta itemprop="headline" content="<?=$title;?>">
 			<meta itemprop="editor" content="<?=$last_modifier;?>">
 			<meta itemprop="thumbnailUrl" content="<?=$thumbnail_url;?>">
-			<meta itemprop="image" content="<?=$image;?>">
+			<meta itemprop="image" content="<?php if('BlogPosting' == $post_meta_type && !$thumbnail_url){echo $logo;} else {echo $thumbnail_url;} ?>">
+			<meta itemprop="dateModified" content="<?=$last_modification_date;?>">
 			<meta itemprop="datePublished" content="<?=$publication_date?>">
-			<meta itemprop="keywords" content="<?=$key_words_string?>">
-			<meta itemprop="articleSection" content="<?=$categories_string?>">
-			<meta itemprop="wordCount" content="<?=$word_count?>">
-			<meta itemprop="publisher" content="<?=$publisher?>">
+			<meta itemprop="keywords" content="<?=$key_words_string;?>">
+			<meta itemprop="articleSection" content="<?=$categories_string;?>">
+			<meta itemprop="wordCount" content="<?=$word_count;?>">
+			<div itemprop="publisher" itemscope itemtype="http://schema.org/<?=$type?>">
+				<meta itemprop="name" content="<?=$publisher;?>">
+				<meta itemprop="logo" content="<?=$logo;?>">
+			</div>
+			<div itemprop="mainEntityOfPage" itemscope itemtype="http://schema.org/WebPage"></div>
 		</div>
 
 		<?php
