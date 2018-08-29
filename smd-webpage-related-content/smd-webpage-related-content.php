@@ -1,11 +1,11 @@
 <?php
 
 /*
-Plugin Name: AIOM Webpage Realted Content
+Plugin Name: Simple Metadata Webpage Realted Content
 Plugin URI: https://github.com/my-language-skills/aiom-extensions
 Description: This plugin makes your pages more understandable for search engines by telling wich kind of page the given one is and adding automatically generated metadata based on page information.
-Version: 0.1
-Author: Daniil Zhitnitskii (My Language Skills)
+Version: 1.0
+Author: My Language Skills team
 Author URI: https://github.com/my-language-skills
 License: GPL 3.0
 */
@@ -15,12 +15,12 @@ defined ("ABSPATH") or die ("No script assholes!");
 /**
  *	Function for creation of metabox to pick type of page for proper Schema.org schema type
  */
-function aiex_add_page_type_meta () {
+function smd_add_page_type_meta () {
 	if (current_user_can('administrator')){
 		add_meta_box (
-			'aiex_page_type', //Unique ID
+			'smd_page_type', //Unique ID
 			'Page Type', //Title
-			'aiex_render_page_type_meta', //Callback function
+			'smd_render_page_type_meta', //Callback function
 			'page', //for pages
 			'side', //Context
 			'high' //priority
@@ -28,11 +28,11 @@ function aiex_add_page_type_meta () {
 	}
 }
 
-function aiex_render_page_type_meta ($object, $box) {
+function smd_render_page_type_meta ($object, $box) {
 	//creating nonce
-	wp_nonce_field( basename( __FILE__ ), 'aiex_render_page_type_meta' );
+	wp_nonce_field( basename( __FILE__ ), 'smd_render_page_type_meta' );
 
-	$page_type = esc_attr(get_post_meta ($object->ID, 'aiex_page_type', true));
+	$page_type = esc_attr(get_post_meta ($object->ID, 'smd_page_type', true));
 	$page_types = array(
 					'no_page_type'		=> '--Select--',
 					'AboutPage' 		=> 'About Page',
@@ -48,7 +48,7 @@ function aiex_render_page_type_meta ($object, $box) {
 				  );
 	?>
 		<p>Page Type</p>
-			<select style="width: 90%;" name="aiex_page_type" id="aiex_page_type">
+			<select style="width: 90%;" name="smd_page_type" id="smd_page_type">
 				<?php
 					foreach ($page_types as $key => $value) {
 						$selected = $page_type == $key ? 'selected' : '';
@@ -62,10 +62,10 @@ function aiex_render_page_type_meta ($object, $box) {
 /**
  * Function for post saving/updating action
  */
-function aiex_save_page_type ($post_id, $post) {
+function smd_save_page_type ($post_id, $post) {
 
 	/* Verify the nonce before proceeding. */
-	if ( !isset( $_POST['aiex_render_page_type_meta'] ) || !wp_verify_nonce( $_POST['aiex_render_page_type_meta'], basename( __FILE__ ) ) ){
+	if ( !isset( $_POST['smd_render_page_type_meta'] ) || !wp_verify_nonce( $_POST['smd_render_page_type_meta'], basename( __FILE__ ) ) ){
 		return $post_id;
 	}
 
@@ -76,25 +76,25 @@ function aiex_save_page_type ($post_id, $post) {
 	}
 
 	//fetching old and new meta values if they exist
-	$new_meta_value = isset($_POST['aiex_page_type']) ? sanitize_text_field ($_POST['aiex_page_type']) : '';
-	$old_meta_value = get_post_meta ($post_id, 'aiex_page_type', true);
+	$new_meta_value = isset($_POST['smd_page_type']) ? sanitize_text_field ($_POST['smd_page_type']) : '';
+	$old_meta_value = get_post_meta ($post_id, 'smd_page_type', true);
 
 	if ( $new_meta_value && '' == $old_meta_value && $new_meta_value != 'no_page_type' ) {
-		add_post_meta( $post_id, 'aiex_page_type', $new_meta_value, true ); 
+		add_post_meta( $post_id, 'smd_page_type', $new_meta_value, true ); 
 	} elseif ( $new_meta_value && $new_meta_value != $meta_value && $new_meta_value != 'no_page_type' ) {
-		update_post_meta( $post_id, 'aiex_page_type', $new_meta_value );
+		update_post_meta( $post_id, 'smd_page_type', $new_meta_value );
 	} elseif ( 'no_page_type' == $new_meta_value && $old_meta_value ) {
-		delete_post_meta( $post_id, 'aiex_page_type', $old_meta_value );
+		delete_post_meta( $post_id, 'smd_page_type', $old_meta_value );
 	}
 }
 
 /**
  * Function responsible for output of metadata automatically obtained from page information
  */
-function aiex_print_page_meta_fields () {
+function smd_print_page_meta_fields () {
 
 	if ('page' == get_post_type(get_the_ID())) {
-		$page_type = get_post_meta(get_the_ID(), 'aiex_page_type', true) ?: 'no_page_type';
+		$page_type = get_post_meta(get_the_ID(), 'smd_page_type', true) ?: 'no_page_type';
 		if ('no_page_type' == $page_type){
 			return;
 		}
@@ -116,6 +116,7 @@ function aiex_print_page_meta_fields () {
 			<meta itemprop="editor" content="<?=$last_modifier;?>">
 			<meta itemprop="thumbnailUrl" content="<?=$thumbnail_url;?>">
 			<meta itemprop="datePublished" content="<?=$publication_date?>">
+			<?php if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';}?>
 		</div>
 
 		<?php
@@ -123,6 +124,6 @@ function aiex_print_page_meta_fields () {
 
 }
 
-add_action ('add_meta_boxes', 'aiex_add_page_type_meta');
-add_action ('save_post', 'aiex_save_page_type', 10, 2);
-add_action ('wp_head', 'aiex_print_page_meta_fields');
+add_action ('add_meta_boxes', 'smd_add_page_type_meta');
+add_action ('save_post', 'smd_save_page_type', 10, 2);
+add_action ('wp_head', 'smd_print_page_meta_fields');
