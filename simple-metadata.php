@@ -13,3 +13,4 @@ defined ("ABSPATH") or die ("No script assholes!");
 
 include_once plugin_dir_path( __FILE__ ) . "smd-webpage-related-content/smd-webpage-related-content.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-posts-related-content/smd-posts-related-content.php";
+include_once plugin_dir_path( __FILE__ ) . "smd-website-blog-switch/smd-website-blog-switch.php";
