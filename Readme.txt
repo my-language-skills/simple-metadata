@@ -14,6 +14,11 @@ This plugin provides auto-generated metadata on the basis of default WP web-page
 
 This plugin provides the ability to set different types of schema types in one click (for Blogs and WebSites.
 
+> By default:
+> 
+> a page is a WebPage type
+> a Post is a BlogPosting type
+
 == Front-page related content =
 
 * Types
