@@ -42,8 +42,8 @@ function smd_print_wsb_field () {
 			<div itemscope itemtype="http://schema.org/<?=$type?>">
 				<meta itemprop="name" content="<?=$title?>">
 				<meta itemprop = "description" content = "<?=$description?>">
-		        <meta itemprop = 'url' content = "<?=$url?>">
-		        <meta itemprop = 'inLanguage' content = "<?=$language?>">
+		        <meta itemprop = "url" content = "<?=$url?>">
+		        <meta itemprop = "inLanguage" content = "<?=$language?>">
 			</div>
 		<!-- END OF FRONTPAGE META -->
 		<?php
