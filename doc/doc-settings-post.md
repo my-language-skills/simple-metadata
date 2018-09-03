@@ -24,8 +24,7 @@ Post type have 9 options which allow the configuration of the metadata :
 
 ##### Article
 
-Properties from: [Article](https://schema.org/Article "https://schema.org/Article")
-The related properties from the type that matters to the project.
+The related properties from the [Article](https://schema.org/Article "https://schema.org/Article") type that matters to the project are:
 
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
@@ -36,48 +35,39 @@ The related properties from the type that matters to the project.
 
 ##### AdvertiserContentArticle
 
-Properties from: [AdvertiserContentArticle](https://schema.org/AdvertiserContentArticle "https://schema.org/AdvertiserContentArticle")
-The AdvertiserContentArticle type uses the related properties from the Article type.
+[AdvertiserContentArticle](https://schema.org/AdvertiserContentArticle "https://schema.org/AdvertiserContentArticle") type uses the related properties from the Article type.
 
 ##### Report
 
-Properties from: [Report](https://schema.org/Report "https://schema.org/Report")
-The Report type uses the related properties from the Article type.
+[Report](https://schema.org/Report "https://schema.org/Report") type uses the related properties from the Article type.
 
 ##### SatiricalArticle
 
-Properties from: [SatiricalArticle](https://schema.org/SatiricalArticle "https://schema.org/SatiricalArticle")
-The SatiricalArticle type uses the related properties from the Article type.
+[SatiricalArticle](https://schema.org/SatiricalArticle "https://schema.org/SatiricalArticle") type uses the related properties from the Article type.
 
 ##### SocialMediaPosting
 
-Properties from: [SocialMediaPosting](https://schema.org/SocialMediaPosting "https://schema.org/SocialMediaPosting")
-The SocialMediaPosting type uses the related properties from the Article type.
+[SocialMediaPosting](https://schema.org/SocialMediaPosting "https://schema.org/SocialMediaPosting") type uses the related properties from the Article type.
 
 ##### BlogPosting
 
-Properties from: [BlogPosting](https://schema.org/BlogPosting "https://schema.org/BlogPosting")
-The BlogPosting type uses the related properties from the Article type.
+[BlogPosting](https://schema.org/BlogPosting "https://schema.org/BlogPosting") type uses the related properties from the Article type.
 
 ##### LiveBlogPosting
 
-Properties from: [LiveBlogPosting](https://schema.org/LiveBlogPosting "https://schema.org/LiveBlogPosting")
-The LiveBlogPosting type uses the related properties from the Article type.
+[LiveBlogPosting](https://schema.org/LiveBlogPosting "https://schema.org/LiveBlogPosting") type uses the related properties from the Article type.
 
 ##### DiscussionForumPosting
 
-Properties from: [DiscussionForumPosting](https://schema.org/DiscussionForumPosting "https://schema.org/DiscussionForumPosting")
-The DiscussionForumPosting type uses the related properties from the Article type.
+[DiscussionForumPosting](https://schema.org/DiscussionForumPosting "https://schema.org/DiscussionForumPosting") type uses the related properties from the Article type.
 
 ##### TechArticle
 
-Properties from: [TechArticle](https://schema.org/TechArticle "https://schema.org/TechArticle")
-The TechArticle type uses the related properties from the Article type.
+[TechArticle](https://schema.org/TechArticle "https://schema.org/TechArticle") type uses the related properties from the Article type.
 
 #### General Article properties
 
-Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
-The related properties from the type that matters to the project.
+The related properties from the [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork") type that matters to the project are:
 
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
@@ -92,13 +82,11 @@ The related properties from the type that matters to the project.
 | WP-Core | [publisher](https://schema.org/publisher) | [Organization](https://schema.org/Organization) | By default the name of the domain is taken. If a SEO plugin is activated, it uses the Organization value.  | NA
 | WP-Core | [thumbnailUrl](https://schema.org/thumbnailUrl) | [NA](https://schema.org/URL) | A thumbnail image relevant to the Post. | NA
 
-Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
-The related properties from the type that matters to the project.
+The related properties from the [Thing](https://schema.org/Thing "https://schema.org/Thing") type that matters to the project are:
 
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
 | WP-Core | [image](https://schema.org/image) | [URL](https://schema.org/URL) | Featured image of the Post. *If no Featured image in the Post, user avatar will be the Post image.* | NA
-
 
 ---
 

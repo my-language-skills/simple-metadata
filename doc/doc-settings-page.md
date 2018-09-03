@@ -6,8 +6,6 @@ Simple metadata will create Page Type options in Pages (metabox)
 
 ![structured data page](/doc/images/structured-data-page.png)
 
-
-
 ### Simple Metadata settings
 Page type have 13 options which allow the configuration of the metadata :
 * WebPage *Activated by default*
@@ -37,63 +35,51 @@ The related properties from the type that matters to the project.
 
 ##### AboutPage
 
-Properties from: [AboutPage](https://schema.org/AboutPage "https://schema.org/AboutPage")
-The AboutPage type uses the related properties from the WebPage type.
+[AboutPage](https://schema.org/AboutPage "https://schema.org/AboutPage") type uses the related properties from the WebPage type.
 
 ##### CheckoutPage
 
-Properties from: [CheckoutPage](https://schema.org/CheckoutPage "https://schema.org/CheckoutPage")
-The CheckoutPage type uses the related properties from the WebPage type.
+[CheckoutPage](https://schema.org/CheckoutPage "https://schema.org/CheckoutPage") type uses the related properties from the WebPage type.
 
 ##### CollectionPage
 
-Properties from: [CollectionPage](https://schema.org/CollectionPage "https://schema.org/CollectionPage")
-The CollectionPage type uses the related properties from the WebPage type.
+[CollectionPage](https://schema.org/CollectionPage "https://schema.org/CollectionPage") type uses the related properties from the WebPage type.
 
 ##### ImageGallery
 
-Properties from: [ImageGallery](https://schema.org/ImageGallery "https://schema.org/ImageGallery")
-The ImageGallery type uses the related properties from the WebPage type.
+[ImageGallery](https://schema.org/ImageGallery "https://schema.org/ImageGallery") type uses the related properties from the WebPage type.
 
 ##### VideoGallery
 
-Properties from: [VideoGallery](https://schema.org/VideoGallery "https://schema.org/VideoGallery")
-The VideoGallery type uses the related properties from the WebPage type.
+[VideoGallery](https://schema.org/VideoGallery "https://schema.org/VideoGallery") type uses the related properties from the WebPage type.
 
 ##### ContactPage
 
-Properties from: [ContactPage](https://schema.org/ContactPage "https://schema.org/ContactPage")
-The ContactPage type uses the related properties from the WebPage type.
+[ContactPage](https://schema.org/ContactPage "https://schema.org/ContactPage") type uses the related properties from the WebPage type.
 
 ##### FAQPage
 
-Properties from: [FAQPage](https://schema.org/FAQPage "https://schema.org/FAQPage")
-The FAQPage type uses the related properties from the WebPage type.
+[FAQPage](https://schema.org/FAQPage "https://schema.org/FAQPage") type uses the related properties from the WebPage type.
 
 ##### ItemPage
 
-Properties from: [ItemPage](https://schema.org/ItemPage "https://schema.org/ItemPage")
-The ItemPage type uses the related properties from the WebPage type.
+[ItemPage](https://schema.org/ItemPage "https://schema.org/ItemPage") type uses the related properties from the WebPage type.
 
 ##### MedicalWebPage
 
-Properties from: [MedicalWebPage](https://schema.org/MedicalWebPage "https://schema.org/MedicalWebPage")
-The MedicalWebPage type uses the related properties from the WebPage type.
+[MedicalWebPage](https://schema.org/MedicalWebPage "https://schema.org/MedicalWebPage") type uses the related properties from the WebPage type.
 
 ##### ProfilePage
 
-Properties from: [ProfilePage](https://schema.org/ProfilePage "https://schema.org/ProfilePage")
-The ProfilePage type uses the related properties from the WebPage type.
+[ProfilePage](https://schema.org/ProfilePage "https://schema.org/ProfilePage") type uses the related properties from the WebPage type.
 
 ##### QAPage
 
-Properties from: [QAPage](https://schema.org/QAPage "https://schema.org/QAPage")
-The QAPage type uses the related properties from the WebPage type.
+[QAPage](https://schema.org/QAPage "https://schema.org/QAPage") type uses the related properties from the WebPage type.
 
 ##### SearchResultsPage
 
-Properties from: [SearchResultsPage](https://schema.org/SearchResultsPage "https://schema.org/SearchResultsPage")
-The SearchResultsPage type uses the related properties from the WebPage type.
+[SearchResultsPage](https://schema.org/SearchResultsPage "https://schema.org/SearchResultsPage") type uses the related properties from the WebPage type.
 
 #### General Article properties
 
@@ -115,8 +101,6 @@ The related properties from the type that matters to the project.
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
 | WP-Core | []() | []() | 	NA | NA
-
-
 
 ---
 
