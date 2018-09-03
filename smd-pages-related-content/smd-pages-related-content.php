@@ -116,7 +116,7 @@ function smd_print_page_meta_fields () {
 			<meta itemprop="headline" content="<?=$title;?>">
 			<meta itemprop="lastReviewed" content="<?=$last_modification_date;?>">
 			<meta itemprop="editor" content="<?=$last_modifier;?>">
-			<meta itemprop="thumbnailUrl" content="<?=$thumbnail_url;?>">
+			<meta itemprop="primaryImageOfPage" content="<?=$thumbnail_url;?>">
 			<meta itemprop="datePublished" content="<?=$publication_date?>">
 			<?php if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';}?>
 		</div>
