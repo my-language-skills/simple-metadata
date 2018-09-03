@@ -40,11 +40,13 @@ function smd_render_page_type_meta ($object, $box) {
 					'CollectionPage' 	=> 'Collection Page',
 					'ContactPage'		=> 'Contact Page',
 					'FAQPage'			=> 'FAQ Page',
+					'ImageGallery'		=> 'Image Gallery',
 					'ItemPage'			=> 'Item Page',
 					'MedicalWebPage'	=> 'Medical Web Page',
 					'ProfilePage'		=> 'Profile Page',
 					'QAPage'			=> 'QA Page',
-					'SearchResultsPage'	=> 'Search Results Page'
+					'SearchResultsPage'	=> 'Search Results Page',
+					'VideoGallery'		=> 'Video Gallery'
 				  );
 	?>
 		<p>Page Type</p>
