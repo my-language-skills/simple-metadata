@@ -2,9 +2,9 @@
 
 Simple metadata will create Post Type options in Posts (metabox)
 
-![settings-post](/images/settings-post.png)
+![settings-post](/doc/images/settings-post.png)
 
-![structured-data-post](/images/structured-data-post.png)
+![structured-data-post](/doc/images/structured-data-post.png)
 
 ### Simple Metadata settings
 Post type have 9 options which allow the configuration of the metadata :

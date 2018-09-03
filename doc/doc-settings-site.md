@@ -2,9 +2,9 @@
 
 Simple metadata will create Type of Site option in Reading (settings)
 
-![settings-site](/images/settings-site.png)
+![settings-site](/doc/images/settings-site.png)
 
-![structured-data-site](/images/structured-data-site.png)
+![structured-data-site](/doc/images/structured-data-site.png)
 
 
 ### Simple Metadata settings
