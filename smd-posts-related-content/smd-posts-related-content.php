@@ -97,7 +97,7 @@ function smd_save_post_type ($post_id, $post) {
  */
 function smd_print_post_meta_fields () {
 
-	if ('post' == get_post_type(get_the_ID())) {
+	if ('post' == get_post_type(get_the_ID()) && !is_front_page()) {
 
 		$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
 
