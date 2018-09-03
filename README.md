@@ -21,7 +21,7 @@ This plugin feeds your posts and pages, and also front-page, with automatically 
 1. Upload plugin folder to /wp-content/plugins/ folder in your web-site file-system.
 1. Activate it from 'Plugins page' in your website.
 
-## Packages
+## Features
 
 ### Webpages Related Content
 
