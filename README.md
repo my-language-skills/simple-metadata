@@ -16,7 +16,9 @@ Plugin for automatic generation of meta fields in web-pages.
 
 Wordpress gives you the ability to add metadata to your sites thus helping Google and other search engines to recognise it. The problem comes if you want to expand.
 
-Simple metadata, extends the functionality of Wordpress and gives you the flexibility to add more metadata in your sites, taking advantage of the schema markup.
+Simple metadata, extends the functionality of Wordpress and gives you the flexibility to add automatically metadata in your sites, taking advantage of the schema markup.
+
+Simple metadata just work in default WP post and pages.
 
 * [Introduction](/doc/doc-intro.md)
 * [Installation, Integrations and Compatibilities](/doc/doc-general.md)
