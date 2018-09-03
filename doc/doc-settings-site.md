@@ -14,27 +14,8 @@ The related properties from the type that matters to the project.
 
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
-| NA | NA | NA | NA | NA
-| NA | NA | NA | NA | NA
-
-
-Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
-The related properties from the type that matters to the project.
-
-| From | Property | Type | Description | Settings place |
-| ---- | -------- |----- | ----------- | --------------
-| NA | NA | NA | NA | NA
-| NA | NA | NA | NA | NA
-
-
-Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
-The related properties from the type that matters to the project.
-
-| From | Property | Type | Description | Settings place |
-| ---- | -------- |----- | ----------- | --------------
-| WP Core | [name](https://schema.org/name "https://schema.org/name") | [Text](https://schema.org/Text "https://schema.org/Text") | Site name. | NA
-| NA | NA | NA | NA | NA
-
+| WP-Core | []() | []() | 	NA | NA
+| WP-Core | []() | []() | 	NA | NA
 
 #### WebSite
 
@@ -43,17 +24,17 @@ The related properties from the type that matters to the project.
 
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
-| NA | NA | NA | NA | NA
-| NA | NA | NA | NA | NA
+| WP-Core | []() | []() | 	NA | NA
 
+#### General Blog and WebSite properties
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related properties from the type that matters to the project.
 
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
-| NA | NA | NA | NA | NA
-| NA | NA | NA | NA | NA
+| WP-Core | [inLanguage](https://schema.org/inLanguage) | [Text](https://schema.org/Text "https://schema.org/Text") | 	The language of the site. | NA
+| WP-Core | []() | []() | 	NA | NA
 
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
@@ -62,7 +43,9 @@ The related properties from the type that matters to the project.
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
 | WP Core | [name](https://schema.org/name "https://schema.org/name") | [Text](https://schema.org/Text "https://schema.org/Text") | Site name. | NA
-| NA | NA | NA | NA | NA
+| WP-Core | [description](https://schema.org/description) | [Text](https://schema.org/Text "https://schema.org/Text") | 	A description of the site (Tagline). | NA
+| WP-Core | [URL](https://schema.org/url) | [URL](https://schema.org/URL) | 	URL of the site. | NA
+| WP-Core | []() | []() | 	NA | NA
 
 
 
