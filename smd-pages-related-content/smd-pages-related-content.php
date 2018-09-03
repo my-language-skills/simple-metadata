@@ -96,7 +96,7 @@ function smd_print_page_meta_fields () {
 	if ('page' == get_post_type(get_the_ID())) {
 		$page_type = get_post_meta(get_the_ID(), 'smd_page_type', true) ?: 'no_page_type';
 		if ('no_page_type' == $page_type){
-			return;
+			$page_type = 'WebPage';
 		}
 		$author_id = get_post_field('post_author', get_the_ID());
 		$author = get_the_author_meta('first_name', $author_id) && get_the_author_meta('last_name', $author_id) ? get_the_author_meta('first_name', $author_id).' '.get_the_author_meta('last_name', $author_id) : get_the_author_meta('display_name', $author_id);
