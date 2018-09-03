@@ -1,6 +1,6 @@
 # Simple metadata
 
-We're convinced that [structured data](https://developers.google.com/search/docs/guides/intro-structured-data) makes the web better, and we've worked hard to expand [Rich Snippets](https://webmasters.googleblog.com/2009/05/introducing-rich-snippets.html) and [Rich Cards](https://webmasters.googleblog.com/2016/05/introducing-rich-cards.html) for better search results. Thanks to the [metadata](https://www.youtube.com/watch?v=L9BqE01SLeE), the search engines can understand the relevance of that content in context. All in one metadata is a complete solution for adding metadata to a Wordpress site.
+We're convinced that [structured data](https://developers.google.com/search/docs/guides/intro-structured-data) makes the web better, and we've worked hard to create [Rich Snippets](https://webmasters.googleblog.com/2009/05/introducing-rich-snippets.html) and [Rich Cards](https://webmasters.googleblog.com/2016/05/introducing-rich-cards.html) for better search results. Thanks to [metadata](https://www.youtube.com/watch?v=L9BqE01SLeE), the search engines can understand the relevance of that content in context. Simple metadata is a complete solution for adding metadata to a Wordpress site.
 
 * [Webmasters Rich Snippets FAQ](/doc/doc-faq.md)
 * [What a SEO plugin does](/doc/doc-seo.md)
@@ -8,7 +8,7 @@ We're convinced that [structured data](https://developers.google.com/search/docs
 
 ## About Simple metadata plugin
 
-This is a plugin for the Wordpress CMS that can be used to add metadata on a website. The plugin supports integration with the Pressbooks plugin that enables the user to add Books on a website. This plugin works on both multisite installation and singe site installation of Wordpress.
+This is a plugin for the Wordpress CMS that can be used to add metadata on a website (single installation or multisite installation).
 
 The aim of Simple metadata is to accomplish a detailed description of the basic schema metadata for a WordPress installation.
 

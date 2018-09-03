@@ -1,7 +1,7 @@
 # Simple Metadata
 
 * Contributors: colomet, danzhik
-* Donate link:
+* Donate link: https://opencollective.com/mylanguageskills
 * Tags: aiom, extensions, metadata
 * Requires at least: 4.9.6
 * Tested up to: 4.9.6
@@ -53,28 +53,12 @@ The Simple metadata plugin is supplied "as is" and all use is at your own risk.
 ## Roadmap
 
 
-### Now
-## 0.xx
-Types of changes
-    * **Added** for new features.
-    * **Changed** for changes in existing functionality.
-    * **Deprecated** for soon-to-be removed features.
-    * **Removed** for now removed features.
-    * **Fixed** for any bug fixes.
-    * **Security** in case of vulnerabilities.
-
-* **List of Files revised**
-
-
 ### Changelog
 [See changelog](/CHANGELOG.md)
-
 
 ## Upgrade Notice
 
 ### 1.0
-
-
 
 
 ## Credits

@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Simple Metadata
-Plugin URI: https://github.com/my-language-skills/aiom-extensions
+Plugin URI: https://github.com/my-language-skills/simple-metadata
 Description: This plugin provides auto-generated metadata on the basis of default WP web-pages information.
 Version: 1.0
 Author: My Language Skills team
