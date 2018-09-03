@@ -170,6 +170,7 @@ function smd_print_post_meta_fields () {
 		?>
 
 		<div itemscope itemtype="http://schema.org/<?=$post_meta_type;?>">
+			<meta itemprop="articleBody" content="<?=$post_content;?>">
 			<meta itemprop="author" content="<?=$author;?>">
 			<meta itemprop="dateCreated" content="<?=$creation_date;?>">
 			<meta itemprop="headline" content="<?=$title;?>">
