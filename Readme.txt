@@ -134,6 +134,7 @@ Founded by Google, Microsoft, Yahoo and Yandex, Schema.org vocabularies are deve
 [welcomed on GitHub](https://github.com/my-language-skills/simple-metadata)
 
 https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
+
 == Changelog ==
 
 1.0 Initial release.
