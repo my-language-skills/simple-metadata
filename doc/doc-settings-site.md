@@ -10,21 +10,13 @@ Type of Site have two options which allow the configuration of the metadata :
 #### Blog
 
 Properties from: [Blog](https://schema.org/Blog "https://schema.org/Blog")
-The related properties from the type that matters to the project.
+No related properties are used.
 
-| From | Property | Type | Description | Settings place |
-| ---- | -------- |----- | ----------- | --------------
-| WP-Core | []() | []() | 	NA | NA
-| WP-Core | []() | []() | 	NA | NA
 
 #### WebSite
 
 Properties from: [WebSite](https://schema.org/WebSite "https://schema.org/WebSite")
-The related properties from the type that matters to the project.
-
-| From | Property | Type | Description | Settings place |
-| ---- | -------- |----- | ----------- | --------------
-| WP-Core | []() | []() | 	NA | NA
+No related properties are used.
 
 #### General Blog and WebSite properties
 
