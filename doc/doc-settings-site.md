@@ -2,6 +2,11 @@
 
 Simple metadata will create Type of Site option in Reading (settings)
 
+![settings-site](/images/settings-site.png)
+
+![structured-data-site](/images/structured-data-site.png)
+
+
 ### Simple Metadata settings
 Type of Site have two options which allow the configuration of the metadata :
 * Blog
