@@ -23,7 +23,7 @@ This plugin feeds your posts and pages, and also front-page, with automatically 
 
 ## Features
 
-### Webpages Related Content
+### Pages Related Content
 
 This extension gives automatically generated data for posts of default WP post type 'page'. Added information is based on Schema.org 'WebPage' type. For every post you can select subtype of 'WebPage' type, depending on belonging of your content. The information added is following:
 * Author ('author' Schema.org property)
@@ -35,7 +35,7 @@ This extension gives automatically generated data for posts of default WP post t
 * Featured image URL ('thumbnailUrl' Schema.org property)
 
 
-### Articles Related Content
+### Posts Related Content
 
 This extension gives automatically generated data for posts of default WP post type 'post'. Added information is based on Schema.org 'Article' type. For all the posts you can select subtype of 'Article' type, depending on belonging of your content. Subtype can be chosen only from netowrk settings page of All In One Metadata, which means it will be applied to ALL posts on ALL blogs. The information added is following:
 * Author ('author' Schema.org property)
