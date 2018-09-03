@@ -33,16 +33,23 @@ function smd_print_wsb_field () {
 	if (is_front_page()){
 		$type = get_option('smd_website_blog_type');
 		$title = get_bloginfo();
+		$description = get_bloginfo( 'description' );
+		$url = get_bloginfo( 'url' );
+		$language = get_bloginfo( 'language' );
 		if ($type){
 		?>
 		<!-- FRONTPAGE META -->
 			<div itemscope itemtype="http://schema.org/<?=$type?>">
 				<meta itemprop="name" content="<?=$title?>">
+				<meta itemprop = "description" content = "<?=$description?>">
+		        <meta itemprop = 'url' content = "<?=$url?>">
+		        <meta itemprop = 'inLanguage' content = "<?=$language?>">
 			</div>
 		<!-- END OF FRONTPAGE META -->
 		<?php
 		
-	}
+		}
+	}	
 }
 
 

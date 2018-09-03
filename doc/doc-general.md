@@ -25,7 +25,7 @@ Any theme can work with Simple metadata.
 
 ## This plugin supports:
 
-* PHP 5.3 and higher.
+* PHP 7.2 and higher.
 * WordPress 4.8 and higher.
 * Internationalization through WordPress.org.
 * MultiSite.

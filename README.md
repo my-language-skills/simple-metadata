@@ -32,7 +32,7 @@ Simple metadata, extends the functionality of Wordpress and gives you the flexib
 
 ## upgrades
 
-For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
+For upgrades, download the last stable version from github, delete from FTP the old plugin and install the new one.
 
 ## Frequently Asked Questions
 
