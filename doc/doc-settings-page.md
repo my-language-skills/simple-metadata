@@ -2,7 +2,7 @@
 
 Simple metadata will create Page Type options in Pages (metabox)
 
-![structured data Post](https://github.com/my-language-skills/simple-metadata/doc/images/structured-data-post.png)
+![structured-data-page](https://raw.githubusercontent.com/my-language-skills/simple-metadata/master/doc/images/structured-data-page.png)
 
 ### Simple Metadata settings
 Page type have 13 options which allow the configuration of the metadata :

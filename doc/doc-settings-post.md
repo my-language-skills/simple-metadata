@@ -2,6 +2,11 @@
 
 Simple metadata will create Post Type options in Posts (metabox)
 
+![structured-data-post](https://raw.githubusercontent.com/my-language-skills/simple-metadata/master/doc/images/structured-data-post.png)
+
+
+
+
 ### Simple Metadata settings
 Post type have 9 options which allow the configuration of the metadata :
 * Article *Activated by default*
