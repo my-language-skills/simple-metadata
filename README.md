@@ -18,11 +18,16 @@ Wordpress gives you the ability to add metadata to your sites thus helping Googl
 
 Simple metadata, extends the functionality of Wordpress and gives you the flexibility to add more metadata in your sites, taking advantage of the schema markup.
 
-*///wrong///* You can see the [schema properties that we use here](https://github.com/Books4Languages/pressbooks-metadata/blob/master/docs/SchemaUsed.md)
-
 * [Introduction](/doc/doc-intro.md)
 * [Installation, Integrations and Compatibilities](/doc/doc-general.md)
 * [Site settings](/doc/doc-settings-site.md)
+
+Schema properties used
+* [Site metadata](/doc/doc-settings-site.md)
+* [Page metadata](/doc/doc-settings-page.md)
+* [Post metadata](/doc/doc-settings-post.md)
+
+Simple metadata markup will be stored in cached versions of web-pages when a caching plugin is available. Please be sure to clear your cache.
 
 
 ## Installation
