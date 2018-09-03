@@ -42,7 +42,8 @@ function smd_print_wsb_field () {
 		<!-- END OF FRONTPAGE META -->
 		<?php
 		
-	}
+		}
+	}	
 }
 
 
