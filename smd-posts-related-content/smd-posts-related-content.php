@@ -102,7 +102,7 @@ function smd_print_post_meta_fields () {
 		$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
 
 		if ('no_type' == $post_meta_type){
-			return;
+			$post_meta_type = 'Article';
 		}
 
 		$post_id = get_the_ID();
