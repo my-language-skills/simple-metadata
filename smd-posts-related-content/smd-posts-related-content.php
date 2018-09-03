@@ -39,7 +39,7 @@ function smd_render_article_type_meta (){
 
 	$post_type = esc_attr(get_post_meta (get_the_ID(), 'smd_post_type', true));
 	$post_meta_types = array(
-					'Artcle'					=> 'Article',
+					'Article'					=> 'Article',
 					'AdvertiserContentArticle'	=> 'Advertisement',
 					'BlogPosting'				=> 'Blog Posting',
 					'DiscussionForumPosting'	=> 'Discussion Forum Posting',
@@ -54,6 +54,9 @@ function smd_render_article_type_meta (){
 				<?php
 					foreach ($post_meta_types as $key => $value) {
 						$selected = $post_type == $key ? 'selected' : '';
+						if (!$post_type && 'Blog' == get_option('smd_website_blog_type') && 'BlogPosting' == $key){
+							$selected = 'selected';
+						}
 						echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
 					}
 				?>
@@ -172,7 +175,7 @@ function smd_print_post_meta_fields () {
 			<meta itemprop="headline" content="<?=$title;?>">
 			<meta itemprop="editor" content="<?=$last_modifier;?>">
 			<meta itemprop="thumbnailUrl" content="<?=$thumbnail_url;?>">
-			<meta itemprop="image" content="<?php if('BlogPosting' == $post_meta_type && !$thumbnail_url){echo $logo;} else {echo $thumbnail_url;} ?>">
+			<meta itemprop="image" content="<?php if(!$thumbnail_url){echo $logo;} else {echo $thumbnail_url;} ?>">
 			<meta itemprop="dateModified" content="<?=$last_modification_date;?>">
 			<meta itemprop="datePublished" content="<?=$publication_date?>">
 			<meta itemprop="keywords" content="<?=$key_words_string;?>">
