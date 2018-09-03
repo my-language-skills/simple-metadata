@@ -2,9 +2,9 @@
 
 Simple metadata will create Page Type options in Pages (metabox)
 
-![settings-post](/images/settings-post.png)
+![settings post](/images/settings-post.png)
 
-![structured-data-page](/images/structured-data-page.png)
+![structured data page](/images/structured-data-page.png)
 
 
 
