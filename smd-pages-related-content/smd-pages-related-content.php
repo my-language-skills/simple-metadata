@@ -1,14 +1,6 @@
 <?php
 
-/*
-Plugin Name: Simple Metadata Webpage Realted Content
-Plugin URI: https://github.com/my-language-skills/aiom-extensions
-Description: This plugin makes your pages more understandable for search engines by telling wich kind of page the given one is and adding automatically generated metadata based on page information.
-Version: 1.0
-Author: My Language Skills team
-Author URI: https://github.com/my-language-skills
-License: GPL 3.0
-*/
+// Metadata for pages
 
 defined ("ABSPATH") or die ("No script assholes!");
 

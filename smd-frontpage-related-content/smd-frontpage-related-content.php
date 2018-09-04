@@ -1,14 +1,6 @@
 <?php
 
-/*
-Plugin Name: Simple Metadata WebSite-Blog Switch
-Plugin URI: https://github.com/my-language-skills/aiom-extensions
-Description: This plugin creates WebSite or Blog Schema.org types metatag in all pages. To switch between go to Reading settings.
-Version: 1.0
-Author: My Language Skills
-Author URI: https://github.com/my-language-skills
-License: GPL 3.0
-*/
+//Metadata for front page
 
 
 /**
