@@ -9,6 +9,7 @@
 function smd_add_option_page () {
 	register_setting ('smd_set_page', 'smd_website_blog_type');
 	add_menu_page('Simple Metadata', 'Simple Metadata', 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
+	add_submenu_page('smd_set_page','General Settings', 'General Settings', 'manage_options', 'smd_set_page');
 	add_settings_section( 'smd_set_page', '', '', 'smd_set_page' );
 	add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page', 'smd_set_page');
 }
