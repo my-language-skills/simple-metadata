@@ -26,7 +26,7 @@ function smd_render_page_type_meta ($object, $box) {
 
 	$page_type = esc_attr(get_post_meta ($object->ID, 'smd_page_type', true));
 	$page_types = array(
-					'no_page_type'		=> '--Select--',
+					'no_page_type'		=> 'Web Page',
 					'AboutPage' 		=> 'About Page',
 					'CheckoutPage' 		=> 'Checkout Page',
 					'CollectionPage' 	=> 'Collection Page',

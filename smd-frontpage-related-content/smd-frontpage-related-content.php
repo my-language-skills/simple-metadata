@@ -12,6 +12,9 @@ function smd_add_option_page () {
 	add_submenu_page('smd_set_page','General Settings', 'General Settings', 'manage_options', 'smd_set_page');
 	add_settings_section( 'smd_set_page', '', '', 'smd_set_page' );
 	add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page', 'smd_set_page');
+	if (!get_option('smd_website_blog_type')){
+		update_option('smd_website_blog_type', 'Blog');
+	}
 }
 
 
