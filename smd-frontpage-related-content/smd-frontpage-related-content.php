@@ -8,7 +8,7 @@
  */
 function smd_add_option_page () {
 	register_setting ('smd_set_page', 'smd_website_blog_type');
-	add_menu_page('Simple Metadata', 'Simple Metadata', 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
+	add_menu_page('Simple Metadata', 'Metadata', 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
 	add_submenu_page('smd_set_page','General Settings', 'General Settings', 'manage_options', 'smd_set_page');
 	add_settings_section( 'smd_set_page', '', '', 'smd_set_page' );
 	add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page', 'smd_set_page');
@@ -49,6 +49,12 @@ function smd_render_switch_set() {
 	<label for="smd_website_blog_type_1">Blog <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?>></label>
 	<label for="smd_website_blog_type_2">WebSite <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" <?php checked('WebSite', get_option('smd_website_blog_type'))?>></label>
 	<?php
+	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
+		?>
+	<label for="smd_website_blog_type_3">Book <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?>></label>
+	<label for="smd_website_blog_type_4">Course <input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?>></label>
+		<?php
+	}
 }
 
 /**

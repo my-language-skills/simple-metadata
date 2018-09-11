@@ -26,7 +26,7 @@ function smd_render_page_type_meta ($object, $box) {
 
 	$page_type = esc_attr(get_post_meta ($object->ID, 'smd_page_type', true));
 	$page_types = array(
-					'no_page_type'		=> 'Web Page',
+					'WebPage'		=> 'Web Page',
 					'AboutPage' 		=> 'About Page',
 					'CheckoutPage' 		=> 'Checkout Page',
 					'CollectionPage' 	=> 'Collection Page',
@@ -88,9 +88,28 @@ function smd_save_page_type ($post_id, $post) {
 function smd_print_page_meta_fields () {
 
 	if ('page' == get_post_type(get_the_ID())) {
-		$page_type = get_post_meta(get_the_ID(), 'smd_page_type', true) ?: 'no_page_type';
-		if ('no_page_type' == $page_type){
-			$page_type = 'WebPage';
+
+		//if education plugin is active, we choose schema type depending on website type option automatically
+		if (!is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
+			$page_type = get_post_meta(get_the_ID(), 'smd_page_type', true) ?: 'no_page_type';
+			//if nothing was selected before, by default WebPage
+			if ('no_page_type' == $page_type){
+				$page_type = 'WebPage';
+			}
+		} else {
+			switch (get_option('smd_website_blog_type')) {
+				case 'Blog':
+				case 'Course':
+					$page_type = 'Article';
+					break;
+				case 'Book':
+					$page_type = 'Chapter';
+				case 'WebSite':
+					$page_type = 'WebPage';		
+				default:
+					$page_type = 'WebPage';
+					break;
+			}
 		}
 		$author_id = get_post_field('post_author', get_the_ID());
 		$author = get_the_author_meta('first_name', $author_id) && get_the_author_meta('last_name', $author_id) ? get_the_author_meta('first_name', $author_id).' '.get_the_author_meta('last_name', $author_id) : get_the_author_meta('display_name', $author_id);

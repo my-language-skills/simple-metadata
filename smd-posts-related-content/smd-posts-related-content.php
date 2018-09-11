@@ -91,10 +91,29 @@ function smd_print_post_meta_fields () {
 
 	if ('post' == get_post_type(get_the_ID()) && !is_front_page()) {
 
-		$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
+		//if education plugin is active, we choose schema type depending on website type option automatically
+		if (!is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 
-		if ('no_type' == $post_meta_type){
-			$post_meta_type = 'Article';
+			$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
+
+			if ('no_type' == $post_meta_type){
+				$post_meta_type = 'Article';
+			}
+		} else {
+
+			switch (get_option('smd_website_blog_type');) {
+				case 'Blog':
+				case 'Course':
+					$post_meta_type = 'Article';
+					break;
+				case 'Book':
+					$post_meta_type = 'Chapter';
+				case 'WebSite':
+					$post_meta_type = 'WebPage';		
+				default:
+					$post_meta_type = 'Article';
+					break;
+			}
 		}
 
 		$post_id = get_the_ID();
