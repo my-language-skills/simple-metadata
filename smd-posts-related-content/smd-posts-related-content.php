@@ -29,6 +29,7 @@ function smd_render_article_type_meta (){
 	//creating nonce
 	wp_nonce_field( basename( __FILE__ ), 'smd_render_post_type_meta' );
 
+	//receiving type of post from option in metabox
 	$post_type = esc_attr(get_post_meta (get_the_ID(), 'smd_post_type', true));
 	$post_meta_types = array(
 					'Article'					=> 'Article',
@@ -118,7 +119,7 @@ function smd_print_post_meta_fields () {
 
 		$post_id = get_the_ID();
 
-		
+		// getting information for metafields
 		$post_content = get_post( $post_id )->post_content;
 		$word_count = str_word_count($post_content);
 		$categories = get_the_category( $post_id);

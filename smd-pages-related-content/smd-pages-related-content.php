@@ -24,6 +24,7 @@ function smd_render_page_type_meta ($object, $box) {
 	//creating nonce
 	wp_nonce_field( basename( __FILE__ ), 'smd_render_page_type_meta' );
 
+	//receiving type of page from opton in metabox
 	$page_type = esc_attr(get_post_meta ($object->ID, 'smd_page_type', true));
 	$page_types = array(
 					'WebPage'		=> 'Web Page',
@@ -111,6 +112,7 @@ function smd_print_page_meta_fields () {
 					break;
 			}
 		}
+		//collecting information for metafields
 		$author_id = get_post_field('post_author', get_the_ID());
 		$author = get_the_author_meta('first_name', $author_id) && get_the_author_meta('last_name', $author_id) ? get_the_author_meta('first_name', $author_id).' '.get_the_author_meta('last_name', $author_id) : get_the_author_meta('display_name', $author_id);
 		$creation_date = get_the_date();
