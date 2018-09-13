@@ -17,6 +17,3 @@ include_once plugin_dir_path( __FILE__ ) . "smd-frontpage-related-content/smd-fr
 
 require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
-if (is_plugin_active('pressbooks/pressbooks.php')){
-	define('SMD_IS_PRESSBOOKS', true);
-}
