@@ -14,3 +14,9 @@ defined ("ABSPATH") or die ("No script assholes!");
 include_once plugin_dir_path( __FILE__ ) . "smd-pages-related-content/smd-pages-related-content.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-posts-related-content/smd-posts-related-content.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-frontpage-related-content/smd-frontpage-related-content.php";
+
+require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
+if (is_plugin_active('pressbooks/pressbooks.php')){
+	define('SMD_IS_PRESSBOOKS', true);
+}

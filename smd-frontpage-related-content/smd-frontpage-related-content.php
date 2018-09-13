@@ -7,6 +7,7 @@
  * Fuction for creating option to choose etween blog and web-site
  */
 function smd_add_option_page () {
+	
 	//adding main menu page for plugin and all addons
 	add_menu_page('Simple Metadata', 'Metadata', 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
 	//fix to have different name in admin menu for main subpage
