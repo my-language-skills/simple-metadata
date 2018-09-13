@@ -7,19 +7,43 @@
  * Fuction for creating option to choose etween blog and web-site
  */
 function smd_add_option_page () {
-	//registering setting for type of site
-	register_setting ('smd_set_page', 'smd_website_blog_type');
 	//adding main menu page for plugin and all addons
 	add_menu_page('Simple Metadata', 'Metadata', 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
 	//fix to have different name in admin menu for main subpage
-	add_submenu_page('smd_set_page','General Settings', 'General Settings', 'manage_options', 'smd_set_page');
+	add_submenu_page('smd_set_page','General', 'General', 'manage_options', 'smd_set_page');
+	add_meta_box('smd-settings', 'General Settings', 'smd_render_metabox', 'smd_set_page', 'normal', 'core');
 
-	//adding settings section and field for type of site setting
+	$post_types = smd_get_all_post_types();
+	$locations = get_option('smd_locations');
+
+	//adding settings sections for type of site setting and locations
 	add_settings_section( 'smd_set_page', '', '', 'smd_set_page' );
-	add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page', 'smd_set_page');
-	if (!get_option('smd_website_blog_type')){
+	add_settings_section( 'smd_locations', 'Active Locations', '', 'smd_set_page' );
+	//registering setting for type of site
+	register_setting ('smd_set_page', 'smd_website_blog_type');
+	//registering setting for locations
+	register_setting('smd_set_page', 'smd_locations');
+
+	if (!get_option('smd_website_blog_type')) {
 		update_option('smd_website_blog_type', 'Blog');
 	}
+
+	add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page', 'smd_set_page');
+
+	foreach ($post_types as $post_type) {
+			if ('metadata' == $post_type || 'site-meta' == $post_type){
+				continue;
+			}
+			$label = ucfirst($post_type);
+			add_settings_field ('smd_locations['.$post_type.']', $label, function () use ($post_type, $locations){
+				$checked = isset($locations[$post_type]) ? true : false;
+				?>
+					<input type="checkbox" name="smd_locations[<?=$post_type?>]" id="smd_locations[<?=$post_type?>]" value="1" <?php checked(1, $checked);?>>
+				<?php
+				
+			}, 'smd_set_page', 'smd_locations');
+		}
+	
 }
 
 
@@ -29,12 +53,43 @@ function smd_add_option_page () {
  * @since  1.0
  */
 function smd_render_options_page() {
+
 	if(!current_user_can('manage_options')){
 		return;
 	}
+
+	wp_enqueue_script('common');
+	wp_enqueue_script('wp-lists');
+	wp_enqueue_script('postbox');
 	?>
-       <div class="wrap">
-           <h2>Simple Metadata Settings</h2>
+        <div class="wrap">
+        	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { ?>
+        	<div class="notice notice-success is-dismissible"> 
+				<p><strong>Settings saved.</strong></p>
+			</div>
+			<?php } ?>
+            <div class="metabox-holder">
+					<?php
+					do_meta_boxes('smd_set_page', 'normal','');
+					?>
+            </div>
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            jQuery(document).ready( function($) {
+                // close postboxes that should be closed
+                $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+                // postboxes setup
+                postboxes.add_postbox_toggles('smd_set_page');
+            });
+            //]]>
+        </script>
+		<?php
+}
+
+function smd_render_metabox(){
+	?>
+	<div class="wrap">
            <form method="post" action="options.php">
 			<?php
 			settings_fields( 'smd_set_page' );
@@ -42,8 +97,9 @@ function smd_render_options_page() {
 			submit_button();
 			?>
 		   </form>
-       </div>
-	<?php
+		   <p></p>
+    </div>
+    <?php
 }
 
 /**
@@ -86,6 +142,20 @@ function smd_print_wsb_field () {
 		
 		}
 	}	
+}
+
+/**
+ * Function for getting all post types of installation
+ */
+function smd_get_all_post_types(){
+	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
+	if(!is_plugin_active('pressbooks/pressbooks.php')){
+		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
+	}else{
+		$postTypes = array_keys( get_post_types( array( 'public' => true,'_builtin' => false )) );
+	}
+	return $postTypes;
 }
 
 

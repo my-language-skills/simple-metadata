@@ -9,6 +9,7 @@ defined ("ABSPATH") or die ("No script assholes!");
  */
 function smd_add_page_type_meta () {
 	if (current_user_can('administrator')){
+		if (isset(get_option('smd_locations')['page']))
 		add_meta_box (
 			'smd_page_type', //Unique ID
 			'Page Type', //Title
@@ -25,7 +26,27 @@ function smd_render_page_type_meta ($object, $box) {
 	wp_nonce_field( basename( __FILE__ ), 'smd_render_page_type_meta' );
 
 	//receiving type of page from opton in metabox
-	$page_type = esc_attr(get_post_meta ($object->ID, 'smd_page_type', true));
+	$page_type = get_post_meta ($object->ID, 'smd_page_type', true) ? esc_attr(get_post_meta ($object->ID, 'smd_page_type', true)) : 'no_page_type';
+
+	switch (get_option('smd_website_blog_type')) {
+		case 'Blog':
+		case 'Course':
+			$page_suppose_type = 'WebPage';
+			break;
+		case 'Book':
+			$page_suppose_type = 'WebPage';
+			break;
+		case 'WebSite':
+			$page_suppose_type = 'WebPage';	
+			break;	
+		default:
+			$page_suppose_type = 'WebPage';
+			break;
+	}
+
+	if ('no_page_type' == $page_type){
+		$page_type = $page_suppose_type;
+	}
 	$page_types = array(
 					'WebPage'		=> 'Web Page',
 					'AboutPage' 		=> 'About Page',
@@ -37,10 +58,13 @@ function smd_render_page_type_meta ($object, $box) {
 					'ItemPage'			=> 'Item Page',
 					'MedicalWebPage'	=> 'Medical Web Page',
 					'ProfilePage'		=> 'Profile Page',
-					'QAPage'			=> 'QA Page',
+					//'QAPage'			=> 'QA Page',
 					'SearchResultsPage'	=> 'Search Results Page',
 					'VideoGallery'		=> 'Video Gallery'
 				  );
+	//if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
+	//	$page_types['Chapter'] = 'Chapter';
+	//}
 	?>
 		<p>Page Type</p>
 			<select style="width: 90%;" name="smd_page_type" id="smd_page_type">
@@ -51,6 +75,7 @@ function smd_render_page_type_meta ($object, $box) {
 					}
 				?>
 			</select>
+			<p><i>As '<?=get_option('smd_website_blog_type')?>' is chosen as type of web-site, by default type of page is '<?=$page_suppose_type?>'</i></p>
 	<?php
 }
 
@@ -88,50 +113,33 @@ function smd_save_page_type ($post_id, $post) {
  */
 function smd_print_page_meta_fields () {
 
-	if ('page' == get_post_type(get_the_ID())) {
+	if ('page' == get_post_type(get_the_ID()) && isset(get_option('smd_locations')['page']) && !is_front_page() && !isset(get_option('smde_locations')['page'])) {
 
-		//if education plugin is active, we choose schema type depending on website type option automatically
-		if (!is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
-			$page_type = get_post_meta(get_the_ID(), 'smd_page_type', true) ?: 'no_page_type';
-			//if nothing was selected before, by default WebPage
-			if ('no_page_type' == $page_type){
-				$page_type = 'WebPage';
-			}
-		} else {
+		$page_type = get_post_meta(get_the_ID(), 'smd_page_type', true) ?: 'no_page_type';
+
+		//if nothing was selected before, by default WebPage
+		if ('no_page_type' == $page_type){
 			switch (get_option('smd_website_blog_type')) {
-				case 'Blog':
-				case 'Course':
-					$page_type = 'Article';
-					break;
-				case 'Book':
-					$page_type = 'Chapter';
-				case 'WebSite':
-					$page_type = 'WebPage';		
-				default:
-					$page_type = 'WebPage';
-					break;
+			case 'Blog':
+			case 'Course':
+				$page_type = 'WebPage';
+				break;
+			case 'Book':
+				$page_type = 'WebPage';
+				break;
+			case 'WebSite':
+				$page_type = 'WebPage';	
+				break;	
+			default:
+				$page_type = 'WebPage';
+				break;
 			}
 		}
-		//collecting information for metafields
-		$author_id = get_post_field('post_author', get_the_ID());
-		$author = get_the_author_meta('first_name', $author_id) && get_the_author_meta('last_name', $author_id) ? get_the_author_meta('first_name', $author_id).' '.get_the_author_meta('last_name', $author_id) : get_the_author_meta('display_name', $author_id);
-		$creation_date = get_the_date();
-		$title = get_the_title();
-		$last_modification_date = get_the_modified_date();
-		$last_modifier = get_the_modified_author();
-		$thumbnail_url = get_the_post_thumbnail_url();
-		$publication_date = get_the_time(get_option( 'date_format' ));
 		?>
 
 		<div itemscope itemtype="http://schema.org/<?=$page_type;?>">
-			<meta itemprop="author" content="<?=$author;?>">
-			<meta itemprop="dateCreated" content="<?=$creation_date;?>">
-			<meta itemprop="headline" content="<?=$title;?>">
-			<meta itemprop="lastReviewed" content="<?=$last_modification_date;?>">
-			<meta itemprop="editor" content="<?=$last_modifier;?>">
-			<meta itemprop="thumbnailUrl" content="<?=$thumbnail_url;?>">
-			<meta itemprop="datePublished" content="<?=$publication_date?>">
-			<?php if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';}?>
+			<?php smd_get_general_tags($page_type); ?>
+			<?php// if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';}?>
 		</div>
 
 		<?php
