@@ -25,13 +25,15 @@ function smd_add_option_page () {
 	//registering setting for locations
 	register_setting('smd_set_page', 'smd_locations');
 
-	if (!get_option('smd_website_blog_type')) {
+	if (!get_option('smd_website_blog_type') && !is_plugin_active('pressbooks/pressbooks.php')) {
 		update_option('smd_website_blog_type', 'Blog');
 	}
-
-	add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page', 'smd_set_page');
+	if (!is_plugin_active('pressbooks/pressbooks.php')){
+		add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page', 'smd_set_page');
+	}
 
 	foreach ($post_types as $post_type) {
+			// we ommit Book Info or Site-Meta as general meta is not applicable for them
 			if ('metadata' == $post_type || 'site-meta' == $post_type){
 				continue;
 			}
@@ -124,7 +126,12 @@ function smd_render_switch_set() {
  */
 function smd_print_wsb_field () {
 	if (is_front_page()){
-		$type = get_option('smd_website_blog_type');
+		//In case of pressbooks installation, always applied Book -> Chapter
+		if (!is_plugin_active('pressbooks/pressbooks.php')){
+			$type = get_option('smd_website_blog_type');
+		} else {
+			$type = 'Book';
+		}
 		$title = get_bloginfo();
 		$description = get_bloginfo( 'description' );
 		$url = get_bloginfo( 'url' );
@@ -154,7 +161,7 @@ function smd_get_all_post_types(){
 	if(!is_plugin_active('pressbooks/pressbooks.php')){
 		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
 	}else{
-		$postTypes = array_keys( get_post_types( array( 'public' => true,'_builtin' => false )) );
+		$postTypes = ['chapter', 'part', 'front-matter', 'back-matter', 'metadata'];
 	}
 	return $postTypes;
 }

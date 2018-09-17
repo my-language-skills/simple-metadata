@@ -4,6 +4,7 @@
 
 
 defined ("ABSPATH") or die ("No script assholes!");
+require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 /**
  *	Function for creation of metabox to pick type of news post for proper Schema.org schema type
@@ -20,7 +21,7 @@ function smd_add_post_type_meta () {
 		'smd_post_type', //Unique ID
 		'Post Type', //Title
 		'smd_render_article_type_meta', //Callback function
-		'post', //location
+		$location, //location
 		'side', //Context
 		'high' //priority
 		);
@@ -128,8 +129,12 @@ function smd_print_post_meta_fields () {
 	$post_type = get_post_type(get_the_ID());
 
 	if (isset(get_option('smd_locations')[$post_type]) && !is_front_page() && !isset(get_option('smde_locations')[$post_type]) && 'page' != $post_type) {
-
-		$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
+		//In case of pressbooks installation, always applied Book -> Chapter
+		if (!is_plugin_active('pressbooks/pressbooks.php')){
+			$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
+		} else {
+			$post_meta_type = 'Chapter';
+		}
 
 		if ('no_type' == $post_meta_type){
 			switch (get_option('smd_website_blog_type')) {
@@ -255,6 +260,8 @@ function smd_get_general_tags($post_meta_type) {
 	return $html;
 }			
 
-add_action ('add_meta_boxes', 'smd_add_post_type_meta');
+if (!is_plugin_active('pressbooks/pressbooks.php')){
+	add_action ('add_meta_boxes', 'smd_add_post_type_meta');
+}
 add_action ('save_post', 'smd_save_post_type', 10, 2);
 add_action ('wp_head', 'smd_print_post_meta_fields');

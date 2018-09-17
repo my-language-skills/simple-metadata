@@ -49,5 +49,4 @@ foreach( $blogs_ids as $b ){
 	$blog_id = $b->blog_id == 1 || $b == 1 ? '' : $b->blog_id.'_';
 	//DELETE query to postmeta database
 	$wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE 'smd_%'");
-	$wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE 'smde_%'");
 }
