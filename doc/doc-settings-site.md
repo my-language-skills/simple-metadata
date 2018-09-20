@@ -1,25 +1,23 @@
-## Setup the plugin
-
-Simple metadata will create Type of Site option in Reading (settings)
-
-![settings-site](/doc/images/settings-site.png)
-
-![structured-data-site](/doc/images/structured-data-site.png)
-
-### Simple Metadata settings
+#  Site metadata
 Type of Site have two options which allow the configuration of the metadata :
-* Blog
+* Blog (Selected by default)
 * WebSite
 
-#### Blog
+NOTE: In a PressBooks installation, Book type is the only possibility and is activated by default.
+
+# Site types and properties
+## Blog
 
 No properties from [Blog](https://schema.org/Blog "https://schema.org/Blog") type are used.
 
-#### WebSite
+## WebSite
 
 No properties from [WebSite](https://schema.org/WebSite "https://schema.org/WebSite") type are used.
 
-#### General Blog and WebSite properties
+## book
+Just in PB installations. Book is by default, is not possible to change.
+
+## General Blog and WebSite properties
 
 The related properties from the [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork") type that matters to the project are:
 
@@ -36,6 +34,13 @@ The related properties from the [Thing](https://schema.org/Thing "https://schema
 | WP-Core | [description](https://schema.org/description) | [Text](https://schema.org/Text "https://schema.org/Text") | 	A description of the site (Tagline). | NA
 | WP-Core | [URL](https://schema.org/url) | [URL](https://schema.org/URL) | 	URL of the site. | NA
 | WP-Core | []() | []() | 	NA | NA
+
+# Screenshots
+Settings site
+![settings-site](/doc/images/settings-site.png)
+
+Structured data
+![structured-data-site](/doc/images/structured-data-site.png)
 
 ---
 

@@ -1,4 +1,4 @@
-## Setup the plugin
+# Page metadata
 
 Simple metadata will create Page Type options in Pages (metabox)
 
@@ -103,5 +103,9 @@ The related properties from the type that matters to the project.
 | WP-Core | []() | []() | 	NA | NA
 
 ---
+
+image
+date dateModified
+Keywords
 
 [Readme](//Readme.md)

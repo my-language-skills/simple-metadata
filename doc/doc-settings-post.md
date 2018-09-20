@@ -1,14 +1,8 @@
-## Setup the plugin
-
+# Post metadata
 Simple metadata will create Post Type options in Posts (metabox)
 
-![settings-post](/doc/images/settings-post.png)
-
-![structured-data-post](/doc/images/structured-data-post.png)
-
-### Simple Metadata settings
-Post type have 9 options which allow the configuration of the metadata :
-* Article *Activated by default*
+Post type have 9 options which allow the configuration of the metadata:
+* Article *By default if **Type of site: WebSite** is activated in the settings page.*
   * AdvertiserContentArticle
   * NewsArticle (NO)
   * Report
@@ -20,9 +14,11 @@ Post type have 9 options which allow the configuration of the metadata :
     * DiscussionForumPosting
   * TechArticle
 
-#### Article
+Note: Article is a parent type. Any other type is a child type of Article.
 
-##### Article
+# Post types and properties
+
+## Article
 
 The related properties from the [Article](https://schema.org/Article "https://schema.org/Article") type that matters to the project are:
 
@@ -32,36 +28,35 @@ The related properties from the [Article](https://schema.org/Article "https://sc
 | WP-Core | [articleSection](https://schema.org/articleSection) | [Text](https://schema.org/Text) | Articles may belong to one or more 'categories' such as Sports, Lifestyle, etc. | NA
 | WP-Core | [wordCount](https://schema.org/wordCount) | [Integer](https://schema.org/Integer) | 	The number of words in the text of the Post. | NA
 
-
-##### AdvertiserContentArticle
+## AdvertiserContentArticle
 
 [AdvertiserContentArticle](https://schema.org/AdvertiserContentArticle "https://schema.org/AdvertiserContentArticle") type uses the related properties from the Article type.
 
-##### Report
+## Report
 
 [Report](https://schema.org/Report "https://schema.org/Report") type uses the related properties from the Article type.
 
-##### SatiricalArticle
+## SatiricalArticle
 
 [SatiricalArticle](https://schema.org/SatiricalArticle "https://schema.org/SatiricalArticle") type uses the related properties from the Article type.
 
-##### SocialMediaPosting
+## SocialMediaPosting
 
 [SocialMediaPosting](https://schema.org/SocialMediaPosting "https://schema.org/SocialMediaPosting") type uses the related properties from the Article type.
 
-##### BlogPosting
+## BlogPosting
 
 [BlogPosting](https://schema.org/BlogPosting "https://schema.org/BlogPosting") type uses the related properties from the Article type.
 
-##### LiveBlogPosting
+## LiveBlogPosting
 
 [LiveBlogPosting](https://schema.org/LiveBlogPosting "https://schema.org/LiveBlogPosting") type uses the related properties from the Article type.
 
-##### DiscussionForumPosting
+## DiscussionForumPosting
 
 [DiscussionForumPosting](https://schema.org/DiscussionForumPosting "https://schema.org/DiscussionForumPosting") type uses the related properties from the Article type.
 
-##### TechArticle
+## TechArticle
 
 [TechArticle](https://schema.org/TechArticle "https://schema.org/TechArticle") type uses the related properties from the Article type.
 
@@ -87,6 +82,14 @@ The related properties from the [Thing](https://schema.org/Thing "https://schema
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
 | WP-Core | [image](https://schema.org/image) | [URL](https://schema.org/URL) | Featured image of the Post. *If no Featured image in the Post, user avatar will be the Post image.* | NA
+
+
+# Screenshots
+Settings site
+![settings-post](/doc/images/settings-post.png)
+
+Structured data
+![structured-data-post](/doc/images/structured-data-post.png)
 
 ---
 
