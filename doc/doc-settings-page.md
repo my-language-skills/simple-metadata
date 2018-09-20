@@ -95,6 +95,10 @@ The related properties from the type that matters to the project.
 | WP-Core | [headline](https://schema.org/headline) | [Text](https://schema.org/Text) | Title of the Page. | NA
 | WP-Core | [thumbnailUrl](https://schema.org/thumbnailUrl) | [NA](https://schema.org/URL) | A thumbnail image relevant to the Page. | NA
 
+dateModified
+publisher
+
+
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related properties from the type that matters to the project.
 
@@ -102,10 +106,11 @@ The related properties from the type that matters to the project.
 | ---- | -------- |----- | ----------- | --------------
 | WP-Core | []() | []() | 	NA | NA
 
+image
+
 ---
 
-image
-date dateModified
-Keywords
+
+
 
 [Readme](//Readme.md)
