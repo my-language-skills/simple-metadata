@@ -251,7 +251,9 @@ function smd_get_general_tags($post_meta_type) {
 			"</div>\n".
 			"<div itemprop='mainEntityOfPage' itemscope itemtype='http://schema.org/WebPage'></div>\n";
 
-	if('Chapter' != $post_meta_type && 'WebPage' != $post_meta_type && 'page' != get_post_type()){
+	$supported_types = ['Article', 'AdvertiserContentArticle', 'BlogPosting', 'DiscussionForumPosting', 'LiveBlogPosting',	'Report', 'SatiricalArticle' , 'SocialMediaPosting', 'TechArticle'];
+
+	if(in_array($post_meta_type, $supported_types)){
 		$html .= "<meta itemprop='articleBody' content='$post_content'>\n".
 				"<meta itemprop='articleSection' content='$categories_string'>\n".
 				"<meta itemprop='wordCount' content='$word_count'>";
