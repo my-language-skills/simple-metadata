@@ -11,25 +11,29 @@ function smd_add_option_page () {
 	//adding main menu page for plugin and all addons
 	add_menu_page('Simple Metadata', 'Metadata', 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
 	//fix to have different name in admin menu for main subpage
-	add_submenu_page('smd_set_page','General', 'General', 'manage_options', 'smd_set_page');
-	add_meta_box('smd-settings', 'General Settings', 'smd_render_metabox', 'smd_set_page', 'normal', 'core');
+	add_submenu_page('smd_set_page','Settings', 'Settings', 'manage_options', 'smd_set_page');
+	if (!is_plugin_active('pressbooks/pressbooks.php')){
+		add_submenu_page('smd_set_page','Site', 'Site', 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
+	}
+	add_meta_box('smd-location-settings', 'Active Locations', 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
+	add_meta_box('smd-settings', 'Front Page', 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
 
 	$post_types = smd_get_all_post_types();
 	$locations = get_option('smd_locations');
 
 	//adding settings sections for type of site setting and locations
-	add_settings_section( 'smd_set_page', '', '', 'smd_set_page' );
-	add_settings_section( 'smd_locations', 'Active Locations', '', 'smd_set_page' );
+	add_settings_section( 'smd_set_page_site', '', '', 'smd_set_page_site' );
+	add_settings_section( 'smd_locations', '', '', 'smd_locations' );
 	//registering setting for type of site
-	register_setting ('smd_set_page', 'smd_website_blog_type');
+	register_setting ('smd_set_page_site', 'smd_website_blog_type');
 	//registering setting for locations
-	register_setting('smd_set_page', 'smd_locations');
+	register_setting('smd_locations', 'smd_locations');
 
 	if (!get_option('smd_website_blog_type') && !is_plugin_active('pressbooks/pressbooks.php')) {
 		update_option('smd_website_blog_type', 'Blog');
 	}
 	if (!is_plugin_active('pressbooks/pressbooks.php')){
-		add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page', 'smd_set_page');
+		add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page_site', 'smd_set_page_site');
 	}
 
 	foreach ($post_types as $post_type) {
@@ -44,7 +48,7 @@ function smd_add_option_page () {
 					<input type="checkbox" name="smd_locations[<?=$post_type?>]" id="smd_locations[<?=$post_type?>]" value="1" <?php checked(1, $checked);?>>
 				<?php
 				
-			}, 'smd_set_page', 'smd_locations');
+			}, 'smd_locations', 'smd_locations');
 		}
 	
 }
@@ -90,13 +94,64 @@ function smd_render_options_page() {
 		<?php
 }
 
+function smd_render_site_page () {
+
+	if(!current_user_can('manage_options')){
+		return;
+	}
+
+	wp_enqueue_script('common');
+	wp_enqueue_script('wp-lists');
+	wp_enqueue_script('postbox');
+	?>
+        <div class="wrap">
+        	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { ?>
+        	<div class="notice notice-success is-dismissible"> 
+				<p><strong>Settings saved.</strong></p>
+			</div>
+			<?php } ?>
+            <div class="metabox-holder">
+					<?php
+					do_meta_boxes('smd_set_page_site', 'normal','');
+					?>
+            </div>
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            jQuery(document).ready( function($) {
+                // close postboxes that should be closed
+                $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+                // postboxes setup
+                postboxes.add_postbox_toggles('smd_set_page_site');
+            });
+            //]]>
+        </script>
+		<?php
+}
+
 function smd_render_metabox(){
 	?>
 	<div class="wrap">
            <form method="post" action="options.php">
 			<?php
-			settings_fields( 'smd_set_page' );
-			do_settings_sections( 'smd_set_page' );
+			settings_fields( 'smd_set_page_site' );
+			do_settings_sections( 'smd_set_page_site' );
+			submit_button();
+			?>
+		   </form>
+		   <p></p>
+    </div>
+    <?php
+}
+
+function smd_render_locations_metabox () {
+	?>
+	<div class="wrap">
+			<span class="description">For CPTs possible options are equal to 'post' options</span>
+           <form method="post" action="options.php">
+			<?php
+			settings_fields( 'smd_locations' );
+			do_settings_sections( 'smd_locations' );
 			submit_button();
 			?>
 		   </form>
@@ -116,9 +171,11 @@ function smd_render_switch_set() {
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
 	<label for="smd_website_blog_type_3">Book <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?>></label>
-	<label for="smd_website_blog_type_4">Course <input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?>></label>
+	<label for="smd_website_blog_type_4">Course <input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?>></label><br>
 		<?php
 	}
+
+	echo '<br><span class="description">Select schema type which will be appplied for front-page metadata</span>';
 }
 
 /**

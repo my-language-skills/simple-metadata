@@ -10,7 +10,7 @@ License: GPL 3.0
 */
 
 defined ("ABSPATH") or die ("No script assholes!");
-
+include_once plugin_dir_path( __FILE__ ) . "inc/smd-general-functions.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-pages-related-content/smd-pages-related-content.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-posts-related-content/smd-posts-related-content.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-frontpage-related-content/smd-frontpage-related-content.php";
