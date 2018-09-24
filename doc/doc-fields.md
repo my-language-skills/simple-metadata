@@ -24,13 +24,14 @@
 | A6.2   | Coverage: time         | coverage         | --      | temporalCoverage     | DC.coverage
 | A7-0   | Structure              | structure        | --      | --                   | --
 | A8-0   | Aggregation Level      | aggregationLevel | --      | --                   | --
-| AX     | Family Friendly        | --               | --      | isFamilyFriendly     | --
-| A      | Position               | --               | --      | position             | --
-| A      | Publishing Principles  | --               | --      | publishingPrinciples | --
-| A      | Content                | --               | --      | text/articleBody (3) | --
-| A      | Image                  | --               | --      | image                | --
-| AX-0   | Secondary Title        | --               | --      | alternativeHeadline  | --
-| AX     | Word Count             | --               | --      | WordCount (3)        | --
+| A9-0   | Content                | --               | --      | text/articleBody (3) | --
+| A10-0  | Category               | --               | --      | articleSection (3)   | --
+| A11-0  | Word Count             | --               | --      | WordCount (3)        | --
+| A12-0  | Secondary Title        | --               | --      | alternativeHeadline  | --
+| A13-0  | Family Friendly        | --               | --      | isFamilyFriendly     | --
+| A14-0  | Position               | --               | --      | position             | --
+| A15-0  | Publishing Principles  | --               | --      | publishingPrinciples | --
+| A16-0  | Image                  | --               | --      | image                | --
 
 1 WebSite; Blog
 2 Book
