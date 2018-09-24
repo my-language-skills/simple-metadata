@@ -8,6 +8,7 @@ defined ("ABSPATH") or die ("No script assholes!");
  *	Function for creation of metabox to pick type of page for proper Schema.org schema type
  */
 function smd_add_page_type_meta () {
+	//we only add metabox if current user is administrator
 	if (current_user_can('administrator')){
 		if (isset(get_option('smd_locations')['page']))
 		add_meta_box (
@@ -28,6 +29,7 @@ function smd_render_page_type_meta ($object, $box) {
 	//receiving type of page from opton in metabox
 	$page_type = get_post_meta ($object->ID, 'smd_page_type', true) ? esc_attr(get_post_meta ($object->ID, 'smd_page_type', true)) : 'no_page_type';
 
+	//for pages default supposed type is always WebPage
 	switch (get_option('smd_website_blog_type')) {
 		case 'Blog':
 		case 'Course':
@@ -113,6 +115,7 @@ function smd_save_page_type ($post_id, $post) {
  */
 function smd_print_page_meta_fields () {
 
+	//we print tags only if location is active and it is not active in Education Plugin
 	if ('page' == get_post_type(get_the_ID()) && isset(get_option('smd_locations')['page']) && !is_front_page() && !isset(get_option('smde_locations')['page'])) {
 
 		$page_type = get_post_meta(get_the_ID(), 'smd_page_type', true) ?: 'no_page_type';
@@ -135,11 +138,25 @@ function smd_print_page_meta_fields () {
 				break;
 			}
 		}
+
+		//lastReviewed
+		$last_reviewed = get_the_modified_date();
+
+		//reviewedBy
+		$last_modifier = get_the_modified_author();
+
+		//primaryIamgeOfPage (url)
+		$thumbnail_url = get_the_post_thumbnail_url();
+		$image = $thumbnail_url
 		?>
 
 		<div itemscope itemtype="http://schema.org/<?=$page_type;?>">
+			<meta itemprop="lastReviewed" content="<?=$last_reviewed?>">
+			<meta itemprop="reviewedBy" content="<?=$last_modifier?>">
+			<meta itemprop="primaryImageOfPage" content="<?=$image?>">
 			<?php smd_get_general_tags($page_type); ?>
 			<?php// if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';}?>
+
 		</div>
 
 		<?php
