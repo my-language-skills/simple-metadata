@@ -39,36 +39,36 @@
 # Fields Definitions
 
 ## General
-This category groups the general information that describes this learning object as a whole.
+This category groups the general information that describes this resource as a whole.
 
 | Source  | Field                   | Definitions | Values
 | ------- | ----------------------- | ----------- | ------
-| ------- | Identifier: URI         | Provide a name for the identification scheme and a unique value to identify the learning resource. | --
-| ------- |  └Catalog               | Use the common abbreviation or the standard name for the identification scheme that is used to reference the learning resource. | `URI`
+| ------- | Identifier: URI         | Provide a name for the identification scheme and a unique value to identify the resource. | --
+| ------- |  └Catalog               | Use the common abbreviation or the standard name for the identification scheme that is used to reference the resource. | `URI`
 | ------- |  └Entry                 | Provide the actual value of the URN or identifier as derived from any specified identification scheme. | --
-| ------- | Identifier: ISSN        | Provide a name for the identification scheme and a unique value to identify the learning resource. | --
-| ------- |  └Catalog               | Use the common abbreviation or the standard name for the identification scheme that is used to reference the learning resource. | `ISSN`
+| ------- | Identifier: ISSN        | Provide a name for the identification scheme and a unique value to identify the resource. | --
+| ------- |  └Catalog               | Use the common abbreviation or the standard name for the identification scheme that is used to reference the resource. | `ISSN`
 | ------- |  └Entry                 | Provide the actual value of the ISSN. | --
-| ------- | Identifier: ISBN        | Provide a name for the identification scheme and a unique value to identify the learning resource. | --
-| ------- |  └Catalog               | Use the common abbreviation or the standard name for the identification scheme that is used to reference the learning resource. | `ISBN`
+| ------- | Identifier: ISBN        | Provide a name for the identification scheme and a unique value to identify the resource. | --
+| ------- |  └Catalog               | Use the common abbreviation or the standard name for the identification scheme that is used to reference the resource. | `ISBN`
 | ------- |  └Entry                 | Provide the actual value of the ISBN. | --
-| ------- | Identifier: eBook ISBN  | Provide a name for the identification scheme and a unique value to identify the learning resource. | --
-| ------- |  └Catalog               | Use the common abbreviation or the standard name for the identification scheme that is used to reference the learning resource. | `ISBN`
+| ------- | Identifier: eBook ISBN  | Provide a name for the identification scheme and a unique value to identify the resource. | --
+| ------- |  └Catalog               | Use the common abbreviation or the standard name for the identification scheme that is used to reference the resource. | `ISBN`
 | ------- |  └Entry                 | Provide the actual value of the URN or identifier as derived from any specified identification scheme. | --
-| ------- | Title                   | Name given to this learning object.  | --
-| ------- | Language                | Language or languages used within this learning object to communicate to the intended user. | ISO 639
-| ------- | Description             | Provide a neutral and concise yet thorough description of the learning resource. | --
-| ------- | Keyword                 | Use the most specific terms that are descriptive of the subject covered by the learning resource. Use a separate keyword element for each term or phrase, avoiding lengthy phrases. | --
+| ------- | Title                   | Name given to this resource.  | --
+| ------- | Language                | Language or languages used within the resource to communicate to the intended user. | ISO 639
+| ------- | Description             | Provide a neutral and concise yet thorough description of the resource. | --
+| ------- | Keyword                 | Use the most specific terms that are descriptive of the subject covered by the resource. Use a separate keyword element for each term or phrase, avoiding lengthy phrases. | --
 | ------- | Coverage: place         | Indicate the areas, regions, and/or jurisdictions covered by the content of the resource.  | --
 | ------- | Coverage: time          | Indicate the time period covered by the content of the resource.  | --
-| ------- | Structure               | Indicate the way in which the learning resource is logically related to other resources to form an aggregate or composite resource. | atomic, collection, networked, hierarchical, linear
-| ------- | Aggregation Level       | Indicate the number of times that the learning resource or its component parts can be decomposed into still smaller components.  | 1, 2, 3, 4
+| ------- | Structure               | Indicate the way in which the resource is logically related to other resources to form an aggregate or composite resource. | atomic, collection, networked, hierarchical, linear
+| ------- | Aggregation Level       | Indicate the number of times that the resource or its component parts can be decomposed into still smaller components.  | 1, 2, 3, 4
 | ------- | Family Friendly         | Indicates if the content is family friendly  | Yes or Not
-| ------- | Position                | The position of the learning resource in a series or sequence of resources.  | --
+| ------- | Position                | The position of the resource in a series or sequence of resources.  | --
 | ------- | Publishing Principles   | Provie a document describing the editorial principles that relate to the activities as a publisher.   | --
-| ------- | Content                 | --  | --
-| ------- | Image                   | --  | --
-| ------- | Secondary Title         | --  | --
+| ------- | Content                 | The actual body of the resource.  | --
+| ------- | Image                   | An image of the resource.  | --
+| ------- | Secondary Title         | A secondary title of the resource.  | --
 | ------- | Word Count              | --  | --
 
 # Vocabulary recommendations

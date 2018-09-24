@@ -2,7 +2,7 @@
 Simple Metadata will create Page Type options in Page (metabox).
 
 ## Simple Metadata settings
-Page type have 13 options which allow the configuration of the metadata:
+Page type have 13 options which allow the configuration of the metadata. Pick the one that describes better the Page:
 * WebPage *Activated by default*
   * AboutPage
   * CheckoutPage
@@ -17,9 +17,9 @@ Page type have 13 options which allow the configuration of the metadata:
   * QAPage
   * SearchResultsPage
 
-#### WebPage
+# Page types and properties
 
-##### WebPage
+## WebPage
 
 Properties from: [WebPage](https://schema.org/Article "https://schema.org/WebPage")
 The related properties from the type that matters to the project.
@@ -28,55 +28,55 @@ The related properties from the type that matters to the project.
 | ---- | -------- |----- | ----------- | --------------
 | WP-Core | [lastReviewed](https://schema.org/lastReviewed) | [Date](https://schema.org/Date) | 	Date on which the content on this web page was last reviewed for accuracy and/or completeness. | NA
 
-##### AboutPage
+### AboutPage
 
 [AboutPage](https://schema.org/AboutPage "https://schema.org/AboutPage") type uses the related properties from the WebPage type.
 
-##### CheckoutPage
+### CheckoutPage
 
 [CheckoutPage](https://schema.org/CheckoutPage "https://schema.org/CheckoutPage") type uses the related properties from the WebPage type.
 
-##### CollectionPage
+### CollectionPage
 
 [CollectionPage](https://schema.org/CollectionPage "https://schema.org/CollectionPage") type uses the related properties from the WebPage type.
 
-##### ImageGallery
+### ImageGallery
 
 [ImageGallery](https://schema.org/ImageGallery "https://schema.org/ImageGallery") type uses the related properties from the WebPage type.
 
-##### VideoGallery
+### VideoGallery
 
 [VideoGallery](https://schema.org/VideoGallery "https://schema.org/VideoGallery") type uses the related properties from the WebPage type.
 
-##### ContactPage
+### ContactPage
 
 [ContactPage](https://schema.org/ContactPage "https://schema.org/ContactPage") type uses the related properties from the WebPage type.
 
-##### FAQPage
+### FAQPage
 
 [FAQPage](https://schema.org/FAQPage "https://schema.org/FAQPage") type uses the related properties from the WebPage type.
 
-##### ItemPage
+### ItemPage
 
 [ItemPage](https://schema.org/ItemPage "https://schema.org/ItemPage") type uses the related properties from the WebPage type.
 
-##### MedicalWebPage
+### MedicalWebPage
 
 [MedicalWebPage](https://schema.org/MedicalWebPage "https://schema.org/MedicalWebPage") type uses the related properties from the WebPage type.
 
-##### ProfilePage
+### ProfilePage
 
 [ProfilePage](https://schema.org/ProfilePage "https://schema.org/ProfilePage") type uses the related properties from the WebPage type.
 
-##### QAPage
+### QAPage
 
 [QAPage](https://schema.org/QAPage "https://schema.org/QAPage") type uses the related properties from the WebPage type.
 
-##### SearchResultsPage
+### SearchResultsPage
 
 [SearchResultsPage](https://schema.org/SearchResultsPage "https://schema.org/SearchResultsPage") type uses the related properties from the WebPage type.
 
-#### General Article properties
+## General Article properties
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related properties from the type that matters to the project.

@@ -2,7 +2,7 @@
 Simple Metadata will create Site Type options in Simple Metadata settings page.
 
 ## Simple Metadata settings
-Type of Site have two options which allow the configuration of the metadata :
+Type of Site have two options which allow the configuration of the metadata. Pick the one that describes better the Site :
 * Blog (Selected by default)
 * WebSite
 

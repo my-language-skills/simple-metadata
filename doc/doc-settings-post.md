@@ -2,7 +2,7 @@
 Simple Metadata will create Post Type options in Posts (metabox).
 
 ## Simple Metadata settings
-Post type have 9 options which allow the configuration of the metadata:
+Post type have 9 options which allow the configuration of the metadata. Pick the one that describes better the Post:
 * Article *By default if **Type of site: WebSite** is activated in the settings page.*
   * AdvertiserContentArticle
   * NewsArticle (NO)
@@ -29,39 +29,39 @@ The related properties from the [Article](https://schema.org/Article "https://sc
 | WP-Core | [articleSection](https://schema.org/articleSection) | [Text](https://schema.org/Text) | Articles may belong to one or more 'categories' such as Sports, Lifestyle, etc. | NA
 | WP-Core | [wordCount](https://schema.org/wordCount) | [Integer](https://schema.org/Integer) | 	The number of words in the text of the Post. | NA
 
-## AdvertiserContentArticle
+### AdvertiserContentArticle
 
 [AdvertiserContentArticle](https://schema.org/AdvertiserContentArticle "https://schema.org/AdvertiserContentArticle") type uses the related properties from the Article type.
 
-## Report
+### Report
 
 [Report](https://schema.org/Report "https://schema.org/Report") type uses the related properties from the Article type.
 
-## SatiricalArticle
+### SatiricalArticle
 
 [SatiricalArticle](https://schema.org/SatiricalArticle "https://schema.org/SatiricalArticle") type uses the related properties from the Article type.
 
-## SocialMediaPosting
+### SocialMediaPosting
 
 [SocialMediaPosting](https://schema.org/SocialMediaPosting "https://schema.org/SocialMediaPosting") type uses the related properties from the Article type.
 
-## BlogPosting
+### BlogPosting
 
 [BlogPosting](https://schema.org/BlogPosting "https://schema.org/BlogPosting") type uses the related properties from the Article type.
 
-## LiveBlogPosting
+### LiveBlogPosting
 
 [LiveBlogPosting](https://schema.org/LiveBlogPosting "https://schema.org/LiveBlogPosting") type uses the related properties from the Article type.
 
-## DiscussionForumPosting
+### DiscussionForumPosting
 
 [DiscussionForumPosting](https://schema.org/DiscussionForumPosting "https://schema.org/DiscussionForumPosting") type uses the related properties from the Article type.
 
-## TechArticle
+### TechArticle
 
 [TechArticle](https://schema.org/TechArticle "https://schema.org/TechArticle") type uses the related properties from the Article type.
 
-#### General Article properties
+## General Article properties
 
 The related properties from the [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork") type that matters to the project are:
 
