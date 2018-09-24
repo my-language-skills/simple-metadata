@@ -18,8 +18,11 @@
 | A1.2-4 |  └Entry                | entry            | --      | --                   | DC.identifier
 | A2-0   | Title                  | title            | --      | Headline             | DC.title
 | A3-0   | Language               | language         | --      | inLanguage           | DC.language
+
+annotation ?????????
 | A4-0   | Description            | description      | --      | description          | DC.description
-| A5-0   | Keyword                | keyword          | --      | keywords             | DC.subject (ARTICLESECTION SCHEMA)
+
+| A5-0   | Tag                    | keyword          | --      | keywords             | DC.subject (ARTICLESECTION SCHEMA)
 | A6.1   | Coverage: place        | coverage         | --      | spatialCoverage      | DC.coverage
 | A6.2   | Coverage: time         | coverage         | --      | temporalCoverage     | DC.coverage
 | A7-0   | Structure              | structure        | --      | --                   | --
@@ -28,10 +31,12 @@
 | A10-0  | Category               | --               | --      | articleSection (3)   | --
 | A11-0  | Word Count             | --               | --      | WordCount (3)        | --
 | A12-0  | Secondary Title        | --               | --      | alternativeHeadline  | --
+| A12-0  | Genre                  | --               | --      | genre                | --
 | A13-0  | Family Friendly        | --               | --      | isFamilyFriendly     | --
 | A14-0  | Position               | --               | --      | position             | --
 | A15-0  | Publishing Principles  | --               | --      | publishingPrinciples | --
-| A16-0  | Image                  | --               | --      | image                | --
+| A16-0  | Author Organization    | --               | --      | sourceOrganization   | --
+| A17-0  | Image                  | --               | --      | image                | --
 
 1 WebSite; Blog
 2 Book
@@ -59,7 +64,7 @@ This category groups the general information that describes this resource as a w
 | ------- | Title                   | Name given to this resource.  | --
 | ------- | Language                | Language or languages used within the resource to communicate to the intended user. | ISO 639
 | ------- | Description             | Provide a neutral and concise yet thorough description of the resource. | --
-| ------- | Keyword                 | Use the most specific terms that are descriptive of the subject covered by the resource. Use a separate keyword element for each term or phrase, avoiding lengthy phrases. | --
+| ------- | Tag (keyword)           | Use the most specific terms that are descriptive of the subject covered by the resource. Use a separate tag element for each term or phrase, avoiding lengthy phrases. | --
 | ------- | Coverage: place         | Indicate the areas, regions, and/or jurisdictions covered by the content of the resource.  | --
 | ------- | Coverage: time          | Indicate the time period covered by the content of the resource.  | --
 | ------- | Structure               | Indicate the way in which the resource is logically related to other resources to form an aggregate or composite resource. | atomic, collection, networked, hierarchical, linear
