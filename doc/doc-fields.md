@@ -1,7 +1,6 @@
 # Metadata Properties relationships
 
 ## A - General
-This category groups the general information that describes this learning object as a whole.
 
 | Cod    | Field                  | LOM              | LRMI    | Schema               | DC
 | ------ | ---------------------- | ---------------- | ------- | -------------------- | --
@@ -28,13 +27,16 @@ This category groups the general information that describes this learning object
 | AX     | Family Friendly        | --               | --      | isFamilyFriendly     | --
 | A      | Position               | --               | --      | position             | --
 | A      | Publishing Principles  | --               | --      | publishingPrinciples | --
-| A      | Content                | --               | --      | text/articleBody*    | --
+| A      | Content                | --               | --      | text/articleBody (3) | --
 | A      | Image                  | --               | --      | image                | --
 | AX-0   | Secondary Title        | --               | --      | alternativeHeadline  | --
-| AX     | Word Count             | --               | --      | WordCount (5)        | --
+| AX     | Word Count             | --               | --      | WordCount (3)        | --
+
+1 WebSite; Blog
+2 Book
+3 Article
 
 # Fields Definitions
-
 
 ## General
 This category groups the general information that describes this learning object as a whole.
@@ -57,9 +59,17 @@ This category groups the general information that describes this learning object
 | ------- | Language                | Language or languages used within this learning object to communicate to the intended user. | ISO 639
 | ------- | Description             | Provide a neutral and concise yet thorough description of the learning resource. | --
 | ------- | Keyword                 | Use the most specific terms that are descriptive of the subject covered by the learning resource. Use a separate keyword element for each term or phrase, avoiding lengthy phrases. | --
-| ------- | Coverage                | Indicate the time period, areas, regions, and/or jurisdictions covered by the content of the resource.  | --
+| ------- | Coverage: place         | Indicate the areas, regions, and/or jurisdictions covered by the content of the resource.  | --
+| ------- | Coverage: time          | Indicate the time period covered by the content of the resource.  | --
 | ------- | Structure               | Indicate the way in which the learning resource is logically related to other resources to form an aggregate or composite resource. | atomic, collection, networked, hierarchical, linear
 | ------- | Aggregation Level       | Indicate the number of times that the learning resource or its component parts can be decomposed into still smaller components.  | 1, 2, 3, 4
+| ------- | Family Friendly         | Indicates if the content is family friendly  | Yes or Not
+| ------- | Position                | The position of the learning resource in a series or sequence of resources.  | --
+| ------- | Publishing Principles   | Provie a document describing the editorial principles that relate to the activities as a publisher.   | --
+| ------- | Content                 | --  | --
+| ------- | Image                   | --  | --
+| ------- | Secondary Title         | --  | --
+| ------- | Word Count              | --  | --
 
 # Vocabulary recommendations
 
@@ -84,6 +94,7 @@ This category groups the general information that describes this learning object
 Although the LOM provides the example of a course as corresponding to this level of aggregation, it is conceivable that a course may, in practice, consist of several third-level aggregations. This level of granularity corresponds, but is not limited, to the Content Aggregation category in the SCORM (1.3) Content Aggregation Model.
 * **4 (the largest level of granularity)** This value simply refers to any resource that incorporates more than two levels of combination or aggregation. In this case, a level-4 resource would be a combination of other resources that are themselves not entirely decomposable into raw media fragments. A level-4 resource can also be a collection of other level-4 resources. These aggregations of multiple aggregate objects may compose, but are not limited to, courses or certificate
 programs.
+
 ---
 
 [Readme](/Readme.md)

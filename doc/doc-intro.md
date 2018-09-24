@@ -1,27 +1,27 @@
-# Simple metadata
+# Simple Metadata
 
-We're convinced that [structured data](https://developers.google.com/search/docs/guides/intro-structured-data) makes the web better, and we've worked hard to create [Rich Snippets](https://webmasters.googleblog.com/2009/05/introducing-rich-snippets.html) and [Rich Cards](https://webmasters.googleblog.com/2016/05/introducing-rich-cards.html) for better search results. Thanks to [metadata](https://www.youtube.com/watch?v=L9BqE01SLeE), the search engines can understand the relevance of that content in context. Simple metadata is a complete solution for adding metadata to a Wordpress site.
+We're convinced that [structured data](https://developers.google.com/search/docs/guides/intro-structured-data) makes the web better, and we've worked hard to create [Rich Snippets](https://webmasters.googleblog.com/2009/05/introducing-rich-snippets.html) and [Rich Cards](https://webmasters.googleblog.com/2016/05/introducing-rich-cards.html) for better search results. Thanks to [metadata](https://www.youtube.com/watch?v=L9BqE01SLeE), the search engines can understand the relevance of that content in context. Simple Metadata is a complete solution for adding metadata to a Wordpress site.
 
 * [Webmasters Rich Snippets FAQ](/doc/doc-faq.md)
 * [What a SEO plugin does](/doc/doc-seo.md)
 
 
-## About Simple metadata plugin
+## About Simple Metadata plugin
 
 This is a plugin for the Wordpress CMS that can be used to add metadata on a website (single installation or multisite installation).
 
-The aim of Simple metadata is to accomplish a detailed description of the basic schema metadata for a WordPress installation.
+The aim of Simple Metadata is to accomplish a detailed description of the basic schema metadata for a WordPress installation.
 
-This plugin is unbranded! This means that we don’t even put the name “Simple metadata” anywhere within the WordPress interface, aside from the plugin activation page.
+This plugin is unbranded! This means that we don’t even put the name “Simple Metadata” anywhere within the WordPress interface, aside from the plugin activation page.
 This plugin makes great use of the default WordPress interface elements, like as if this plugin is part of WordPress. No ads, no nags.
 
 Nobody has to know about the tools you’ve used to create your or someone else’s website. A clean interface, for everyone.
 
-## What is not Simple metadata
+## What is not Simple Metadata
 
 Is not a SEO solution. Schemas don’t actually boost the organic search rankings. With Schemas review ratings, recipes or events in Google’s [SERPs](https://moz.com/learn/seo/serp-features) (search engine results pages) are not just normal search listings but also contain additional information that makes the crawling easier. Those are known as rich snippets and they are thanks to schema markup. Rich snippets actually increase clickthrough rates. Schema may not directly improve your search rankings, but it can still be beneficial for your SEO.
 
-## About Simple metadata for Google
+## About Simple Metadata for Google
 [Google Search](https://moz.com/blog/google-glossary) works hard to understand the content of a page. However, you can provide explicit clues about the meaning of a page to Google by including structured data on the page. [Structured Data](https://developers.google.com/search/docs/guides/intro-structured-data) is a standardized format for providing information about a page and classifying the page content; for example, if is it a recipe page, what are the ingredients, the cooking time and temperature, the calories, and so on.
 
 Be sure to test your structured data using the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/u/0/) during development, and the [Search Console Structured Data report](https://www.google.com/webmasters/tools/structured-data?pli=1) after deployment, to monitor the health of your pages, which might break after deployment due to templating or serving issues.

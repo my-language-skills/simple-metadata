@@ -1,6 +1,7 @@
 # Post metadata
-Simple metadata will create Post Type options in Posts (metabox)
+Simple Metadata will create Post Type options in Posts (metabox).
 
+## Simple Metadata settings
 Post type have 9 options which allow the configuration of the metadata:
 * Article *By default if **Type of site: WebSite** is activated in the settings page.*
   * AdvertiserContentArticle

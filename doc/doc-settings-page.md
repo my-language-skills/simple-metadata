@@ -1,13 +1,8 @@
 # Page metadata
+Simple Metadata will create Page Type options in Page (metabox).
 
-Simple metadata will create Page Type options in Pages (metabox)
-
-![settings post](/doc/images/settings-post.png)
-
-![structured data page](/doc/images/structured-data-page.png)
-
-### Simple Metadata settings
-Page type have 13 options which allow the configuration of the metadata :
+## Simple Metadata settings
+Page type have 13 options which allow the configuration of the metadata:
 * WebPage *Activated by default*
   * AboutPage
   * CheckoutPage
@@ -107,6 +102,14 @@ The related properties from the type that matters to the project.
 | WP-Core | []() | []() | 	NA | NA
 
 image
+
+# Screenshots
+
+Simple Metadata will create Page Type options in Pages (metabox)
+
+![settings post](/doc/images/settings-post.png)
+
+![structured data page](/doc/images/structured-data-page.png)
 
 ---
 

@@ -1,4 +1,7 @@
 #  Site metadata
+Simple Metadata will create Site Type options in Simple Metadata settings page.
+
+## Simple Metadata settings
 Type of Site have two options which allow the configuration of the metadata :
 * Blog (Selected by default)
 * WebSite
@@ -6,6 +9,7 @@ Type of Site have two options which allow the configuration of the metadata :
 NOTE: In a PressBooks installation, Book type is the only possibility and is activated by default.
 
 # Site types and properties
+
 ## Blog
 
 No properties from [Blog](https://schema.org/Blog "https://schema.org/Blog") type are used.
