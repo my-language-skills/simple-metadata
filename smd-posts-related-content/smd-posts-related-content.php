@@ -74,6 +74,7 @@ function smd_render_article_type_meta (){
 					'TechArticle'				=> 'Technology Article',
 				  );
 
+	//if Educational add-on is active, we add new possible options
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		$post_meta_types['WebPage'] = 'Web Page';
 		$post_meta_types['Chapter'] = 'Chapter';
@@ -128,6 +129,7 @@ function smd_print_post_meta_fields () {
 
 	$post_type = get_post_type(get_the_ID());
 
+	//we print these tags only if location is not active in education and post ype is not page
 	if (isset(get_option('smd_locations')[$post_type]) && !is_front_page() && !isset(get_option('smde_locations')[$post_type]) && 'page' != $post_type) {
 		//In case of pressbooks installation, always applied Book -> Chapter
 		if (!is_plugin_active('pressbooks/pressbooks.php')){

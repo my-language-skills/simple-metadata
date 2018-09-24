@@ -135,3 +135,17 @@ function smd_get_general_tags($post_meta_type) {
 
 	return $html;
 }	
+
+/**
+ * Function for getting all post types of installation
+ */
+function smd_get_all_post_types(){
+	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
+	if(!is_plugin_active('pressbooks/pressbooks.php')){
+		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
+	}else{
+		$postTypes = ['chapter', 'part', 'front-matter', 'back-matter', 'metadata'];
+	}
+	return $postTypes;
+}

@@ -36,6 +36,7 @@ function smd_add_option_page () {
 		add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page_site', 'smd_set_page_site');
 	}
 
+	//adding location option for every public CPT
 	foreach ($post_types as $post_type) {
 			// we ommit Book Info or Site-Meta as general meta is not applicable for them
 			if ('metadata' == $post_type || 'site-meta' == $post_type){
@@ -105,7 +106,7 @@ function smd_render_site_page () {
 	wp_enqueue_script('postbox');
 	?>
         <div class="wrap">
-        	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { ?>
+        	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { //if settings were saved, we show notice?>
         	<div class="notice notice-success is-dismissible"> 
 				<p><strong>Settings saved.</strong></p>
 			</div>
@@ -167,7 +168,7 @@ function smd_render_switch_set() {
 	?>
 	<label for="smd_website_blog_type_1">Blog <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?>></label>
 	<label for="smd_website_blog_type_2">WebSite <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" <?php checked('WebSite', get_option('smd_website_blog_type'))?>></label>
-	<?php // if education plugin is active, add new options to select
+	<?php // if education plugin is active, add new options to select (possibly new values with other addons)
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
 	<label for="smd_website_blog_type_3">Book <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?>></label>
@@ -207,20 +208,6 @@ function smd_print_wsb_field () {
 		
 		}
 	}	
-}
-
-/**
- * Function for getting all post types of installation
- */
-function smd_get_all_post_types(){
-	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
-	if(!is_plugin_active('pressbooks/pressbooks.php')){
-		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
-	}else{
-		$postTypes = ['chapter', 'part', 'front-matter', 'back-matter', 'metadata'];
-	}
-	return $postTypes;
 }
 
 
