@@ -22,12 +22,15 @@ Simple metadata just work in default WP post and pages.
 
 * [Introduction](/doc/doc-intro.md)
 * [Installation, Integrations and Compatibilities](/doc/doc-general.md)
-* [Site settings](/doc/doc-settings-site.md)
+* [Site settings](/doc/doc-settings.md)
+* [Metadata filds](/doc/doc-fields.md)
+
 
 Schema properties used
 * [Site metadata](/doc/doc-settings-site.md)
 * [Page metadata](/doc/doc-settings-page.md)
 * [Post metadata](/doc/doc-settings-post.md)
+* [MU metadata](/doc/doc-settings-mu.md)
 
 Simple metadata markup will be stored in cached versions of web-pages when a caching plugin is available. Please be sure to clear your cache.
 
