@@ -16,7 +16,7 @@
 | A1-4   | Identifier: eBook ISBN | identifier       | NA      | isbn (2)             | NA
 | A1.1-4 |  └Catalog              | catalog          | --      | --                   | --
 | A1.2-4 |  └Entry                | entry            | --      | --                   | DC.identifier
-| A2-0   | Title                  | title            | --      | Headline             | DC.title
+| A2-0   | Title                  | title            | --      | Name                 | DC.title
 | A3-0   | Language               | language         | --      | inLanguage           | DC.language
 
 annotation ?????????
@@ -30,10 +30,13 @@ annotation ?????????
 | A9-0   | Content                | --               | --      | text/articleBody (3) | --
 | A10-0  | Category               | --               | --      | articleSection (3)   | --
 | A11-0  | Word Count             | --               | --      | WordCount (3)        | --
-| A12-0  | Secondary Title        | --               | --      | alternativeHeadline  | --
+| A11-0  | About                  | --               | --      | about                | --
+| A11-0  | Alternative title      | --               | --      | alternateName        | --
+| A12-0  | Alternative Headline   | --               | --      | alternativeHeadline  | --
 | A12-0  | Genre                  | --               | --      | genre                | --
+| A12-0  | Headline               | --               | --      | Headline                | --
 | A13-0  | Family Friendly        | --               | --      | isFamilyFriendly     | --
-| A14-0  | Position               | --               | --      | position             | --
+| A14-0  | Order                  | --               | --      | position             | -- xxxxxxxxxxxxx
 | A15-0  | Publishing Principles  | --               | --      | publishingPrinciples | --
 | A16-0  | Author Organization    | --               | --      | sourceOrganization   | --
 | A17-0  | Image                  | --               | --      | image                | --

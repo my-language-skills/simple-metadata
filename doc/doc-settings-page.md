@@ -24,9 +24,9 @@ Page type have 13 options which allow the configuration of the metadata. Pick th
 Properties from: [WebPage](https://schema.org/Article "https://schema.org/WebPage")
 The related properties from the type that matters to the project.
 
-| From | Property | Type | Description | Settings place |
-| ---- | -------- |----- | ----------- | --------------
-| WP-Core | [lastReviewed](https://schema.org/lastReviewed) | [Date](https://schema.org/Date) | 	Date on which the content on this web page was last reviewed for accuracy and/or completeness. | NA
+| From | Property | Type | Description |
+| ---- | -------- |----- | ----------- |
+| WP-Core | [lastReviewed](https://schema.org/lastReviewed) | [Date](https://schema.org/Date) | 	Date on which the content on this web page was last reviewed for accuracy and/or completeness. |
 
 ### AboutPage
 
@@ -81,14 +81,16 @@ The related properties from the type that matters to the project.
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related properties from the type that matters to the project.
 
-| From | Property | Type | Description | Settings place |
-| ---- | -------- |----- | ----------- | --------------
-| WP-Core | [author](https://schema.org/author) | [Person](https://schema.org/Person) | The author of this Page.  | NA
-| WP-Core | [dateCreated](https://schema.org/dateCreated) | [Date](https://schema.org/Date) | The date on which the Page was created. | NA
-| WP-Core | [datePublished](https://schema.org/datePublished) | [Date](https://schema.org/Date) | Date of first Page. | NA
-| WP-Core | [editor](https://schema.org/editor) | [Person](https://schema.org/Person) | The last user that modify this Page.  | NA
-| WP-Core | [headline](https://schema.org/headline) | [Text](https://schema.org/Text) | Title of the Page. | NA
-| WP-Core | [thumbnailUrl](https://schema.org/thumbnailUrl) | [NA](https://schema.org/URL) | A thumbnail image relevant to the Page. | NA
+| From | Property | Type | Description |
+| ---- | -------- |----- | ----------- |
+| WP-Core | [author](https://schema.org/author) | [Person](https://schema.org/Person) | The author of this Page.  |
+| WP-Core | [dateCreated](https://schema.org/dateCreated) | [Date](https://schema.org/Date) | The date on which the Page was created. |
+| WP-Core | [datePublished](https://schema.org/datePublished) | [Date](https://schema.org/Date) | Date of first Page. |
+| WP-Core | [editor](https://schema.org/editor) | [Person](https://schema.org/Person) | The last user that modify this Page.  |
+| WP-Core | [headline](https://schema.org/headline) | [Text](https://schema.org/Text) | Title of the Page. |
+| WP-Core | [thumbnailUrl](https://schema.org/thumbnailUrl) | [NA](https://schema.org/URL) | A thumbnail image relevant to the Page. |
+
+| A14-0  | Order                  | --               | --      | position             | -- xxxxxxxxxxxxx
 
 dateModified
 publisher
@@ -97,9 +99,9 @@ publisher
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related properties from the type that matters to the project.
 
-| From | Property | Type | Description | Settings place |
-| ---- | -------- |----- | ----------- | --------------
-| WP-Core | []() | []() | 	NA | NA
+| From | Property | Type | Description |
+| ---- | -------- |----- | ----------- |
+| WP-Core | []() | []() | 	NA |
 
 image
 
