@@ -117,8 +117,8 @@ function smd_get_general_tags($post_meta_type) {
 			"<meta itemprop='editor' content='$last_modifier'>\n".
 			"<meta itemprop='headline' content='$title'>\n".
 			"<div itemprop='publisher' itemscope itemtype='http://schema.org/$type'>\n".
-				"<meta itemprop='name' content='$publisher'>\n".
-				"<meta itemprop='logo' content='$logo'>\n".
+				"\t<meta itemprop='name' content='$publisher'>\n".
+				"\t<meta itemprop='logo' content='$logo'>\n".
 			"</div>\n".
 			"<meta itemprop='thumbnailUrl' content='$thumbnail_url'>\n".
 			"<meta itemprop='image' content='$image'>\n";
@@ -143,7 +143,13 @@ function smd_get_all_post_types(){
 	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
 	if(!is_plugin_active('pressbooks/pressbooks.php')){
+
 		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
+		
+		//we unset attachment sa it needs different markup (for future)
+		if (($key = array_search('attachment', $postTypes)) !== false){
+			unset($postTypes[$key]);
+		}
 	}else{
 		$postTypes = ['chapter', 'part', 'front-matter', 'back-matter', 'metadata'];
 	}

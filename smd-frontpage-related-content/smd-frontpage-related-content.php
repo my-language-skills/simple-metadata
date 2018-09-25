@@ -15,11 +15,17 @@ function smd_add_option_page () {
 	if (!is_plugin_active('pressbooks/pressbooks.php')){
 		add_submenu_page('smd_set_page','Site', 'Site', 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
 	}
-	add_meta_box('smd-location-settings', 'Active Locations', 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
+	add_meta_box('smd-location-settings', 'General Metadata', 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
 	add_meta_box('smd-settings', 'Front Page', 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
 
 	$post_types = smd_get_all_post_types();
 	$locations = get_option('smd_locations');
+
+	$net_locations = [];
+
+	if (is_multisite()){
+		$net_locations = get_blog_option(1, 'smd_net_locations');
+	}
 
 	//adding settings sections for type of site setting and locations
 	add_settings_section( 'smd_set_page_site', '', '', 'smd_set_page_site' );
@@ -43,10 +49,14 @@ function smd_add_option_page () {
 				continue;
 			}
 			$label = ucfirst($post_type);
-			add_settings_field ('smd_locations['.$post_type.']', $label, function () use ($post_type, $locations){
+			add_settings_field ('smd_locations['.$post_type.']', $label, function () use ($post_type, $locations, $net_locations){
 				$checked = isset($locations[$post_type]) ? true : false;
+				$disabled = isset($net_locations[$post_type]) ? 'disabled' : '';
 				?>
-					<input type="checkbox" name="smd_locations[<?=$post_type?>]" id="smd_locations[<?=$post_type?>]" value="1" <?php checked(1, $checked);?>>
+					<input type="checkbox" name="smd_locations[<?=$post_type?>]" id="smd_locations[<?=$post_type?>]" value="1" <?php checked(1, $checked);?> <?=$disabled?>>
+					<?php if('' !== $disabled): ?>
+						<input type="hidden" name="smd_locations[<?=$post_type?>]" value="1">
+					<?php endif; ?>
 				<?php
 				
 			}, 'smd_locations', 'smd_locations');
@@ -165,18 +175,38 @@ function smd_render_locations_metabox () {
  * Function for rendering radio button
  */
 function smd_render_switch_set() {
+	
+	$disabled = '';
+	
+	//if network option is set to something except 'Local value', we disable selection
+	if (is_multisite()){
+		
+		//getting option for type of site for network
+		$net_sites_type = get_blog_option (1, 'smd_net_sites_type') ?: '0';
+		if ('0' !== $net_sites_type){
+			$disabled = 'disabled';
+		}
+	}
 	?>
-	<label for="smd_website_blog_type_1">Blog <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?>></label>
-	<label for="smd_website_blog_type_2">WebSite <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" <?php checked('WebSite', get_option('smd_website_blog_type'))?>></label>
+	<label for="smd_website_blog_type_1">Blog <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
+	<label for="smd_website_blog_type_2">WebSite <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" <?php checked('WebSite', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
 	<?php // if education plugin is active, add new options to select (possibly new values with other addons)
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
-	<label for="smd_website_blog_type_3">Book <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?>></label>
-	<label for="smd_website_blog_type_4">Course <input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?>></label><br>
+	<label for="smd_website_blog_type_3">Book <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
+	<label for="smd_website_blog_type_4">Course <input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label><br>
 		<?php
 	}
 
-	echo '<br><span class="description">Select schema type which will be appplied for front-page metadata</span>';
+	if ('disabled' === $disabled){
+		echo '<input type="hidden" name="smd_website_blog_type" value="'.$net_sites_type.'">';
+		echo '<br><span class="description">Type was selected by network administrator. You are not allowed to change it.</span>';
+	} else {
+
+		echo '<br><span class="description">Select schema type which will be appplied for front-page metadata</span>';
+
+	}
+
 }
 
 /**
@@ -196,15 +226,23 @@ function smd_print_wsb_field () {
 		$language = get_bloginfo( 'language' );
 		if ($type){
 		?>
-		<!-- FRONTPAGE META -->
-			<div itemscope itemtype="http://schema.org/<?=$type?>">
-				<meta itemprop="name" content="<?=$title?>">
-				<meta itemprop = "description" content = "<?=$description?>">
-		        <meta itemprop = "url" content = "<?=$url?>">
-		        <meta itemprop = "inLanguage" content = "<?=$language?>">
-			</div>
-		<!-- END OF FRONTPAGE META -->
-		<?php
+<?="\n"?><!-- SM FRONTPAGE META -->
+<div itemscope itemtype="http://schema.org/<?=$type?>">
+	<meta itemprop="name" content="<?=$title?>">
+	<meta itemprop = "about" content = "<?=$description?>">
+	<meta itemprop = "url" content = "<?=$url?>">
+	<meta itemprop = "inLanguage" content = "<?=$language?>">
+	<?php //printing tags from add-on plugins, if they are active
+	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && (isset(get_option('smde_locations')['site-meta'])  || isset(get_option('smde_locations')['metadata']))){
+		smde_print_tags();
+	} 
+	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && (isset(get_option('smdlc_locations')['site-meta']) || isset(get_option('smdlc_locations')['metadata']))){
+		smdlc_print_tags();
+	} 
+	?>
+<?="\n"?></div>
+<!-- END OF SM FRONTPAGE META -->
+	<?php
 		
 		}
 	}	

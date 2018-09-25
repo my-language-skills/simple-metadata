@@ -116,7 +116,7 @@ function smd_save_page_type ($post_id, $post) {
 function smd_print_page_meta_fields () {
 
 	//we print tags only if location is active and it is not active in Education Plugin
-	if ('page' == get_post_type(get_the_ID()) && isset(get_option('smd_locations')['page']) && !is_front_page() && !isset(get_option('smde_locations')['page'])) {
+	if ('page' == get_post_type(get_the_ID()) && isset(get_option('smd_locations')['page']) && !is_front_page() && !is_home()) {
 
 		$page_type = get_post_meta(get_the_ID(), 'smd_page_type', true) ?: 'no_page_type';
 
@@ -149,17 +149,25 @@ function smd_print_page_meta_fields () {
 		$thumbnail_url = get_the_post_thumbnail_url();
 		$image = $thumbnail_url
 		?>
+<?="\n"?><!--SM PAGES METADATA-->
+<div itemscope itemtype="http://schema.org/<?=$page_type;?>">
+	<meta itemprop="lastReviewed" content="<?=$last_reviewed?>">
+	<meta itemprop="reviewedBy" content="<?=$last_modifier?>">
+	<meta itemprop="primaryImageOfPage" content="<?=$image?>">
+	<?php echo smd_get_general_tags($page_type); ?>
+	<?php //printing tags from add-on plugins, if they are active
+	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')['page'])){
+		smde_print_tags();
+	} 
+	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')['page'])){
+		smdlc_print_tags();
+	} 
+	?>
+	<?php // if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';} ?>
 
-		<div itemscope itemtype="http://schema.org/<?=$page_type;?>">
-			<meta itemprop="lastReviewed" content="<?=$last_reviewed?>">
-			<meta itemprop="reviewedBy" content="<?=$last_modifier?>">
-			<meta itemprop="primaryImageOfPage" content="<?=$image?>">
-			<?php smd_get_general_tags($page_type); ?>
-			<?php// if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';}?>
-
-		</div>
-
-		<?php
+<?="\n"?></div>
+<!--END OF SM PAGES METADATA-->
+	<?php
 	}
 
 }

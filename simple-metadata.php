@@ -10,10 +10,20 @@ License: GPL 3.0
 */
 
 defined ("ABSPATH") or die ("No script assholes!");
+
+require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
+if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') || is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php')){
+	include_once plugin_dir_path( __FILE__ ) . "inc/smd-site-cpt.php";
+}
 include_once plugin_dir_path( __FILE__ ) . "inc/smd-general-functions.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-pages-related-content/smd-pages-related-content.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-posts-related-content/smd-posts-related-content.php";
 include_once plugin_dir_path( __FILE__ ) . "smd-frontpage-related-content/smd-frontpage-related-content.php";
+//loading network settings only for multisite installation
+if (is_multisite()){
+	include_once plugin_dir_path( __FILE__ ) . "network-admin/smd-network-admin.php";
+}
 
-require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
 

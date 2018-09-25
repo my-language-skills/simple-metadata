@@ -42,8 +42,6 @@ function smd_render_article_type_meta (){
 
 	switch (get_option('smd_website_blog_type')) {
 			case 'Blog':
-				$post_suppose_type = 'BlogPosting';
-				break;
 			case 'Course':
 				$post_suppose_type = 'Article';
 				break;
@@ -127,10 +125,12 @@ function smd_save_post_type ($post_id, $post) {
  */
 function smd_print_post_meta_fields () {
 
-	$post_type = get_post_type(get_the_ID());
+	$post_id = get_the_ID();
+
+	$post_type = get_post_type($post_id);
 
 	//we print these tags only if location is not active in education and post ype is not page
-	if (isset(get_option('smd_locations')[$post_type]) && !is_front_page() && !isset(get_option('smde_locations')[$post_type]) && 'page' != $post_type) {
+	if (isset(get_option('smd_locations')[$post_type]) && !is_front_page() && !is_home() && 'page' != $post_type) {
 		//In case of pressbooks installation, always applied Book -> Chapter
 		if (!is_plugin_active('pressbooks/pressbooks.php')){
 			$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
@@ -165,11 +165,20 @@ function smd_print_post_meta_fields () {
 		//<	
 		
 		?>
-
-		<div itemscope itemtype="http://schema.org/<?=$post_meta_type;?>">
-			<?php echo smd_get_general_tags($post_meta_type);?>
-			<meta itemprop='keywords' content='$key_words_string'>
-		</div>
+<?="\n"?><!--SM POSTS METADATA-->
+<div itemscope itemtype="http://schema.org/<?=$post_meta_type;?>">
+<?php echo smd_get_general_tags($post_meta_type); ?>
+<meta itemprop='keywords' content='<?=$key_words_string?>'>
+	<?php //printing tags from add-on plugins, if they are active
+	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')[$post_type])){
+		smde_print_tags();
+	} 
+	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')[$post_type])){
+		smdlc_print_tags();
+	} 
+	?>
+<?="\n"?></div>
+<!--END OF SM POSTS METADATA-->
 
 		<?php
 	}
