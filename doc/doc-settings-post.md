@@ -74,9 +74,12 @@ The related properties from the [Creative Work](https://schema.org/CreativeWork 
 | WP-Core | [editor](https://schema.org/editor) | [Person](https://schema.org/Person) | The last user that modify this Post.  | NA
 | WP-Core | [headline](https://schema.org/headline) | [Text](https://schema.org/Text) | Title of the Post. | NA
 | WP-Core | [keywords](https://schema.org/keywords) | [Text](https://schema.org/Text) | 	Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas. | NA
-| WP-Core | [logo](https://schema.org/logo) ([publisher](https://schema.org/publisher))| [URL](https://schema.org/URL) | By default the name of the domain is taken. If a SEO plugin is activated, it uses the Organization value.  | NA
-| WP-Core | [publisher](https://schema.org/publisher) | [Organization](https://schema.org/Organization) | By default the name of the domain is taken. If a SEO plugin is activated, it uses the Organization value.  | NA
+| WP-Core | [publisher](https://schema.org/publisher) ([logo](https://schema.org/logo) [name]()) | [URL](https://schema.org/URL)/[Text](https://schema.org/Text) | By default the name of the domain is taken. If a SEO plugin is activated, it uses the Organization value.  | NA
+---| WP-Core | [publisher](https://schema.org/publisher) | [Organization](https://schema.org/Organization) | By default the name of the domain is taken. If a SEO plugin is activated, it uses the Organization value.  | NA ---
 | WP-Core | [thumbnailUrl](https://schema.org/thumbnailUrl) | [NA](https://schema.org/URL) | A thumbnail image relevant to the Post. | NA
+articleBody
+articleSelection
+wordCount
 
 The related properties from the [Thing](https://schema.org/Thing "https://schema.org/Thing") type that matters to the project are:
 

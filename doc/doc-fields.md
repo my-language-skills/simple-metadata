@@ -34,12 +34,13 @@ annotation ?????????
 | A11-0  | Alternative title      | --               | --      | alternateName        | --
 | A12-0  | Alternative Headline   | --               | --      | alternativeHeadline  | --
 | A12-0  | Genre                  | --               | --      | genre                | --
-| A12-0  | Headline               | --               | --      | Headline                | --
+| A12-0  | Headline               | --               | --      | Headline             | --
 | A13-0  | Family Friendly        | --               | --      | isFamilyFriendly     | --
 | A14-0  | Order                  | --               | --      | position             | -- xxxxxxxxxxxxx
 | A15-0  | Publishing Principles  | --               | --      | publishingPrinciples | --
 | A16-0  | Author Organization    | --               | --      | sourceOrganization   | --
 | A17-0  | Image                  | --               | --      | image                | --
+| A18-0  | lAST REVIEW             --                   --       lastReviwed
 
 1 WebSite; Blog
 2 Book
@@ -79,6 +80,9 @@ This category groups the general information that describes this resource as a w
 | ------- | Image                   | An image of the resource.  | --
 | ------- | Secondary Title         | A secondary title of the resource.  | --
 | ------- | Word Count              | --  | --
+
+
+----------new tables with codes, fiedls or wp core , place -------------
 
 # Vocabulary recommendations
 

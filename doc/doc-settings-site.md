@@ -6,7 +6,7 @@ Type of Site have two options which allow the configuration of the metadata. Pic
 * Blog (Selected by default)
 * WebSite
 
-NOTE: In a PressBooks installation, Book type is the only possibility and is activated by default.
+NOTE: In a PressBooks installation, Book type is the only possibility and is activated by default. In a regular WP installation, Book is just possible with Simple Metadata Education.
 
 # Site types and properties
 
@@ -35,7 +35,7 @@ The related properties from the [Thing](https://schema.org/Thing "https://schema
 | From | Property | Type | Description | Settings place |
 | ---- | -------- |----- | ----------- | --------------
 | WP Core | [name](https://schema.org/name "https://schema.org/name") | [Text](https://schema.org/Text "https://schema.org/Text") | Site name. | NA
-| WP-Core | [description](https://schema.org/description) | [Text](https://schema.org/Text "https://schema.org/Text") | 	A description of the site (Tagline). | NA
+| WP-Core | [about](https://schema.org/about) | [Text](https://schema.org/Text "https://schema.org/Text") | 	What the site is about (Tagline). | NA
 | WP-Core | [URL](https://schema.org/url) | [URL](https://schema.org/URL) | 	URL of the site. | NA
 | WP-Core | []() | []() | 	NA | NA
 

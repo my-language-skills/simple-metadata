@@ -26,7 +26,9 @@ The related properties from the type that matters to the project.
 
 | From | Property | Type | Description |
 | ---- | -------- |----- | ----------- |
-| WP-Core | [lastReviewed](https://schema.org/lastReviewed) | [Date](https://schema.org/Date) | 	Date on which the content on this web page was last reviewed for accuracy and/or completeness. |
+| WP-Core | [lastReviewed](https://schema.org/lastReviewed) | [Date](https://schema.org/Date) | 	Date on which the content on this web page was last reviewed for accuracy and/or completeness. | A18
+reviewebBy
+primaryImageOfPage
 
 ### AboutPage
 
@@ -85,15 +87,18 @@ The related properties from the type that matters to the project.
 | ---- | -------- |----- | ----------- |
 | WP-Core | [author](https://schema.org/author) | [Person](https://schema.org/Person) | The author of this Page.  |
 | WP-Core | [dateCreated](https://schema.org/dateCreated) | [Date](https://schema.org/Date) | The date on which the Page was created. |
+dateModified
 | WP-Core | [datePublished](https://schema.org/datePublished) | [Date](https://schema.org/Date) | Date of first Page. |
 | WP-Core | [editor](https://schema.org/editor) | [Person](https://schema.org/Person) | The last user that modify this Page.  |
 | WP-Core | [headline](https://schema.org/headline) | [Text](https://schema.org/Text) | Title of the Page. |
-| WP-Core | [thumbnailUrl](https://schema.org/thumbnailUrl) | [NA](https://schema.org/URL) | A thumbnail image relevant to the Page. |
+publisher
+| WP-Core | [thumbnailUrl](https://schema.org/thumbnailUrl)* | [NA](https://schema.org/URL) | A thumbnail image relevant to the Page. |
 
 | A14-0  | Order                  | --               | --      | position             | -- xxxxxxxxxxxxx
 
-dateModified
-publisher
+*(if thumbnailUrl do not exist, gravatar administraor images is taken.)
+
+
 
 
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
