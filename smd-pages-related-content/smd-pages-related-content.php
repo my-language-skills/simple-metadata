@@ -147,7 +147,7 @@ function smd_print_page_meta_fields () {
 
 		//primaryIamgeOfPage (url)
 		$thumbnail_url = get_the_post_thumbnail_url();
-		$image = $thumbnail_url
+		$image = $thumbnail_url;
 		?>
 <?="\n"?><!--SM PAGES METADATA-->
 <div itemscope itemtype="http://schema.org/<?=$page_type;?>">
@@ -160,7 +160,7 @@ function smd_print_page_meta_fields () {
 		smde_print_tags();
 	} 
 	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')['page'])){
-		smdlc_print_tags();
+		smdlc_print_tags(get_option('smd_website_blog_type'));
 	} 
 	?>
 	<?php // if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';} ?>

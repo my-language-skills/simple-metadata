@@ -48,8 +48,12 @@ function smd_get_general_tags($post_meta_type) {
 	//editor
 	$last_modifier = get_the_modified_author();
 
+	//inLanguage
+	$language = get_bloginfo( 'language' );
+
 	//headline
 	$title = get_the_title();
+
 
 	///> publisher
 
@@ -115,6 +119,7 @@ function smd_get_general_tags($post_meta_type) {
 			"<meta itemprop='dateModified' content='$last_modification_date'>\n".
 			"<meta itemprop='datePublished' content='$publication_date'>\n".
 			"<meta itemprop='editor' content='$last_modifier'>\n".
+			"<meta itemprop='inLanguage' content = '$language'>\n".
 			"<meta itemprop='headline' content='$title'>\n".
 			"<div itemprop='publisher' itemscope itemtype='http://schema.org/$type'>\n".
 				"\t<meta itemprop='name' content='$publisher'>\n".

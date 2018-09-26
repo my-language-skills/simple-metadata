@@ -97,6 +97,7 @@ function smd_render_network_settings(){
 function smd_network_render_metabox_schema_locations(){
 	?>
 	<div id="smd_network_meta_locations" class="smd_network_meta_locations">
+		<span class="description"><span class="description">Description for general network settings metabox</span></span>
 		<form method="post" action="edit.php?action=smd_update_network_locations">
 			<?php
 			settings_fields( 'smd_network_meta_locations' );
@@ -115,11 +116,12 @@ function smd_network_render_metabox_schema_locations(){
 function smd_network_render_metabox_sites_type(){
 	?>
 	<div id="smd_network_meta_sites_type" class="smd_network_meta_sites_type">
+		<span class="description">Description for site network option metabox</span>
 		<form method="post" action="edit.php?action=smd_update_network_options">
 			<?php
 			settings_fields( 'smd_network_meta_sites_type' );
-			submit_button();
 			do_settings_sections( 'smd_network_meta_sites_type' );
+			submit_button();
 			?>
 		</form>
 		<p></p>

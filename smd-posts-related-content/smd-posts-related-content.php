@@ -174,7 +174,7 @@ function smd_print_post_meta_fields () {
 		smde_print_tags();
 	} 
 	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')[$post_type])){
-		smdlc_print_tags();
+		smdlc_print_tags($post_meta_type);
 	} 
 	?>
 <?="\n"?></div>
