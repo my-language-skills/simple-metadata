@@ -61,7 +61,8 @@ The Simple metadata plugin is supplied "as is" and all use is at your own risk.
 
 ## Upgrade Notice
 
-### 1.0
+### 1.1
+Integration with add-ons was significantly increased. Some new properties were added for all possible post types. Plugin now supports network-wide applied options
 
 
 ## Credits
