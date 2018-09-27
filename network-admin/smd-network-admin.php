@@ -15,16 +15,22 @@ function smd_add_network_settings() {
 
     //adding settings metaboxes and settigns sections
     add_meta_box('smd-metadata-network-location', 'General Metadata', 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
-    add_meta_box('smd-network-metadata-sites-type', 'Front pages', 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
+    if (!is_plugin_active('pressbooks/pressbooks.php')){
+    	add_meta_box('smd-network-metadata-sites-type', 'Front pages', 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
+	}
 
     add_settings_section( 'smd_network_meta_locations', '', '', 'smd_network_meta_locations' );
 
-    add_settings_section( 'smd_network_meta_sites_type', '', '', 'smd_network_meta_sites_type' );
+    if (!is_plugin_active('pressbooks/pressbooks.php')){
+    	add_settings_section( 'smd_network_meta_sites_type', '', '', 'smd_network_meta_sites_type' );
+	}
 
 
     //registering settings
     register_setting('smd_network_meta_locations', 'smd_net_locations');
-	register_setting ('smd_network_meta_sites_type', 'smd_net_sites_type');
+    if (!is_plugin_active('pressbooks/pressbooks.php')){
+		register_setting ('smd_network_meta_sites_type', 'smd_net_sites_type');
+	}
 
 
 	// getting options values from DB
