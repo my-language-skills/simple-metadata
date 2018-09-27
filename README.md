@@ -1,6 +1,6 @@
 # Simple Metadata
 
-* Contributors: colomet, danzhik
+* Contributors: @colomet, @danzhik
 * Donate link: https://opencollective.com/mylanguageskills
 * Tags: aiom, extensions, metadata
 * Requires at least: 4.9.6
