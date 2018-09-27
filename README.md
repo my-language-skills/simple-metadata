@@ -68,7 +68,6 @@ Integration with add-ons was significantly increased. Some new properties were a
 ## Credits
 
 * Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
-* Here's a link to [Composer](https://getcomposer.org/)
 * Here's a link to [PressBooks](https://pressbooks.org/get-involved/ "Your favorite ebook platform")
 * Here's a link to [Custom Metadata Manager for WordPress](https://wordpress.org/plugins/custom-metadata/ "Framework for custom field creation")
 
