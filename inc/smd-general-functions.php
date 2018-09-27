@@ -115,10 +115,10 @@ function smd_get_general_tags($post_meta_type) {
 
 	//constructing metafields
 	$html = "<meta itemprop='author' content='$author'>\n".
+			"<meta itemprop='author' content='$last_modifier'>\n".
 			"<meta itemprop='dateCreated' content='$creation_date'>\n".
 			"<meta itemprop='dateModified' content='$last_modification_date'>\n".
 			"<meta itemprop='datePublished' content='$publication_date'>\n".
-			"<meta itemprop='editor' content='$last_modifier'>\n".
 			"<meta itemprop='inLanguage' content = '$language'>\n".
 			"<meta itemprop='headline' content='$title'>\n".
 			"<div itemprop='publisher' itemscope itemtype='http://schema.org/$type'>\n".
