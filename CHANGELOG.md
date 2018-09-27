@@ -9,6 +9,41 @@ Types of changes
 
 * **List of Files revised**
 
+# 1.1
+
+## Administration
+
+ * **Added** network-wide settings
+ * **Fixed** integration with PressBooks
+
+## Site related content
+
+* Types
+  * **Added** integration with add-ons types
+
+* Properties
+  * **Added** integration with add-ons properties
+
+## Pages related content
+
+* Types
+  * **Added** integration with add-ons types
+
+* Properties
+  * **Added** integration with add-ons properties
+  * Creative Work type
+    * **Added** inLanguage property
+  
+## Posts related content
+
+* Types
+  * **Added** integration with add-ons types
+
+* Properties
+  * **Added** integration with add-ons properties
+  * Creative Work type
+    * **Added** inLanguage property
+
 # 1.0
 
 ## Site related content
