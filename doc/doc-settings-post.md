@@ -17,6 +17,8 @@ Post type have 9 options which allow the configuration of the metadata. Pick the
 
 Note: Article is a parent type. Any other type is a child type of Article.
 
+PB Uses chapter type (non article properties are used)
+
 # Post types and properties
 
 ## Article
