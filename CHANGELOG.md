@@ -33,7 +33,7 @@ Types of changes
   * **Added** integration with add-ons properties
   * Creative Work type
     * **Added** inLanguage property
-  
+
 ## Posts related content
 
 * Types
