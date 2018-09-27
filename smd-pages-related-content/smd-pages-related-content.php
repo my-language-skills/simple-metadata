@@ -174,4 +174,4 @@ function smd_print_page_meta_fields () {
 
 add_action ('add_meta_boxes', 'smd_add_page_type_meta');
 add_action ('save_post', 'smd_save_page_type', 10, 2);
-add_action ('wp_head', 'smd_print_page_meta_fields');
+add_action ('wp_head', 'smd_print_page_meta_fields', 1000);

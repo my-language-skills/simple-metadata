@@ -255,4 +255,4 @@ function smd_print_wsb_field () {
 
 
 add_action ('admin_menu', 'smd_add_option_page');
-add_action ('wp_head', 'smd_print_wsb_field');
+add_action ('wp_head', 'smd_print_wsb_field', 1000);
