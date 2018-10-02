@@ -16,8 +16,10 @@ This plugin provides the ability to set different types of schema types in one c
 
 > By default:
 > 
-> a page is a WebPage type
-> a Post is a BlogPosting type
+> a Page is a WebPage type
+> a Post is an Article type
+>
+> in a PB installation, a site is a Book and a Post is a Chapter
 
 == Front-page related content =
 
@@ -104,7 +106,7 @@ Bug reports for Simple metadta are [welcomed on GitHub](https://github.com/my-la
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/simple-default-timezone` directory, or install the plugin 
+1. Upload the plugin files to the `/wp-content/plugins/simple-metadata` directory, or install the plugin 
 through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Access the plugins menu through the Clear Images menu page to use the plugin.
