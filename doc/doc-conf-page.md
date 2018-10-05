@@ -103,9 +103,9 @@ The related properties from the type that matters to the project.
 Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
 The related properties from the type that matters to the project.
 
-| From | Property | Type | Description |
-| ---- | -------- |----- | ----------- |
-| WP-Core | []() | []() | 	NA |
+| ID | From    | Property | Description |
+| -- | ------- | -------- | ----------- |
+| -- | WP-Core | --       | --          |
 
 image
 

@@ -2,8 +2,8 @@
 
 ## A - General
 
-| Cod    | Info                   | LOM (DELETE)     | LRMI    | Schema                                                                            | LOM              | DC
-| ------ | ---------------------- | ---------------- | ------- | --------------------------------------------------------------------------------- | ---------------- | --
+| Cod    | Key                    | LOM (DELETE)     | LRMI    | Schema                                                                            | LOM              | DC
+| ------ | ---------------------- | ---------------- | ------- | --------------------------------------------------------------------------------- | ---------------- | -------------------------
 | A1-1   | Identifier: URI        | identifier       | NA      | NA                                                                                | identifier       | NA
 | A1.1-1 |  └Catalog              | catalog          | --      | --                                                                                | catalog          | --
 | A1.2-1 |  └Entry                | entry            | --      | --                                                                                | entry            | DC.identifier
@@ -32,7 +32,7 @@
 | A14-0  | Aggregation Level      | aggregationLevel | --      | --                                                                                | aggregationLevel | --
 | A15-0  | Family Friendly        | --               | --      | isFamilyFriendly                                                                  | --               | --
 | A16-0  | Publishing Principles  | --               | --      | publishingPrinciples                                                              | --               | --
-| A17-0  | Publisher              | --               | --      | [publisher](https://schema.org/publisher) ([logo](https://schema.org/logo) [name]()) | --               | --
+| A17-0  | Publisher              | --               | --      | [publisher](https://schema.org/publisher) ([logo](https://schema.org/logo) [name]()) | --            | --
 | A18-0  | Author Organization    | --               | --      | sourceOrganization                                                                | --               | --
 | A19-0  | Last reviewed          | --               | --      | [lastReviewed](https://schema.org/lastReviewed) (2)                               | --               | --
 | A20-0  | Reviewed by            | --               | --      | [reviewebBy](https://schema.org/reviewebBy) (2)                                   | --               | --
@@ -61,7 +61,7 @@
 ## General
 This category groups the general information that describes this resource as a whole.
 
-| Cod    | Info                   | Definitions                                                                                                            | Values
+| Cod    | Key                    | Definitions                                                                                                            | Values
 | --     | ---------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------
 | A1-1   | Identifier: URI        | Provide a name for the identification scheme and a unique value to identify the resource.                              | --
 | A1.1-1 |  └Catalog              | Use the common abbreviation or the standard name for the identification scheme that is used to reference the resource. | `URI`
@@ -83,12 +83,12 @@ This category groups the general information that describes this resource as a w
 | A7-0   | About                  | --                                                                                                                     | -- | [Text](https://schema.org/Text)
 | A8-0   | Description            | Provide a neutral and concise yet thorough description of the resource.                                                | --
 | A9-0   | Category               | --                                                                                                                     | --
-| A10-0  | Tag                    | Use the most specific terms that are descriptive of the subject covered by the resource. Use a separate tag element for each term or phrase, avoiding lengthy phrases. | -- | [Text](https://schema.org/Text)
+| A10-0  | Tag                    | Use the most specific terms that are descriptive of the subject covered by the resource.                               | -- | [Text](https://schema.org/Text)
 | A11-0  | Genre                  | --                                                                                                                     | --
 | A12.1  | Coverage: place        | Indicate the areas, regions, and/or jurisdictions covered by the content of the resource.                              | --
 | A12.2  | Coverage: time         | Indicate the time period covered by the content of the resource.                                                       | --
 | A13-0  | Structure              | Indicate the way in which the resource is logically related to other resources to form an aggregate or composite resource. | atomic, collection, networked, hierarchical, linear
-| A14-0  | Aggregation Level      | Indicate the number of times that the resource or its component parts can be decomposed into still smaller components.  | 1, 2, 3, 4
+| A14-0  | Aggregation Level      | Indicate the number of times that the resource or its component parts can be decomposed into still smaller components. | 1, 2, 3, 4
 | A15-0  | Family Friendly        | Indicates if the content is family friendly                                                                            | Yes or Not
 | A16-0  | Publishing Principles  | Provie a document describing the editorial principles that relate to the activities as a publisher.                    | --
 | A17-0  | Publisher              | --                                                                                                                     | -- | [URL](https://schema.org/URL) - [Text](https://schema.org/Text) or [Organization](https://schema.org/Organization)*
@@ -110,7 +110,8 @@ This category groups the general information that describes this resource as a w
 | A33-0  | Word Count             | --                                                                                                                     | -- | [Integer](https://schema.org/Integer)
 | A34-0  | URL                    | The URL of the page.                                                                                                   | -- | [URL](https://schema.org/URL)
 
-* If a SEO plugin is activated, it uses the Organization value.
+* Tag: Use a separate tag element for each term or phrase, avoiding lengthy phrases.
+* Publisher: If a SEO plugin is activated, it uses the Organization value.
 
 # Vocabulary recommendations
 
