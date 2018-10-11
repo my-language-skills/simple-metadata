@@ -1,7 +1,9 @@
 # Page metadata
+
 Simple Metadata will create Page Type options in Page (metabox).
 
 ## Settings
+
 Page type have 13 options which allow the configuration of the metadata. Pick the one that describes better the Page:
 * WebPage *Activated by default*
   * AboutPage
@@ -21,8 +23,7 @@ Page type have 13 options which allow the configuration of the metadata. Pick th
 
 ### WebPage
 
-Properties from: [WebPage](https://schema.org/Article "https://schema.org/WebPage")
-The related properties from the type that matters to the project.
+The related properties from the [WebPage](https://schema.org/WebPage "https://schema.org/WebPage") type that matters to the project are:
 
 | ID  | From    | Property           | Description                                                                                               |
 | --- | ------- | ------------------ |---------------------------------------------------------------------------------------------------------- |
@@ -30,8 +31,9 @@ The related properties from the type that matters to the project.
 | A20 | WP-Core | reviewebBy         | People or organizations that have reviewed the content on this web page for accuracy and/or completeness. |
 | A28 | WP-Core | primaryImageOfPage | Indicates the main image on the page.                                                                     |
 
-
 primaryImageOfPage
+
+WebPage is a parent type with several child types:
 
 #### AboutPage
 
@@ -81,7 +83,7 @@ primaryImageOfPage
 
 [SearchResultsPage](https://schema.org/SearchResultsPage "https://schema.org/SearchResultsPage") type uses the related properties from the WebPage type.
 
-### General Article properties
+### General WebPage properties
 
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related properties from the type that matters to the project.

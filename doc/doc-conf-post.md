@@ -1,7 +1,9 @@
 # Post metadata
+
 Simple Metadata will create Post Type options in Posts (metabox).
 
 ## Settings
+
 Post type have 9 options which allow the configuration of the metadata. Pick the one that describes better the Post:
 * Article *Activated by default*
   * AdvertiserContentArticle
@@ -30,6 +32,8 @@ The related properties from the [Article](https://schema.org/Article "https://sc
 | A31 | WP-Core | articleBody    | The actual body of the Post.                                                    |
 | A32 | WP-Core | articleSection | Articles may belong to one or more 'categories' such as Sports, Lifestyle, etc. |
 | A33 | WP-Core | wordCount      | The number of words in the text of the Post.                                    |
+
+Article is a parent type with several child types:
 
 #### AdvertiserContentArticle
 
@@ -88,6 +92,7 @@ The related properties from the [Thing](https://schema.org/Thing "https://schema
 * If no Featured image in the Post, user avatar will be the Post image.
 
 # Screenshots
+
 Settings site
 ![settings-post](/doc/images/settings-post.png)
 
