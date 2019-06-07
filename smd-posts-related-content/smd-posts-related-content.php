@@ -50,7 +50,7 @@ function smd_render_article_type_meta (){
 				break;
 			case 'WebSite':
 				$post_suppose_type = 'WebPage';
-				break;		
+				break;
 			default:
 				$post_suppose_type = 'Article';
 				break;
@@ -83,7 +83,7 @@ function smd_render_article_type_meta (){
 				<?php
 					foreach ($post_meta_types as $key => $value) {
 						$selected = $post_type == $key ? 'selected' : '';
-						
+
 						echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
 					}
 				?>
@@ -113,10 +113,10 @@ function smd_save_post_type ($post_id, $post) {
 	$old_meta_value = get_post_meta ($post_id, 'smd_post_type', true);
 
 	if ( $new_meta_value && '' == $old_meta_value) {
-		add_post_meta( $post_id, 'smd_post_type', $new_meta_value, true ); 
+		add_post_meta( $post_id, 'smd_post_type', $new_meta_value, true );
 	} elseif ( $new_meta_value && $new_meta_value != $meta_value) {
 		update_post_meta( $post_id, 'smd_post_type', $new_meta_value );
-	} 
+	}
 }
 
 
@@ -149,7 +149,7 @@ function smd_print_post_meta_fields () {
 				break;
 			case 'WebSite':
 				$post_meta_type = 'WebPage';
-				break;		
+				break;
 			default:
 				$post_meta_type = 'Article';
 				break;
@@ -162,8 +162,8 @@ function smd_print_post_meta_fields () {
 			$key_words = wp_get_post_tags($post_id, ['fields' => 'names']);
 			$key_words_string = implode(', ', $key_words);
 
-		//<	
-		
+		//<
+
 		?>
 <?="\n"?><!--SM POSTS METADATA-->
 <div itemscope itemtype="http://schema.org/<?=$post_meta_type;?>">
@@ -172,10 +172,13 @@ function smd_print_post_meta_fields () {
 	<?php //printing tags from add-on plugins, if they are active
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')[$post_type])){
 		smde_print_tags();
-	} 
+	}
 	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')[$post_type])){
 		smdlc_print_tags($post_meta_type);
-	} 
+	}
+	if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && isset(get_option('smdan_locations')[$post_type])){
+		smdan_print_tags($post_meta_type);
+	}
 	?>
 <?="\n"?></div>
 <!--END OF SM POSTS METADATA-->
@@ -184,7 +187,7 @@ function smd_print_post_meta_fields () {
 	}
 
 }
-		
+
 
 if (!is_plugin_active('pressbooks/pressbooks.php')){
 	add_action ('add_meta_boxes', 'smd_add_post_type_meta');

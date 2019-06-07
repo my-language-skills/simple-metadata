@@ -7,7 +7,7 @@
  * Fuction for creating option to choose etween blog and web-site
  */
 function smd_add_option_page () {
-	
+
 	if (1 != get_current_blog_id() || !is_multisite()){
 		//adding main menu page for plugin and all addons
 		add_menu_page('Simple Metadata', 'Metadata', 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
@@ -60,7 +60,7 @@ function smd_add_option_page () {
 						<input type="hidden" name="smd_locations[<?=$post_type?>]" value="1">
 					<?php endif; ?>
 				<?php
-				
+
 			}, 'smd_locations', 'smd_locations');
 		}
 	}
@@ -84,7 +84,7 @@ function smd_render_options_page() {
 	?>
         <div class="wrap">
         	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { ?>
-        	<div class="notice notice-success is-dismissible"> 
+        	<div class="notice notice-success is-dismissible">
 				<p><strong>Settings saved.</strong></p>
 			</div>
 			<?php } ?>
@@ -120,7 +120,7 @@ function smd_render_site_page () {
 	?>
         <div class="wrap">
         	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { //if settings were saved, we show notice?>
-        	<div class="notice notice-success is-dismissible"> 
+        	<div class="notice notice-success is-dismissible">
 				<p><strong>Settings saved.</strong></p>
 			</div>
 			<?php } ?>
@@ -180,12 +180,12 @@ function smd_render_locations_metabox () {
  * Function for rendering radio button
  */
 function smd_render_switch_set() {
-	
+
 	$disabled = '';
-	
+
 	//if network option is set to something except 'Local value', we disable selection
 	if (is_multisite()){
-		
+
 		//getting option for type of site for network
 		$net_sites_type = get_blog_option (1, 'smd_net_sites_type') ?: '0';
 		if ('0' !== $net_sites_type){
@@ -240,17 +240,21 @@ function smd_print_wsb_field () {
 	<?php //printing tags from add-on plugins, if they are active
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && (isset(get_option('smde_locations')['site-meta'])  || isset(get_option('smde_locations')['metadata']))){
 		smde_print_tags();
-	} 
+	}
 	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && (isset(get_option('smdlc_locations')['site-meta']) || isset(get_option('smdlc_locations')['metadata']))){
 		smdlc_print_tags($type);
-	} 
+	}
+
+	if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && (isset(get_option('smdan_locations')['site-meta']) || isset(get_option('smdan_locations')['metadata']))){
+		smdan_print_tags($type);
+	}
 	?>
 <?="\n"?></div>
 <!-- END OF SM FRONTPAGE META -->
 	<?php
-		
+
 		}
-	}	
+	}
 }
 
 

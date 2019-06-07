@@ -39,8 +39,8 @@ function smd_render_page_type_meta ($object, $box) {
 			$page_suppose_type = 'WebPage';
 			break;
 		case 'WebSite':
-			$page_suppose_type = 'WebPage';	
-			break;	
+			$page_suppose_type = 'WebPage';
+			break;
 		default:
 			$page_suppose_type = 'WebPage';
 			break;
@@ -102,7 +102,7 @@ function smd_save_page_type ($post_id, $post) {
 	$old_meta_value = get_post_meta ($post_id, 'smd_page_type', true);
 
 	if ( $new_meta_value && '' == $old_meta_value && $new_meta_value != 'no_page_type' ) {
-		add_post_meta( $post_id, 'smd_page_type', $new_meta_value, true ); 
+		add_post_meta( $post_id, 'smd_page_type', $new_meta_value, true );
 	} elseif ( $new_meta_value && $new_meta_value != $meta_value && $new_meta_value != 'no_page_type' ) {
 		update_post_meta( $post_id, 'smd_page_type', $new_meta_value );
 	} elseif ( 'no_page_type' == $new_meta_value && $old_meta_value ) {
@@ -131,8 +131,8 @@ function smd_print_page_meta_fields () {
 				$page_type = 'WebPage';
 				break;
 			case 'WebSite':
-				$page_type = 'WebPage';	
-				break;	
+				$page_type = 'WebPage';
+				break;
 			default:
 				$page_type = 'WebPage';
 				break;
@@ -158,10 +158,13 @@ function smd_print_page_meta_fields () {
 	<?php //printing tags from add-on plugins, if they are active
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')['page'])){
 		smde_print_tags();
-	} 
+	}
 	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')['page'])){
 		smdlc_print_tags(get_option('smd_website_blog_type'));
-	} 
+	}
+	if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && isset(get_option('smdan_locations')['page'])){
+		smdan_print_tags(get_option('smd_website_blog_type'));
+	}
 	?>
 	<?php // if ( 'QAPage' == $page_type ) { echo '<meta itemprop="mainEntity" content="page">';} ?>
 

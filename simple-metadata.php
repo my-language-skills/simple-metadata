@@ -3,7 +3,7 @@
 Plugin Name: Simple Metadata
 Plugin URI: https://github.com/my-language-skills/simple-metadata
 Description: This plugin provides auto-generated metadata on the basis of default WP web-pages information.
-Version: 1.1
+Version: 1.2
 Author: My Language Skills team
 Author URI: https://github.com/my-language-skills
 License: GPL 3.0
@@ -18,7 +18,7 @@ if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_me
 	require_once plugin_dir_path( dirname(__FILE__ ) ) . '/simple-metadata/symbionts/custom-metadata/custom_metadata.php';
 }
 
-if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') || is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php')){
+if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') || is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') || is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php')){
 	include_once plugin_dir_path( __FILE__ ) . "inc/smd-site-cpt.php";
 }
 include_once plugin_dir_path( __FILE__ ) . "inc/smd-general-functions.php";
@@ -30,5 +30,14 @@ if (is_multisite()){
 	include_once plugin_dir_path( __FILE__ ) . "network-admin/smd-network-admin.php";
 }
 
-
-
+/*
+* Auto update from github
+*
+* @since 1.1
+*/
+require 'vendor/plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+		'https://github.com/my-language-skills/simple-metadata/',
+		__FILE__,
+		'simple-metadata'
+);
