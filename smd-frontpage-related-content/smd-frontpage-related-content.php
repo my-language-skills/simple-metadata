@@ -144,14 +144,14 @@ function smd_render_site_page () {
 		<?php
 }
 
-function smd_render_metabox(){
+function smd_render_locations_metabox () {
 	?>
 	<div class="wrap">
-	<span class="description">Description for site metabox</span>
+		   <span class="description"><span class="description">Select the Post type which will be appplied with metadata.</span></span>
            <form method="post" action="options.php">
 			<?php
-			settings_fields( 'smd_set_page_site' );
-			do_settings_sections( 'smd_set_page_site' );
+			settings_fields( 'smd_locations' );
+			do_settings_sections( 'smd_locations' );
 			submit_button();
 			?>
 		   </form>
@@ -160,14 +160,14 @@ function smd_render_metabox(){
     <?php
 }
 
-function smd_render_locations_metabox () {
+function smd_render_metabox(){
 	?>
 	<div class="wrap">
-		   <span class="description"><span class="description">Description for general settings metabox</span></span>
+	<span class="description">Select schema type which will be appplied for front-page metadata</span>
            <form method="post" action="options.php">
 			<?php
-			settings_fields( 'smd_locations' );
-			do_settings_sections( 'smd_locations' );
+			settings_fields( 'smd_set_page_site' );
+			do_settings_sections( 'smd_set_page_site' );
 			submit_button();
 			?>
 		   </form>

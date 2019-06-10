@@ -103,7 +103,7 @@ function smd_render_network_settings(){
 function smd_network_render_metabox_schema_locations(){
 	?>
 	<div id="smd_network_meta_locations" class="smd_network_meta_locations">
-		<span class="description"><span class="description">By default site administrators can activate or deactivate medatada on pages. If you select the page type, the site administrators can not deactivate it.</span></span>
+		<span class="description"><span class="description">Select the Post type which will be appplied with metadata. If you want to ban site administrators from Post configuration.</span></span>
 		<form method="post" action="edit.php?action=smd_update_network_locations">
 			<?php
 			settings_fields( 'smd_network_meta_locations' );
@@ -122,7 +122,7 @@ function smd_network_render_metabox_schema_locations(){
 function smd_network_render_metabox_sites_type(){
 	?>
 	<div id="smd_network_meta_sites_type" class="smd_network_meta_sites_type">
-		<span class="description">By default site administrators can activate or deactivate medatada on Front pages. Here you can give them control or to block in to a specifical schema type.</span>
+		<span class="description">Select schema type which will be appplied for front-page metadata.</span>
 		<form method="post" action="edit.php?action=smd_update_network_options">
 			<?php
 			settings_fields( 'smd_network_meta_sites_type' );
@@ -151,7 +151,7 @@ function smd_render_net_switch_set() {
 		<?php
 	}
 
-	echo '<br><span class="description">Allow site administrators to chook a schema type or select schema type which will be appplied for front-page metadata</span>';
+	echo '<br><span class="description">By default, site administrators can settup.</span>';
 }
 
 /**
