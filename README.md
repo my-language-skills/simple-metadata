@@ -23,7 +23,7 @@ Simple metadata just work in default WP post and pages.
 * [Introduction](/doc/doc-intro.md)
 * [Installation, Integrations and Compatibilities](/doc/doc-general.md)
 * [Site settings](/doc/doc-settings.md)
-* [Metadata filds](/doc/doc-fields.md)
+* [Metadata fields](/doc/doc-fields.md)
 
 Schema properties used
 * [Site metadata](/doc/doc-conf-settings-site.md)
