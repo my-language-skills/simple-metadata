@@ -41,7 +41,7 @@ function smd_add_network_settings() {
 	if (!is_plugin_active('pressbooks/pressbooks.php')){
 		add_settings_field ('smd_network_site_type', 'Type of Sites', 'smd_render_net_switch_set', 'smd_network_meta_sites_type', 'smd_network_meta_sites_type');
 	}
-	
+
 
 	//adding settings for locations
 	foreach ($post_types as $post_type) {
@@ -61,7 +61,7 @@ function smd_add_network_settings() {
 		}, 'smd_network_meta_locations', 'smd_network_meta_locations');
 	}
 
-	
+
 }
 
 /**
@@ -74,7 +74,7 @@ function smd_render_network_settings(){
 	    ?>
 	    <div class="wrap">
 	    	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { //in case settings were saved, we show notice?>
-        	<div class="notice notice-success is-dismissible"> 
+        	<div class="notice notice-success is-dismissible">
 				<p><strong>Settings saved.</strong></p>
 			</div>
 			<?php } ?>
@@ -103,7 +103,7 @@ function smd_render_network_settings(){
 function smd_network_render_metabox_schema_locations(){
 	?>
 	<div id="smd_network_meta_locations" class="smd_network_meta_locations">
-		<span class="description"><span class="description">Description for general network settings metabox</span></span>
+		<span class="description"><span class="description">By default site administrators can activate or deactivate medatada on pages. If you select the page type, the site administrators can not deactivate it.</span></span>
 		<form method="post" action="edit.php?action=smd_update_network_locations">
 			<?php
 			settings_fields( 'smd_network_meta_locations' );
@@ -122,7 +122,7 @@ function smd_network_render_metabox_schema_locations(){
 function smd_network_render_metabox_sites_type(){
 	?>
 	<div id="smd_network_meta_sites_type" class="smd_network_meta_sites_type">
-		<span class="description">Description for site network option metabox</span>
+		<span class="description">By default site administrators can activate or deactivate medatada on Front pages. Here you can give them control or to block in to a specifical schema type.</span>
 		<form method="post" action="edit.php?action=smd_update_network_options">
 			<?php
 			settings_fields( 'smd_network_meta_sites_type' );
@@ -151,7 +151,7 @@ function smd_render_net_switch_set() {
 		<?php
 	}
 
-	echo '<br><span class="description">Select schema type which will be appplied for front-page metadata</span>';
+	echo '<br><span class="description">Allow site administrators to chook a schema type or select schema type which will be appplied for front-page metadata</span>';
 }
 
 /**
@@ -214,7 +214,7 @@ function smd_update_network_options() {
 
     //getting option for type of sites
     $sites_type = isset($_POST['smd_net_sites_type']) ? $_POST['smd_net_sites_type'] : '';
-    
+
 
     //updating network options
 	update_blog_option(1, 'smd_net_sites_type', $sites_type);
@@ -229,7 +229,7 @@ function smd_update_network_options() {
     		continue;
     	}
 
-    	switch_to_blog($site_id);  	
+    	switch_to_blog($site_id);
 
     	//updating local options obly if some type is selected
     	if ('0' !== $sites_type){
