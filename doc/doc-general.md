@@ -24,6 +24,8 @@ Not all the plugins are 100% integrated with Simple metadata, some of them works
 With add-on plugins from our extensions catalogue you can super-charge your metadata. Some of our extension highlights include:
 * Education
 * Annotation
+* Lifecycle
+* News
 * --
 
 ## Integrated Theme
