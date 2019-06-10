@@ -32,12 +32,10 @@ Any theme can work with Simple metadata.
 
 ## This plugin supports:
 
-* PHP 7.2 and higher.
-* WordPress 4.8 and higher.
-* Internationalization through WordPress.org.
-* MultiSite.
-* Translation plugins WPML, Polylang and qTranslate X.
 * Custom Post Types.
+* MultiSite.
+* Internationalization through WordPress.org.
+* Translation plugins WPML, Polylang and qTranslate X.
 
 ---
 
