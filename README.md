@@ -5,7 +5,7 @@
 * Tags: aiom, extensions, metadata
 * Requires at least: 4.9.6
 * Tested up to: 4.9.8
-* Requires PHP: 7.2.0
+* Requires PHP: 7.0
 * Stable tag: 1.0
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html

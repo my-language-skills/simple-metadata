@@ -1,10 +1,10 @@
 === Simple metadata ===
-Contributors: colomet, danzhik 
+Contributors: colomet, danzhik
 Tags: wordpress, wordpress-plugin, timezone, multisite
 Requires at least: 4.6
 Tested up to: 4.9.8
 Stable tag: 4.9.8
-Requires PHP: 7.2.0
+Requires PHP: 7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,7 +15,7 @@ This plugin provides auto-generated metadata on the basis of default WP web-page
 This plugin provides the ability to set different types of schema types in one click (for Blogs and WebSites.
 
 > By default:
-> 
+>
 > a Page is a WebPage type
 > a Post is an Article type
 >
@@ -106,13 +106,13 @@ Bug reports for Simple metadta are [welcomed on GitHub](https://github.com/my-la
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/simple-metadata` directory, or install the plugin 
+1. Upload the plugin files to the `/wp-content/plugins/simple-metadata` directory, or install the plugin
 through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Access the plugins menu through the Clear Images menu page to use the plugin.
 
 == Screenshots ==
- 
+
 1. Settings field in Network Settings
 2. Disabled settings field in single-site settings
 
@@ -146,5 +146,5 @@ https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 
 1.0 Initial release.
 
- 
+
 == Upgrade Notice ==
