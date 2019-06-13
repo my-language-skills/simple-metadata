@@ -140,9 +140,9 @@ function smd_network_render_metabox_sites_type(){
  */
 function smd_render_net_switch_set() {
 	?>
-	<label for="smd_website_blog_type_0">Local value <input type="radio" id="smd_website_blog_type_0" name="smd_net_sites_type" value="0" <?php checked('0', get_option('smd_net_sites_type'))?>></label>
+	<label for="smd_website_blog_type_0">Local value <input type="radio" id="smd_website_blog_type_0" name="smd_net_sites_type" value="0" checked="checked" <?php checked('0', get_option('smd_net_sites_type'))?>></label>
+  <label for="smd_website_blog_type_2">WebSite <input type="radio" id="smd_website_blog_type_2" name="smd_net_sites_type" value="WebSite" <?php checked('WebSite', get_option('smd_net_sites_type'))?>></label>
 	<label for="smd_website_blog_type_1">Blog <input type="radio" id="smd_website_blog_type_1" name="smd_net_sites_type" value="Blog" <?php checked('Blog', get_option('smd_net_sites_type'))?>></label>
-	<label for="smd_website_blog_type_2">WebSite <input type="radio" id="smd_website_blog_type_2" name="smd_net_sites_type" value="WebSite" <?php checked('WebSite', get_option('smd_net_sites_type'))?>></label>
 	<?php // if education plugin is active, add new options to select (possibly new values with other addons)
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
