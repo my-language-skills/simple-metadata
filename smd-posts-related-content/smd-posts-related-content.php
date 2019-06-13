@@ -10,13 +10,12 @@ require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
  *	Function for creation of metabox to pick type of news post for proper Schema.org schema type
  */
 function smd_add_post_type_meta () {
-
 	$locations = get_option('smd_locations') ?: array('post' => 1);
-
 	foreach ($locations as $location => $val) {
 		if ('page' == $location || 'site-meta' == $location || 'metadata' == $location){
 			continue;
 		}
+		if (isset(get_option('smd_locations')['post']))
 		add_meta_box (
 		'smd_post_type', //Unique ID
 		'Post Type', //Title
