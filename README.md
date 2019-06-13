@@ -70,6 +70,21 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.X.X
+* **ENHANCEMENTS***
+		* Modification admin panel, front page type of site older
+
+* **BUGFIXES***
+		* Bug button in post metaboxes
+
+* **List of Files revised**
+		* simple-metadata.php
+		* smd-frontpage-related-content.php
+		* smd-pages-related-content.php
+		* smd-posts-related-content.php
+		* smd-frontpage-related-content.php
+		* smd-network-admin.php
+
 ### 1.2
 * **ADDITIONS***
    * Add new plugins : simple-metadata-annotation
