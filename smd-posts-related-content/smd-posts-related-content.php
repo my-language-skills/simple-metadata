@@ -39,27 +39,24 @@ function smd_render_article_type_meta (){
 	//receiving type of post from option in metabox
 	$post_type = get_post_meta (get_the_ID(), 'smd_post_type', true) ? esc_attr(get_post_meta (get_the_ID(), 'smd_post_type', true)) : 'no_type';
 
-	switch (get_option('smd_website_blog_type')) {
-			case 'Blog':
-			case 'Course':
-				$post_suppose_type = 'Article';
-				break;
-			case 'Book':
-				$post_suppose_type = 'Chapter';
-				break;
-			case 'WebSite':
-				$post_suppose_type = 'WebPage';
-				break;
-			default:
-				$post_suppose_type = 'Article';
-				break;
-		}
+$test = get_option('smd_website_blog_type');
+if ($test == "Blog") {
+	$post_suppose_type = "Article";
+}
+if ($test == "Course") {
+	$post_suppose_type = 'Article';
+}
+if ($test == "Book") {
+	$post_suppose_type = 'Chapter';
 
-	if ('no_type' == $post_type){
-		$post_type = $post_suppose_type;
-	}
+}
+if ($test  == "WebSite") {
+	$post_suppose_type = 'Web Page';
+}
+
 
 	$post_meta_types = array(
+					'WebPage'		=> 'Web Page',
 					'Article'					=> 'Article',
 					'AdvertiserContentArticle'	=> 'Advertisement',
 					'BlogPosting'				=> 'Blog Posting',
@@ -81,8 +78,7 @@ function smd_render_article_type_meta (){
 			<select  name="smd_post_type" id="smd_post_type">
 				<?php
 					foreach ($post_meta_types as $key => $value) {
-						$selected = $post_type == $key ? 'selected' : '';
-
+						$selected = $post_suppose_type == $key ? 'selected' : '';
 						echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
 					}
 				?>
@@ -138,20 +134,19 @@ function smd_print_post_meta_fields () {
 		}
 
 		if ('no_type' == $post_meta_type){
-			switch (get_option('smd_website_blog_type')) {
-			case 'Blog':
-			case 'Course':
-				$post_meta_type = 'Article';
-				break;
-			case 'Book':
-				$post_meta_type = 'Chapter';
-				break;
-			case 'WebSite':
-				$post_meta_type = 'WebPage';
-				break;
-			default:
-				$post_meta_type = 'Article';
-				break;
+			$test1 = get_option('smd_website_blog_type');
+			if ($test1 == "Blog") {
+				$post_suppose_type = "Article";
+			}
+			if ($test1 == "Course") {
+				$post_suppose_type = 'Article';
+			}
+			if ($test1 == "Book") {
+				$post_suppose_type = 'Chapter';
+
+			}
+			if ($test1  == "WebSite") {
+				$post_suppose_type = 'WebPage';
 			}
 		}
 
