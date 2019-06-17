@@ -33,9 +33,9 @@ Simple metadata, extends the functionality of Wordpress and gives you the flexib
 
 Simple metadata markup will be stored in cached versions of web-pages when a caching plugin is available. Please be sure to clear your cache.
 
-Simple metadata just work in default WP post and pages.
+By default, we just have metadata in the home page after the activation of the plugin.
 
-
+From Metadata Settings we can activate metadata in other public post types (Post, Pages). Simple metadata just work in default WP post and pages. Soon Attachments.
 
 ## Installation
 
