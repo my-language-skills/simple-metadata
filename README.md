@@ -27,8 +27,11 @@ Simple metadata, extends the functionality of Wordpress and gives you the flexib
 	* [MU settings](/doc/doc-settings-mu.md)
 * Configuration
 	* [Site configuration](/doc/doc-conf-site.md)
+		* [Site metadata](/doc/doc-metadata-site.md)
 	* [Page configuration](/doc/doc-conf-page.md)
+		* [Page metadata](/doc/doc-metadata-page.md)
 	* [Post configuration](/doc/doc-conf-post.md)
+		* [Post metadata](/doc/doc-metadata-post.md)
 
 Simple metadata markup will be stored in cached versions of web-pages when a caching plugin is available. Please be sure to clear your cache.
 
