@@ -87,6 +87,12 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 		* smd-frontpage-related-content.php
 		* smd-network-admin.php
 
+### 1.2.X
+* **ENHANCEMENTS***
+		* Make in corect order the admin panel. Change name site-meta in home page
+* **List of Files revised**
+   * smd-general-functions.php
+
 ### 1.2
 * **ADDITIONS***
    * Add new plugins : simple-metadata-annotation

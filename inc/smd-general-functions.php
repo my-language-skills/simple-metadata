@@ -15,10 +15,10 @@ function smd_get_general_tags($post_meta_type) {
 	//articleBody
 	$post_content = get_post( $post_id )->post_content;
 
-	//wordcount 
+	//wordcount
 	$word_count = str_word_count($post_content);
 
-	///> articleSection 
+	///> articleSection
 	$categories = get_the_category( $post_id);
 	$categories_arr = [];
 	foreach ($categories as $category) {
@@ -75,7 +75,7 @@ function smd_get_general_tags($post_meta_type) {
 	///> checking main SEO plugin for publisher information
 	//include to check if YOAST or SEO Framework are installed
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		
+
 	//if YOAST plugin is active, get company or person name to set for publisher property
 	if (is_plugin_active('wordpress-seo/wp-seo.php')){
 
@@ -139,24 +139,25 @@ function smd_get_general_tags($post_meta_type) {
 	}
 
 	return $html;
-}	
+}
 
 /**
  * Function for getting all post types of installation
  */
-function smd_get_all_post_types(){
-	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
-	if(!is_plugin_active('pressbooks/pressbooks.php')){
+ function smd_get_all_post_types(){
+ 	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+ 	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
+ 	if(!is_plugin_active('pressbooks/pressbooks.php')){
 
-		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
-		
-		//we unset attachment sa it needs different markup (for future)
-		if (($key = array_search('attachment', $postTypes)) !== false){
-			unset($postTypes[$key]);
-		}
-	}else{
-		$postTypes = ['chapter', 'part', 'front-matter', 'back-matter', 'metadata'];
-	}
-	return $postTypes;
-}
+ 		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
+ 		$postTypes1 =array_reverse($postTypes);
+
+ 		//we unset attachment sa it needs different markup (for future)
+ 		if (($key = array_search('attachment', $postTypes1)) !== false){
+ 			unset($postTypes1[$key]);
+ 		}
+ 	}else{
+ 		$postTypes1 = ['metadata','front-matter','chapter','part', 'back-matter'];
+ 	}
+ 	return $postTypes1;
+ }
