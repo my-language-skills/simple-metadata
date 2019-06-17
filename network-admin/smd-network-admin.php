@@ -103,7 +103,7 @@ function smd_render_network_settings(){
 function smd_network_render_metabox_schema_locations(){
 	?>
 	<div id="smd_network_meta_locations" class="smd_network_meta_locations">
-		<span class="description"><span class="description">Actiavte the post types where metadata will be available. If activate, site administrators can not deactivate.</span></span>
+		<span class="description"><span class="description">Activate the post types where metadata will be available. If activate, site administrators can not deactivate.</span></span>
 		<form method="post" action="edit.php?action=smd_update_network_locations">
 			<?php
 			settings_fields( 'smd_network_meta_locations' );

@@ -124,7 +124,7 @@ function smd_render_site_page () {
 				<p><strong>Settings saved.</strong></p>
 			</div>
 			<?php } ?>
-			<h1>Simple Metadata Site Settings</h1>
+			<h1>Simple Metadata Site Configuration</h1>
             <div class="metabox-holder">
 					<?php
 					do_meta_boxes('smd_set_page_site', 'normal','');
@@ -143,11 +143,28 @@ function smd_render_site_page () {
         </script>
 		<?php
 }
+//Simple Metadata Settings
+function smd_render_locations_metabox () {
+	?>
+	<div class="wrap">
+		   <span class="description"><span class="description">Activate the post types where metadata will be available.</span></span>
+           <form method="post" action="options.php">
+			<?php
+			settings_fields( 'smd_locations' );
+			do_settings_sections( 'smd_locations' );
+			submit_button();
+			?>
+		   </form>
+		   <p></p>
+    </div>
+    <?php
+}
 
+//Simple Metadata Site configuration
 function smd_render_metabox(){
 	?>
 	<div class="wrap">
-	<span class="description">Description for site metabox</span>
+	<span class="description"></span>
            <form method="post" action="options.php">
 			<?php
 			settings_fields( 'smd_set_page_site' );
@@ -160,21 +177,7 @@ function smd_render_metabox(){
     <?php
 }
 
-function smd_render_locations_metabox () {
-	?>
-	<div class="wrap">
-		   <span class="description"><span class="description">Description for general settings metabox</span></span>
-           <form method="post" action="options.php">
-			<?php
-			settings_fields( 'smd_locations' );
-			do_settings_sections( 'smd_locations' );
-			submit_button();
-			?>
-		   </form>
-		   <p></p>
-    </div>
-    <?php
-}
+
 
 /**
  * Function for rendering radio button
