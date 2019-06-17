@@ -15,6 +15,8 @@ We are focus with the metadata, all the other SEO solutions can be find trough o
 * [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
 * [All in one SEO](https://wordpress.org/plugins/all-in-one-seo-pack/) (just with the free version)
 
+Simple metadata can be use too with [PressBooks]( https://github.com/pressbooks/), where the plugin options will be simplify in order to be educational ready.
+
 Not all the plugins are 100% integrated with Simple metadata, some of them works in the site for an enhancement of the features of the site.
 
 * Comming soon
@@ -26,7 +28,9 @@ With add-on plugins from our extensions catalogue you can super-charge your meta
 * Annotation
 * Lifecycle
 * News
-* --
+* Relation
+* Rights
+* Technical
 
 ## Integrated Theme
 
@@ -34,8 +38,8 @@ Any theme can work with Simple metadata.
 
 ## This plugin supports:
 
-* Custom Post Types.
 * MultiSite.
+* Custom Post Types.
 * Internationalization through WordPress.org.
 * Translation plugins WPML, Polylang and qTranslate X.
 

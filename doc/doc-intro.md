@@ -3,8 +3,6 @@
 We're convinced that [structured data](https://developers.google.com/search/docs/guides/intro-structured-data) makes the web better, and we've worked hard to create [Rich Snippets](https://webmasters.googleblog.com/2009/05/introducing-rich-snippets.html) and [Rich Cards](https://webmasters.googleblog.com/2016/05/introducing-rich-cards.html) for better search results. Thanks to [metadata](https://www.youtube.com/watch?v=L9BqE01SLeE), the search engines can understand the relevance of that content in context. Simple Metadata is a complete solution for adding metadata to a Wordpress site.
 
 * [Webmasters Rich Snippets FAQ](/doc/doc-faq.md)
-* [What a SEO plugin does](/doc/doc-seo.md)
-
 
 ## About Simple Metadata plugin
 
@@ -16,6 +14,8 @@ This plugin is unbranded! This means that we don’t even put the name “Simple
 This plugin makes great use of the default WordPress interface elements, like as if this plugin is part of WordPress. No ads, no nags.
 
 Nobody has to know about the tools you’ve used to create your or someone else’s website. A clean interface, for everyone.
+
+Check [Installation, Integrations and Compatibilities](/doc/doc-general.md) for more information.
 
 ## What is not Simple Metadata
 
