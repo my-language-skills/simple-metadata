@@ -8,8 +8,9 @@ Type of Site have two options which allow the configuration of the metadata. Pic
 
 Full description of site types and properties are available [here](/doc/doc-metadata-site.md).
 
-NOTE: In a PressBooks installation, types are not available besides Book, which is activated by default. In a regular WP installation, Book is just possible with Simple Metadata Education.
+No further configuration is necessary, all the properties find the values from WordPress.
 
+NOTE: In a PressBooks installation, types are not available besides Book, which is activated by default. In a regular WP installation, Book is just possible with Simple Metadata Education.
 
 # Screenshots
 Settings site
