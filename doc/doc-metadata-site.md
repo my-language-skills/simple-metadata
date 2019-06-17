@@ -1,5 +1,7 @@
 # Site types and properties
 
+[Site settings](/doc/doc-conf-site.md).
+
 ## Blog
 
 No properties from [Blog](https://schema.org/Blog "https://schema.org/Blog") type are used.
@@ -29,10 +31,6 @@ The related properties from the [Thing](https://schema.org/Thing "https://schema
 | A34 | WP-Core | URL      | URL of the site.                  |
 | --  | --      | --       | --                                |
 
-
----
-
-[Site settings](/doc/doc-metadata-site.md).
 ---
 
 [Readme](//Readme.md)
