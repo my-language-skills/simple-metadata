@@ -18,20 +18,23 @@ Wordpress gives you the ability to add metadata to your sites thus helping Googl
 
 Simple metadata, extends the functionality of Wordpress and gives you the flexibility to add automatically metadata in your sites, taking advantage of the schema markup.
 
-Simple metadata just work in default WP post and pages.
-
-* [Introduction](/doc/doc-intro.md)
-* [Installation, Integrations and Compatibilities](/doc/doc-general.md)
-* [Site settings](/doc/doc-conf-settings.md)
-* [Metadata fields](/doc/doc-fields.md)
-
-Schema properties used
-* [Site metadata](/doc/doc-conf-settings-site.md)
-* [Page metadata](/doc/doc-conf-settings-page.md)
-* [Post metadata](/doc/doc-conf-settings-post.md)
-* [MU metadata](/doc/doc-conf-settings-mu.md)
+* General
+	* [Introduction](/doc/doc-intro.md)
+	* [Installation, Integrations and Compatibilities](/doc/doc-general.md)
+	* [Site settings](/doc/doc-conf-settings.md)
+* Settings
+	* [MU metadata](/doc/doc-settings-mu.md)
+	* [Site metadata](/doc/doc-settings-site.md)
+* Configuration
+	* [Site metadata](/doc/doc-conf-site.md)
+	* [Page metadata](/doc/doc-conf-page.md)
+	* [Post metadata](/doc/doc-conf-post.md)
+	* [Metadata fields](/doc/doc-fields.md)
 
 Simple metadata markup will be stored in cached versions of web-pages when a caching plugin is available. Please be sure to clear your cache.
+
+Simple metadata just work in default WP post and pages.
+
 
 
 ## Installation
