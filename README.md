@@ -46,8 +46,8 @@ For upgrades, download the last stable version from github, delete from FTP the 
 
 ## Frequently Asked Questions
 
-[FAQ](/doc/doc-faq.md)
-
+[Rich Snippets FAQ](/doc/doc-faq.md)
+[What is a SEO plugin?](/doc/doc-seo.md)
 
 ## Disclaimers
 
