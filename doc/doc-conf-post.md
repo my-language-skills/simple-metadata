@@ -21,6 +21,11 @@ Note: Article is a parent type. Any other type is a child type of Article.
 
 PB Uses chapter type (non article properties are used)
 
+# Post types and properties
+
+[Site metadata](/doc/doc-metadata-post.md).
+
+
 # Screenshots
 
 Settings site

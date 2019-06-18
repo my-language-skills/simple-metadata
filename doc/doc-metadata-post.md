@@ -1,6 +1,6 @@
 # Post types and properties
 
-[Site settings](/doc/doc-conf-post.md).
+[Post settings](/doc/doc-conf-post.md).
 
 ## Article
 
