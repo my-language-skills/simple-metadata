@@ -19,6 +19,10 @@ Page type have 13 options which allow the configuration of the metadata. Pick th
   * QAPage
   * SearchResultsPage
 
+## Page types and properties
+
+[Site settings](/doc/doc-metadata-page.md).
+
 # Screenshots
 
 Simple Metadata will create Page Type options in Pages (metabox)

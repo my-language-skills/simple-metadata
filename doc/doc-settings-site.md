@@ -1,5 +1,5 @@
 # Simple Metadata Settings
-Simple metadata offer home page metadata by activation. If metadata in public post types is required, must be activated.
+Simple metadata offer home page metadata by activation. If metadata in public post types is required, must be activated one by one.
 
 
 ## General metadata
