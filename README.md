@@ -6,7 +6,7 @@
 * Requires at least: 4.9.6
 * Tested up to: 4.9.8
 * Requires PHP: 7.0
-* Stable tag: 1.0
+* Stable tag: 1.3
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -71,7 +71,9 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
-### 1.X.X
+### 1.3
+* **REMOVED**
+    *  Auto update from github
 * **ENHANCEMENTS***
 		* Modification admin panel, front page type of site older
 
@@ -86,7 +88,7 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 		* smd-frontpage-related-content.php
 		* smd-network-admin.php
 
-### 1.2.X
+### 1.2.1
 * **ENHANCEMENTS***
 		* Make in corect order the admin panel. Change name site-meta in home page
 * **List of Files revised**

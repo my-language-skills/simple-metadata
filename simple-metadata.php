@@ -3,7 +3,7 @@
 Plugin Name: Simple Metadata
 Plugin URI: https://github.com/my-language-skills/simple-metadata
 Description: This plugin provides auto-generated metadata on the basis of default WP web-pages information.
-Version: 1.2
+Version: 1.3
 Author: My Language Skills team
 Author URI: https://github.com/my-language-skills
 License: GPL 3.0
@@ -29,15 +29,3 @@ include_once plugin_dir_path( __FILE__ ) . "smd-frontpage-related-content/smd-fr
 if (is_multisite()){
 	include_once plugin_dir_path( __FILE__ ) . "network-admin/smd-network-admin.php";
 }
-
-/*
-* Auto update from github
-*
-* @since 1.1
-*/
-require 'vendor/plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-		'https://github.com/my-language-skills/simple-metadata/',
-		__FILE__,
-		'simple-metadata'
-);
