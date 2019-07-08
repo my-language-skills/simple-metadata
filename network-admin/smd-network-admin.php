@@ -6,17 +6,21 @@ defined ("ABSPATH") or die ("No script assholes!");
 
 /**
  * Function for adding network settings page
+ *
+ * @since ...
+ * @since 1.3 Added switch for internationalization
+ *
  */
 function smd_add_network_settings() {
 	// Create our options page.
-    add_submenu_page( 'settings.php', 'Simple Metadata Network Settings',
-    'Metadata', 'manage_network_options',
+    add_submenu_page( 'settings.php', __('Simple Metadata Network Settings', 'simple-metadata'),
+    __('Metadata', 'simple-metadata'), 'manage_network_options',
     'smd_net_set_page', 'smd_render_network_settings');
 
     //adding settings metaboxes and settigns sections
-    add_meta_box('smd-metadata-network-location', 'General Metadata', 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
+    add_meta_box('smd-metadata-network-location', __('General Metadata', 'simple-metadata'), 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
     if (!is_plugin_active('pressbooks/pressbooks.php')){
-    	add_meta_box('smd-network-metadata-sites-type', 'Front pages', 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
+    	add_meta_box('smd-network-metadata-sites-type', __('Front pages', 'simple-metadata'), 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
 	}
 
     add_settings_section( 'smd_network_meta_locations', '', '', 'smd_network_meta_locations' );
@@ -39,7 +43,7 @@ function smd_add_network_settings() {
 	$sites_type = get_option('smd_net_sites_type');
 
 	if (!is_plugin_active('pressbooks/pressbooks.php')){
-		add_settings_field ('smd_network_site_type', 'Type of Sites', 'smd_render_net_switch_set', 'smd_network_meta_sites_type', 'smd_network_meta_sites_type');
+		add_settings_field ('smd_network_site_type', __('Type of Sites', 'simple-metadata'), 'smd_render_net_switch_set', 'smd_network_meta_sites_type', 'smd_network_meta_sites_type');
 	}
 
 
@@ -51,10 +55,23 @@ function smd_add_network_settings() {
 			continue;
 		}
 
-		$label = ucfirst($post_type);
 
-		add_settings_field ('smd_net_locations['.$post_type.']', $label, function () use ($post_type, $locations){
-			$checked = isset($locations[$post_type]) ? true : false;
+    // Translate post type for nternalization
+    switch ($post_type) {
+      case 'post':
+        $label = __('Post', 'simple-metadata');
+        break;
+      case 'page':
+        $label = __('Page', 'simple-metadata');
+        break;
+      default:
+        $label = ucfirst($post_type);
+        break;
+    }
+
+		add_settings_field ('smd_net_locations['.$post_type.']', $label,
+     function () use ($post_type, $locations){
+  		$checked = isset($locations[$post_type]) ? true : false;
 			?>
 				<input type="checkbox" name="smd_net_locations[<?=$post_type?>]" id="smd_net_locations[<?=$post_type?>]" value="1" <?php checked(1, $checked);?>>
 			<?php
@@ -75,7 +92,7 @@ function smd_render_network_settings(){
 	    <div class="wrap">
 	    	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { //in case settings were saved, we show notice?>
         	<div class="notice notice-success is-dismissible">
-				<p><strong>Settings saved.</strong></p>
+				<p><strong><?php esc_html_e('Settings saved.', 'simple-metadata'); ?></strong></p>
 			</div>
 			<?php } ?>
 		    <div class="metabox-holder">
@@ -103,7 +120,13 @@ function smd_render_network_settings(){
 function smd_network_render_metabox_schema_locations(){
 	?>
 	<div id="smd_network_meta_locations" class="smd_network_meta_locations">
-		<span class="description"><span class="description">Activate the post types where metadata will be available. If activate, site administrators can not deactivate.</span></span>
+		<span class="description">
+      <span class="description">
+          <?php esc_html_e('Activate the post
+            types where metadata will be available. If activate, site administrators can not deactivate.',
+            'simple-metadata'); ?>
+      </span>
+    </span>
 		<form method="post" action="edit.php?action=smd_update_network_locations">
 			<?php
 			settings_fields( 'smd_network_meta_locations' );
@@ -122,7 +145,7 @@ function smd_network_render_metabox_schema_locations(){
 function smd_network_render_metabox_sites_type(){
 	?>
 	<div id="smd_network_meta_sites_type" class="smd_network_meta_sites_type">
-		<span class="description">Select the Homepage schema type. If selected, site administrators can not modify.</span>
+		<span class="description"><?php esc_html_e('Select the Homepage schema type. If selected, site administrators can not modify.', 'simple-metadata'); ?></span>
 		<form method="post" action="edit.php?action=smd_update_network_options">
 			<?php
 			settings_fields( 'smd_network_meta_sites_type' );
@@ -140,18 +163,18 @@ function smd_network_render_metabox_sites_type(){
  */
 function smd_render_net_switch_set() {
 	?>
-	<label for="smd_website_blog_type_0">Local value <input type="radio" id="smd_website_blog_type_0" name="smd_net_sites_type" value="0" checked="checked" <?php checked('0', get_option('smd_net_sites_type'))?>></label>
-  <label for="smd_website_blog_type_2">WebSite <input type="radio" id="smd_website_blog_type_2" name="smd_net_sites_type" value="WebSite" <?php checked('WebSite', get_option('smd_net_sites_type'))?>></label>
-	<label for="smd_website_blog_type_1">Blog <input type="radio" id="smd_website_blog_type_1" name="smd_net_sites_type" value="Blog" <?php checked('Blog', get_option('smd_net_sites_type'))?>></label>
+	<label for="smd_website_blog_type_0"><?php esc_html_e('Local value', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_0" name="smd_net_sites_type" value="0" checked="checked" <?php checked('0', get_option('smd_net_sites_type'))?>></label>
+  <label for="smd_website_blog_type_2"><?php esc_html_e('WebSite', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_2" name="smd_net_sites_type" value="WebSite" <?php checked('WebSite', get_option('smd_net_sites_type'))?>></label>
+	<label for="smd_website_blog_type_1"><?php esc_html_e('Blog', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_1" name="smd_net_sites_type" value="Blog" <?php checked('Blog', get_option('smd_net_sites_type'))?>></label>
 	<?php // if education plugin is active, add new options to select (possibly new values with other addons)
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
-	<label for="smd_website_blog_type_3">Book <input type="radio" id="smd_website_blog_type_3" name="smd_net_sites_type" value="Book" <?php checked('Book', get_option('smd_net_sites_type'))?>></label>
-	<label for="smd_website_blog_type_4">Course <input type="radio" id="smd_website_blog_type_4" name="smd_net_sites_type" value="Course" <?php checked('Course', get_option('smd_net_sites_type'))?>></label><br>
+	<label for="smd_website_blog_type_3"><?php esc_html_e('Book', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_3" name="smd_net_sites_type" value="Book" <?php checked('Book', get_option('smd_net_sites_type'))?>></label>
+	<label for="smd_website_blog_type_4"><?php esc_html_e('Course', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_4" name="smd_net_sites_type" value="Course" <?php checked('Course', get_option('smd_net_sites_type'))?>></label><br>
 		<?php
 	}
 
-	echo '<br><span class="description">By default, blogs uses site configuration.</span>';
+	echo '<br><span class="description">' . __('By default, blogs uses site configuration.', 'simple-metadata') . '</span>';
 }
 
 /**
@@ -159,7 +182,7 @@ function smd_render_net_switch_set() {
  */
 function smd_update_network_locations() {
 
-	//checking admin reffer to prevent direct access to this function
+	//checking admin referer to prevent direct access to this function
 	check_admin_referer('smd_network_meta_locations-options');
 
 	//Wordpress Database variable for database operations
