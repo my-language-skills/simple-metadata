@@ -1,24 +1,31 @@
 <?php
-
-//Metadata for front page
-
+/**
+ * Metadata for front page
+ *
+ * @package simple-metadata/smd-fronpage-related-content
+ * @since   ...
+ *
+ */
 
 /**
- * Fuction for creating option to choose etween blog and web-site
+ * Creats option to choose between blog and web-site
+ *
+ * @since ...
+ *
  */
 function smd_add_option_page () {
 
 	if (1 != get_current_blog_id() || !is_multisite()){
-		//adding main menu page for plugin and all addons
-		add_menu_page('Simple Metadata', 'Metadata', 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
-		//fix to have different name in admin menu for main subpage
-		add_submenu_page('smd_set_page','Settings', 'Settings', 'manage_options', 'smd_set_page');
-		if (!is_plugin_active('pressbooks/pressbooks.php')){
-			add_submenu_page('smd_set_page','Site', 'Site', 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
+		//Adds main menu page for plugin and all addons
+		add_menu_page('Simple Metadata', __('Metadata', 'simple-metadata'), 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
+		//Fix having different name in admin menu for main subpage
+		add_submenu_page('smd_set_page',__('Settings', 'simple-metadata'), __('Settings', 'simple-metadata'), 'manage_options', 'smd_set_page');
+		if (!is_plugin_active('pressbooks/pressbooks.php') ){
+			add_submenu_page('smd_set_page',__('Site', 'simple-metadata'), __('Site', 'simple-metadata'), 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
 		}
 
-		add_meta_box('smd-location-settings', 'General Metadata', 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
-		add_meta_box('smd-settings', 'Front Page', 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
+		add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
+		add_meta_box('smd-settings', __('Front Page', 'simple-metadata'), 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
 
 		$post_types = smd_get_all_post_types();
 		$locations = get_option('smd_locations');
@@ -38,10 +45,10 @@ function smd_add_option_page () {
 		register_setting('smd_locations', 'smd_locations');
 
 		if (!get_option('smd_website_blog_type') && !is_plugin_active('pressbooks/pressbooks.php')) {
-			update_option('smd_website_blog_type', 'Blog');
+			update_option('smd_website_blog_type', __('Blog', 'simple-metadata') );
 		}
 		if (!is_plugin_active('pressbooks/pressbooks.php')){
-			add_settings_field ('smd_website_blog_type', 'Type of Site', 'smd_render_switch_set', 'smd_set_page_site', 'smd_set_page_site');
+			add_settings_field ('smd_website_blog_type', __('Type of Site', 'simple-metadata'), 'smd_render_switch_set', 'smd_set_page_site', 'smd_set_page_site');
 		}
 
 		//adding location option for every public CPT
@@ -50,7 +57,19 @@ function smd_add_option_page () {
 			if ('metadata' == $post_type || 'site-meta' == $post_type){
 				continue;
 			}
-			$label = ucfirst($post_type);
+			// Translate post type for internalization
+	    switch ($post_type) {
+	      case 'post':
+	        $label = __('Post', 'simple-metadata');
+	        break;
+	      case 'page':
+	        $label = __('Page', 'simple-metadata');
+	        break;
+	      default:
+	        $label = ucfirst($post_type);
+	        break;
+	    }
+
 			add_settings_field ('smd_locations['.$post_type.']', $label, function () use ($post_type, $locations, $net_locations){
 				$checked = isset($locations[$post_type]) ? true : false;
 				$disabled = isset($net_locations[$post_type]) ? 'disabled' : '';
@@ -70,7 +89,8 @@ function smd_add_option_page () {
 /**
  * Render the options page for plugin.
  *
- * @since  1.0
+ * @since 1.0
+ *
  */
 function smd_render_options_page() {
 
@@ -85,10 +105,10 @@ function smd_render_options_page() {
         <div class="wrap">
         	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { ?>
         	<div class="notice notice-success is-dismissible">
-				<p><strong>Settings saved.</strong></p>
+				<p><strong> <?php esc_html_e('Settings saved.', 'simple-metadata'); ?></strong></p>
 			</div>
 			<?php } ?>
-			<h1>Simple Metadata Settings</h1>
+			<h1><?php esc_html_e('Simple Metadata Settings', 'simple-metadata'); ?></h1>
             <div class="metabox-holder">
 					<?php
 					do_meta_boxes('smd_set_page', 'normal','');
@@ -108,6 +128,11 @@ function smd_render_options_page() {
 		<?php
 }
 
+/**
+ *
+ * @since ...
+ *
+ */
 function smd_render_site_page () {
 
 	if(!current_user_can('manage_options')){
@@ -121,10 +146,10 @@ function smd_render_site_page () {
         <div class="wrap">
         	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { //if settings were saved, we show notice?>
         	<div class="notice notice-success is-dismissible">
-				<p><strong>Settings saved.</strong></p>
+				<p><strong><?php esc_html_e('Settings saved.', 'simple-metadata'); ?></strong></p>
 			</div>
 			<?php } ?>
-			<h1>Simple Metadata Site Configuration</h1>
+			<h1><?php esc_html_e('Simple Metadata Site Configuration', 'simple-metadata'); ?></h1>
             <div class="metabox-holder">
 					<?php
 					do_meta_boxes('smd_set_page_site', 'normal','');
@@ -143,11 +168,20 @@ function smd_render_site_page () {
         </script>
 		<?php
 }
-//Simple Metadata Settings
+/**
+ * Simple Metadata Settings
+ *
+ * @since 1.0
+ *
+ */
 function smd_render_locations_metabox () {
 	?>
 	<div class="wrap">
-		   <span class="description"><span class="description">Activate the post types where metadata will be available.</span></span>
+			<span class="description">
+				<span class="description">
+					 <?php esc_html_e('Activate the post types where metadata will be available.', 'simple-metadata'); ?>
+			 	</span>
+			</span>
            <form method="post" action="options.php">
 			<?php
 			settings_fields( 'smd_locations' );
@@ -160,7 +194,13 @@ function smd_render_locations_metabox () {
     <?php
 }
 
-//Simple Metadata Site configuration
+
+/**
+ * Simple Metadata Site configuration
+ *
+ * @since 1.0
+ *
+ */
 function smd_render_metabox(){
 	?>
 	<div class="wrap">
@@ -181,6 +221,8 @@ function smd_render_metabox(){
 
 /**
  * Function for rendering radio button
+ *
+ * @since 1.0
  */
 function smd_render_switch_set() {
 
@@ -196,22 +238,25 @@ function smd_render_switch_set() {
 		}
 	}
 	?>
-	<label for="smd_website_blog_type_2">WebSite <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" checked="checked" <?php checked('WebSite', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
-	<label for="smd_website_blog_type_1">Blog <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
+	<label for="smd_website_blog_type_2"><?php esc_html_e('WebSite', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" checked="checked" <?php checked('WebSite', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
+	<label for="smd_website_blog_type_1"><?php esc_html_e('Blog', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
 	<?php // if education plugin is active, add new options to select (possibly new values with other addons)
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
-	<label for="smd_website_blog_type_3">Book <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
-	<label for="smd_website_blog_type_4">Course <input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label><br>
+	<label for="smd_website_blog_type_3"><?php esc_html_e('Book', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
+	<label for="smd_website_blog_type_4"><?php esc_html_e('Course', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label><br>
 		<?php
-	}
 
 	if ('disabled' === $disabled){
 		echo '<input type="hidden" name="smd_website_blog_type" value="'.$net_sites_type.'">';
-		echo '<br><span class="description">Type was selected by network administrator. You are not allowed to change it.</span>';
+		echo '<br><span class="description">' .
+						__('Type was selected by network administrator.
+						You are not allowed to change it.', 'simple-metadata') . '</span>';
 	} else {
 
-		echo '<br><span class="description">Select schema type which will be appplied for front-page metadata</span>';
+	}
+		echo '<br><span class="description">' . __('Select schema type which will be appplied
+					for front-page metadata', 'simple-metadata') . '</span>';
 
 	}
 
@@ -219,6 +264,8 @@ function smd_render_switch_set() {
 
 /**
  * Function for printing metatag in header of front page
+ *
+ * @since ...
  */
 function smd_print_wsb_field () {
 	if (is_front_page()){

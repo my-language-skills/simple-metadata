@@ -1,6 +1,11 @@
 <?php
-
-//network admin interface
+/**
+ * Network admin interface
+ *
+ * @package simple-metadata/network-admin
+ * @since   ...
+ *
+ */
 
 defined ("ABSPATH") or die ("No script assholes!");
 
@@ -8,7 +13,6 @@ defined ("ABSPATH") or die ("No script assholes!");
  * Function for adding network settings page
  *
  * @since ...
- * @since 1.3 Added switch for internationalization
  *
  */
 function smd_add_network_settings() {
@@ -56,7 +60,7 @@ function smd_add_network_settings() {
 		}
 
 
-    // Translate post type for nternalization
+    // Translate post type for internalization
     switch ($post_type) {
       case 'post':
         $label = __('Post', 'simple-metadata');
@@ -83,6 +87,8 @@ function smd_add_network_settings() {
 
 /**
  * Function for rendering network settings page
+ *
+ * @since ...
  */
 function smd_render_network_settings(){
 	wp_enqueue_script('common');
@@ -116,6 +122,8 @@ function smd_render_network_settings(){
 
 /**
  * Function for rendering metabox of locations
+ *
+ * @since 1.3 Added internationalization
  */
 function smd_network_render_metabox_schema_locations(){
 	?>
@@ -141,6 +149,8 @@ function smd_network_render_metabox_schema_locations(){
 
 /**
  * Function for rendering metabox for properties management
+ * @since ...
+ *
  */
 function smd_network_render_metabox_sites_type(){
 	?>
@@ -160,6 +170,7 @@ function smd_network_render_metabox_sites_type(){
 
 /**
  * Function for rendering radio button
+ * @since ...
  */
 function smd_render_net_switch_set() {
 	?>
