@@ -3,7 +3,7 @@
  * Metadata for front page
  *
  * @package simple-metadata/smd-fronpage-related-content
- * @since   ...
+ * @since   1.0
  *
  */
 

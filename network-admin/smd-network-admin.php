@@ -3,7 +3,7 @@
  * Network admin interface
  *
  * @package simple-metadata/network-admin
- * @since   ...
+ * @since   1.0
  *
  */
 
@@ -12,7 +12,7 @@ defined ("ABSPATH") or die ("No script assholes!");
 /**
  * Function for adding network settings page
  *
- * @since ...
+ * @since 1.0
  *
  */
 function smd_add_network_settings() {
@@ -88,7 +88,7 @@ function smd_add_network_settings() {
 /**
  * Function for rendering network settings page
  *
- * @since ...
+ * @since 1.0
  */
 function smd_render_network_settings(){
 	wp_enqueue_script('common');
@@ -123,7 +123,7 @@ function smd_render_network_settings(){
 /**
  * Function for rendering metabox of locations
  *
- * @since 1.3 Added internationalization
+ * @since 1.0
  */
 function smd_network_render_metabox_schema_locations(){
 	?>
@@ -149,7 +149,7 @@ function smd_network_render_metabox_schema_locations(){
 
 /**
  * Function for rendering metabox for properties management
- * @since ...
+ * @since 1.0
  *
  */
 function smd_network_render_metabox_sites_type(){
@@ -170,7 +170,7 @@ function smd_network_render_metabox_sites_type(){
 
 /**
  * Function for rendering radio button
- * @since ...
+ * @since 1.0
  */
 function smd_render_net_switch_set() {
 	?>
@@ -237,6 +237,7 @@ function smd_update_network_locations() {
 
 /**
  * Handler for properties settings update
+ * 1.0
  */
 function smd_update_network_options() {
 
