@@ -1,6 +1,6 @@
 # Simple Metadata
 
-* Contributors: @colomet, @danzhik
+* Contributors: @colomet, @danzhik, @huguespages, @davideC00
 * Donate link: https://opencollective.com/mylanguageskills
 * Tags: aiom, extensions, metadata
 * Requires at least: 4.9.6
@@ -40,7 +40,7 @@ Simple metadata markup will be stored in cached versions of web-pages when a cac
 1. Upload plugin folder to /wp-content/plugins/ folder in your web-site file-system.
 1. Activate it from 'Plugins page' in your website.
 
-## upgrades
+## Upgrades
 
 For upgrades, download the last stable version from github, delete from FTP the old plugin and install the new one.
 

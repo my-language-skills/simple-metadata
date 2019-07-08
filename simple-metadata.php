@@ -1,12 +1,13 @@
 <?php
-/*
-Plugin Name: Simple Metadata
-Plugin URI: https://github.com/my-language-skills/simple-metadata
-Description: This plugin provides auto-generated metadata on the basis of default WP web-pages information.
-Version: 1.3
-Author: My Language Skills team
-Author URI: https://github.com/my-language-skills
-License: GPL 3.0
+/**
+ * Plugin Name: Simple Metadata
+ * Plugin URI: https://github.com/my-language-skills/simple-metadata
+ * Description: This plugin provides auto-generated metadata on the basis of default WP web-pages information.
+ * Version: 1.3
+ * Author: My Language Skills team
+ * Author URI: https://github.com/my-language-skills
+ * License: GPL 3.0
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 */
 
 defined ("ABSPATH") or die ("No script assholes!");

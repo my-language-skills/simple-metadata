@@ -1,5 +1,5 @@
 === Simple metadata ===
-Contributors: colomet, danzhik
+Contributors: colomet, danzhik, huguespages, davideC00
 Tags: wordpress, wordpress-plugin, timezone, multisite
 Requires at least: 4.6
 Tested up to: 4.9.8
