@@ -71,14 +71,18 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+
 ### 1.3
+* **ADDITIONS**
+		* Internationalization
 * **REMOVED**
-    *  Auto update from github
+    * Auto update from github
 * **ENHANCEMENTS***
 		* Modification admin panel, front page type of site older
 
 * **BUGFIXES***
 		* Bug button in post metaboxes
+		* no-type post were not set properly
 
 * **List of Files revised**
 		* simple-metadata.php

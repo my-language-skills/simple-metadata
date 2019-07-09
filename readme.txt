@@ -3,7 +3,7 @@ Contributors: colomet, danzhik, huguespages, davideC00
 Tags: wordpress, wordpress-plugin, timezone, multisite
 Requires at least: 4.6
 Tested up to: 4.9.8
-Stable tag: 4.9.8
+Stable tag: 1.3
 Requires PHP: 7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -144,7 +144,31 @@ https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 
 == Changelog ==
 
-1.0 Initial release.
+= 1.3 =
+ADDITIONS:
+Internationalization
+REMOVED:
+Auto update from github
+ENHANCEMENTS:
+Modification admin panel, front page type of site older
+BUGFIXES:
+Bug button in post metaboxes
+no-type post were not set properly
+
+= 1.2.1 =
+ENHANCEMENTS
+Make in corect order the admin panel. Change name site-meta in home page
+
+= 1.2 =
+ADDITIONS:
+Add new plugins : simple-metadata-annotation
+Add new functionality to auto upload with plugin-uptdate-checker
+
+= 1.1 =
+Integration with add-ons was significantly increased. Some new properties were added for all possible post types. Plugin now supports network-wide applied options
+
+= 1.0 =
+Initial release.
 
 
 == Upgrade Notice ==
