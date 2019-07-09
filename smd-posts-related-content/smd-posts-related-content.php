@@ -1,7 +1,12 @@
 <?php
 
-//Metadata for posts and CPTs
-
+/**
+* Metadata for posts and CPTs
+*
+* @package simple-metadata/smd-posts-related-content
+* @since   1.0
+*
+*/
 
 defined ("ABSPATH") or die ("No script assholes!");
 require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
@@ -18,7 +23,7 @@ function smd_add_post_type_meta () {
 		if (isset(get_option('smd_locations')['post']))
 		add_meta_box (
 		'smd_post_type', //Unique ID
-		'Post Type', //Title
+		__('Post Type', 'simple-metadata'), //Title
 		'smd_render_article_type_meta', //Callback function
 		$location, //location
 		'side', //Context
@@ -40,38 +45,43 @@ function smd_render_article_type_meta (){
 	$post_type = get_post_meta (get_the_ID(), 'smd_post_type', true) ? esc_attr(get_post_meta (get_the_ID(), 'smd_post_type', true)) : 'no_type';
 
 $test = get_option('smd_website_blog_type');
-if ($test == "Blog") {
-	$post_suppose_type = "Article";
-}
-if ($test == "Course") {
-	$post_suppose_type = 'Article';
-}
-if ($test == "Book") {
-	$post_suppose_type = 'Chapter';
 
-}
-if ($test  == "WebSite") {
-	$post_suppose_type = 'Web Page';
-}
+switch ($test) {
+	case 'Blog':
+		$post_suppose_type = __('Article', 'simple-metadata');
+		break;
+	case 'Course':
+		$post_suppose_type = __('Article', 'simple-metadata');
+		break;
+	case 'Book':
+		$post_suppose_type = __('Chapter', 'simple-metadata');
+		break;
+	case 'WebSite':
+		$post_suppose_type = __('Web Page', 'simple-metadata');
+		break;
 
+	default:
+	  $post_suppose_type = '';
+		break;
+}
 
 	$post_meta_types = array(
-					'WebPage'		=> 'Web Page',
-					'Article'					=> 'Article',
-					'AdvertiserContentArticle'	=> 'Advertisement',
-					'BlogPosting'				=> 'Blog Posting',
-					'DiscussionForumPosting'	=> 'Discussion Forum Posting',
-					'LiveBlogPosting'			=> 'Live Blog Posting',
-					'Report'					=> 'Report',
-					'SatiricalArticle' 			=> 'Satirical Article',
-					'SocialMediaPosting'		=> 'Social Media Posting',
-					'TechArticle'				=> 'Technology Article',
+					'WebPage'		=> __('Web Page', 'simple-metadata'),
+					'Article'					=> __('Article', 'simple-metadata'),
+					'AdvertiserContentArticle'	=> __('Advertisement', 'simple-metadata'),
+					'BlogPosting'				=> __('Blog Posting', 'simple-metadata'),
+					'DiscussionForumPosting'	=> __('Discussion Forum Posting', 'simple-metadata'),
+					'LiveBlogPosting'			=> __('Live Blog Posting', 'simple-metadata'),
+					'Report'					=> __('Report', 'simple-metadata'),
+					'SatiricalArticle' 			=> __('Satirical Article', 'simple-metadata'),
+					'SocialMediaPosting'		=> __('Social Media Posting', 'simple-metadata'),
+					'TechArticle'				=> __('Technology Article', 'simple-metadata'),
 				  );
 
 	//if Educational add-on is active, we add new possible options
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
-		$post_meta_types['WebPage'] = 'Web Page';
-		$post_meta_types['Chapter'] = 'Chapter';
+		$post_meta_types['WebPage'] = __('Web Page', 'simple-metadata');
+		$post_meta_types['Chapter'] = __('Chapter', 'simple-metadata');
 
 	}
 	?>
@@ -83,7 +93,11 @@ if ($test  == "WebSite") {
 					}
 				?>
 			</select>
-			<p><i>As '<?=get_option('smd_website_blog_type')?>' is chosen as type of web-site, by default type of post is '<?=$post_suppose_type?>'</i></p>
+			<p><i>
+					<?php printf(esc_html__('As %s is chosen as type of web-site, by default type of post is %s', 'simple-metadata'),
+										get_option('smd_website_blog_type'), $post_suppose_type);
+					?>
+			</i></p>
 	<?php
 }
 
@@ -124,7 +138,7 @@ function smd_print_post_meta_fields () {
 
 	$post_type = get_post_type($post_id);
 
-	//we print these tags only if location is not active in education and post ype is not page
+	//we print these tags only if location is not active in education and post type is not page
 	if (isset(get_option('smd_locations')[$post_type]) && !is_front_page() && !is_home() && 'page' != $post_type) {
 		//In case of pressbooks installation, always applied Book -> Chapter
 		if (!is_plugin_active('pressbooks/pressbooks.php')){
@@ -135,20 +149,27 @@ function smd_print_post_meta_fields () {
 
 		if ('no_type' == $post_meta_type){
 			$test1 = get_option('smd_website_blog_type');
-			if ($test1 == "Blog") {
-				$post_suppose_type = "Article";
-			}
-			if ($test1 == "Course") {
-				$post_suppose_type = 'Article';
-			}
-			if ($test1 == "Book") {
-				$post_suppose_type = 'Chapter';
+			switch ($test1) {
+				case 'Blog':
+					$post_meta_type = __('Article', 'simple-metadata');
+					break;
+				case 'Course':
+					$post_meta_type = __('Article', 'simple-metadata');
+					break;
+				case 'Book':
+					$post_meta_type = __('Chapter', 'simple-metadata');
+					break;
+				case 'WebSite':
+					$post_meta_type = __('Web Page', 'simple-metadata');
+					break;
 
-			}
-			if ($test1  == "WebSite") {
-				$post_suppose_type = 'WebPage';
+				default:
+				  $post_meta_type = '';
+					break;
 			}
 		}
+
+
 
 		//> data, related to 'Article' type properties (only applicable for 'post' and post-compitable CPTs)
 
