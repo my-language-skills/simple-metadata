@@ -1,6 +1,10 @@
-<?php 
-
-//Registring 'Site-Meta' post type if not registered and not pressbooks
+<?php
+/**
+ * Registring 'Site-Meta' post type if not registered and not pressbooks
+ *
+ * @package simple-metadata/smd-site-cpt
+ *
+ */
 
 /**
  * Function to register site-meta type if it doesn't exist ot not Pressbooks installation , wrapper for 'smd_register_cpt' function
@@ -17,18 +21,18 @@ function smd_init_cpt(){
 function smd_register_cpt(){
 
 	$labels = array(
-			'name' => 'Site Metadata', 
-			'singular_name' => 'Site Metadata', 
-			'add_new' => 'Add New Site Metadata', 
-			'add_new_item' => 'Edit Site Meta Information', 
-			'edit_item' => 'Edit Site Meta Information', 
-			'new_item' => 'New Site Metadata', 
-			'view_item' => 'View Site Metadata', 
-			'search_items' => 'Search Site Metadata', 
-			'not_found' => 'No site metadata found', 
-			'not_found_in_trash' => 'No site metadata found in Trash', 
+			'name' => __('Site Metadata', 'simple-metadata'),
+			'singular_name' => __('Site Metadata', 'simple-metadata'),
+			'add_new' => __('Add New Site Metadata', 'simple-metadata'),
+			'add_new_item' => __('Edit Site Meta Information', 'simple-metadata'),
+			'edit_item' => __('Edit Site Meta Information', 'simple-metadata'),
+			'new_item' => __('New Site Metadata', 'simple-metadata'),
+			'view_item' => __('View Site Metadata', 'simple-metadata'),
+			'search_items' => __('Search Site Metadata', 'simple-metadata'),
+			'not_found' => __('No site metadata found', 'simple-metadata'),
+			'not_found_in_trash' => __('No site metadata found in Trash', 'simple-metadata'),
 			'parent_item_colon' => '',
-			'menu_name' => 'Site Metadata', 
+			'menu_name' => __('Site Metadata', 'simple-metadata'),
 		);
 		$args = array(
 			'labels' => $labels,
@@ -55,19 +59,20 @@ function smd_register_cpt(){
 				),
 			'supports' => array('')
 		);
-		register_post_type('site-meta',$args);
+
+		register_post_type('site-meta', $args);
 
 }
 
 /**
- * Hiding site-meta post ype from default post editing/review pages of WP and creating custom page under pluggin settings
+ * Hiding site-meta post type from default post editing/review pages of WP and creating custom page under pluggin settings
  */
 function smd_reorganize_dash () {
 	//Used to remove the default menu for the cpt we created
 	remove_menu_page( 'edit.php?post_type=site-meta' );
 	remove_meta_box( 'submitdiv', 'site-meta', 'side' );
 	//adding custom metabox to save site-meta information
-	add_meta_box( 'metadata-save', 'Save Site Metadata Information', 'smd_metadata_save_box', 'site-meta', 'side', 'high' );
+	add_meta_box( 'metadata-save', __('Save Site Metadata Information', 'simple-metadata'), 'smd_metadata_save_box', 'site-meta', 'side', 'high' );
 	$meta = smd_get_site_meta_post();
 	if ( ! empty( $meta ) ) {
 		$site_meta_url = 'post.php?post=' . absint( $meta->ID ) . '&action=edit';
@@ -76,7 +81,7 @@ function smd_reorganize_dash () {
 	}
 	//adding Site-Meta page under main plugin page, not for root blog
 	if ((1 != get_current_blog_id() && !is_plugin_active('pressbooks/pressbooks.php')) || !is_multisite()){
-		add_submenu_page('tools.php','Site-Meta', 'Site-Meta', 'manage_options', $site_meta_url);
+		add_submenu_page('tools.php',__('Site-Meta', 'simple-metadata'), __('Site-Meta', 'simple-metadata'), 'manage_options', $site_meta_url);
 	}
 }
 
@@ -124,15 +129,17 @@ function smd_metadata_save_box( $post ) {
 function smd_change_custom_post_mess($messages){
 		$messages['site-meta'] = array(
 			0 => '', // Unused. Messages start at index 1.
-			1 => 'Site Metadata updated.',
-			2 => 'Custom field deleted.',
-			3 => 'Custom field deleted.',
-			4 => 'Site Metadata updated.',
+			1 => __('Site Metadata updated.', 'simple-metadata'),
+			2 => __('Custom field deleted.', 'simple-metadata'),
+			3 => __('Custom field deleted.', 'simple-metadata'),
+			4 => __('Site Metadata updated.', 'simple-metadata'),
 			/* translators: %s: date and time of the revision */
-			5 => isset( $_GET['revision'] ) ? sprintf( 'Site Metadata restored to revision from %s', wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-			6 => 'Site Metadata updated.',
-			7 => 'Site Metadata saved.',
-			8 => 'Site Metadata submitted'
+			5 => isset( $_GET['revision'] ) ?
+								sprintf( __('Site Metadata restored to revision from %s', 'simple-metadata')
+									, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			6 => __('Site Metadata updated.', 'simple-metadata'),
+			7 => __('Site Metadata saved.', 'simple-metadata'),
+			8 => __('Site Metadata submitted', 'simple-metadata')
 		);
 		return $messages;
 }
