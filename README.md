@@ -74,23 +74,23 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 ### 1.3
 * **ADDITIONS**
-		* Internationalization
+	 * Internationalization
 * **REMOVED**
-    * Auto update from github
+   * Auto update from github
 * **ENHANCEMENTS***
-		* Modification admin panel, front page type of site older
+	 * Modification admin panel, front page type of site older
 
 * **BUGFIXES***
-		* Bug button in post metaboxes
-		* no-type post were not set properly
+	 * Bug button in post metaboxes
+	 * no-type post were not set properly
 
 * **List of Files revised**
-		* simple-metadata.php
-		* smd-frontpage-related-content.php
-		* smd-pages-related-content.php
-		* smd-posts-related-content.php
-		* smd-frontpage-related-content.php
-		* smd-network-admin.php
+	 * simple-metadata.php
+	 * smd-frontpage-related-content.php
+	 * smd-pages-related-content.php
+	 * smd-posts-related-content.php
+	 * smd-frontpage-related-content.php
+	 * smd-network-admin.php
 
 ### 1.2.1
 * **ENHANCEMENTS***
