@@ -8,6 +8,8 @@
  * Author URI: https://github.com/my-language-skills
  * License: GPL 3.0
  * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
+ * Text Domain: simple-metadata
+ * Domain Path: /languages
 */
 
 defined ("ABSPATH") or die ("No script assholes!");
@@ -30,3 +32,20 @@ include_once plugin_dir_path( __FILE__ ) . "smd-frontpage-related-content/smd-fr
 if (is_multisite()){
 	include_once plugin_dir_path( __FILE__ ) . "network-admin/smd-network-admin.php";
 }
+
+/**
+ * Internalization
+ * It loads the MO file for plugin's translation
+ *
+ * @since 1.3
+ * @author @davideC00
+ *
+ */
+	function smd_load_plugin_textdomain() {
+    load_plugin_textdomain( 'simple-metadata', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+
+/**
+ * Called when the activated plugin has been loaded
+ */
+add_action( 'plugins_loaded', 'smd_load_plugin_textdomain' );

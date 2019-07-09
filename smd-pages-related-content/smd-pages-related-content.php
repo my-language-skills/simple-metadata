@@ -1,6 +1,11 @@
 <?php
-
-// Metadata for pages
+/**
+ * Metadata for pages
+ *
+ * @package simple-metadata/smd-pages-related-content
+ * @since   1.0
+ *
+ */
 
 defined ("ABSPATH") or die ("No script assholes!");
 
@@ -13,7 +18,7 @@ function smd_add_page_type_meta () {
 		if (isset(get_option('smd_locations')['page']))
 		add_meta_box (
 			'smd_page_type', //Unique ID
-			'Page Type', //Title
+			__('Page Type', 'simple-metadata'), //Title
 			'smd_render_page_type_meta', //Callback function
 			'page', //for pages
 			'side', //Context
@@ -50,25 +55,25 @@ function smd_render_page_type_meta ($object, $box) {
 		$page_type = $page_suppose_type;
 	}
 	$page_types = array(
-					'WebPage'		=> 'Web Page',
-					'AboutPage' 		=> 'About Page',
-					'CheckoutPage' 		=> 'Checkout Page',
-					'CollectionPage' 	=> 'Collection Page',
-					'ContactPage'		=> 'Contact Page',
-					'FAQPage'			=> 'FAQ Page',
-					'ImageGallery'		=> 'Image Gallery',
-					'ItemPage'			=> 'Item Page',
-					'MedicalWebPage'	=> 'Medical Web Page',
-					'ProfilePage'		=> 'Profile Page',
+					'WebPage'		=> __('Web Page', 'simple-metadata'),
+					'AboutPage' 		=> __('About Page', 'simple-metadata'),
+					'CheckoutPage' 		=> __('Checkout Page', 'simple-metadata'),
+					'CollectionPage' 	=> __('Collection Page', 'simple-metadata'),
+					'ContactPage'		=> __('Contact Page', 'simple-metadata'),
+					'FAQPage'			=> __('FAQ Page', 'simple-metadata'),
+					'ImageGallery'		=> __('Image Gallery', 'simple-metadata'),
+					'ItemPage'			=> __('Item Page', 'simple-metadata'),
+					'MedicalWebPage'	=> __('Medical Web Page', 'simple-metadata'),
+					'ProfilePage'		=> __('Profile Page', 'simple-metadata'),
 					//'QAPage'			=> 'QA Page',
-					'SearchResultsPage'	=> 'Search Results Page',
-					'VideoGallery'		=> 'Video Gallery'
+					'SearchResultsPage'	=> __('Search Results Page', 'simple-metadata'),
+					'VideoGallery'		=> __('Video Gallery', 'simple-metadata'),
 				  );
 	//if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 	//	$page_types['Chapter'] = 'Chapter';
 	//}
 	?>
-		<p>Page Type</p>
+		<p><?php esc_html_e('Page Type', 'simple-metadata'); ?></p>
 			<select style="width: 90%;" name="smd_page_type" id="smd_page_type">
 				<?php
 					foreach ($page_types as $key => $value) {
@@ -77,8 +82,10 @@ function smd_render_page_type_meta ($object, $box) {
 					}
 				?>
 			</select>
-			<p><i>As '<?=get_option('smd_website_blog_type')?>' is chosen as type of web-site, by default type of page is '<?=$page_suppose_type?>'</i></p>
-	<?php
+			<p><i><?php printf(esc_html__('As %s is chosen as type of web-site, by default type of page is %s', 'simple-metadata'),
+										get_option('smd_website_blog_type'), $page_suppose_type);
+						?></i></p>
+		<?php
 }
 
 /**
