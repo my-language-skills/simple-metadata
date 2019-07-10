@@ -151,16 +151,16 @@ function smd_print_post_meta_fields () {
 			$test1 = get_option('smd_website_blog_type');
 			switch ($test1) {
 				case 'Blog':
-					$post_meta_type = __('Article', 'simple-metadata');
+					$post_meta_type = 'Article';
 					break;
 				case 'Course':
-					$post_meta_type = __('Article', 'simple-metadata');
+					$post_meta_type = 'Article';
 					break;
 				case 'Book':
-					$post_meta_type = __('Chapter', 'simple-metadata');
+					$post_meta_type = 'Chapter';
 					break;
 				case 'WebSite':
-					$post_meta_type = __('Web Page', 'simple-metadata');
+					$post_meta_type = 'WebPage';
 					break;
 
 				default:
