@@ -1,10 +1,15 @@
 <?php
+
 /**
  * Metadata for pages
  *
- * @package simple-metadata/smd-pages-related-content
- * @since   1.0
+ * Description. (use period)
  *
+ * @link URL
+ *
+ * @package simple-metadata
+ * @subpackage simple-metadata/smd-pages-related-content
+ * @since 1.0
  */
 
 defined ("ABSPATH") or die ("No script assholes!");

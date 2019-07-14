@@ -48,10 +48,9 @@ if (is_multisite()){
 
 /**
  * Internalization
- * It loads the MO file for plugin's translation
+ * It loads the MO file for plugin's translation.
  *
  * @since 1.3
- * @author @davideC00
  *
  */
 	function smd_load_plugin_textdomain() {

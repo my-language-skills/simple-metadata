@@ -1,10 +1,15 @@
 <?php
+
 /**
- * Metadata for front page
+ * Front page metadata
  *
- * @package simple-metadata/smd-fronpage-related-content
- * @since   1.0
+ * Description. (use period)
  *
+ * @link URL
+ *
+ * @package simple-metadata
+ * @subpackage simple-metadata/smd-fronpage-related-content
+ * @since 1.0
  */
 
 /**
@@ -87,9 +92,9 @@ function smd_add_option_page () {
 
 
 /**
- * Render the options page for plugin.
+ * Render the options page for plugin
  *
- * @since 1.0
+ * @since   1.0
  *
  */
 function smd_render_options_page() {

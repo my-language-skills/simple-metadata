@@ -1,10 +1,15 @@
 <?php
+
 /**
  * Network admin interface
  *
- * @package simple-metadata/network-admin
- * @since   1.0
+ * Description. (use period)
  *
+ * @link URL
+ *
+ * @package simple-metadata
+ * @subpackage simple-metadata/network-admin
+ * @since 1.0
  */
 
 defined ("ABSPATH") or die ("No script assholes!");
@@ -12,7 +17,7 @@ defined ("ABSPATH") or die ("No script assholes!");
 /**
  * Function for adding network settings page
  *
- * @since 1.0
+ * @since   1.0
  *
  */
 function smd_add_network_settings() {
@@ -88,7 +93,8 @@ function smd_add_network_settings() {
 /**
  * Function for rendering network settings page
  *
- * @since 1.0
+ * @since   1.0
+ *
  */
 function smd_render_network_settings(){
 	wp_enqueue_script('common');
@@ -123,7 +129,8 @@ function smd_render_network_settings(){
 /**
  * Function for rendering metabox of locations
  *
- * @since 1.0
+ * @since   1.0
+ *
  */
 function smd_network_render_metabox_schema_locations(){
 	?>
@@ -149,7 +156,7 @@ function smd_network_render_metabox_schema_locations(){
 
 /**
  * Function for rendering metabox for properties management
- * @since 1.0
+ * @since   1.0
  *
  */
 function smd_network_render_metabox_sites_type(){
@@ -170,7 +177,8 @@ function smd_network_render_metabox_sites_type(){
 
 /**
  * Function for rendering radio button
- * @since 1.0
+ * @since   1.0
+ *
  */
 function smd_render_net_switch_set() {
 	?>
@@ -190,6 +198,8 @@ function smd_render_net_switch_set() {
 
 /**
  * Handler for locations settings update
+ * @since
+ *
  */
 function smd_update_network_locations() {
 
@@ -237,7 +247,8 @@ function smd_update_network_locations() {
 
 /**
  * Handler for properties settings update
- * 1.0
+ * @since   1.0
+ *
  */
 function smd_update_network_options() {
 

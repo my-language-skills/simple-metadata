@@ -1,14 +1,24 @@
 <?php
+
 /**
  * Registring 'Site-Meta' post type if not registered and not pressbooks
  *
- * @package simple-metadata/smd-site-cpt
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata
+ * @subpackage XXXXXXX/XXXXXXX
+ * @since x.x.x (when the file was introduced)
+ */
+
+ /**
+ * Function to register site-meta type if it doesn't exist ot not Pressbooks installation , wrapper for 'smd_register_cpt' function
+ *
+ * @since
  *
  */
 
-/**
- * Function to register site-meta type if it doesn't exist ot not Pressbooks installation , wrapper for 'smd_register_cpt' function
- */
 function smd_init_cpt(){
 	if(!post_type_exists('metadata') && !post_type_exists('site-meta')){
 		smd_register_cpt();
@@ -16,8 +26,12 @@ function smd_init_cpt(){
 }
 
 /**
- * Defining 'site-meta' post type and registering it
- */
+* Defining 'site-meta' post type and registering it
+*
+* @since
+*
+*/
+
 function smd_register_cpt(){
 
 	$labels = array(
@@ -65,8 +79,12 @@ function smd_register_cpt(){
 }
 
 /**
- * Hiding site-meta post type from default post editing/review pages of WP and creating custom page under pluggin settings
- */
+* Hiding site-meta post type from default post editing/review pages of WP and creating custom page under pluggin settings
+*
+* @since
+*
+*/
+
 function smd_reorganize_dash () {
 	//Used to remove the default menu for the cpt we created
 	remove_menu_page( 'edit.php?post_type=site-meta' );
@@ -86,8 +104,12 @@ function smd_reorganize_dash () {
 }
 
 /**
- * Function for getting site-meta post WP_Post format
- */
+* Function for getting site-meta post WP_Post format
+*
+* @since
+*
+*/
+
 function smd_get_site_meta_post() {
 
 	$args = array(
@@ -107,9 +129,12 @@ function smd_get_site_meta_post() {
 }
 
 /**
-	 * A function that manipulates the inputs for saving the new cpt data
-	 * @since    0.1
-	 */
+* A function that manipulates the inputs for saving the new cpt data
+*
+* @since 0.1
+*
+*/
+
 function smd_metadata_save_box( $post ) {
 	if ( 'publish' === $post->post_status ) { ?>
         <input name="original_publish" type="hidden" id="original_publish" value="Update"/>
@@ -122,10 +147,13 @@ function smd_metadata_save_box( $post ) {
 }
 
 
-
 /**
- * Changing psot manipulations messages for site-meta post
- */
+* Changing psot manipulations messages for site-meta post
+*
+* @since
+*
+*/
+
 function smd_change_custom_post_mess($messages){
 		$messages['site-meta'] = array(
 			0 => '', // Unused. Messages start at index 1.
@@ -145,8 +173,12 @@ function smd_change_custom_post_mess($messages){
 }
 
 /**
- * Enqueue js for admin area
- */
+* Enqueue js for admin area
+*
+* @since
+*
+*/
+
 function smd_enqueue_script() {
 
 	wp_enqueue_script( 'smd_admin_script', plugin_dir_url( __FILE__ ) . 'assets/js/simple-metadata-admin.js', array( 'jquery' ));

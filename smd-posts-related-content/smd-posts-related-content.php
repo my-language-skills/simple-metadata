@@ -1,12 +1,16 @@
 <?php
 
 /**
-* Metadata for posts and CPTs
-*
-* @package simple-metadata/smd-posts-related-content
-* @since   1.0
-*
-*/
+ * Metadata for posts and CPTs
+ *
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata
+ * @subpackage simple-metadata/smd-posts-related-content
+ * @since 1.0
+ */
 
 defined ("ABSPATH") or die ("No script assholes!");
 require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
@@ -34,8 +38,12 @@ function smd_add_post_type_meta () {
 }
 
 /**
- *	Function for rendering post type metabox
- */
+* Function for rendering post type metabox
+*
+* @since
+*
+*/
+
 function smd_render_article_type_meta (){
 
 	//creating nonce
@@ -102,8 +110,12 @@ switch ($test) {
 }
 
 /**
- * Function for post saving/updating action
- */
+* Function for post saving/updating action
+*
+* @since
+*
+*/
+
 function smd_save_post_type ($post_id, $post) {
 
 	/* Verify the nonce before proceeding. */
@@ -128,10 +140,13 @@ function smd_save_post_type ($post_id, $post) {
 	}
 }
 
-
 /**
- * Function for printing meta tags of Article in post pages
- */
+* Function for printing meta tags of Article in post pages
+*
+* @since
+*
+*/
+
 function smd_print_post_meta_fields () {
 
 	$post_id = get_the_ID();

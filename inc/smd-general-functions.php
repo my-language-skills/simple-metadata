@@ -1,11 +1,25 @@
 <?php
 
-// file containing functions, used over all the post types and all the addons
-// identical functions (except class methods) should be added to this file
-
 /**
- * Function for getting properties' metatags, collected from WP Core data
+ * Summary (no period for file headers)
+ *
+ * file containing functions, used over all the post types and all the addons
+ * identical functions (except class methods) should be added to this file
+ *
+ * @link URL
+ *
+ * @package simple-metadata
+ * @subpackage XXXXXXX/XXXXXXX
+ * @since x.x.x (when the file was introduced)
  */
+ 
+/**
+* Function for getting properties' metatags, collected from WP Core data
+*
+* @since
+*
+*/
+
 function smd_get_general_tags($post_meta_type) {
 
 	$post_id = get_the_ID();
@@ -141,9 +155,14 @@ function smd_get_general_tags($post_meta_type) {
 	return $html;
 }
 
+
 /**
- * Function for getting all post types of installation
- */
+* Function for getting all post types of installation
+*
+* @since
+*
+*/
+
  function smd_get_all_post_types(){
  	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
  	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
