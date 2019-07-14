@@ -1,11 +1,12 @@
 === Simple metadata ===
 Contributors: colomet, danzhik, huguespages, davideC00
-Tags: wordpress, wordpress-plugin, timezone, multisite
-Requires at least: 4.6
-Tested up to: 4.9.8
+Donate link: https://opencollective.com/mylanguageskills
+Tags: multisite, pressbooks, metadata, schema.org, rich snippets, wordpress-plugin,
+Requires at least: 5.2
+Tested up to: 5.2.2
 Stable tag: 1.3
 Requires PHP: 5.6
-License: GPLv3
+License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 This plugin provides auto-generated metadata on the basis of default WP web-pages information.
@@ -61,7 +62,7 @@ This plugin provides the ability to set different types of schema types in one c
     * **Added:** headline property
     * **Added:** thumbnailUrl property
 
-= Posts related content =
+= Posts and CPTs related content =
 
 * Types
   * **Added:** Article type
@@ -96,20 +97,16 @@ This plugin provides the ability to set different types of schema types in one c
 The SEO framework
 Yoast SEO
 
-=== Bug reports ===
-
-Bug reports for Simple metadta are [welcomed on GitHub](https://github.com/my-language-skills/simple-metadata). Please note GitHub is not a support forum, and issues that aren't properly qualified as bugs will be closed.
-
-=== Developers ===
-
-[Simple metadata on GitHub](https://github.com/my-language-skills/simple-metadata)
-
 == Installation ==
+
+= Installation instructions: =
+
+This section describes how to install the plugin and get it working.
 
 1. Upload the plugin files to the `/wp-content/plugins/simple-metadata` directory, or install the plugin
 through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Access the plugins menu through the Clear Images menu page to use the plugin.
+3. Access the plugins menu through the metadata menu page to use the plugin.
 
 == Screenshots ==
 
@@ -117,6 +114,35 @@ through the WordPress plugins screen directly.
 2. Disabled settings field in single-site settings
 
 == Frequently Asked Questions ==
+
+= I have a feature request, I've found a bug, a plugin is incompatible... =
+
+Please visit [the support forums](https://wordpress.org/support/plugin/xxxxxxxx)
+
+= I am a developer; how can I help? =
+
+Any input is much appreciated, and everything will be considered.
+Please visit the [GitHub project page](https://github.com/my-language-skills/simple-metadata) to submit issues or even pull requests.
+
+Please note GitHub is not a support forum, and issues that aren't properly qualified as bugs will be closed.
+
+= Is Simple Metadata free? =
+
+Absolutely! It will stay free as well, without ads or nags!
+This plugin is all-inclusive without upsells.
+
+= Is there more? =
+
+For more advanced metadata options and output, we offer extensions
+
+Simple metadata annotation
+Simple metadata education
+Simple metadata lifecycle
+Simple metadata metametadata
+Simple metadata news
+Simple metadata relation
+Simple metadata rights
+Simple metadata technical
 
 = What is structured data? =
 We're convinced that [structured data](https://developers.google.com/search/docs/guides/intro-structured-data) makes the web better, and we've worked hard to create [Rich Snippets](https://webmasters.googleblog.com/2009/05/introducing-rich-snippets.html) and [Rich Cards](https://webmasters.googleblog.com/2016/05/introducing-rich-cards.html) for better search results. Thanks to [metadata](https://www.youtube.com/watch?v=L9BqE01SLeE), the search engines can understand the relevance of that content in context. Simple metadata is a complete solution for adding metadata to a Wordpress site.
@@ -145,30 +171,28 @@ https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 == Changelog ==
 
 = 1.3 =
-ADDITIONS:
-Internationalization
-REMOVED:
-Auto update from github
-ENHANCEMENTS:
-Modification admin panel, front page type of site older
-BUGFIXES:
-Bug button in post metaboxes
-no-type post were not set properly
+* ADDITIONS: Internationalization
+* REMOVED: Auto update from github
+* ENHANCEMENTS: Modification admin panel, front page type of site older
+* BUGFIXES: Bug button in post metaboxes; no-type post were not set properly
 
 = 1.2.1 =
-ENHANCEMENTS
-Make in corect order the admin panel. Change name site-meta in home page
+* ENHANCEMENTS: Make in corect order the admin panel. Change name site-meta in home page
 
 = 1.2 =
-ADDITIONS:
-Add new plugins : simple-metadata-annotation
-Add new functionality to auto upload with plugin-uptdate-checker
+* ADDITIONS: Add new plugins : simple-metadata-annotation; Add new functionality to auto upload with plugin-uptdate-checker
 
 = 1.1 =
-Integration with add-ons was significantly increased. Some new properties were added for all possible post types. Plugin now supports network-wide applied options
+* ADDITIONS: Integration with add-ons was significantly increased. Some new properties were added for all possible post types. Plugin now supports network-wide applied options
 
 = 1.0 =
-Initial release.
+* Initial release.
 
 
 == Upgrade Notice ==
+
+= 1.3 =
+
+== Disclaimers ==
+
+The Simple metadata is supplied "as is" and all use is at your own risk.
