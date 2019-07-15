@@ -35,9 +35,28 @@ Founded by Google, Microsoft, Yahoo and Yandex, Schema.org vocabularies are deve
 
 [How to Add Schema.org Markup to WordPress for Better SEO](https://premium.wpmudev.org/blog/schema-wordpress-seo/)
 
-Currently we use the version 3.2.
+Currently we use the version 3.8.
 
 (FUTURE: https://developers.google.com/gmail/markup/)
+
+
+
+
+#### types
+We have a set of types, arranged in a multiple inheritance hierarchy where each type may be a sub-class of multiple types.
+
+
+#### Properties
+
+    We have a set of properties:
+        each property may have one or more types as its domains. The property may be used for instances of any of these types.
+        each property may have one or more types as its ranges. The value(s) of the property should be instances of at least one of these types.
+
+
+
+
+
+
 
 ## syntaxes
 

@@ -1,6 +1,7 @@
 # Metadata Properties relationships
 
 ## A - General
+Equivalences betwen each Key and the LRM, Schema, Lom and DC name.
 
 | Cod    | Key                    | LOM (DELETE)     | LRMI    | Schema                                                                            | LOM              | DC
 | ------ | ---------------------- | ---------------- | ------- | --------------------------------------------------------------------------------- | ---------------- | -------------------------
@@ -58,7 +59,6 @@
 
 # Fields Definitions
 
-## General
 This category groups the general information that describes this resource as a whole.
 
 | Cod    | Key                    | Definitions                                                                                                            | Values
@@ -76,7 +76,7 @@ This category groups the general information that describes this resource as a w
 | A1.1-4 |  └Catalog              | Use the common abbreviation or the standard name for the identification scheme that is used to reference the resource. | `ISBN`
 | A1.2-4 |  └Entry                | Provide the actual value of the URN or identifier as derived from any specified identification scheme.                 | --
 | A2-0   | Title                  | Name given to this resource.                                                                                           | -- | [Text](https://schema.org/Text)
-| A3-0   | Alternative title      | A secondary title of the resource.                                                                                     | --  
+| A3-0   | Alternative title      | A secondary title of the resource.                                                                                     | --
 | A4-0   | Headline               | --                                                                                                                     | -- | [Text](https://schema.org/Text)
 | A5-0   | Alternative Headline   | --                                                                                                                     | --
 | A6-0   | Language               | Language or languages used within the resource to communicate to the intended user.                                    | ISO 639 | Text](https://schema.org/Text)
@@ -115,7 +115,7 @@ This category groups the general information that describes this resource as a w
 
 # Vocabulary recommendations
 
-## General
+Key options Definitions
 
 **Catalog** Vocabulary Recommendations
 * **URI Uniform Resource Identifier**: A character string used to identify a resource (such as a file) from anywhere on the Internet by type and location (URL).

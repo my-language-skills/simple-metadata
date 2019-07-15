@@ -1,10 +1,18 @@
 ## Page types and properties
 
-[Site settings](/doc/doc-conf-page.md).
+After the activation of Pages Types at [site settings](/doc-settings-site.md), pages uses WebPage or child Types related Properties.
+
+???????? After the activation of SM, WebPage type (or any child Type) [Site settings](/doc/doc-conf-page.md),
+
+WebPage uses WebPage specifical properties in combination of CreativeWork Type.
+
+By activation,  WebPage and WebPage SubTypes are available
+
+
 
 ### WebPage
 
-The related properties from the [WebPage](https://schema.org/WebPage "https://schema.org/WebPage") type that matters to the project are:
+Apart from all the properties from CreativeWork that the [WebPage](https://schema.org/WebPage "https://schema.org/WebPage") Type inherit, they also possess three extra properties, namely: lastReviewed, reviewebBy and primaryImageOfPage:
 
 | ID  | From    | Property           | Description                                                                                               |
 | --- | ------- | ------------------ |---------------------------------------------------------------------------------------------------------- |
@@ -18,7 +26,7 @@ WebPage is a parent type with several child types:
 
 #### AboutPage
 
-[AboutPage](https://schema.org/AboutPage "https://schema.org/AboutPage") type uses the related properties from the WebPage type.
+[AboutPage](https://schema.org/AboutPage "https://schema.org/AboutPage") type inherit WebPage properties.
 
 #### CheckoutPage
 
