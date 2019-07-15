@@ -39,24 +39,37 @@ Currently we use the version 3.8.
 
 (FUTURE: https://developers.google.com/gmail/markup/)
 
-
-
-
 #### types
-We have a set of types, arranged in a multiple inheritance hierarchy where each type may be a sub-class of multiple types.
 
+Schema.org organizes schemas in a hierarchy. This allows you to associate a schema with a content from a very broad perspective to a very specific one. The following discusses that.
+
+**Thing**: Thing is the most generic type available. Most common thing properties: name, description, url, and image.
+
+In the next level in the hierarchy, there are seven schemas. Each of which has more schemas. The following table gives a basic idea of these.
+
+* **CreativeWork**	Specifies that the associated content is a creative work, for example, books, movies, photographs, software programs, etc.
+* **Event**	Specifies that the associated content is an event happening at a certain time at a certain location.
+* **Intangible**	Specifies that the associated content is about something intangible, like quantities, structured values, etc.
+* **Organization**	Specifies that the associated content is about an organization like a School, a Club, a Corporate House etc.
+* **Person**	Specifies that the associated content is about a person. He / she may be alive, dead or even fictional.
+* **Place**	Specifies that the associated content is about a place. The place must be a fixed, physical entity.
+* **Product**	Specifies that the associated content is about a product, anything which is sellable. For example a PC, an Apartment, A Car etc.
+
+More specific types share properties with broader types. For example, a Place is a more specific type of Thing, and a LocalBusiness is a more specific type of Place. More specific items inherit the properties of their parent. (Actually, a LocalBusiness is a more specific type of Place and a more specific type of Organization, so it inherits properties from both parent types.)
+
+We have a set of types, arranged in a multiple inheritance hierarchy where each type may be a sub-class of multiple types.
 
 #### Properties
 
-    We have a set of properties:
-        each property may have one or more types as its domains. The property may be used for instances of any of these types.
-        each property may have one or more types as its ranges. The value(s) of the property should be instances of at least one of these types.
+We have a set of properties:
+* each property may have one or more types as its domains. The property may be used for instances of any of these types.
+* each property may have one or more types as its ranges. The value(s) of the property should be instances of at least one of these types.
 
+##### Expected Types, Text and URLs
 
+When browsing the schema.org types, you will notice that many properties have "expected types". This means that the value of the property can itself be an embedded item (see section 1d: embedded items). But this is not a requirement—it's fine to include just regular text or a URL. In addition, whenever an expected type is specified, it is also fine to embed an item that is a child type of the expected type.
 
-
-
-
+The value of the property can itself be an embedded item. But that is not mandatory. You can also have a child type embedded as expected type. For example, for a content, if the expected type is Event, you can use it's child type BusinessEvent if you find it appropriate.
 
 ## syntaxes
 

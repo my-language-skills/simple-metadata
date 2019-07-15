@@ -1,6 +1,5 @@
 # Metadata Properties relationships
 
-## A - General
 Equivalences betwen each Key and the LRM, Schema, Lom and DC name.
 
 | Cod    | Key                    | LOM (DELETE)     | LRMI    | Schema                                                                            | LOM              | DC

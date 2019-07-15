@@ -2,8 +2,9 @@
 
 ## Installation and Upgrades
 
-* Clone (or copy) this repository to the /wp-content/plugins/ directory
-* Activate the plugin through the 'Plugins' screen in WordPress
+1. Upload the plugin files to the `/wp-content/plugins/simple-metadata` directory, or install the plugin
+through the WordPress plugins screen directly.
+2. Activate the plugin through the 'Plugins' screen in WordPress
 
 For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
 
@@ -24,14 +25,14 @@ Not all the plugins are 100% integrated with Simple metadata, some of them works
 ## Extensions
 
 With add-on plugins from our extensions catalogue you can super-charge your metadata. Some of our extension highlights include:
-* Annotation
-* Education
-* Lifecycle
-* Metametdata
-* News
-* Relation
-* Rights
-* Technical
+* [Annotation](https://github.com/my-language-skills/simple-metadata-annotation)
+* [Education](https://github.com/my-language-skills/simple-metadata-education)
+* [Lifecycle](https://github.com/my-language-skills/simple-metadata-lifecycle)
+* [Metametadata](https://github.com/my-language-skills/simple-metadata-metametadata)
+* [News](https://github.com/my-language-skills/simple-metadata-news)
+* [Relation](https://github.com/my-language-skills/simple-metadata-relation)
+* [Rights](https://github.com/my-language-skills/simple-metadata-rights)
+* [Technical](https://github.com/my-language-skills/simple-metadata-technical)
 
 ## Integrated Theme
 

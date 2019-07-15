@@ -4,9 +4,7 @@ If Page metadata is activate at [site settings](/doc-settings-site.md) Simple Me
 
 ## Settings
 
-**WIEJO SM uses WebPage as default Type at Page level. If the Page requires a more specifical type of Type, WebPage comes with 13 child Types that covers the most of the situations:**
-
-The top 'type' for the description of the pages, WebPage, (which is a subtype of Creative Work) is specified by the most important specified types:
+The top 'type' for the description of the pages, WebPage, (which is a subtype of Creative Work) is specified In the next level in the hierarchy within 12 schemas:
 
 * WebPage *Activated by default*
   * AboutPage
@@ -23,6 +21,8 @@ The top 'type' for the description of the pages, WebPage, (which is a subtype of
   * SearchResultsPage
 
 ### Page types and properties
+
+WebPage is the most generic type available and inherits properties from both parent types (Thing and CreativeWork).
 
 The page can be identified by a collection of 11 schema.org [Properties](/doc/doc-metadata-page.md).
 

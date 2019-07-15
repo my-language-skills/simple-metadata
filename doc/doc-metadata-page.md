@@ -1,24 +1,16 @@
 ## Page types and properties
 
-After the activation of Pages Types at [site settings](/doc-settings-site.md), pages uses WebPage or child Types related Properties.
-
-???????? After the activation of SM, WebPage type (or any child Type) [Site settings](/doc/doc-conf-page.md),
-
-WebPage uses WebPage specifical properties in combination of CreativeWork Type.
-
-By activation,  WebPage and WebPage SubTypes are available
-
-
+After the activation of Pages Types at [site settings](/doc-settings-site.md), pages uses WebPage or child Types related Properties. At [Page Type box](/doc/doc-conf-page.md), WebPage can be change and to use one of the child types.
 
 ### WebPage
 
-Apart from all the properties from CreativeWork that the [WebPage](https://schema.org/WebPage "https://schema.org/WebPage") Type inherit, they also possess three extra properties, namely: lastReviewed, reviewebBy and primaryImageOfPage:
+Apart from all the properties from _CreativeWork_ that the [WebPage](https://schema.org/WebPage "https://schema.org/WebPage") Type inherit, they also possess three extra properties:
 
-| ID  | From    | Property           | Description                                                                                               |
-| --- | ------- | ------------------ |---------------------------------------------------------------------------------------------------------- |
-| A19 | WP-Core | lastReviewed       | Date on which the content on this web page was last reviewed for accuracy and/or completeness.            |
-| A20 | WP-Core | reviewebBy         | People or organizations that have reviewed the content on this web page for accuracy and/or completeness. |
-| A28 | WP-Core | primaryImageOfPage | Indicates the main image on the page.                                                                     |
+| ID  | From    | Property               | Description                                                                                               |
+| --- | ------- | ---------------------- |---------------------------------------------------------------------------------------------------------- |
+| A19 | WP-Core | **lastReviewed**       | Date on which the content on this web page was last reviewed for accuracy and/or completeness.            |
+| A20 | WP-Core | **reviewebBy**         | People or organizations that have reviewed the content on this web page for accuracy and/or completeness. |
+| A28 | WP-Core | **primaryImageOfPage** | Indicates the main image on the page.                                                                     |
 
 primaryImageOfPage
 
@@ -26,7 +18,7 @@ WebPage is a parent type with several child types:
 
 #### AboutPage
 
-[AboutPage](https://schema.org/AboutPage "https://schema.org/AboutPage") type inherit WebPage properties.
+[AboutPage](https://schema.org/AboutPage "https://schema.org/AboutPage") type uses the related properties from the WebPage type.
 
 #### CheckoutPage
 
@@ -77,17 +69,17 @@ WebPage is a parent type with several child types:
 Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
 The related properties from the type that matters to the project.
 
-| ID  | From    | Property           | Description                             |
-| --- | ------- | ------------------ | --------------------------------------- |
-| A4  | WP-Core | headline           | Title of the Page.                      |
-| A18 | WP-Core | publisher          | T--                                     |
-| A22 | WP-Core | author             | The author of this Page.                |
-| A23 | WP-Core | Author last editor | The last user that modify this Page.    |
-| A24 | WP-Core | dateCreated        | The date on which the Page was created. |
-| A25 | WP-Core | datePublished      |
-| A26 | WP-Core | dateModified       | Date of first Page.                     |
-| A29 | WP-Core | thumbnailUrl*      | A thumbnail image relevant to the Page. |
-| --- | --      |           |
+| ID  | From    | Property               | Description                             |
+| --- | ------- | ---------------------- | --------------------------------------- |
+| A4  | WP-Core | **headline**           | Title of the Page.                      |
+| A18 | WP-Core | **publisher**          | T--                                     |
+| A22 | WP-Core | **author**             | The author of this Page.                |
+| A23 | WP-Core | **Author** last editor | The last user that modify this Page.    |
+| A24 | WP-Core | **dateCreated**        | The date on which the Page was created. |
+| A25 | WP-Core | **datePublished**      |
+| A26 | WP-Core | **dateModified**       | Date of first Page.                     |
+| A29 | WP-Core | **thumbnailUrl***      | A thumbnail image relevant to the Page. |
+| --- | --      |                        |
 
 *(if thumbnailUrl do not exist, gravatar administraor images is taken.)*
 
