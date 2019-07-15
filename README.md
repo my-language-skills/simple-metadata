@@ -2,7 +2,7 @@
 
 * Contributors: @colomet, @danzhik, @huguespages, @davideC00
 * Donate link: https://opencollective.com/mylanguageskills
-* Tags: aiom, extensions, metadata
+* Tags: simple metadata, extensions, metadata, multisite
 * Requires at least: 5.2
 * Tested up to: 5.2.2
 * Requires PHP: 5.6
