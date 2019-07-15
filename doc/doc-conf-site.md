@@ -1,16 +1,25 @@
-#  Simple Metadata Site Configuration
-Simple Metadata will create Front Page box with Site Type options in Simple Metadata settings page.
+# Site metadata
 
-## Front Page
-Type of Site have two options which allow the configuration of the metadata. Pick the one that describes better the Site :
-* WebSite
-* Blog (Selected by default)
+Simple Metadata will create Front Page box with Site Type options in Simple Metadata [settings](/doc-settings-site.md) page.
+
+## Settings
+
+The top 'types' for the description of the Site, Blog and WebSite, (which are subtypes of Creative Work). Blog (Selected by default).
 
 Full description of site types and properties are available [here](/doc/doc-metadata-site.md).
 
-No further configuration is necessary, all the properties find the values from WordPress.
-
 NOTE: In a PressBooks installation, types are not available besides Book, which is activated by default. In a regular WP installation, Book is just possible with Simple Metadata Education.
+
+_No further configuration is necessary, all the properties find the values from WordPress._
+
+# Post types and properties
+
+Blog and WebSite inherits properties from both parent types (Thing and CreativeWork).
+
+The Site can be identified by a collection of 4 schema.org [Properties](/doc/doc-metadata-post.md).
+
+SM just offer properties from WordPress core fields. If you woud like to extend those poroperties, you must activate one of the Simple Metadata addons.
+
 
 # Screenshots
 Settings site

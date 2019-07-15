@@ -1,7 +1,7 @@
 === Simple metadata ===
 Contributors: colomet, danzhik, huguespages, davideC00
 Donate link: https://opencollective.com/mylanguageskills
-Tags: multisite, pressbooks, metadata, schema.org, rich snippets, wordpress-plugin,
+Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippets, wordpress-plugin,
 Requires at least: 5.2
 Tested up to: 5.2.2
 Stable tag: 1.3

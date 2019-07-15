@@ -1,10 +1,10 @@
 # Post metadata
 
-Simple Metadata will create Post Type options in Posts (metabox).
+If Post metadata is activate at [site settings](/doc-settings-site.md) Simple Metadata will create Post Type options in Page (metabox).
 
 ## Settings
 
-Post type have 9 options which allow the configuration of the metadata. Pick the one that describes better the Post:
+The top 'type' for the description of the Post, Article, (which is a subtype of Creative Work) is specified In the next level in the hierarchy within 8 schemas:
 * Article *Activated by default*
   * AdvertiserContentArticle
   * NewsArticle (NO)
@@ -17,14 +17,17 @@ Post type have 9 options which allow the configuration of the metadata. Pick the
     * DiscussionForumPosting
   * TechArticle
 
-Note: Article is a parent type. Any other type is a child type of Article.
-
 PB Uses chapter type (non article properties are used)
+
+_No further configuration is necessary, all the properties find the values from WordPress._
 
 # Post types and properties
 
-[Site metadata](/doc/doc-metadata-post.md).
+Article is the most generic type available and inherits properties from both parent types (Thing and CreativeWork).
 
+The Post can be identified by a collection of 13 schema.org [Properties](/doc/doc-metadata-post.md).
+
+SM just offer properties from WordPress core fields. If you woud like to extend those poroperties, you must activate one of the Simple Metadata addons.
 
 # Screenshots
 

@@ -66,8 +66,7 @@ WebPage is a parent type with several child types:
 
 ### General WebPage properties
 
-Properties from: [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork")
-The related properties from the type that matters to the project.
+Related inherit [Creative Work](https://schema.org/CreativeWork "https://schema.org/CreativeWork") type properties:
 
 | ID  | From    | Property               | Description                             |
 | --- | ------- | ---------------------- | --------------------------------------- |
@@ -83,8 +82,7 @@ The related properties from the type that matters to the project.
 
 *(if thumbnailUrl do not exist, gravatar administraor images is taken.)*
 
-Properties from: [Thing](https://schema.org/Thing "https://schema.org/Thing")
-The related properties from the type that matters to the project.
+Related inherit [Thing](https://schema.org/Thing "https://schema.org/Thing") type properties (_SM do not use Thing properties in the main plugin_):
 
 | ID | From    | Property | Description |
 | -- | ------- | -------- | ----------- |
