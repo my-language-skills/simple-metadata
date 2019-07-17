@@ -3,8 +3,11 @@ Simple metadata offer home page metadata by activation. If metadata in public po
 
 ## Front Page
 Type of Site have two options which allow the configuration of the metadata. Pick the one that describes better the Site :
-* Blog (Selected by default)
+* Local value
+* Blog 
 * WebSite
+* Course
+
 
 ## General metadata
 Have several options which allow the configuration of the metadata. in the different public post types. Pick those that requires the metadata:
