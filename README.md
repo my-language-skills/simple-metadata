@@ -9,6 +9,7 @@
 * Stable tag: 1.3
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+* Gutenberg: compatible
 
 Plugin for automatic generation of meta fields in web-pages.
 

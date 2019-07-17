@@ -48,7 +48,7 @@ if (is_multisite()){
 
 /**
  * Internalization
- * It loads the MO file for plugin's translation.
+ * Loads the MO file for plugin's translation.
  *
  * @since 1.3
  *
