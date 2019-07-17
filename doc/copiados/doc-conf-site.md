@@ -4,7 +4,7 @@ Simple Metadata will create Front Page box with Site Type options in Simple Meta
 
 ## Settings
 
-The top 'types' for the description of the Site, Blog and WebSite, (which are subtypes of Creative Work). Blog (Selected by default).
+The top 'types' for the description of the Site, Blog (Selected by default) and WebSite, (which are subtypes of Creative Work).
 
 Full description of site types and properties are available [here](/doc/doc-metadata-site.md).
 

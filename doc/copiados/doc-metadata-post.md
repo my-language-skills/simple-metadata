@@ -52,7 +52,8 @@ The related properties from the [Creative Work](https://schema.org/CreativeWork 
 
 | ID  | From    | Property                    | Description                                                                                                            |
 | --- | ------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| A4  | WP-Core | **headline**                | Title of the Post.                                                                                                     |
+| A04 | WP-Core | **headline**                | Title of the Post.                                                                                                     |
+| A06 | WP-Core | **inLanguage** (NOT READY)  | The language of the post.                                                                                              |
 | A10 | WP-Core | **keywords**                |	Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas. |
 | A17 | WP-Core | **publisher** (logo - name) | By default the name of the domain is taken. If a SEO plugin is activated, it uses the Organization value.              |
 | A21 | WP-Core | **author**                  | The author of this Post.                                                                                               |
