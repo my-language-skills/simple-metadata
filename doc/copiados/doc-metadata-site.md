@@ -19,7 +19,7 @@ The related properties from the [Creative Work](https://schema.org/CreativeWork 
 
 | ID   | From    | Property | Description               |
 | --   | ------- | -------- | ------------------------- |
-| A3-0 | WP-Core | language | The language of the site. |
+| A6-0 | WP-Core | language | The language of the site. |
 | --   | --      | --       | --                        |
 
 The related properties from the [Thing](https://schema.org/Thing "https://schema.org/Thing") type that matters to the project are:

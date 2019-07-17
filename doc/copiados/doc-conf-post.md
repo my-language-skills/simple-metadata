@@ -5,6 +5,7 @@ If Post metadata is activate at [site settings](/doc-settings-site.md) Simple Me
 ## Settings
 
 The top 'type' for the description of the Post, Article, (which is a subtype of Creative Work) is specified In the next level in the hierarchy within 8 schemas:
+
 * Article *Activated by default*
   * AdvertiserContentArticle
   * NewsArticle (NO)
