@@ -22,34 +22,36 @@ defined ("ABSPATH") or die ("No script assholes!");
  */
 function smd_add_network_settings() {
 	// Create our options page.
-    add_submenu_page( 'settings.php', __('Simple Metadata Network Settings', 'simple-metadata'),
-    __('Metadata', 'simple-metadata'), 'manage_network_options',
-    'smd_net_set_page', 'smd_render_network_settings');
+  add_submenu_page( 'settings.php', __('Simple Metadata Network Settings', 'simple-metadata'),
+  __('Metadata', 'simple-metadata'), 'manage_network_options',
+  'smd_net_set_page', 'smd_render_network_settings');
 
-    //adding settings metaboxes and settigns sections
-    add_meta_box('smd-metadata-network-location', __('General Metadata', 'simple-metadata'), 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
-    if (!is_plugin_active('pressbooks/pressbooks.php')){
-    	add_meta_box('smd-network-metadata-sites-type', __('Home', 'simple-metadata'), 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
+  //adding settings metaboxes and settigns sections
+  add_meta_box('smd-metadata-network-location', __('General Metadata', 'simple-metadata'), 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
+  if (!is_plugin_active('pressbooks/pressbooks.php')){
+  	add_meta_box('smd-network-metadata-sites-type', __('Home', 'simple-metadata'), 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
 	}
 
-    add_settings_section( 'smd_network_meta_locations', '', '', 'smd_network_meta_locations' );
+  add_settings_section( 'smd_network_meta_locations', '', '', 'smd_network_meta_locations' );
 
-    if (!is_plugin_active('pressbooks/pressbooks.php')){
-    	add_settings_section( 'smd_network_meta_sites_type', '', '', 'smd_network_meta_sites_type' );
+  if (!is_plugin_active('pressbooks/pressbooks.php')){
+  	add_settings_section( 'smd_network_meta_sites_type', '', '', 'smd_network_meta_sites_type' );
 	}
 
 
-    //registering settings
-    register_setting('smd_network_meta_locations', 'smd_net_locations');
-    if (!is_plugin_active('pressbooks/pressbooks.php')){
-		register_setting ('smd_network_meta_sites_type', 'smd_net_sites_type');
+  //registering settings
+  add_site_option('smd_net_locations', '');
+  if (!is_plugin_active('pressbooks/pressbooks.php')){
+    add_site_option('smd_net_sites_type', '');
 	}
+
+
 
 
 	// getting options values from DB
 	$post_types = smd_get_all_post_types();
-	$locations = get_option('smd_net_locations');
-	$sites_type = get_option('smd_net_sites_type');
+	$locations = get_site_option('smd_net_locations');
+	$sites_type = get_site_option('smd_net_sites_type');
 
 	if (!is_plugin_active('pressbooks/pressbooks.php')){
 		add_settings_field ('smd_network_site_type', __('Type of Sites', 'simple-metadata'), 'smd_render_net_switch_set', 'smd_network_meta_sites_type', 'smd_network_meta_sites_type');
@@ -97,9 +99,9 @@ function smd_add_network_settings() {
  *
  */
 function smd_render_network_settings(){
-	wp_enqueue_script('common');
-		wp_enqueue_script('wp-lists');
-		wp_enqueue_script('postbox');
+  wp_enqueue_script('common');
+	wp_enqueue_script('wp-lists');
+	wp_enqueue_script('postbox');
 	    ?>
 	    <div class="wrap">
 	    	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { //in case settings were saved, we show notice?>
@@ -119,7 +121,7 @@ function smd_render_network_settings(){
                 // close postboxes that should be closed
                 $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
                 // postboxes setup
-                postboxes.add_postbox_toggles('<?php echo 'smd_net_set_page'; ?>');
+                postboxes.add_postbox_toggles('smd_net_set_page');
             });
             //]]>
 		</script>
@@ -183,14 +185,14 @@ function smd_network_render_metabox_sites_type(){
  */
 function smd_render_net_switch_set() {
 	?>
-	<label for="smd_website_blog_type_0"><?php esc_html_e('Local value', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_0" name="smd_net_sites_type" value="0" checked="checked" <?php checked('0', get_option('smd_net_sites_type'))?>></label>
-  <label for="smd_website_blog_type_2"><?php esc_html_e('WebSite', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_2" name="smd_net_sites_type" value="WebSite" <?php checked('WebSite', get_option('smd_net_sites_type'))?>></label>
-	<label for="smd_website_blog_type_1"><?php esc_html_e('Blog', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_1" name="smd_net_sites_type" value="Blog" <?php checked('Blog', get_option('smd_net_sites_type'))?>></label>
+	<label for="smd_website_blog_type_0"><?php esc_html_e('Local value', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_0" name="smd_net_sites_type" value="0" checked="checked" <?php checked('0', get_site_option('smd_net_sites_type'))?>></label>
+  <label for="smd_website_blog_type_2"><?php esc_html_e('WebSite', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_2" name="smd_net_sites_type" value="WebSite" <?php checked('WebSite', get_site_option('smd_net_sites_type'))?>></label>
+	<label for="smd_website_blog_type_1"><?php esc_html_e('Blog', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_1" name="smd_net_sites_type" value="Blog" <?php checked('Blog', get_site_option('smd_net_sites_type'))?>></label>
 	<?php // if education plugin is active, add new options to select (possibly new values with other addons)
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
-	<label for="smd_website_blog_type_3"><?php esc_html_e('Book', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_3" name="smd_net_sites_type" value="Book" <?php checked('Book', get_option('smd_net_sites_type'))?>></label>
-	<label for="smd_website_blog_type_4"><?php esc_html_e('Course', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_4" name="smd_net_sites_type" value="Course" <?php checked('Course', get_option('smd_net_sites_type'))?>></label><br>
+	<label for="smd_website_blog_type_3"><?php esc_html_e('Book', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_3" name="smd_net_sites_type" value="Book" <?php checked('Book', get_site_option('smd_net_sites_type'))?>></label>
+	<label for="smd_website_blog_type_4"><?php esc_html_e('Course', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_4" name="smd_net_sites_type" value="Course" <?php checked('Course', get_site_option('smd_net_sites_type'))?>></label><br>
 		<?php
 	}
 
@@ -214,7 +216,7 @@ function smd_update_network_locations() {
 	$locations = isset($_POST['smd_net_locations']) ? $_POST['smd_net_locations'] : array();
 
 	//updating network location option
-	update_blog_option(1, 'smd_net_locations', $locations);
+	update_site_option('smd_net_locations', $locations);
 
 	//Grabbing all the site IDs
     $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
@@ -264,7 +266,7 @@ function smd_update_network_options() {
 
 
     //updating network options
-	update_blog_option(1, 'smd_net_sites_type', $sites_type);
+	update_site_option('smd_net_sites_type', $sites_type);
 
 	//Grabbing all the site IDs
     $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");

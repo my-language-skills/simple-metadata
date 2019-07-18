@@ -38,7 +38,7 @@ function smd_add_option_page () {
 		$net_locations = [];
 
 		if (is_multisite()){
-			$net_locations = get_blog_option(1, 'smd_net_locations');
+			$net_locations = get_site_option('smd_net_locations');
 		}
 
 		//adding settings sections for type of site setting and locations
@@ -237,7 +237,7 @@ function smd_render_switch_set() {
 	if (is_multisite()){
 
 		//getting option for type of site for network
-		$net_sites_type = get_blog_option (1, 'smd_net_sites_type') ?: '0';
+		$net_sites_type = get_site_option ('smd_net_sites_type') ?: '0';
 		if ('0' !== $net_sites_type){
 			$disabled = 'disabled';
 		}
