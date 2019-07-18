@@ -138,7 +138,8 @@ function smd_network_render_metabox_schema_locations(){
 		<span class="description">
       <span class="description">
           <?php esc_html_e('Activate the public post types where metadata will be available. General Metadata just uses WordPress core fields.',
-            'simple-metadata'); ?><br>
+            'simple-metadata'); ?>
+            <br>
           <?php esc_html_e('If activate, site administrators can not deactivate.',
                         'simple-metadata'); ?>
       </span>
