@@ -17,9 +17,6 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-//declaring global DB connection variable
-global $wpdb;
-
 //get all the sites for multisite, if not a multisite, set blog id to 1
 if (is_multisite()) {
 	$blogs_ids = get_sites();
