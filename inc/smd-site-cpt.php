@@ -99,7 +99,7 @@ function smd_reorganize_dash () {
 	}
 	//adding Site-Meta page under main plugin page, not for root blog
 	if ((1 != get_current_blog_id() && !is_plugin_active('pressbooks/pressbooks.php')) || !is_multisite()){
-		add_submenu_page('tools.php',__('Site-Meta', 'simple-metadata'), __('Site-Meta', 'simple-metadata'), 'manage_options', $site_meta_url);
+		add_submenu_page('smd_set_page',__('Site-Meta', 'simple-metadata'), __('Site-Meta', 'simple-metadata'), 'manage_options', $site_meta_url);
 	}
 }
 

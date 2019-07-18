@@ -26,7 +26,7 @@ function smd_add_option_page () {
 		//Fix having different name in admin menu for main subpage
 		add_submenu_page('smd_set_page',__('Settings', 'simple-metadata'), __('Settings', 'simple-metadata'), 'manage_options', 'smd_set_page');
 		if (!is_plugin_active('pressbooks/pressbooks.php') ){
-			add_submenu_page('smd_set_page',__('Site', 'simple-metadata'), __('Site', 'simple-metadata'), 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
+			add_submenu_page('smd_set_page',__('Site Settings', 'simple-metadata'), __('Site Settings', 'simple-metadata'), 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
 		}
 
 		add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
