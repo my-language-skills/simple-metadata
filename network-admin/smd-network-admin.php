@@ -29,7 +29,7 @@ function smd_add_network_settings() {
     //adding settings metaboxes and settigns sections
     add_meta_box('smd-metadata-network-location', __('General Metadata', 'simple-metadata'), 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
     if (!is_plugin_active('pressbooks/pressbooks.php')){
-    	add_meta_box('smd-network-metadata-sites-type', __('Front pages', 'simple-metadata'), 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
+    	add_meta_box('smd-network-metadata-sites-type', __('Home', 'simple-metadata'), 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
 	}
 
     add_settings_section( 'smd_network_meta_locations', '', '', 'smd_network_meta_locations' );
@@ -137,9 +137,10 @@ function smd_network_render_metabox_schema_locations(){
 	<div id="smd_network_meta_locations" class="smd_network_meta_locations">
 		<span class="description">
       <span class="description">
-          <?php esc_html_e('Activate the post
-            types where metadata will be available. If activate, site administrators can not deactivate.',
-            'simple-metadata'); ?>
+          <?php esc_html_e('Activate the public post types where metadata will be available. General Metadata just uses WordPress core fields.',
+            'simple-metadata'); ?><br>
+          <?php esc_html_e('If activate, site administrators can not deactivate.',
+                        'simple-metadata'); ?>
       </span>
     </span>
 		<form method="post" action="edit.php?action=smd_update_network_locations">
@@ -162,7 +163,7 @@ function smd_network_render_metabox_schema_locations(){
 function smd_network_render_metabox_sites_type(){
 	?>
 	<div id="smd_network_meta_sites_type" class="smd_network_meta_sites_type">
-		<span class="description"><?php esc_html_e('Select the Homepage schema type. If selected, site administrators can not modify.', 'simple-metadata'); ?></span>
+		<span class="description"><?php esc_html_e('Select the Homepage type. If selected, site administrators can not modify.', 'simple-metadata'); ?></span>
 		<form method="post" action="edit.php?action=smd_update_network_options">
 			<?php
 			settings_fields( 'smd_network_meta_sites_type' );
@@ -193,7 +194,7 @@ function smd_render_net_switch_set() {
 		<?php
 	}
 
-	echo '<br><span class="description">' . __('By default, blogs uses site configuration.', 'simple-metadata') . '</span>';
+	echo '<br><span class="description">' . __('By default, blogs uses WebSite configuration.', 'simple-metadata') . '</span>';
 }
 
 /**
