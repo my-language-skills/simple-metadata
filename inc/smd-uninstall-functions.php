@@ -39,7 +39,7 @@ function smd_delete_network_options($plugin_abbreviation){
 /**
  * Delete plugin options and posts/chapter related metadata from every site
  *
- * @param array blogs_ids The id number of each site (e.g. id = 1, 2, 3...)
+ * @param array blogs_ids The id number of each site (e.g. id = {1, 2, 3...})
  * @param string plugin_abbreviation e.g. 'smd_' for simple-metadata
  * @since 1.3
  *
@@ -65,7 +65,7 @@ function smd_delete_local_options_and_post_meta($blogs_ids, $plugin_abbreviation
   	//extract plugin options from all local_options
   	foreach ( $local_options as $name => $value ) {
 
-  		if ( stristr($name, $plugin_abbreviation) || stristr($name, 'smde_')) { 
+  		if ( stristr($name, $plugin_abbreviation) || stristr($name, 'smde_')) {
 
   			$local_plugin_options[ $name ] = $value;
   		}

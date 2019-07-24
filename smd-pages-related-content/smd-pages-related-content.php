@@ -158,15 +158,33 @@ function smd_print_page_meta_fields () {
 		$last_modifier = get_the_modified_author();
 
 		//primaryIamgeOfPage (url)
-		$thumbnail_url = get_the_post_thumbnail_url();
-		$image = $thumbnail_url;
+			//l'immagine esiste
+			$img_thumbnail_title = get_post(get_post_thumbnail_id())->post_title;
+			$img_caption = get_post(get_post_thumbnail_id())->post_excerpt;
+			$img_description = get_post(get_post_thumbnail_id())->post_content;
+			$img_url = get_the_post_thumbnail_url();
+			$img_author = get_the_author_meta('display_name', get_post(get_post_thumbnail_id())->post_author);
+			$img_date = get_post_time('F j, Y g:i a', get_post_thumbnail_id());
+			$img_type = get_post_mime_type(get_post_thumbnail_id());
+			$img_measures = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full'); //retrieve and array (url, width, height)
+			$img_size = size_format(filesize(get_attached_file(get_post_thumbnail_id())));
+
+
+
 		?>
 <?="\n"?><!--SM PAGES METADATA-->
-<div itemscope itemtype="http://schema.org/<?=$page_type;?>">
-	<meta itemprop="lastReviewed" content="<?=$last_reviewed?>">
-	<meta itemprop="reviewedBy" content="<?=$last_modifier?>">
-	<meta itemprop="primaryImageOfPage" content="<?=$image?>">
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org/",
+	"@type": "<?=$page_type?>",
+	"lastReviewed": "<?=$last_reviewed?>",
+	"reviewedBy": "<?=$last_modifier?>",
 	<?php echo smd_get_general_tags($page_type); ?>
+}
+</script>
+
+
+<div itemscope itemtype="http://schema.org/<?=$page_type;?>">
 	<?php //printing tags from add-on plugins, if they are active
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')['page'])){
 		smde_print_tags();

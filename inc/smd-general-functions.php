@@ -12,7 +12,7 @@
  * @subpackage XXXXXXX/XXXXXXX
  * @since x.x.x (when the file was introduced)
  */
- 
+
 /**
 * Function for getting properties' metatags, collected from WP Core data
 *
@@ -21,18 +21,14 @@
 */
 
 function smd_get_general_tags($post_meta_type) {
+  $post_id = get_the_ID();
 
-	$post_id = get_the_ID();
-
-	//> Data, related to 'Article' type properties
-
-	//articleBody
-	$post_content = get_post( $post_id )->post_content;
-
-	//wordcount
+  /*---- Data, related to 'Article' type properties ----*/
+  //get the content and filter from html
+	$post_content = strip_tags(apply_filters('the_content', get_post( $post_id )->post_content));
+  //wordcount
 	$word_count = str_word_count($post_content);
-
-	///> articleSection
+  ///> articleSection
 	$categories = get_the_category( $post_id);
 	$categories_arr = [];
 	foreach ($categories as $category) {
@@ -41,52 +37,40 @@ function smd_get_general_tags($post_meta_type) {
 	$categories_string = implode(', ', $categories_arr);
 	///<
 
-	//<
-
-	//> Data, related to 'CreativeWork' properties
-
-	///> author
+	/*----- Data, related to 'CreativeWork' properties -----*/
+	/*--- Author ---*/
 	$author_id = get_post_field('post_author', $post_id);
 	$author = get_the_author_meta('first_name', $author_id) && get_the_author_meta('last_name', $author_id) ? get_the_author_meta('first_name', $author_id).' '.get_the_author_meta('last_name', $author_id) : get_the_author_meta('display_name', $author_id);
-	///<
+  /*--- end Author ---*/
 
 	//dateCreated
 	$creation_date = get_the_date();
-
 	//dateModified
 	$last_modification_date = get_the_modified_date();
-
 	//datePublished
 	$publication_date = get_the_time(get_option( 'date_format' ));
-
 	//editor
 	$last_modifier = get_the_modified_author();
-
 	//inLanguage
 	$language = get_bloginfo( 'language' );
-
 	//headline
 	$title = get_the_title();
 
-
-	///> publisher
-
+  /*--- Publisher ---*/
 	//logo
 	$custom_logo_id = get_theme_mod( 'custom_logo' );
 	$logo = isset(wp_get_attachment_image_src( $custom_logo_id , 'full' )[0]) ? wp_get_attachment_image_src( $custom_logo_id , 'full' )[0] : (get_avatar_url($author_id) ?: '');
-
 	//publisher (name), by default name of the website
 	$publisher = get_bloginfo();
-	///<
-
 	//type of publisher
 	//TODO when Google will support Person type for publisher, check type in SEO plugins
 	$type = 'Organization';
+	/*--- end Publisher ---*/
 
-	//thumbnailUrl
+  // get the thumbnail of the post/page/homepage/ecc...
 	$thumbnail_url = get_the_post_thumbnail_url();
 
-	///> checking main SEO plugin for publisher information
+  /*--- Checking main SEO plugin for publisher information ---*/
 	//include to check if YOAST or SEO Framework are installed
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
@@ -119,37 +103,74 @@ function smd_get_general_tags($post_meta_type) {
 			}
 		}
 	}
-	///<
+	/*--- end check plugin SEO ---*/
+  /*----- end Data, related to 'CreativeWork' properties */
 
-	//<
-
-	//> Data, related to 'Thing' type properties
 	$image = $thumbnail_url ?: $logo;
-	//<
+  $html =
+  '"dateCreated" :   "'.$creation_date.'",
+    "dateModified":   "'.$last_modification_date.'",
+    "datePublished":  "'.$publication_date.'",
+    "inLanguage":     "'.$language.'",
+    "headline":       "'.$title.'",
+    "thumbnailUrl":   "'.$thumbnail_url.'",
+    "publisher": {
+      "@type":  "'.$type.'",
+      "name": "'.$publisher.'",
+      "logo": "'.$logo.'"
+    },
+    "author": {
+      "@type":  "Person",
+      "name":  "'.$author.'"
+    },
+    "editor": {
+      "@type": "Person",
+      "name": "'.$last_modifier.'"
+    }';
 
-	//constructing metafields
-	$html = "<meta itemprop='author' content='$author'>\n".
-			"<meta itemprop='author' content='$last_modifier'>\n".
-			"<meta itemprop='dateCreated' content='$creation_date'>\n".
-			"<meta itemprop='dateModified' content='$last_modification_date'>\n".
-			"<meta itemprop='datePublished' content='$publication_date'>\n".
-			"<meta itemprop='inLanguage' content = '$language'>\n".
-			"<meta itemprop='headline' content='$title'>\n".
-			"<div itemprop='publisher' itemscope itemtype='http://schema.org/$type'>\n".
-				"\t<meta itemprop='name' content='$publisher'>\n".
-				"\t<meta itemprop='logo' content='$logo'>\n".
-			"</div>\n".
-			"<meta itemprop='thumbnailUrl' content='$thumbnail_url'>\n".
-			"<meta itemprop='image' content='$image'>\n";
+
+    if( has_post_thumbnail() ){
+      // The feature image is set
+      //Get all attributes
+      $img_thumbnail_title = get_post(get_post_thumbnail_id())->post_title;
+      $img_caption = get_post(get_post_thumbnail_id())->post_excerpt;
+      $img_description = get_post(get_post_thumbnail_id())->post_content;
+      $img_url = get_the_post_thumbnail_url();
+      $img_author = get_the_author_meta('display_name', get_post(get_post_thumbnail_id())->post_author);
+      $img_date = get_post_time('F j, Y g:i a', get_post_thumbnail_id());
+      $img_type = get_post_mime_type(get_post_thumbnail_id());
+      $img_measures = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full'); //retrieve and array (url, width, height)
+      $img_size = size_format(filesize(get_attached_file(get_post_thumbnail_id())));
+
+      $html .= ',
+      "image": {
+        "@type": "ImageObject",
+        "name": "'.$img_thumbnail_title.'",
+        "caption": "'.$img_caption.'",
+        "description": "'.$img_description.'",
+        "url": "'.$img_url.'",
+        "author": {
+          "@type": "Person",
+          "name": "'.$img_author.'"
+        },
+        "uploadDate": "'.$img_date.'",
+        "encodingFormat": "'.$img_type.'",
+        "width": "'.$img_measures[1].'",
+        "height": "'.$img_measures[2].'",
+        "contentSize": "'.$img_size.'"
+      }';
+    }
 
 	//array of types, which support 'Article' type fields
 	$supported_types = ['Article', 'AdvertiserContentArticle', 'BlogPosting', 'DiscussionForumPosting', 'LiveBlogPosting',	'Report', 'SatiricalArticle' , 'SocialMediaPosting', 'TechArticle'];
 
 	//adding 'Article' properties to supported types
 	if(in_array($post_meta_type, $supported_types)){
-		$html .= "<meta itemprop='articleBody' content='$post_content'>\n".
-				 "<meta itemprop='articleSection' content='$categories_string'>\n".
-				 "<meta itemprop='wordCount' content='$word_count'>\n";
+
+    $html .= ',
+    "articleBody":  "'.$post_content.'",
+    "articleSection": "'.$categories_string.'",
+    "wordCount":  "'.$word_count.'"';
 	}
 
 	return $html;
