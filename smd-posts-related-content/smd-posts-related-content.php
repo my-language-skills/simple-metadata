@@ -33,6 +33,7 @@ function smd_add_post_type_meta () {
 		'side', //Context
 		'high' //priority
 		);
+
 	}
 
 }
@@ -52,7 +53,8 @@ function smd_render_article_type_meta (){
 	//receiving type of post from option in metabox
 	$post_type = get_post_meta (get_the_ID(), 'smd_post_type', true) ? esc_attr(get_post_meta (get_the_ID(), 'smd_post_type', true)) : 'no_type';
 
-$test = get_option('smd_website_blog_type');
+	$test = get_option('smd_website_blog_type');
+
 
 switch ($test) {
 	case 'Blog':
@@ -90,13 +92,12 @@ switch ($test) {
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		$post_meta_types['WebPage'] = __('Web Page', 'simple-metadata');
 		$post_meta_types['Chapter'] = __('Chapter', 'simple-metadata');
-
 	}
 	?>
 			<select  name="smd_post_type" id="smd_post_type">
 				<?php
 					foreach ($post_meta_types as $key => $value) {
-						$selected = $post_suppose_type == $key ? 'selected' : '';
+						$selected = $post_type == $key ? 'selected' : '';
 						echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
 					}
 				?>
@@ -110,7 +111,7 @@ switch ($test) {
 }
 
 /**
-* Function for post saving/updating action
+* Function for post saving/updating action in post page
 *
 * @since
 *
@@ -133,7 +134,7 @@ function smd_save_post_type ($post_id, $post) {
 	$new_meta_value = isset($_POST['smd_post_type']) ? sanitize_text_field ($_POST['smd_post_type']) : '';
 	$old_meta_value = get_post_meta ($post_id, 'smd_post_type', true);
 
-	if ( $new_meta_value && '' == $old_meta_value) {
+	if ( $new_meta_value && '' == $old_meta_value ) {
 		add_post_meta( $post_id, 'smd_post_type', $new_meta_value, true );
 	} elseif ( $new_meta_value && $new_meta_value != $meta_value) {
 		update_post_meta( $post_id, 'smd_post_type', $new_meta_value );
