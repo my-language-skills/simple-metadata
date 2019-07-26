@@ -201,16 +201,20 @@ function smd_print_post_meta_fields () {
 {
 	"@context": "http://schema.org/",
 	"@type": "<?=$post_meta_type?>",
-	<?php echo smd_get_general_tags($post_meta_type); ?>,
-	"keywords": "<?=$key_words_string?>"
+	"keywords": "<?=$key_words_string?>",
+	<?php
+	echo smd_get_general_tags($post_meta_type);
+	 //printing tags from add-on plugins, if they are active
+	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')[$post_type])){
+		smde_print_tags();
+	}
+	?>
+
 }
 </script>
 <div itemscope itemtype="http://schema.org/<?=$post_meta_type;?>">
 <meta itemprop='keywords' content='<?=$key_words_string?>'>
 	<?php //printing tags from add-on plugins, if they are active
-	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')[$post_type])){
-		smde_print_tags();
-	}
 	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')[$post_type])){
 		smdlc_print_tags($post_meta_type);
 	}

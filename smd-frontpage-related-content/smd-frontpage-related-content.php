@@ -295,13 +295,15 @@ function smd_print_wsb_field () {
 	"about": "<?=$description?>",
 	"url": "<?=$url?>",
 	"inLanguage": "<?=$language?>"
+	<?php //printing tags from add-on plugins, if they are active
+	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && (isset(get_option('smde_locations')['site-meta'])  || isset(get_option('smde_locations')['metadata']))){
+		smde_print_tags();
+	}
+	?>
 }
 </script>
 	<div itemscope itemtype="http://schema.org/<?=$type?>">
 		<?php //printing tags from add-on plugins, if they are active
-		if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && (isset(get_option('smde_locations')['site-meta'])  || isset(get_option('smde_locations')['metadata']))){
-			smde_print_tags();
-		}
 		if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && (isset(get_option('smdlc_locations')['site-meta']) || isset(get_option('smdlc_locations')['metadata']))){
 			smdlc_print_tags($type);
 		}

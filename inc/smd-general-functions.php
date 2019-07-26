@@ -159,8 +159,10 @@ function smd_get_general_tags($post_meta_type) {
         "height": "'.$img_measures[2].'",
         "contentSize": "'.$img_size.'"
       }';
+    }else{
+      $html .= ',
+    "image": "'.$logo.'"';
     }
-
 	//array of types, which support 'Article' type fields
 	$supported_types = ['Article', 'AdvertiserContentArticle', 'BlogPosting', 'DiscussionForumPosting', 'LiveBlogPosting',	'Report', 'SatiricalArticle' , 'SocialMediaPosting', 'TechArticle'];
 
