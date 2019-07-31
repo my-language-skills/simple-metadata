@@ -107,13 +107,64 @@ function smd_get_general_tags($post_meta_type) {
   /*----- end Data, related to 'CreativeWork' properties */
 
 	$image = $thumbnail_url ?: $logo;
-  $html =
-  '"dateCreated" :   "'.$creation_date.'",
+  $html ='"dateCreated" :   "'.$creation_date.'",
     "dateModified":   "'.$last_modification_date.'",
     "datePublished":  "'.$publication_date.'",
     "inLanguage":     "'.$language.'",
     "headline":       "'.$title.'",
-    "thumbnailUrl":   "'.$thumbnail_url.'",
+    "thumbnailUrl":   "'.$image.'",';
+
+
+  //array of types, which support 'Article' type fields
+	$supported_types = ['Article', 'AdvertiserContentArticle', 'BlogPosting', 'DiscussionForumPosting', 'LiveBlogPosting',	'Report', 'SatiricalArticle' , 'SocialMediaPosting', 'TechArticle'];
+
+	//adding 'Article' properties to supported types
+	if(in_array($post_meta_type, $supported_types)){
+
+    $html .= '
+    "articleBody":  "'.$post_content.'",
+    "articleSection": "'.$categories_string.'",
+    "wordCount":  "'.$word_count.'",';
+	}
+
+  if( has_post_thumbnail() ){
+    // The feature image is set
+    //Get all attributes
+    $img_thumbnail_title = get_post(get_post_thumbnail_id())->post_title;
+    $img_caption = get_post(get_post_thumbnail_id())->post_excerpt;
+    $img_description = get_post(get_post_thumbnail_id())->post_content;
+    $img_url = get_the_post_thumbnail_url();
+    $img_author = get_the_author_meta('display_name', get_post(get_post_thumbnail_id())->post_author);
+    $img_date = get_post_time('F j, Y g:i a', get_post_thumbnail_id());
+    $img_type = get_post_mime_type(get_post_thumbnail_id());
+    $img_measures = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full'); //retrieve and array (url, width, height)
+    $img_size = size_format(filesize(get_attached_file(get_post_thumbnail_id())));
+
+    $html .= '
+    "image": {
+      "@type": "ImageObject",
+      "name": "'.$img_thumbnail_title.'",
+      "caption": "'.$img_caption.'",
+      "description": "'.$img_description.'",
+      "url": "'.$img_url.'",
+      "uploadDate": "'.$img_date.'",
+      "encodingFormat": "'.$img_type.'",
+      "width": "'.$img_measures[1].'",
+      "height": "'.$img_measures[2].'",
+      "contentSize": "'.$img_size.'",
+      "author": {
+        "@type": "Person",
+        "name": "'.$img_author.'"
+      }
+    },';
+  }else{
+    $html .= '
+    "image": "'.$logo.'",';
+  }
+
+
+
+  $html .='
     "publisher": {
       "@type":  "'.$type.'",
       "name": "'.$publisher.'",
@@ -127,53 +178,6 @@ function smd_get_general_tags($post_meta_type) {
       "@type": "Person",
       "name": "'.$last_modifier.'"
     }';
-
-
-    if( has_post_thumbnail() ){
-      // The feature image is set
-      //Get all attributes
-      $img_thumbnail_title = get_post(get_post_thumbnail_id())->post_title;
-      $img_caption = get_post(get_post_thumbnail_id())->post_excerpt;
-      $img_description = get_post(get_post_thumbnail_id())->post_content;
-      $img_url = get_the_post_thumbnail_url();
-      $img_author = get_the_author_meta('display_name', get_post(get_post_thumbnail_id())->post_author);
-      $img_date = get_post_time('F j, Y g:i a', get_post_thumbnail_id());
-      $img_type = get_post_mime_type(get_post_thumbnail_id());
-      $img_measures = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full'); //retrieve and array (url, width, height)
-      $img_size = size_format(filesize(get_attached_file(get_post_thumbnail_id())));
-
-      $html .= ',
-      "image": {
-        "@type": "ImageObject",
-        "name": "'.$img_thumbnail_title.'",
-        "caption": "'.$img_caption.'",
-        "description": "'.$img_description.'",
-        "url": "'.$img_url.'",
-        "author": {
-          "@type": "Person",
-          "name": "'.$img_author.'"
-        },
-        "uploadDate": "'.$img_date.'",
-        "encodingFormat": "'.$img_type.'",
-        "width": "'.$img_measures[1].'",
-        "height": "'.$img_measures[2].'",
-        "contentSize": "'.$img_size.'"
-      }';
-    }else{
-      $html .= ',
-    "image": "'.$logo.'"';
-    }
-	//array of types, which support 'Article' type fields
-	$supported_types = ['Article', 'AdvertiserContentArticle', 'BlogPosting', 'DiscussionForumPosting', 'LiveBlogPosting',	'Report', 'SatiricalArticle' , 'SocialMediaPosting', 'TechArticle'];
-
-	//adding 'Article' properties to supported types
-	if(in_array($post_meta_type, $supported_types)){
-
-    $html .= ',
-    "articleBody":  "'.$post_content.'",
-    "articleSection": "'.$categories_string.'",
-    "wordCount":  "'.$word_count.'"';
-	}
 
 	return $html;
 }
