@@ -76,7 +76,7 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 ### 1.3
 * **ADDITIONS**
-	 * Internationalization
+	 * Internationalization (#20)
 * **REMOVED**
    * Auto update from github
 * **ENHANCEMENTS***
