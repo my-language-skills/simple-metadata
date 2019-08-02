@@ -191,7 +191,6 @@ function smd_print_page_meta_fields () {
 			smdan_print_tags(get_option('smd_website_blog_type'));
 		}
 	?>
-	
 }
 </script>
 <!--END OF SM PAGES METADATA-->
