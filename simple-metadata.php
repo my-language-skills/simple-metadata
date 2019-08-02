@@ -58,6 +58,20 @@ if (is_multisite()){
 }
 
 /**
- * Called when the activated plugin has been loaded
+ * The activated plugin has been loaded
  */
 add_action( 'plugins_loaded', 'smd_load_plugin_textdomain' );
+
+/**
+ * @since 1.3
+ */
+function smd_disable_pressbook_metadata() {
+	if(is_plugin_active('pressbooks/pressbooks.php')){
+    remove_action('wp_head', '\Pressbooks\Metadata\add_json_ld_metadata');
+		remove_action('wp_head', '\Pressbooks\Metadata\add_citation_metadata');
+	}
+}
+/**
+ * Fires after WordPress has finished loading but before any headers are sent.
+ */
+add_action( 'init', 'smd_disable_pressbook_metadata' );
