@@ -53,7 +53,7 @@ function smd_register_cpt(){
 			'public' => true,
 			'publicly_queryable' => true,
 			'show_ui' => true,
-			'show_in_menu' => true,
+			'show_in_menu' => false,
 			'menu_position' => 5,
 			'query_var' => true,
 			'rewrite' => false,
