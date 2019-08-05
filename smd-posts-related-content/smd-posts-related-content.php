@@ -52,7 +52,6 @@ function smd_render_article_type_meta (){
 
 	//receiving type of post from option in metabox
 	$post_type = get_post_meta (get_the_ID(), 'smd_post_type', true) ? esc_attr(get_post_meta (get_the_ID(), 'smd_post_type', true)) : 'no_type';
-
 	$test = get_option('smd_website_blog_type');
 
 
@@ -76,7 +75,6 @@ switch ($test) {
 }
 
 	$post_meta_types = array(
-					'WebPage'		=> __('Web Page', 'simple-metadata'),
 					'Article'					=> __('Article', 'simple-metadata'),
 					'AdvertiserContentArticle'	=> __('Advertisement', 'simple-metadata'),
 					'BlogPosting'				=> __('Blog Posting', 'simple-metadata'),
@@ -85,15 +83,18 @@ switch ($test) {
 					'Report'					=> __('Report', 'simple-metadata'),
 					'SatiricalArticle' 			=> __('Satirical Article', 'simple-metadata'),
 					'SocialMediaPosting'		=> __('Social Media Posting', 'simple-metadata'),
-					'TechArticle'				=> __('Technology Article', 'simple-metadata'),
+					'TechArticle'				=> __('Technology Article', 'simple-metadata')
 				  );
 
 	//if Educational add-on is active, we add new possible options
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
-		$post_meta_types['WebPage'] = __('Web Page', 'simple-metadata');
 		$post_meta_types['Chapter'] = __('Chapter', 'simple-metadata');
+		$post_meta_types['WebPage'] = __('Web Page', 'simple-metadata');
+	}else{
+		$post_meta_types['WebPage'] = __('Web Page', 'simple-metadata');
 	}
 	?>
+	
 			<select  name="smd_post_type" id="smd_post_type">
 				<?php
 					foreach ($post_meta_types as $key => $value) {
