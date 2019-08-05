@@ -107,10 +107,16 @@ function smd_get_general_tags($post_meta_type) {
   /*----- end Data, related to 'CreativeWork' properties */
 
 	$image = $thumbnail_url ?: $logo;
-  $html ='"dateCreated" :   "'.$creation_date.'",
+  $html = '';
+  if(get_option('smd_hide_metadata_dates')){
+    //Hide date options is activated in network menu or site munu
+    $html .= '"dateModified":   "'.$last_modification_date.'",' . "\n\t";
+  }else{
+    $html .= '"dateCreated" :   "'.$creation_date.'",
     "dateModified":   "'.$last_modification_date.'",
-    "datePublished":  "'.$publication_date.'",
-    "inLanguage":     "'.$language.'",
+    "datePublished":  "'.$publication_date.'",' . "\n\t";
+  }
+  $html .= '"inLanguage":     "'.$language.'",
     "headline":       "'.$title.'",
     "thumbnailUrl":   "'.$image.'",';
 

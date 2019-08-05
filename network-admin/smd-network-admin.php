@@ -31,8 +31,9 @@ function smd_add_network_settings() {
   if (!is_plugin_active('pressbooks/pressbooks.php')){
   	add_meta_box('smd-network-metadata-sites-type', __('Home', 'simple-metadata'), 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
 	}
-
   add_settings_section( 'smd_network_meta_locations', '', '', 'smd_network_meta_locations' );
+
+  smd_add_net_metabox_for_options();
 
   if (!is_plugin_active('pressbooks/pressbooks.php')){
   	add_settings_section( 'smd_network_meta_sites_type', '', '', 'smd_network_meta_sites_type' );
@@ -45,9 +46,6 @@ function smd_add_network_settings() {
     add_site_option('smd_net_sites_type', '');
 	}
 
-
-
-
 	// getting options values from DB
 	$post_types = smd_get_all_post_types();
 	$locations = get_site_option('smd_net_locations');
@@ -56,7 +54,6 @@ function smd_add_network_settings() {
 	if (!is_plugin_active('pressbooks/pressbooks.php')){
 		add_settings_field ('smd_network_site_type', __('Type of Sites', 'simple-metadata'), 'smd_render_net_switch_set', 'smd_network_meta_sites_type', 'smd_network_meta_sites_type');
 	}
-
 
 	//adding settings for locations
 	foreach ($post_types as $post_type) {
@@ -91,6 +88,60 @@ function smd_add_network_settings() {
 
 
 }
+
+/**
+ * Adds the metabox 'Options' in the network page
+ *
+ * @since   1.4
+ */
+function smd_add_net_metabox_for_options(){
+  //Options metabox
+  add_meta_box('smd-net-box-options', __('Options', 'simple-metadata'), 'smd_render_net_metabox_options', 'smd_net_set_page', 'normal', 'low');
+  add_settings_section( 'smd_net_section_options', '', '', 'smd_net_section_options' );
+  add_settings_field ('smd_net_options_hide_dates', __('Hide dates', 'simple-metadata'), 'smd_render_net_options_hide_dates', 'smd_net_section_options', 'smd_net_section_options');
+  add_site_option('smd_net_hide_metadata_dates', '');
+}
+
+/**
+ * Display the content in the metabox 'Option'
+ *
+ * @since   1.4
+ */
+function smd_render_net_metabox_options(){
+  ?>
+  <div id="smd_render_net_hide_dates" class="smd_render_net_hide_dates">
+    <form method="post" action="edit.php?action=smd_update_network_options">
+      <?php
+      do_settings_sections( 'smd_net_section_options' );
+      settings_fields( 'smd_net_options_hide_dates' );
+      submit_button();
+      ?>
+    </form>
+    <p></p>
+  </div>
+  <?php
+}
+
+/**
+ * Display the option 'Hide dates' in the metabox 'Options'
+ *
+ * @since   1.4
+ */
+function smd_render_net_options_hide_dates(){
+  ?>
+  <label for="smd_net_hide_dates">
+    <input type="checkbox" id="smd_net_hide_metadata_dates" name="smd_net_hide_metadata_dates" value="true"
+      <?php checked('true', get_site_option('smd_net_hide_metadata_dates'))?>
+    >
+  </label><br>
+  <span class="description">
+      <?php
+      esc_html_e('If activated the metadata tags "dateCreated" and "datePublished" will be hide');
+      ?>
+  </span>
+  <?php
+}
+
 
 /**
  * Function for rendering network settings page
@@ -165,9 +216,9 @@ function smd_network_render_metabox_schema_locations(){
  */
 function smd_network_render_metabox_sites_type(){
 	?>
-	<div id="smd_network_meta_sites_type" class="smd_network_meta_sites_type">
+	<div id="smd_network_meta_options" class="smd_network_meta_options">
 		<span class="description"><?php esc_html_e('Select the Homepage type. If selected, site administrators can not modify.', 'simple-metadata'); ?></span>
-		<form method="post" action="edit.php?action=smd_update_network_options">
+		<form method="post" action="edit.php?action=smd_update_network_site_type">
 			<?php
 			settings_fields( 'smd_network_meta_sites_type' );
 			do_settings_sections( 'smd_network_meta_sites_type' );
@@ -202,8 +253,8 @@ function smd_render_net_switch_set() {
 
 /**
  * Handler for locations settings update
- * @since
  *
+ * @since
  */
 function smd_update_network_locations() {
 
@@ -251,53 +302,83 @@ function smd_update_network_locations() {
 
 /**
  * Handler for properties settings update
- * @since   1.0
  *
+ * @since 1.0
  */
-function smd_update_network_options() {
+function smd_update_network_site_type() {
+
 
 	//checking admin reffer to prevent direct access to this function
 	check_admin_referer('smd_network_meta_sites_type-options');
 
-	//Wordpress Database variable for database operations
-    global $wpdb;
+  smd_net_overwrite_in_all_sites('smd_net_sites_type', 'smd_net_sites_type', 'smd_website_blog_type');
 
-    //getting option for type of sites
-    $sites_type = isset($_POST['smd_net_sites_type']) ? $_POST['smd_net_sites_type'] : '';
+  // At the end we redirect back to our options page.
+  wp_redirect(add_query_arg(array('page' => 'smd_net_set_page',
+  'settings-updated' => 'true'), network_admin_url('settings.php')));
 
+  exit;
+}
 
-    //updating network options
-	update_site_option('smd_net_sites_type', $sites_type);
+/**
+ * Update options for options metabox
+ *
+ * @since 1.3
+ */
+function smd_update_network_options() {
+	//checking admin reffer to prevent direct access to this function
+	check_admin_referer('smd_net_options_hide_dates-options');
 
-	//Grabbing all the site IDs
-    $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-
-    //Going through the sites
-    foreach ($siteids as $site_id) {
-
-    	if (1 == $site_id){
-    		continue;
-    	}
-
-    	switch_to_blog($site_id);
-
-    	//updating local options obly if some type is selected
-    	if ('0' !== $sites_type){
-    		update_option('smd_website_blog_type', $sites_type);
-    	}
-
-    }
-
-    restore_current_blog();
+  smd_net_overwrite_in_all_sites('smd_net_hide_metadata_dates', 'smd_net_hide_metadata_dates', 'smd_hide_metadata_dates');
 
 	// At the end we redirect back to our options page.
-    wp_redirect(add_query_arg(array('page' => 'smd_net_set_page',
-    'settings-updated' => 'true'), network_admin_url('settings.php')));
+  wp_redirect(add_query_arg(array('page' => 'smd_net_set_page',
+  'settings-updated' => 'true'), network_admin_url('settings.php')));
+  exit;
+}
 
-    exit;
+/**
+ * Update the network option and overwrite with it the local option in all sites
+ *
+ * @since 1.4
+ *
+ * @param string $sender_id The id of the information sender (for example input, checkbox ...)
+ * @param string $option_net_name The name of the network option that you want update
+ * @param string $option_local_name The name of site option that you want to overwrite
+ */
+function smd_net_overwrite_in_all_sites($sender_id, $option_net_name, $option_local_name){
+
+  //Wordpress Database variable for database operations
+  global $wpdb;
+
+  //getting option for type of sites
+  $option_selected = isset($_POST[$sender_id]) ? $_POST[$sender_id] : '';
+
+  //updating network options
+	update_site_option($option_net_name, $option_selected);
+
+	//Grabbing all the site IDs
+  $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+
+  //Going through the sites
+  foreach ($siteids as $site_id) {
+  	if (1 == $site_id){
+  		continue;
+  	}
+
+  	switch_to_blog($site_id);
+
+  	//updating local options obly if some option is selected
+  	if ('0' !== $option_selected){
+  		update_option($option_local_name, $option_selected);
+  	}
+  }
+
+  restore_current_blog();
 }
 
 
 add_action( 'network_admin_menu', 'smd_add_network_settings');
 add_action( 'network_admin_edit_smd_update_network_locations', 'smd_update_network_locations');
+add_action( 'network_admin_edit_smd_update_network_site_type', 'smd_update_network_site_type');
 add_action( 'network_admin_edit_smd_update_network_options', 'smd_update_network_options');

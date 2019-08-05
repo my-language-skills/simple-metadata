@@ -31,6 +31,7 @@ function smd_add_option_page () {
 
 		add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
 		add_meta_box('smd-settings', __('Front Page', 'simple-metadata'), 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
+		smd_add_metabox_for_options();
 
 		$post_types = smd_get_all_post_types();
 		$locations = get_option('smd_locations');
@@ -88,6 +89,40 @@ function smd_add_option_page () {
 			}, 'smd_locations', 'smd_locations');
 		}
 	}
+}
+
+/**
+ * Adds the metabox 'Options' in the network page
+ *
+ * @since   1.4
+ */
+function smd_add_metabox_for_options(){
+	add_meta_box('smd-box-options',	__('Options', 'simple-metadata'), 'smd_render_metabox_options', 'smd_set_page', 'normal', 'low');
+	add_settings_section( 'smd_set_page_section_options', '', '', 'smd_set_page_section_options' );
+	add_settings_field ('smd_options_hide_dates', __('Hide dates', 'simple-metadata'), 'smd_render_options_hide_dates', 'smd_set_page_section_options', 'smd_set_page_section_options');
+	register_setting ('smd_set_page_section_options', 'smd_hide_metadata_dates');
+}
+
+
+/**
+ * Display the option 'Hide dates' in the metabox 'Options'
+ *
+ * @since   1.4
+ */
+function smd_render_options_hide_dates(){
+  ?>
+  <label for="smd_hide_dates">
+    <input type="checkbox" id="smd_hide_metadata_dates" name="smd_hide_metadata_dates" value="true"
+      <?php checked('true', get_option('smd_hide_metadata_dates')) ?>
+			<?php echo is_option_disabled('smd_net_hide_metadata_dates') ?>
+    >
+  </label><br>
+  <span class="description">
+      <?php
+      esc_html_e('If activated the metadata tags "dateCreated" and "datePublished" will be hide');
+      ?>
+  </span>
+  <?php
 }
 
 
@@ -173,6 +208,28 @@ function smd_render_site_page () {
         </script>
 		<?php
 }
+
+/**
+ * Display the content in the metabox 'Option'
+ *
+ * @since   1.4
+ */
+function smd_render_metabox_options(){
+  ?>
+  <div class="wrap">
+    <form method="post" action="options.php">
+      <?php
+			settings_fields( 'smd_set_page_section_options' );
+			do_settings_sections( 'smd_set_page_section_options' );
+      submit_button();
+      ?>
+    </form>
+    <p></p>
+  </div>
+  <?php
+}
+
+
 /**
  * Simple Metadata Settings
  *
@@ -231,17 +288,7 @@ function smd_render_metabox(){
  */
 function smd_render_switch_set() {
 
-	$disabled = '';
-
-	//if network option is set to something except 'Local value', we disable selection
-	if (is_multisite()){
-
-		//getting option for type of site for network
-		$net_sites_type = get_site_option ('smd_net_sites_type') ?: '0';
-		if ('0' !== $net_sites_type){
-			$disabled = 'disabled';
-		}
-	}
+	$disabled = is_option_disabled('smd_net_sites_type');
 	?>
 	<label for="smd_website_blog_type_2"><?php esc_html_e('WebSite', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" checked="checked" <?php checked('WebSite', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
 	<label for="smd_website_blog_type_1"><?php esc_html_e('Blog', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
@@ -253,7 +300,7 @@ function smd_render_switch_set() {
 		<?php
 
 	if ('disabled' === $disabled){
-		echo '<input type="hidden" name="smd_website_blog_type" value="'.$net_sites_type.'">';
+		echo '<input type="hidden" name="smd_website_blog_type" value="'.get_site_option('smd_net_sites_type').'">';
 		echo '<br><span class="description">' .
 						__('Type was selected by network administrator.
 						You are not allowed to change it.', 'simple-metadata') . '</span>';
@@ -312,6 +359,30 @@ function smd_print_wsb_field () {
 
 		}
 	}
+}
+
+/**
+ * If the network option exist disable site options
+ *
+ * @since 1.4
+ *
+ * @param string $option_net_name  the name of the network option to check if it exist
+ * @return string $disabled could be '' or 'disabled';
+ */
+function is_option_disabled($option_net_name){
+	$disabled = '';
+
+	//if network option is set to something except 'Local value', we disable selection
+	if (is_multisite()){
+
+		//getting option for type of site for network
+		$net_sites_type = get_site_option ($option_net_name) ?: '0';
+		if ('0' !== $net_sites_type){
+			$disabled = 'disabled';
+		}
+	}
+
+	return $disabled;
 }
 
 
