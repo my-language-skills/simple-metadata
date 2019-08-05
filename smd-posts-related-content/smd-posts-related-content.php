@@ -155,7 +155,12 @@ function smd_print_post_meta_fields () {
 	*	Retrivieng the excerpt of the post, not using get_the_excerpt
 	* becouse if the excerpt is empty it automatically generates it
 	*/
-	$post_excerpt	= get_post($post_id)->post_excerpt;
+	$post	= get_post($post_id);
+	if(isset($post)){
+		$post_excerpt	=	$post->post_excerpt;
+	}
+	$post_excerpt	=	'';
+
 	$post_type = get_post_type($post_id);
 
 	//we print these tags only if location is not active in education and post type is not page
@@ -208,12 +213,12 @@ function smd_print_post_meta_fields () {
 	<?php
 	if(!empty($key_words_string))
 		echo '"keywords": "'.$key_words_string.'",' . "\n\t";
-	if( "Article"	==	$post_meta_type )
-		echo '"mainEntityOfPage": "'.get_permalink().'",' . "\n\t";
+	//	if( "Article"	==	$post_meta_type )
+	echo '"mainEntityOfPage": "'.get_permalink().'",' . "\n\t";
 	if(	!empty($post_excerpt))
 		echo '"about":	"'.$post_excerpt.'",'	.	"\n\t";
 	echo smd_get_general_tags($post_meta_type);
-	 //printing tags from add-on plugins, if they are active
+	//	printing tags from add-on plugins, if they are active
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')[$post_type])){
 		smde_print_tags();
 	}
