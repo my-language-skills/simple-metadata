@@ -94,7 +94,7 @@ switch ($test) {
 		$post_meta_types['WebPage'] = __('Web Page', 'simple-metadata');
 	}
 	?>
-	
+
 			<select  name="smd_post_type" id="smd_post_type">
 				<?php
 					foreach ($post_meta_types as $key => $value) {
@@ -214,7 +214,6 @@ function smd_print_post_meta_fields () {
 	<?php
 	if(!empty($key_words_string))
 		echo '"keywords": "'.$key_words_string.'",' . "\n\t";
-	//	if( "Article"	==	$post_meta_type )
 	echo '"mainEntityOfPage": "'.get_permalink().'",' . "\n\t";
 	if(	!empty($post_excerpt))
 		echo '"about":	"'.$post_excerpt.'",'	.	"\n\t";

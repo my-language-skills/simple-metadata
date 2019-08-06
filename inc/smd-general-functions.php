@@ -174,15 +174,14 @@ function smd_get_general_tags($post_meta_type) {
     "publisher": {
       "@type":  "'.$type.'",
       "name": "'.$publisher.'",
-      "logo": "'.$logo.'"
+      "logo": {
+        "@type":  "ImageObject",
+        "url": "'.$logo.'"
+      }
     },
     "author": {
       "@type":  "Person",
       "name":  "'.$author.'"
-    },
-    "editor": {
-      "@type": "Person",
-      "name": "'.$last_modifier.'"
     }';
 
 	return $html;
