@@ -120,6 +120,12 @@ function smd_get_general_tags($post_meta_type) {
     "headline":       "'.$title.'",
     "thumbnailUrl":   "'.$image.'",';
 
+  if('G' == get_option('avatar_rating')){
+    // The content is family friendly
+    // It's selected in settings->discussion "G — Suitable for all audiences"
+    $html .= '
+    "isFamilyFriendly": "true",';
+  }
 
   //array of types, which support 'Article' type fields
 	$supported_types = ['Article', 'AdvertiserContentArticle', 'BlogPosting', 'DiscussionForumPosting', 'LiveBlogPosting',	'Report', 'SatiricalArticle' , 'SocialMediaPosting', 'TechArticle'];
