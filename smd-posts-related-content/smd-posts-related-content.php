@@ -193,15 +193,21 @@ function smd_print_post_meta_fields () {
 			}
 		}
 
+		//keywords and categories
+		$key_words_arr = wp_get_post_tags($post_id, ['fields' => 'names']);
 
+		// For Post type WebPage keywords are merged with categories
+		if("WebPage" == $post_meta_type){
+			// Get the categories
+			$categories = get_the_category( $post_id);
+			$categories_arr = [];
+			foreach ($categories as $category) {
+				$categories_arr[] = $category->name;
+			}
+			$key_words_arr = array_merge($key_words_arr, $categories_arr);
+		}
 
-		//> data, related to 'Article' type properties (only applicable for 'post' and post-compitable CPTs)
-
-			//keywords
-			$key_words = wp_get_post_tags($post_id, ['fields' => 'names']);
-			$key_words_string = implode(', ', $key_words);
-
-		//<
+		$key_words_string = implode(', ', $key_words_arr);
 
 		?>
 <?="\n"?><!--SM POSTS METADATA-->
