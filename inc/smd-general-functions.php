@@ -132,7 +132,6 @@ function smd_get_general_tags($post_meta_type) {
 
 	//adding 'Article' properties to supported types
 	if(in_array($post_meta_type, $supported_types)){
-
     $html .= '
     "articleBody":  "'.$post_content.'",
     "articleSection": "'.$categories_string.'",

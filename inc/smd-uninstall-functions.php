@@ -4,7 +4,7 @@
 /**
  * Deletes all network options stored in wp_sitemeta
  *
- * @param string plugin_abbreviation e.g. 'smd_' for simple-metadata
+ * @param string $plugin_abbreviation e.g. 'smd_' for simple-metadata 'smde_' dor education
  * @since 1.3
  *
  */
@@ -23,7 +23,9 @@ function smd_delete_network_options($plugin_abbreviation){
   foreach ( $net_options as $key => $value ) {
 
 		if ( stristr($value, $plugin_abbreviation) || stristr($value, 'smde_')) {
+			//The option name starts with the $plugin_abbreviation
 
+			//Added to the array
 			$network_plugin_options[ $key ] = $value;
 		}
 	}

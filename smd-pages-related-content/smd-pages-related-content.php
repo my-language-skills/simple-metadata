@@ -169,9 +169,8 @@ function smd_print_page_meta_fields () {
 			$img_measures = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full'); //retrieve and array (url, width, height)
 			$img_size = size_format(filesize(get_attached_file(get_post_thumbnail_id())));
 
+?>
 
-
-		?>
 <?="\n"?><!--SM PAGES METADATA-->
 <script type="application/ld+json">
 {
@@ -181,15 +180,15 @@ function smd_print_page_meta_fields () {
 	"reviewedBy": "<?=$last_modifier?>",
 	<?php
 	echo smd_get_general_tags($page_type);
-		if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')['page'])){
-			smde_print_tags();
-		}
-		if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')['page'])){
-			smdlc_print_tags(get_option('smd_website_blog_type'));
-		}
-		if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && isset(get_option('smdan_locations')['page'])){
-			smdan_print_tags(get_option('smd_website_blog_type'));
-		}
+	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')['page'])){
+		smde_print_tags();
+	}
+	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')['page'])){
+		smdlc_print_tags(get_option('smd_website_blog_type'));
+	}
+	if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && isset(get_option('smdan_locations')['page'])){
+		smdan_print_tags(get_option('smd_website_blog_type'));
+	}
 	?>
 }
 </script>
