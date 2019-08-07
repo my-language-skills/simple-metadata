@@ -152,15 +152,13 @@ function smd_save_post_type ($post_id, $post) {
 function smd_print_post_meta_fields () {
 
 	$post_id = get_the_ID();
+	$post = get_post($post_id);
 	/*
 	*	Retrivieng the excerpt of the post, not using get_the_excerpt
-	* becouse if the excerpt is empty it automatically generates it
+	* because if the excerpt is empty it automatically generates it
 	*/
-	$post	= get_post($post_id);
-	if(isset($post)){
-		$post_excerpt	=	$post->post_excerpt;
-	}
-	$post_excerpt	=	'';
+	$post_excerpt = isset($post->post_excerpt) ?	$post->post_excerpt : '';
+
 
 	$post_type = get_post_type($post_id);
 
