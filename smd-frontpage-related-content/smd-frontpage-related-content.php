@@ -119,7 +119,7 @@ function smd_render_options_hide_dates(){
   </label><br>
   <span class="description">
       <?php
-      esc_html_e('If activated the metadata tags "dateCreated" and "datePublished" will be hide');
+      esc_html_e('If selected the metadata tags "dateCreated" and "datePublished" will be hide');
       ?>
   </span>
   <?php
