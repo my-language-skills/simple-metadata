@@ -320,6 +320,7 @@ function smd_render_switch_set() {
  * @since ...
  */
 function smd_print_wsb_field () {
+
 	if (is_front_page()){
 		//In case of pressbooks installation, always applied Book -> Chapter
 		if (!is_plugin_active('pressbooks/pressbooks.php')){

@@ -68,7 +68,7 @@ function smd_get_general_tags($post_meta_type) {
 	/*--- end Publisher ---*/
 
   // get the thumbnail of the post/page/homepage/ecc...
-	$thumbnail_url = get_the_post_thumbnail_url();
+	$thumbnail_url = get_the_post_thumbnail_url($post_id, 'thumbnail');
 
   /*--- Checking main SEO plugin for publisher information ---*/
 	//include to check if YOAST or SEO Framework are installed
@@ -216,4 +216,37 @@ function smd_get_general_tags($post_meta_type) {
  		$postTypes1 = ['metadata','front-matter','chapter','part', 'back-matter'];
  	}
  	return $postTypes1;
+ }
+
+ /**
+ * Check if the post type is a subtype of Creative Work
+ *
+ * Used in smd_annotation and smd_lifecycle to make them work only if the post is creative work
+ *
+ * @since 1.3
+ * @param int $post_id the Id of the post to check
+ * @return boolean
+ */
+ function smd_is_post_CreativeWork($post_id){
+
+ 	// Retrieve the post_meta_type choosen in the Post type metaboxe
+ 	if('page' == get_post_type($post_id) && !is_front_page()){
+ 		$post_meta_type = get_post_meta($post_id, 'smd_page_type', true) ?: 'no_type';
+ 		$creative_works_arr = ['WebPage' , 'AboutPage'  , 'CheckoutPage'  ,
+ 		'CollectionPage', 'ContactPage' , 'FAQPage'	 , 'ImageGallery' ,
+ 		'ItemPage', 'MedicalWebPage' , 'ProfilePage' ,'SearchResultsPage', 'VideoGallery' ];
+ 	}
+ 	else if('site-meta' ==  get_post_type($post_id) || is_front_page()){
+		$post_meta_type = get_option('smd_website_blog_type') ?: 'no_type';
+ 		$creative_works_arr = ['WebSite', 'Blog', 'Course', 'Book' ];
+ 	}
+  else{
+    // all others types of post
+ 		$post_meta_type = get_post_meta($post_id, 'smd_post_type', true) ?: 'no_type';
+ 		$creative_works_arr = ['Article', 'AdvertiserContentArticle', 'BlogPosting',
+ 		'DiscussionForumPosting', 'LiveBlogPosting', 'Report', 'SatiricalArticle', 'SocialMediaPosting',
+ 		'TechArticle', 'Chapter', 'WebPage' ];
+  }
+
+ 	return in_array($post_meta_type, $creative_works_arr);
  }
