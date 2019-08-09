@@ -109,11 +109,11 @@ function smd_add_net_metabox_for_options(){
  */
 function smd_render_net_metabox_options(){
   ?>
-  <div id="smd_render_net_hide_dates" class="smd_render_net_hide_dates">
+  <div id="smd_render_net_metabox_options" class="smd_render_net_metabox_options">
     <form method="post" action="edit.php?action=smd_update_network_options">
       <?php
       do_settings_sections( 'smd_net_section_options' );
-      settings_fields( 'smd_net_options_hide_dates' );
+      settings_fields( 'smd_net_section_options' );
       submit_button();
       ?>
     </form>
@@ -311,7 +311,10 @@ function smd_update_network_site_type() {
 	//checking admin reffer to prevent direct access to this function
 	check_admin_referer('smd_network_meta_sites_type-options');
 
-  smd_net_overwrite_in_all_sites('smd_net_sites_type', 'smd_net_sites_type', 'smd_website_blog_type');
+  $site_type = isset($_POST['smd_net_sites_type']) ? $_POST['smd_net_sites_type'] : '';
+  update_site_option('smd_net_sites_type', $site_type);
+
+  smd_net_overwrite_in_all_sites('smd_website_blog_type', $site_type);
 
   // At the end we redirect back to our options page.
   wp_redirect(add_query_arg(array('page' => 'smd_net_set_page',
@@ -325,60 +328,42 @@ function smd_update_network_site_type() {
  *
  * @since 1.3
  */
-function smd_update_network_options() {
+function smd_update_net_hide_dates() {
 	//checking admin reffer to prevent direct access to this function
-	check_admin_referer('smd_net_options_hide_dates-options');
+	check_admin_referer('smd_net_section_options-options');
 
-  smd_net_overwrite_in_all_sites('smd_net_hide_metadata_dates', 'smd_net_hide_metadata_dates', 'smd_hide_metadata_dates');
+  //Get value selected in the checkboxes
+  $is_hide_dates = isset($_POST['smd_net_hide_metadata_dates']) ? $_POST['smd_net_hide_metadata_dates'] : '';
+  //updating network options
+	update_site_option('smd_net_hide_metadata_dates', $is_hide_dates);
 
-	// At the end we redirect back to our options page.
+  // smd-general-function.php
+  smd_net_overwrite_in_all_sites('smd_hide_metadata_dates', $is_hide_dates );
+
+}
+// when save changes is clicked
+add_action( 'network_admin_edit_smd_update_network_options', 'smd_update_net_hide_dates', 10);
+
+/**
+ * Redirect to set page
+ * Used now just for the metabox 'Options'
+ *
+ * @since 1.3
+ */
+function smd_redirect_to_set_page(){
+  // At the end we redirect back to our options page.
   wp_redirect(add_query_arg(array('page' => 'smd_net_set_page',
   'settings-updated' => 'true'), network_admin_url('settings.php')));
   exit;
 }
 
 /**
- * Update the network option and overwrite with it the local option in all sites
- *
- * @since 1.4
- *
- * @param string $sender_id The id of the information sender (for example input, checkbox ...)
- * @param string $option_net_name The name of the network option that you want update
- * @param string $option_local_name The name of site option that you want to overwrite
+ * When save changes is clicked
+ * The priority 100 so it will be excecuted after all plugins update functions:
+ * smd_update_net_hide_dates(), smdan_update_net_hide_annotation ecc...
  */
-function smd_net_overwrite_in_all_sites($sender_id, $option_net_name, $option_local_name){
-
-  //Wordpress Database variable for database operations
-  global $wpdb;
-
-  //getting option for type of sites
-  $option_selected = isset($_POST[$sender_id]) ? $_POST[$sender_id] : '';
-
-  //updating network options
-	update_site_option($option_net_name, $option_selected);
-
-	//Grabbing all the site IDs
-  $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-
-  //Going through the sites
-  foreach ($siteids as $site_id) {
-  	if (1 == $site_id){
-  		continue;
-  	}
-
-  	switch_to_blog($site_id);
-
-  	//updating local options obly if some option is selected
-  	if ('0' !== $option_selected){
-  		update_option($option_local_name, $option_selected);
-  	}
-  }
-
-  restore_current_blog();
-}
-
+add_action( 'network_admin_edit_smd_update_network_options', 'smd_redirect_to_set_page', 100);
 
 add_action( 'network_admin_menu', 'smd_add_network_settings');
 add_action( 'network_admin_edit_smd_update_network_locations', 'smd_update_network_locations');
 add_action( 'network_admin_edit_smd_update_network_site_type', 'smd_update_network_site_type');
-add_action( 'network_admin_edit_smd_update_network_options', 'smd_update_network_options');

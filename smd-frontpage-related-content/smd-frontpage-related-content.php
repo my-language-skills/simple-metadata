@@ -92,7 +92,7 @@ function smd_add_option_page () {
 }
 
 /**
- * Adds the metabox 'Options' in the network page
+ * Adds the metabox 'Options' in the settings page
  *
  * @since   1.4
  */
@@ -102,29 +102,6 @@ function smd_add_metabox_for_options(){
 	add_settings_field ('smd_options_hide_dates', __('Hide dates', 'simple-metadata'), 'smd_render_options_hide_dates', 'smd_set_page_section_options', 'smd_set_page_section_options');
 	register_setting ('smd_set_page_section_options', 'smd_hide_metadata_dates');
 }
-
-
-/**
- * Display the option 'Hide dates' in the metabox 'Options'
- *
- * @since   1.4
- */
-function smd_render_options_hide_dates(){
-  ?>
-  <label for="smd_hide_dates">
-    <input type="checkbox" id="smd_hide_metadata_dates" name="smd_hide_metadata_dates" value="true"
-      <?php checked('true', get_option('smd_hide_metadata_dates')) ?>
-			<?php echo is_option_disabled('smd_net_hide_metadata_dates') ?>
-    >
-  </label><br>
-  <span class="description">
-      <?php
-      esc_html_e('If selected the metadata tags "dateCreated" and "datePublished" will be hide');
-      ?>
-  </span>
-  <?php
-}
-
 
 /**
  * Render the options page for plugin
@@ -288,7 +265,7 @@ function smd_render_metabox(){
  */
 function smd_render_switch_set() {
 
-	$disabled = is_option_disabled('smd_net_sites_type');
+	$disabled = smd_is_option_disabled('smd_net_sites_type');
 	?>
 	<label for="smd_website_blog_type_2"><?php esc_html_e('WebSite', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" checked="checked" <?php checked('WebSite', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
 	<label for="smd_website_blog_type_1"><?php esc_html_e('Blog', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
@@ -311,8 +288,30 @@ function smd_render_switch_set() {
 					for front-page metadata', 'simple-metadata') . '</span>';
 
 	}
-
 }
+
+
+/**
+ * Display the option 'Hide dates' in the metabox 'Options'
+ *
+ * @since   1.4
+ */
+function smd_render_options_hide_dates(){
+  ?>
+  <label for="smd_hide_dates">
+    <input type="checkbox" id="smd_hide_metadata_dates" name="smd_hide_metadata_dates" value="true"
+      <?php checked('true', get_option('smd_hide_metadata_dates')) ?>
+			<?php echo smd_is_option_disabled('smd_net_hide_metadata_dates') ?>
+    >
+  </label><br>
+  <span class="description">
+      <?php
+      esc_html_e('If selected the metadata tags "dateCreated" and "datePublished" will be hide');
+      ?>
+  </span>
+  <?php
+}
+
 
 /**
  * Function for printing metatag in header of front page
@@ -370,7 +369,7 @@ function smd_print_wsb_field () {
  * @param string $option_net_name  the name of the network option to check if it exist
  * @return string $disabled could be '' or 'disabled';
  */
-function is_option_disabled($option_net_name){
+function smd_is_option_disabled($option_net_name){
 	$disabled = '';
 
 	//if network option is set to something except 'Local value', we disable selection

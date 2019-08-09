@@ -250,3 +250,36 @@ function smd_get_general_tags($post_meta_type) {
 
  	return in_array($post_meta_type, $creative_works_arr);
  }
+
+ /**
+  * Overwrite with it the local option in all sites
+  *
+  * @since 1.4
+  *
+  * @param string $option_local_name The name of site option that you want to overwrite
+  * @param string $option_value The value of the option to overwrite
+  */
+ function smd_net_overwrite_in_all_sites( $option_local_name, $option_value ){
+
+   //Wordpress Database variable for database operations
+   global $wpdb;
+
+ 	//Grabbing all the site IDs
+   $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+
+   //Going through the sites
+   foreach ($siteids as $site_id) {
+   	if (1 == $site_id){
+   		continue;
+   	}
+
+   	switch_to_blog($site_id);
+
+   	//updating local options obly if some option is selected
+   	if ('0' !== $option_value){
+   		update_option($option_local_name, $option_value);
+   	}
+   }
+
+   restore_current_blog();
+ }
