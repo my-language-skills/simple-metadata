@@ -220,7 +220,7 @@ function smd_print_post_meta_fields () {
 		echo '"keywords": "'.$key_words_string.'",' . "\n\t";
 	echo '"mainEntityOfPage": "'.get_permalink().'",' . "\n\t";
 	if(	!empty($post_excerpt))
-		echo '"about":	"'.$post_excerpt.'",'	.	"\n\t";
+		echo '"description":	"'.$post_excerpt.'",'	.	"\n\t";
 	echo smd_get_general_tags($post_meta_type);
 	//	printing tags from add-on plugins, if they are active
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')[$post_type])){
