@@ -60,6 +60,7 @@ function smd_get_general_tags($post_meta_type) {
 	//logo
 	$custom_logo_id = get_theme_mod( 'custom_logo' );
 	$logo = isset(wp_get_attachment_image_src( $custom_logo_id , 'full' )[0]) ? wp_get_attachment_image_src( $custom_logo_id , 'full' )[0] : (get_avatar_url($author_id) ?: '');
+  $logo_measures = wp_get_attachment_image_src( $custom_logo_id , 'full'); //retrieve and array (url, width, height)
 	//publisher (name), by default name of the website
 	$publisher = get_bloginfo();
 	//type of publisher
@@ -85,6 +86,7 @@ function smd_get_general_tags($post_meta_type) {
 
 			if ($all_vals['company_logo'] && 'company' == $all_vals['company_or_person']){
 				$logo = $all_vals['company_logo'];
+        $logo_measures = wp_get_attachment_image_src( $all_vals['company_logo_id'], 'full'); //retrieve and array (url, width, height)
 			}
 		}
 	}
@@ -100,11 +102,14 @@ function smd_get_general_tags($post_meta_type) {
 
 			if ($all_vals['knowledge_logo_url'] && 'organization' == $all_vals['knowledge_type']){
 				$logo = $all_vals['knowledge_logo_url'];
+        $logo_measures = wp_get_attachment_image_src( $all_vals['knowledge_logo_id'], 'full'); //retrieve and array (url, width, height)
 			}
 		}
 	}
 	/*--- end check plugin SEO ---*/
   /*----- end Data, related to 'CreativeWork' properties */
+
+
 
 	$image = $thumbnail_url ?: $logo;
   $html = '';
@@ -181,7 +186,9 @@ function smd_get_general_tags($post_meta_type) {
       "name": "'.$publisher.'",
       "logo": {
         "@type":  "ImageObject",
-        "url": "'.$logo.'"
+        "url": "'.$logo.'",
+        "width": "'.$logo_measures[1].'",
+        "height": "'.$logo_measures[2].'"
       }
     },
     "author": {
