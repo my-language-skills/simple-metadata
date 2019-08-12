@@ -122,8 +122,12 @@ function smd_get_general_tags($post_meta_type) {
     "datePublished":  "'.$publication_date.'",' . "\n\t";
   }
   $html .= '"inLanguage":     "'.$language.'",
-    "headline":       "'.$title.'",
-    "thumbnailUrl":   "'.$image.'",';
+    "headline":       "'.$title.'",';
+
+  if(!empty($thumbnail_url)){
+    $html .= '
+    "thumbnailUrl":   "'.$thumbnail_url.'",';
+  }
 
   if('G' == get_option('avatar_rating')){
     // The content is family friendly
