@@ -232,8 +232,10 @@ function smd_print_post_meta_fields () {
 	if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && isset(get_option('smdan_locations')[$post_type])){
 		smdan_print_tags($post_meta_type);
 	}
+	if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
+		smdre_print_tags();
+	}
 	?>
-
 }
 </script>
 <!--END OF SM POSTS METADATA-->

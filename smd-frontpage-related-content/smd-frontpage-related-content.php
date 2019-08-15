@@ -351,6 +351,9 @@ function smd_print_wsb_field () {
 	if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && (isset(get_option('smdan_locations')['site-meta']) || isset(get_option('smdan_locations')['metadata']))){
 		smdan_print_tags($type);
 	}
+	if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
+		smdre_print_tags();
+	}
 	?>
 }
 </script>

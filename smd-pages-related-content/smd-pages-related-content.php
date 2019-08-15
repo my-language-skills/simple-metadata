@@ -189,6 +189,10 @@ function smd_print_page_meta_fields () {
 	if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && isset(get_option('smdan_locations')['page'])){
 		smdan_print_tags(get_option('smd_website_blog_type'));
 	}
+	if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
+		smdre_print_tags();
+	}
+	
 	?>
 }
 </script>
