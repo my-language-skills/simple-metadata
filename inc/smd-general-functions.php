@@ -149,16 +149,23 @@ function smd_get_general_tags($post_meta_type) {
 
   if( has_post_thumbnail() ){
     // The feature image is set
+
+    if(get_post_meta($post_id, 'smd_googleImage_id', true)){
+      $img_id = get_post_meta($post_id, 'smd_googleImage_id', true);
+    }
+    else{
+      $img_id = get_post_thumbnail_id();
+    }
+
     //Get all attributes
-    $img_thumbnail_title = get_post(get_post_thumbnail_id())->post_title;
-    $img_caption = get_post(get_post_thumbnail_id())->post_excerpt;
-    $img_description = get_post(get_post_thumbnail_id())->post_content;
-    $img_url = get_the_post_thumbnail_url();
-    $img_author = get_the_author_meta('display_name', get_post(get_post_thumbnail_id())->post_author);
-    $img_date = get_post_time('F j, Y g:i a', get_post_thumbnail_id());
-    $img_type = get_post_mime_type(get_post_thumbnail_id());
-    $img_measures = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full'); //retrieve and array (url, width, height)
-    $img_size = size_format(filesize(get_attached_file(get_post_thumbnail_id())));
+    $img_thumbnail_title = get_post($img_id)->post_title;
+    $img_caption = get_post($img_id)->post_excerpt;
+    $img_description = get_post($img_id)->post_content;
+    $img_author = get_the_author_meta('display_name', get_post($img_id)->post_author);
+    $img_date = get_post_time('F j, Y g:i a', true, $img_id);
+    $img_url_width_height = wp_get_attachment_image_src( $img_id, 'full'); //retrieve and array (url, width, height)
+    $img_type = get_post_mime_type($img_id);
+    $img_size = size_format(filesize(get_attached_file($img_id)));
 
     $html .= '
     "image": {
@@ -166,11 +173,11 @@ function smd_get_general_tags($post_meta_type) {
       "name": "'.$img_thumbnail_title.'",
       "caption": "'.$img_caption.'",
       "description": "'.$img_description.'",
-      "url": "'.$img_url.'",
+      "url": "'.$img_url_width_height[0].'",
       "uploadDate": "'.$img_date.'",
       "encodingFormat": "'.$img_type.'",
-      "width": "'.$img_measures[1].'",
-      "height": "'.$img_measures[2].'",
+      "width": "'.$img_url_width_height[1].'",
+      "height": "'.$img_url_width_height[2].'",
       "contentSize": "'.$img_size.'",
       "author": {
         "@type": "Person",
