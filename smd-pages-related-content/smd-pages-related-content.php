@@ -32,6 +32,7 @@ function smd_add_page_type_meta () {
 	}
 }
 
+
 function smd_render_page_type_meta ($object, $box) {
 	//creating nonce
 	wp_nonce_field( basename( __FILE__ ), 'smd_render_page_type_meta' );
@@ -122,6 +123,7 @@ function smd_save_page_type ($post_id, $post) {
 	}
 }
 
+
 /**
  * Function responsible for output of metadata automatically obtained from page information
  */
@@ -192,7 +194,7 @@ function smd_print_page_meta_fields () {
 	if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
 		smdre_print_tags();
 	}
-	
+
 	?>
 }
 </script>

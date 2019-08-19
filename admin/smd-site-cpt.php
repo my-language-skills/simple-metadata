@@ -180,12 +180,11 @@ function smd_change_custom_post_mess($messages){
 */
 
 function smd_enqueue_script() {
-
-	wp_enqueue_script( 'smd_admin_script', plugin_dir_url( __FILE__ ) . 'assets/js/simple-metadata-admin.js', array( 'jquery' ));
+	wp_enqueue_script( 'smd_admin_script', plugins_url( 'simple-metadata') . '/inc/assets/js/simple-metadata-admin.js', array( 'jquery' ));
 }
+add_action( 'admin_enqueue_scripts', 'smd_enqueue_script');
 
 
 add_action('init', 'smd_init_cpt');
 add_action('admin_menu', 'smd_reorganize_dash', 1, 0);
-add_action( 'admin_enqueue_scripts', 'smd_enqueue_script');
 add_action( 'post_updated_messages', 'smd_change_custom_post_mess');
