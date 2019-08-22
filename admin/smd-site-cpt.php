@@ -51,7 +51,7 @@ function smd_register_cpt(){
 		$args = array(
 			'labels' => $labels,
 			'public' => true,
-			'publicly_queryable' => true,
+			'publicly_queryable' => false,
 			'show_ui' => true,
 			'show_in_menu' => false,
 			'menu_position' => 5,
@@ -102,6 +102,8 @@ function smd_reorganize_dash () {
 		add_submenu_page('smd_set_page',__('Site-Meta', 'simple-metadata'), __('Site-Meta', 'simple-metadata'), 'manage_options', $site_meta_url);
 	}
 }
+
+
 
 /**
 * Function for getting site-meta post WP_Post format
