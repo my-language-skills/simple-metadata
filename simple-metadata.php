@@ -73,7 +73,6 @@ function smd_disable_pressbook_metadata() {
 		remove_action('wp_head', '\Pressbooks\Metadata\add_citation_metadata');
 	}
 }
-/**
- * Fires after WordPress has finished loading but before any headers are sent.
- */
+
+// Fires after WordPress has finished loading but before any headers are sent.
 add_action( 'init', 'smd_disable_pressbook_metadata' );

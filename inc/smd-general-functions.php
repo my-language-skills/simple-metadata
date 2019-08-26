@@ -13,6 +13,11 @@
  * @since x.x.x (when the file was introduced)
  */
 
+ use Pressbooks\Book;
+ use Pressbooks\Metadata;
+ use function Pressbooks\Metadata\get_section_information;
+ use function Pressbooks\Metadata\section_information_to_schema;
+
 /**
 * Function for getting properties' metatags, collected from WP Core data
 *
@@ -201,11 +206,16 @@ function smd_get_general_tags($post_meta_type) {
         "width": "'.$logo_measures[1].'",
         "height": "'.$logo_measures[2].'"
       }
-    },
+    }';
+
+  // if the pressbook isn't active we use our author metatag
+  if(!is_plugin_active('pressbooks/pressbooks.php') || 'page' == $post_meta_type){
+    $html .= ',
     "author": {
       "@type":  "Person",
       "name":  "'.$author.'"
     }';
+  }
 
 	return $html;
 }
@@ -247,7 +257,6 @@ function smd_get_general_tags($post_meta_type) {
  */
  function smd_is_post_CreativeWork($post_id){
 
- 	// Retrieve the post_meta_type choosen in the Post type metaboxe
  	if('page' == get_post_type($post_id) && !is_front_page()){
  		$post_meta_type = get_post_meta($post_id, 'smd_page_type', true) ?: 'no_type';
  		$creative_works_arr = ['WebPage' , 'AboutPage'  , 'CheckoutPage'  ,
@@ -300,4 +309,37 @@ function smd_get_general_tags($post_meta_type) {
    }
 
    restore_current_blog();
+ }
+
+ /**
+  * Get from pressbook the metadata
+  *
+  * @since 1.4
+  * @return string the html to print
+  */
+ function smd_get_pressbooks_metadata(){
+
+  // Code from pressbook function add_json_ld_metadata
+  $context = is_singular( [ 'front-matter', 'part', 'chapter', 'back-matter' ] ) ? 'section' : 'book';
+  if ( $context === 'section' ) {
+  	global $post;
+  	$section_information = get_section_information( $post->ID );
+  	$book_information = Book::getBookInformation();
+  	$metadata = section_information_to_schema( $section_information, $book_information );
+  } else {
+  	$metadataObj = new Metadata();
+    $metadata = $metadataObj->jsonSerialize(); // get the array serializable
+    //Delete the tag that we already use
+    unset($metadata['name']);
+  }
+
+  //Delete tags that we already use
+  unset($metadata['@context']);
+  unset($metadata['@type']);
+
+  $html = wp_json_encode($metadata, JSON_PRETTY_PRINT);
+
+  $html[0] = ','; // Deleting the starting '{'
+  substr($html, 0, -1); // Deleting the ending '}'
+  return $html;
  }

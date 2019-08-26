@@ -20,8 +20,9 @@
  */
 function smd_create_googleImage_box ($post_type) {
 	if (1 != get_current_blog_id() || !is_multisite()){
-		if(!is_front_page() && post_type_supports( $post_type, 'thumbnail' )){
-			//is not front page and the current post support "feature image"
+		if(!is_front_page()){
+			//It's not front page and the current post support "feature image"
+
 			add_meta_box( 'smd_googleImage_box', __( 'Google Image', 'simple-metadata' ), 'smd_render_googleImage_box', $post_type, 'side', 'low');
 		}
 	}

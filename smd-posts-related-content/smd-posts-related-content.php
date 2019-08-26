@@ -235,6 +235,9 @@ function smd_print_post_meta_fields () {
 	if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
 		smdre_print_tags();
 	}
+	if(is_plugin_active('pressbooks/pressbooks.php')){
+		echo smd_get_pressbooks_metadata();
+	}
 	?>
 }
 </script>
