@@ -33,7 +33,6 @@ function smd_add_post_type_meta () {
 		'side', //Context
 		'high' //priority
 		);
-
 	}
 
 }
@@ -209,40 +208,37 @@ function smd_print_post_meta_fields () {
 
 		$key_words_string = implode(', ', $key_words_arr);
 
-		?>
-<?="\n"?><!--SM POSTS METADATA-->
-<script type="application/ld+json">
-{
-	"@context": "http://schema.org/",
-	"@type": "<?=$post_meta_type?>",
-	<?php
-	if(!empty($key_words_string))
-		echo '"keywords": "'.$key_words_string.'",' . "\n\t";
-	echo '"mainEntityOfPage": "'.get_permalink().'",' . "\n\t";
-	if(	!empty($post_excerpt))
-		echo '"description":	"'.$post_excerpt.'",'	.	"\n\t";
-	echo smd_get_general_tags($post_meta_type);
-	//	printing tags from add-on plugins, if they are active
-	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')[$post_type])){
-		smde_print_tags();
-	}
-	if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')[$post_type])){
-		smdlc_print_tags($post_meta_type);
-	}
-	if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && isset(get_option('smdan_locations')[$post_type])){
-		smdan_print_tags($post_meta_type);
-	}
-	if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
-		smdre_print_tags();
-	}
-	if(is_plugin_active('pressbooks/pressbooks.php')){
-		echo smd_get_pressbooks_metadata();
-	}
-	?>
-}
-</script>
-<!--END OF SM POSTS METADATA-->
-		<?php
+		$metadata = [
+			'@context'		 			=>	'http://schema.org/',
+			'@type'							=> 	$post_meta_type,
+			'mainEntityOfPage' 	=>  get_permalink()
+		];
+
+		if(!empty($key_words_string))
+			$metadata['keywords'] = $key_words_string;
+
+		if(	!empty($post_excerpt))
+			$metadata['description']	= $post_excerpt;
+
+		$metadata = array_merge($metadata, smd_get_general_tags($post_meta_type));
+
+		if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') && isset(get_option('smde_locations')[$post_type])){
+			$metadata = array_merge($metadata, smde_print_tags());
+		}
+		if (is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') && isset(get_option('smdlc_locations')[$post_type])){
+			$metadata = array_merge($metadata, smdlc_print_tags($post_meta_type));
+		}
+		if (is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') && isset(get_option('smdan_locations')[$post_type])){
+			$metadata = array_merge($metadata, smdan_print_tags($post_meta_type));
+		}
+		if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
+			$metadata = array_merge($metadata, 	smdre_print_tags());
+		}
+		if(is_plugin_active('pressbooks/pressbooks.php')){
+			$metadata = array_merge($metadata, 	smd_get_pressbooks_metadata());
+		}
+
+		printf( "<script type='application/ld+json'>\n%s\n</script>", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
 	}
 }
 
