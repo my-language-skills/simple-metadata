@@ -153,16 +153,12 @@ function smd_print_page_meta_fields () {
 			}
 		}
 
-		//lastReviewed
-		$last_reviewed = get_the_modified_date();
-
 		//reviewedBy
 		$last_modifier = get_the_modified_author();
 
 		$metadata = [
 			'@context' => 'http://schema.org/',
 			'@type'	=> $page_type,
-			'lastReviewed'=> $last_reviewed,
 			'reviewedBy'=> $last_modifier
 		];
 
