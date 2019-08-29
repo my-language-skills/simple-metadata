@@ -159,7 +159,7 @@ function smd_print_page_meta_fields () {
 		$metadata = [
 			'@context' => 'http://schema.org/',
 			'@type'	=> $page_type,
-			'reviewedBy'=> $last_modifier
+			'contributor'=> $last_modifier
 		];
 
 		$metadata = array_merge($metadata, smd_get_general_tags($page_type));
