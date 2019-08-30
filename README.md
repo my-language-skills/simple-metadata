@@ -74,11 +74,29 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 ### Changelog
 
+### 1.4
+* **ADDITIONS**
+	 * Metabox 'Options'
+	 * Metabox 'Google image'
+	 * Pressbook Integration
+	 * Print metadata from smd-relation
+
+* **ENHANCEMENTS***
+	 * Moved network options to sitemeta table
+	 * Microtags to json-ld (using wp_json_encode #27)
+
+* **BUGFIXES***
+	 * Disable ui site-meta
+	 * Default type of post: Article
+	 * Disable yoast for site-meta
+
 ### 1.3
 * **ADDITIONS**
 	 * Internationalization (#20)
+
 * **REMOVED**
    * Auto update from github
+
 * **ENHANCEMENTS***
 	 * Modification admin panel, front page type of site older
 
@@ -87,7 +105,7 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 	 * no-type post were not set properly
 
 * **List of Files revised**
-	 * simple-metadata.php
+	 * smd-general-functions.php
 	 * smd-frontpage-related-content.php
 	 * smd-pages-related-content.php
 	 * smd-posts-related-content.php

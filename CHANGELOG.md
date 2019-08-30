@@ -9,6 +9,96 @@ Types of changes
 
 * **List of Files revised**
 
+
+# 1.4
+
+## Plugin
+  * **Changed** network options in sitemeta table
+
+## Administration
+  * **Added** Options metabox
+    * **Added** Hide dates
+
+## Site related content
+  * **Added** Simple Mtedata Relation integration
+  * **Changed** microtags to json-ld
+  * **Fixed** Pressbooks integration
+  * **Fixed** yoast Seo for site-meta post type
+  * **Fixed** ui for site-meta
+
+  * Properties
+    * **Removed** lastReviewed
+
+## Pages related content
+  * **Added** Google image metabox
+  * **Added** Simple Mtedata Relation integration
+  * **Changed** microtags to json-ld
+  * **Fixed** Pressbooks integration
+
+  * Properties
+    * **Added** width, height for image
+    * **Changed** reviewedBy to contributor
+    * **Changed** about to description
+
+## Posts related content
+  * **Added** Google image metabox
+  * **Added** Simple Mtedata Relation integration
+  * **Changed** microtags to json-ld
+  * **Fixed** Pressbooks integration
+  * **Fixed** default post type: Article
+
+  * Properties
+    * **Added** width and height for image
+    * **Removed** editor
+    * **Changed** categories in keywords
+
+
+# 1.3
+
+## Plugin
+	* **Added** Internationalization (#20)
+  * **Removed** Auto update from github
+
+## Administration
+  * **Changed** admin panel
+
+## Front page related content
+  * **Changed** front page type of site older
+
+## Posts related content
+	* **Fixed** Bug button in post metaboxes
+	* **Fixed** no-type post were not set properly
+
+* **List of Files revised**
+	 * smd-general-functions.php
+	 * smd-frontpage-related-content.php
+	 * smd-pages-related-content.php
+	 * smd-posts-related-content.php
+	 * smd-frontpage-related-content.php
+	 * smd-network-admin.php
+
+
+# 1.2.1
+
+## Administration
+		* Make in corect order the admin panel. Change name site-meta in home page
+
+* **List of Files revised**
+   * smd-general-functions.php
+
+# 1.2
+
+## Plugin
+  * **Added** new plugins : simple-metadata-annotation
+  * **Added** Add new functionality to auto upload with plugin-uptdate-checker
+
+* **List of Files revised**
+    * simple-metadata.php
+    * smd-frontpage-related-content.php
+    * smd-pages-related-content.php
+    * smd-posts-related-content.php
+
+
 # 1.1
 
 ## Administration
@@ -43,6 +133,7 @@ Types of changes
   * **Added** integration with add-ons properties
   * Creative Work type
     * **Added** inLanguage property
+
 
 # 1.0
 

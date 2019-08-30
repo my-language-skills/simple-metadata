@@ -22,6 +22,7 @@
 function smd_print_wsb_field () {
 
 	if (is_front_page()){
+
 		//In case of pressbooks installation, always applied Book -> Chapter
 		if (!is_plugin_active('pressbooks/pressbooks.php')){
 			$type = get_option('smd_website_blog_type');
@@ -61,7 +62,7 @@ function smd_print_wsb_field () {
 			}
 
 			printf( "<script type='application/ld+json'>\n%s\n</script>", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
-		
+
 		}
 	}
 }

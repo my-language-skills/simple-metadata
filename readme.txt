@@ -171,10 +171,36 @@ https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 == Changelog ==
 
 = 1.3 =
-* ADDITIONS: Internationalization
-* REMOVED: Auto update from github
-* ENHANCEMENTS: Modification admin panel, front page type of site older
-* BUGFIXES: Bug button in post metaboxes; no-type post were not set properly
+
+* ADDITIONS:
+	Internationalization (#20)
+	Metabox 'Options'
+	Metabox 'Google image'
+	Metatags added: mainEntityOfPage, isFamilyFriend, descriptions
+	Pressbook Integration
+
+* REMOVED:
+   Auto update from github
+
+* ENHANCEMENTS
+	Modification admin panel, front page type of site older
+	Moved network options to site-meta
+  Microtags to json-ld (using wp_json_encode #27)
+	Default type of post: Article
+	For Page, merged categories into keywords
+
+* BUGFIXES
+	Bug button in post metaboxes
+	no-type post were not set properly
+	Disable ui site-meta
+
+* List of Files revised
+	smd-general-functions.php
+	smd-frontpage-related-content.php
+	smd-pages-related-content.php
+	smd-posts-related-content.php
+	smd-frontpage-related-content.php
+	smd-network-admin.php
 
 = 1.2.1 =
 * ENHANCEMENTS: Make in corect order the admin panel. Change name site-meta in home page
