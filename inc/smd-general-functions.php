@@ -150,16 +150,16 @@ function smd_get_general_tags($post_meta_type) {
     $metadata['wordCount'] = $word_count;
  }
 
-  if( has_post_thumbnail() ){
-    // The feature image is set
 
-    if(get_post_meta($post_id, 'smd_googleImage_id', true)){
-      $img_id = get_post_meta($post_id, 'smd_googleImage_id', true);
-    }
-    else{
-      $img_id = get_post_thumbnail_id();
-    }
+  if( get_post_meta($post_id, 'smd_googleImage_id', true) ){
+    $img_id = get_post_meta($post_id, 'smd_googleImage_id', true);
+  }
+  else if( has_post_thumbnail() ){
+    // feature image id
+    $img_id = get_post_thumbnail_id();
+  }
 
+  if(isset($img_id) && !empty($img_id)){
     //Get all attributes
     $img_thumbnail_title = get_post($img_id)->post_title;
     $img_caption = get_post($img_id)->post_excerpt;
