@@ -341,3 +341,22 @@ function smd_get_general_tags($post_meta_type) {
 
   return $metadata;
  }
+
+ /**
+  * Delete empty values from an array and multidimensional array 
+  *
+  * @since 1.4
+  * @return string the html to print
+  */
+ function smd_array_filter_recursive($input)
+ {
+     foreach ($input as &$value)
+     {
+         if (is_array($value))
+         {
+             $value = array_filter_recursive($value);
+         }
+     }
+
+     return array_filter($input);
+ }

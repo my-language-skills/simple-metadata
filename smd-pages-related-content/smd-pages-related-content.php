@@ -176,6 +176,7 @@ function smd_print_page_meta_fields () {
 			$metadata = array_merge($metadata, 	smdre_print_tags());
 		}
 
+		$metadata = smd_array_filter_recursive($metadata);
 		printf( "<script type='application/ld+json'>\n%s\n</script>", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
 	}
 
