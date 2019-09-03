@@ -364,6 +364,8 @@ function smd_redirect_to_set_page(){
  */
 add_action( 'network_admin_edit_smd_update_network_options', 'smd_redirect_to_set_page', 100);
 
+
+
 add_action( 'network_admin_menu', 'smd_add_network_settings');
 add_action( 'network_admin_edit_smd_update_network_locations', 'smd_update_network_locations');
 add_action( 'network_admin_edit_smd_update_network_site_type', 'smd_update_network_site_type');

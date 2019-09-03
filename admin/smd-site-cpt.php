@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Registring 'Site-Meta' post type if not registered and not pressbooks
+ * Registring 'Site-Meta' post type
  *
- * Description. (use period)
+ * It's created only if pressbook is not activated and it doesn't exist already
  *
  * @link URL
  *
  * @package simple-metadata
- * @subpackage XXXXXXX/XXXXXXX
- * @since x.x.x (when the file was introduced)
+ * @subpackage simple-metadata/smd-site-cpt
+ * @since 1.0
  */
 
  /**
- * Function to register site-meta type if it doesn't exist ot not Pressbooks installation , wrapper for 'smd_register_cpt' function
+ *  Wrapper for 'smd_register_cpt' function
  *
  * @since
  *
@@ -24,11 +24,12 @@ function smd_init_cpt(){
 		smd_register_cpt();
 	}
 }
+add_action('init', 'smd_init_cpt');
 
 /**
 * Defining 'site-meta' post type and registering it
 *
-* @since
+* @since 1.0
 *
 */
 
@@ -79,9 +80,10 @@ function smd_register_cpt(){
 }
 
 /**
-* Hiding site-meta post type from default post editing/review pages of WP and creating custom page under pluggin settings
+* Hiding site-meta post type from default post editing/review pages of WP and
+* creating custom page under plugin settings
 *
-* @since
+* @since 1.0
 *
 */
 
@@ -102,13 +104,14 @@ function smd_reorganize_dash () {
 		add_submenu_page('smd_set_page',__('Site-Meta', 'simple-metadata'), __('Site-Meta', 'simple-metadata'), 'manage_options', $site_meta_url);
 	}
 }
+add_action('admin_menu', 'smd_reorganize_dash', 1, 0);
 
 
 
 /**
 * Function for getting site-meta post WP_Post format
 *
-* @since
+* @since 1.0
 *
 */
 
@@ -133,7 +136,7 @@ function smd_get_site_meta_post() {
 /**
 * A function that manipulates the inputs for saving the new cpt data
 *
-* @since 0.1
+* @since 1.0
 *
 */
 
@@ -152,7 +155,7 @@ function smd_metadata_save_box( $post ) {
 /**
 * Changing psot manipulations messages for site-meta post
 *
-* @since
+* @since 1.0
 *
 */
 
@@ -173,11 +176,12 @@ function smd_change_custom_post_mess($messages){
 		);
 		return $messages;
 }
+add_action( 'post_updated_messages', 'smd_change_custom_post_mess');
 
 /**
 * Enqueue js for admin area
 *
-* @since
+* @since 1.0
 *
 */
 
@@ -185,8 +189,3 @@ function smd_enqueue_script() {
 	wp_enqueue_script( 'smd_admin_script', plugins_url( 'simple-metadata') . '/inc/assets/js/simple-metadata-admin.js', array( 'jquery' ));
 }
 add_action( 'admin_enqueue_scripts', 'smd_enqueue_script');
-
-
-add_action('init', 'smd_init_cpt');
-add_action('admin_menu', 'smd_reorganize_dash', 1, 0);
-add_action( 'post_updated_messages', 'smd_change_custom_post_mess');

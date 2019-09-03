@@ -1,6 +1,6 @@
 <?php
 /**
- * Creates the metaboxe 'GoogleImage' for post, page and every cpt that supports post thumbnail
+ * Creates the metaboxe 'GoogleImage' for post, page and every cpt
  *
  * Description. (use period)
  *
@@ -21,7 +21,7 @@
 function smd_create_googleImage_box ($post_type) {
 	if (1 != get_current_blog_id() || !is_multisite()){
 		if(!is_front_page() && isset(get_option('smd_locations')[$post_type])){
-			//It's not front page and the current post support "feature image"
+			// It's not front page and is activated general metadata for this type
 
 			add_meta_box( 'smd_googleImage_box', __( 'Google Image', 'simple-metadata' ), 'smd_render_googleImage_box', $post_type, 'side', 'low');
 		}
@@ -31,7 +31,7 @@ add_action( 'add_meta_boxes', 'smd_create_googleImage_box' );
 
 
 /**
-* Render the content in the box
+* Render the the content of Google Image metabox
 *
 * @since 1.4
 *

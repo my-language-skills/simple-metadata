@@ -3,9 +3,6 @@
 /**
  * Front page metadata
  *
- * Description. (use period)
- *
- * @link URL
  *
  * @package simple-metadata
  * @subpackage simple-metadata/smd-fronpage-related-content
@@ -16,7 +13,7 @@
 /**
  * Function for printing metatag in header of front page
  *
- * @since ...
+ * @since 1.0
  */
 function smd_print_wsb_field () {
 

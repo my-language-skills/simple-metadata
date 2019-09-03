@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Summary (no period for file headers)
+ * General functions
  *
  * file containing functions, used over all the post types and all the addons
  * identical functions (except class methods) should be added to this file
  *
- * @link URL
  *
  * @package simple-metadata
- * @subpackage XXXXXXX/XXXXXXX
- * @since x.x.x (when the file was introduced)
+ * @subpackage simple-metadata/general-functions
+ * @since 1.0 (when the file was introduced)
  */
 
+ // Used for Pressbook integration
  use Pressbooks\Book;
  use Pressbooks\Metadata;
  use function Pressbooks\Metadata\get_section_information;
@@ -21,7 +21,7 @@
 /**
 * Function for getting properties' metatags, collected from WP Core data
 *
-* @since
+* @since 1.0
 *
 */
 function smd_get_general_tags($post_meta_type) {
@@ -150,7 +150,7 @@ function smd_get_general_tags($post_meta_type) {
     $metadata['wordCount'] = $word_count;
  }
 
-
+  // --- Image tag ---
   if( get_post_meta($post_id, 'smd_googleImage_id', true) ){
     $img_id = get_post_meta($post_id, 'smd_googleImage_id', true);
   }
@@ -193,6 +193,7 @@ function smd_get_general_tags($post_meta_type) {
     $metadata['image'] = $logo;
   }
 
+  // --- Pubblisher tag ---
   $publisher_metadata = [
     'publisher' => [
       '@type'=>  $type,
@@ -252,7 +253,7 @@ function smd_get_general_tags($post_meta_type) {
  *
  * Used in smd_annotation and smd_lifecycle to make them work only if the post is creative work
  *
- * @since 1.3
+ * @since 1.4
  * @param int $post_id the Id of the post to check
  * @return boolean
  */

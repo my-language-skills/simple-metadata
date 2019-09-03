@@ -1,9 +1,8 @@
 <?php
 
 /**
- * Creates the metaboxes for settings page
+ * Set page content related
  *
- * Description. (use period)
  *
  * @link URL
  *
@@ -14,11 +13,15 @@
 
 
 /**
- * Creats option to choose between blog and web-site
+ * Add option page 'Metadata'
  *
- * @since ...
+ * Creates 'Metadata' option page and for it:
+ * Site settings page, Settings page and cpt site-meta
+ *
+ * @since 1.0
  *
  */
+add_action ('admin_menu', 'smd_add_option_page');
 function smd_add_option_page () {
 
 	if (1 != get_current_blog_id() || !is_multisite()){
@@ -32,7 +35,7 @@ function smd_add_option_page () {
 
 		add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
 		add_meta_box('smd-settings', __('Front Page', 'simple-metadata'), 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
-		smd_add_metabox_for_options();
+		smd_add_metabox_for_options(); // metabox 'Options'
 
 		$post_types = smd_get_all_post_types();
 		$locations = get_option('smd_locations');
@@ -95,17 +98,6 @@ function smd_add_option_page () {
 	}
 }
 
-/**
- * Adds the metabox 'Options' in the settings page
- *
- * @since   1.4
- */
-function smd_add_metabox_for_options(){
-	add_meta_box('smd-box-options',	__('Options', 'simple-metadata'), 'smd_render_metabox_options', 'smd_set_page', 'normal', 'low');
-	add_settings_section( 'smd_set_page_section_options', '', '', 'smd_set_page_section_options' );
-	add_settings_field ('smd_options_hide_dates', __('Hide dates', 'simple-metadata'), 'smd_render_options_hide_dates', 'smd_set_page_section_options', 'smd_set_page_section_options');
-	register_setting ('smd_set_page_section_options', 'smd_hide_metadata_dates');
-}
 
 /**
  * Render the options page for plugin
@@ -149,9 +141,10 @@ function smd_render_options_page() {
 		<?php
 }
 
+
 /**
  *
- * @since ...
+ * @since 1.0
  *
  */
 function smd_render_site_page () {
@@ -188,6 +181,18 @@ function smd_render_site_page () {
             //]]>
         </script>
 		<?php
+}
+
+/**
+ * Adds the metabox 'Options' in the settings page
+ *
+ * @since   1.4
+ */
+function smd_add_metabox_for_options(){
+	add_meta_box('smd-box-options',	__('Options', 'simple-metadata'), 'smd_render_metabox_options', 'smd_set_page', 'normal', 'low');
+	add_settings_section( 'smd_set_page_section_options', '', '', 'smd_set_page_section_options' );
+	add_settings_field ('smd_options_hide_dates', __('Hide dates', 'simple-metadata'), 'smd_render_options_hide_dates', 'smd_set_page_section_options', 'smd_set_page_section_options');
+	register_setting ('smd_set_page_section_options', 'smd_hide_metadata_dates');
 }
 
 /**
@@ -330,7 +335,7 @@ function smd_render_options_hide_dates(){
 
 
 /**
- * If the network option exist disable site options
+ * is option disabled
  *
  * @since 1.4
  *
@@ -352,5 +357,3 @@ function smd_is_option_disabled($option_net_name){
 
 	return $disabled;
 }
-
-add_action ('admin_menu', 'smd_add_option_page');

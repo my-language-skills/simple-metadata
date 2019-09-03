@@ -16,6 +16,8 @@ defined ("ABSPATH") or die ("No script assholes!");
 
 /**
  *	Function for creation of metabox to pick type of page for proper Schema.org schema type
+ *
+ * @since 1.0
  */
 function smd_add_page_type_meta () {
 	//we only add metabox if current user is administrator
@@ -32,7 +34,10 @@ function smd_add_page_type_meta () {
 	}
 }
 
-
+/**
+ *
+ * @since 1.0
+ */
 function smd_render_page_type_meta ($object, $box) {
 	//creating nonce
 	wp_nonce_field( basename( __FILE__ ), 'smd_render_page_type_meta' );
@@ -96,6 +101,8 @@ function smd_render_page_type_meta ($object, $box) {
 
 /**
  * Function for post saving/updating action
+ *
+ * @since 1.0
  */
 function smd_save_page_type ($post_id, $post) {
 
@@ -125,7 +132,9 @@ function smd_save_page_type ($post_id, $post) {
 
 
 /**
- * Function responsible for output of metadata automatically obtained from page information
+ * Print the metadata on the html page
+ *
+ * @since 1.0
  */
 function smd_print_page_meta_fields () {
 

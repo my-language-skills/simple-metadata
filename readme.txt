@@ -22,76 +22,6 @@ This plugin provides the ability to set different types of schema types in one c
 >
 > in a PB installation, a site is a Book and a Post is a Chapter
 
-== Front-page related content =
-
-* Types
-  * **Added:** Blog type
-  * **Added:** WebSite type
-* Properties
-  * Creative Work type
-    * **Added:** inLanguage property
-  * Thing type
-    * **Added:** name property
-    * **Added:** description property
-    * **Added:** URL property
-
-= Pages related content =
-
-* Types
-  * **Added:** WebPage type
-    * **Added:** AboutPage type
-    * **Added:** CheckoutPage type
-    * **Added:** CollectionPage type
-    * **Added:** ImageGallery type
-    * **Added:** VideoGallery type
-    * **Added:** ContactPage type
-    * **Added:** FAQPage type
-    * **Added:** ItemPage type
-    * **Added:** MedicalWebPage type
-    * **Added:** ProfilePage type
-    * **Added:** QAPage type
-    * **Added:** SearchResultsPage type
-* Properties
-  * WepPage Type
-    * **Added:** lastReviewed property
-  * Creative Work type
-    * **Added:** author property
-    * **Added:** dateCreated property
-    * **Added:** datePublished property
-    * **Added:** editor property
-    * **Added:** headline property
-    * **Added:** thumbnailUrl property
-
-= Posts and CPTs related content =
-
-* Types
-  * **Added:** Article type
-    * **Added:** AdvertiserContentArticle type
-    * **Added:** Report type
-    * **Added:** SatiricalArticle type
-    * **Added:** SocialMediaPosting type
-      * **Added:** BlogPosting type
-        * **Added:** LiveBlogPosting type
-    * **Added:** DiscussionForumPosting type
-  * **Added:** TechArticle type
-* Properties
-  * Article type
-    * **Added:** articleBody property
-    * **Added:** articleSection property
-    * **Added:** wordCount property
-  * Creative Work Type
-    * **Added:** author property
-    * **Added:** dateCreated property
-    * **Added:** dateModified property
-    * **Added:** datePublished property
-    * **Added:** editor property
-    * **Added:** headline property
-    * **Added:** keywords property
-    * **Added:** logo property
-    * **Added:** publisher property
-    * **Added:** thumbnailUrl property
-  * Thing type
-    * **Added:** image property
 
 === Works with ===
 The SEO framework
@@ -170,31 +100,41 @@ https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 
 == Changelog ==
 
-= 1.3 =
+= 1.4 =
 
-* ADDITIONS:
-	Internationalization (#20)
+ADDITIONS:
 	Metabox 'Options'
 	Metabox 'Google image'
-	Metatags added: mainEntityOfPage, isFamilyFriend, descriptions
+	Translation of Work
 	Pressbook Integration
+	Print metadata from smd-relation
 
-* REMOVED:
-   Auto update from github
+ENHANCEMENTS:
+	Moved network options to sitemeta table
+	Microtags to json-ld (using wp_json_encode #27)
 
-* ENHANCEMENTS
-	Modification admin panel, front page type of site older
-	Moved network options to site-meta
-  Microtags to json-ld (using wp_json_encode #27)
+BUGFIXES:
+	Disable ui site-meta
 	Default type of post: Article
-	For Page, merged categories into keywords
+	Disable yoast for site-meta
 
-* BUGFIXES
+
+= 1.3 =
+
+ADDITIONS:
+	Internationalization (#20)
+
+REMOVED:
+  Auto update from github
+
+ENHANCEMENTS:
+	Modification admin panel, front page type of site older
+
+BUGFIXES:
 	Bug button in post metaboxes
 	no-type post were not set properly
-	Disable ui site-meta
 
-* List of Files revised
+List of Files revised:
 	smd-general-functions.php
 	smd-frontpage-related-content.php
 	smd-pages-related-content.php

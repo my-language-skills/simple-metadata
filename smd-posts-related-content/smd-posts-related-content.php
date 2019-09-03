@@ -16,7 +16,9 @@ defined ("ABSPATH") or die ("No script assholes!");
 require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 /**
- *	Function for creation of metabox to pick type of news post for proper Schema.org schema type
+ * Function for creation of metabox to pick type of news post for proper Schema.org schema type
+ *
+ * @since 1.0
  */
 function smd_add_post_type_meta () {
 	$locations = get_option('smd_locations') ?: array('post' => 1);
@@ -36,11 +38,14 @@ function smd_add_post_type_meta () {
 	}
 
 }
+if (!is_plugin_active('pressbooks/pressbooks.php')){
+	add_action ('add_meta_boxes', 'smd_add_post_type_meta');
+}
 
 /**
 * Function for rendering post type metabox
 *
-* @since
+* @since 1.0
 *
 */
 
@@ -113,7 +118,7 @@ switch ($test) {
 /**
 * Function for post saving/updating action in post page
 *
-* @since
+* @since 1.0
 *
 */
 
@@ -144,7 +149,7 @@ function smd_save_post_type ($post_id, $post) {
 /**
 * Function for printing meta tags of Article in post pages
 *
-* @since
+* @since 1.0
 *
 */
 
@@ -243,10 +248,5 @@ function smd_print_post_meta_fields () {
 	}
 }
 
-
-
-if (!is_plugin_active('pressbooks/pressbooks.php')){
-	add_action ('add_meta_boxes', 'smd_add_post_type_meta');
-}
 add_action ('save_post', 'smd_save_post_type', 10, 2);
 add_action ('wp_head', 'smd_print_post_meta_fields', 1000);

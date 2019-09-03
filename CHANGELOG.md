@@ -29,6 +29,7 @@ Types of changes
 
   * Properties
     * **Added** translationOfWork
+    * **Added** isFamilyFriendly
     * **Removed** lastReviewed
 
 ## Pages related content
@@ -39,6 +40,7 @@ Types of changes
 
   * Properties
     * **Added** width, height for image
+    * **Added** isFamilyFriendly
     * **Changed** reviewedBy to contributor
     * **Changed** about to description
 
@@ -51,8 +53,10 @@ Types of changes
 
   * Properties
     * **Added** width and height for image
+    * **Added** isFamilyFriendly
     * **Removed** editor
-    * **Changed** categories in keywords
+    WebPage
+    * **Changed** keywords = tags + categories
 
 
 # 1.3
