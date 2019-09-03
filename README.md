@@ -78,6 +78,7 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 * **ADDITIONS**
 	 * Metabox 'Options'
 	 * Metabox 'Google image'
+	 * Translation of Work
 	 * Pressbook Integration
 	 * Print metadata from smd-relation
 

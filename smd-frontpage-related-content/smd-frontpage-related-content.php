@@ -13,13 +13,13 @@
  */
 
 
-
 /**
  * Function for printing metatag in header of front page
  *
  * @since ...
  */
 function smd_print_wsb_field () {
+
 
 	if (is_front_page()){
 
@@ -33,15 +33,18 @@ function smd_print_wsb_field () {
 		$description = get_bloginfo( 'description' );
 		$url = get_bloginfo( 'url' );
 		$language = get_bloginfo( 'language' );
+		$translation_of = get_option('smd_translation_of');
 		if ($type){
-
 			$metadata = [
 				'@context' => 'http://schema.org/',
 				'@type'	=> $type,
 				'name'=> $title,
 				'url'=> $url,
 				'inLanguage'=> $language,
-				'description'=> $description
+				'description'=> $description,
+				'translationOfWork'=> [
+					'id'	=>	$translation_of
+				]
 			];
 
 			//printing tags from add-on plugins, if they are active

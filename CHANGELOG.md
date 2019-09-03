@@ -20,13 +20,15 @@ Types of changes
     * **Added** Hide dates
 
 ## Site related content
-  * **Added** Simple Mtedata Relation integration
+  * **Added** Simple Metadata Relation integration
+  * **Added** 'Translation of work' field
   * **Changed** microtags to json-ld
   * **Fixed** Pressbooks integration
   * **Fixed** yoast Seo for site-meta post type
   * **Fixed** ui for site-meta
 
   * Properties
+    * **Added** translationOfWork
     * **Removed** lastReviewed
 
 ## Pages related content

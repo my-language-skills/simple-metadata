@@ -34,9 +34,13 @@ if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_me
 	require_once plugin_dir_path( dirname(__FILE__ ) ) . '/simple-metadata/symbionts/custom-metadata/custom_metadata.php';
 }
 
-if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') || is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') || is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php')){
+if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') ||
+		is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') ||
+		is_plugin_active('simple-metadata-annotation/simple-metadata-annotation.php') ||
+		is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
 	include_once plugin_dir_path( __FILE__ ) . "admin/smd-site-cpt.php";
 }
+
 include_once plugin_dir_path( __FILE__ ) . "inc/smd-general-functions.php";
 include_once plugin_dir_path( __FILE__ ) . "admin/smd-set-page-metaboxes.php";
 include_once plugin_dir_path( __FILE__ ) . "admin/smd-googleImage-box.php";

@@ -48,6 +48,8 @@ function smd_add_option_page () {
 		add_settings_section( 'smd_locations', '', '', 'smd_locations' );
 		//registering setting for type of site
 		register_setting ('smd_set_page_site', 'smd_website_blog_type');
+		//register_setting for options translation_of
+		register_setting ('smd_set_page_site', 'smd_translation_of');
 		//registering setting for locations
 		register_setting('smd_locations', 'smd_locations');
 
@@ -56,6 +58,7 @@ function smd_add_option_page () {
 		}
 		if (!is_plugin_active('pressbooks/pressbooks.php')){
 			add_settings_field ('smd_website_blog_type', __('Type of Site', 'simple-metadata'), 'smd_render_switch_set', 'smd_set_page_site', 'smd_set_page_site');
+			add_settings_field ('smd_translation_of', __('Translation of', 'simple-metadata'), 'smd_render_translation_of', 'smd_set_page_site', 'smd_set_page_site');
 		}
 
 		//adding location option for every public CPT
@@ -257,7 +260,19 @@ function smd_render_metabox(){
     <?php
 }
 
-
+/**
+ * Original language rendering html
+ *
+ * @since 1.4
+ *
+ */
+function smd_render_translation_of(){
+	?>
+	<input id="smd_translation_of" name="smd_translation_of"
+		type="text" placeholder="http://example.com/article" style="width:60%"
+		value="<?=get_option('smd_translation_of')?>">
+	<?php
+}
 
 /**
  * Function for rendering radio button
@@ -337,6 +352,5 @@ function smd_is_option_disabled($option_net_name){
 
 	return $disabled;
 }
-
 
 add_action ('admin_menu', 'smd_add_option_page');
