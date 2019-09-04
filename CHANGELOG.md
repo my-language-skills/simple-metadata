@@ -1,4 +1,4 @@
-# Leyend
+# Legend
 Types of changes
   * **Added** for new features.
   * **Changed** for changes in existing functionality.
@@ -27,6 +27,9 @@ Types of changes
   * **Fixed** yoast Seo for site-meta post type
   * **Fixed** ui for site-meta
 
+  * Site settings
+    * **Changed** Website Blog -> Blog Website
+    
   * Properties
     * **Added** translationOfWork
     * **Added** isFamilyFriendly
@@ -62,7 +65,7 @@ Types of changes
 # 1.3
 
 ## Plugin
-	* **Added** Internationalization (#20)
+  * **Added** Internationalization (#20)
   * **Removed** Auto update from github
 
 ## Administration
@@ -72,25 +75,25 @@ Types of changes
   * **Changed** front page type of site older
 
 ## Posts related content
-	* **Fixed** Bug button in post metaboxes
-	* **Fixed** no-type post were not set properly
+  * **Fixed** Bug button in post metaboxes
+  * **Fixed** no-type post were not set properly
 
 * **List of Files revised**
-	 * smd-general-functions.php
-	 * smd-frontpage-related-content.php
-	 * smd-pages-related-content.php
-	 * smd-posts-related-content.php
-	 * smd-frontpage-related-content.php
-	 * smd-network-admin.php
+    * smd-general-functions.php
+    * smd-frontpage-related-content.php
+    * smd-pages-related-content.php
+    * smd-posts-related-content.php
+    * smd-frontpage-related-content.php
+    * smd-network-admin.php
 
 
 # 1.2.1
 
 ## Administration
-		* Make in corect order the admin panel. Change name site-meta in home page
+	* Make in correct order the admin panel. Change name site-meta in home page
 
 * **List of Files revised**
-   * smd-general-functions.php
+  * smd-general-functions.php
 
 # 1.2
 

@@ -114,9 +114,6 @@ function smd_get_general_tags($post_meta_type) {
  /*--- end check plugin SEO ---*/
   /*----- end Data, related to 'CreativeWork' properties */
 
-
-
- $image = $thumbnail_url ?: $logo;
  $metadata = [];
 
   if(get_option('smd_hide_metadata_dates')){
