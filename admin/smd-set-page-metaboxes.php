@@ -61,7 +61,6 @@ function smd_add_option_page () {
 		}
 		if (!is_plugin_active('pressbooks/pressbooks.php')){
 			add_settings_field ('smd_website_blog_type', __('Type of Site', 'simple-metadata'), 'smd_render_switch_set', 'smd_set_page_site', 'smd_set_page_site');
-			add_settings_field ('smd_translation_of', __('Translation of', 'simple-metadata'), 'smd_render_translation_of', 'smd_set_page_site', 'smd_set_page_site');
 		}
 
 		//adding location option for every public CPT
@@ -263,20 +262,6 @@ function smd_render_metabox(){
 		   <p></p>
     </div>
     <?php
-}
-
-/**
- * Original language rendering html
- *
- * @since 1.4
- *
- */
-function smd_render_translation_of(){
-	?>
-	<input id="smd_translation_of" name="smd_translation_of"
-		type="text" placeholder="http://example.com/article" style="width:60%"
-		value="<?=get_option('smd_translation_of')?>">
-	<?php
 }
 
 /**

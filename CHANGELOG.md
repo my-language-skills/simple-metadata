@@ -9,7 +9,6 @@ Types of changes
 
 * **List of Files revised**
 
-
 # 1.4
 
 ## Plugin
@@ -21,7 +20,6 @@ Types of changes
 
 ## Site related content
   * **Added** Simple Metadata Relation integration
-  * **Added** 'Translation of work' field
   * **Changed** microtags to json-ld
   * **Fixed** Pressbooks integration
   * **Fixed** yoast Seo for site-meta post type
@@ -29,9 +27,8 @@ Types of changes
 
   * Site settings
     * **Changed** Website Blog -> Blog Website
-    
+
   * Properties
-    * **Added** translationOfWork
     * **Added** isFamilyFriendly
     * **Removed** lastReviewed
 
