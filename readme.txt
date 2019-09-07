@@ -102,22 +102,13 @@ https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 
 = 1.4 =
 
-ADDITIONS:
-	Metabox 'Options'
-	Metabox 'Google image'
-	Translation of Work
-	Pressbook Integration
-	Print metadata from smd-relation
-
-ENHANCEMENTS:
-	Moved network options to sitemeta table
-	Microtags to json-ld (using wp_json_encode #27)
-
-BUGFIXES:
-	Disable ui site-meta
-	Default type of post: Article
-	Disable yoast for site-meta
-
+* Metabox 'Options'
+* Metabox 'Google image'
+* Pressbook Integration
+* Print metadata from smd-relation
+* Moved network options to sitemeta table
+* Microtags to json-ld (using wp_json_encode #27)
+* Bufixes
 
 = 1.3 =
 
