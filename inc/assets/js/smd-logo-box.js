@@ -2,8 +2,7 @@ jQuery(document).ready(function($){
   var mediaUploader;
   $('#smd_upload_image_button').click(function(e) {
     e.preventDefault();
-
-		if (mediaUploader) {
+      if (mediaUploader) {
       mediaUploader.open();
       return;
     }
@@ -14,7 +13,8 @@ jQuery(document).ready(function($){
     }, multiple: false });
     mediaUploader.on('select', function() {
       var attachment = mediaUploader.state().get('selection').first().toJSON();
-      $('#smd_logo_image_id').val(attachment.url);
+			$('#smd_logo_image_url').val(attachment.url);
+			$('#smd_logo_image_id').val(attachment.id);
     });
     mediaUploader.open();
   });
