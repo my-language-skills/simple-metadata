@@ -57,9 +57,6 @@ function smd_print_wsb_field () {
 			if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
 				$metadata = array_merge($metadata, 	smdre_print_tags());
 			}
-			if(is_plugin_active('pressbooks/pressbooks.php')){
-				$metadata = array_merge($metadata, 	smd_get_pressbooks_metadata());
-			}
 
 			$metadata = smd_array_filter_recursive($metadata);
 			printf( "<script type='application/ld+json'>\n%s\n</script>", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );

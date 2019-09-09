@@ -13,6 +13,7 @@ Types of changes
 
 ### Administration
   * **Added** Logo metabox
+  * **Removed** Pressbook Integration metadata (Moved in smd-education)
 
 
 # 1.4
