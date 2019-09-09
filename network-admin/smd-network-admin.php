@@ -33,7 +33,7 @@ function smd_add_network_settings() {
 	}
   add_settings_section( 'smd_network_meta_locations', '', '', 'smd_network_meta_locations' );
 
-  smd_add_net_metabox_for_options();
+  smd_add_net_options_box();
 
   if (!is_plugin_active('pressbooks/pressbooks.php')){
   	add_settings_section( 'smd_network_meta_sites_type', '', '', 'smd_network_meta_sites_type' );
@@ -94,7 +94,7 @@ function smd_add_network_settings() {
  *
  * @since   1.4
  */
-function smd_add_net_metabox_for_options(){
+function smd_add_net_options_box(){
   //Options metabox
   add_meta_box('smd-net-box-options', __('Options', 'simple-metadata'), 'smd_render_net_metabox_options', 'smd_net_set_page', 'normal', 'low');
   add_settings_section( 'smd_net_section_options', '', '', 'smd_net_section_options' );

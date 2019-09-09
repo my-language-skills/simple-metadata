@@ -35,7 +35,8 @@ function smd_add_option_page () {
 
 		add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
 		add_meta_box('smd-settings', __('Front Page', 'simple-metadata'), 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
-		smd_add_metabox_for_options(); // metabox 'Options'
+		smd_add_options_box(); // metabox 'Options'
+		smd_add_logo_box(); // metabox 'Logo'
 
 		$post_types = smd_get_all_post_types();
 		$locations = get_option('smd_locations');
@@ -187,12 +188,55 @@ function smd_render_site_page () {
  *
  * @since   1.4
  */
-function smd_add_metabox_for_options(){
+function smd_add_options_box(){
 	add_meta_box('smd-box-options',	__('Options', 'simple-metadata'), 'smd_render_metabox_options', 'smd_set_page', 'normal', 'low');
 	add_settings_section( 'smd_set_page_section_options', '', '', 'smd_set_page_section_options' );
 	add_settings_field ('smd_options_hide_dates', __('Hide dates', 'simple-metadata'), 'smd_render_options_hide_dates', 'smd_set_page_section_options', 'smd_set_page_section_options');
 	register_setting ('smd_set_page_section_options', 'smd_hide_metadata_dates');
 }
+
+/**
+ * Adds the metabox 'Logo' in the settings page
+ *
+ * @since   1.4.1
+ */
+function smd_add_logo_box(){
+	add_meta_box('smd_logo_box',	__('Logo', 'simple-metadata'), 'smd_render_logo_box', 'smd_set_page', 'normal', 'low');
+	add_settings_section( 'smd_set_page_section_logo', '', '', 'smd_set_page_section_logo' );
+	add_settings_field ('smd_logo_image', 'Url Image', 'smd_render_logo_field', 'smd_set_page_section_logo', 'smd_set_page_section_logo');
+	register_setting ('smd_set_page_section_logo', 'smd_logo_image_id');
+}
+
+/**
+* Render the the content of logo Image metabox
+*
+* @since 1.4.1
+*
+*/
+function smd_render_logo_box ( $post ) {
+	?>
+  <div class="wrap">
+    <form method="post" action="options.php">
+			<span class="description">
+		 		<?php
+					esc_html_e('The logo must be a rectangle, not a square.
+					  The logo should fit in a 60x600px rectangle, and either be exactly 60px high (preferred), or exactly 600px wide.', 'simple-metadata');
+					echo "<br>";
+					esc_html_e('For example, 450x45px would not be acceptable, even though it fits within the 600x60px rectangle.', 'simple-metadata');
+				?>
+		  </span>
+      <?php
+			settings_fields( 'smd_set_page_section_logo' );
+			do_settings_sections( 'smd_set_page_section_logo' );
+      submit_button();
+      ?>
+    </form>
+    <p></p>
+  </div>
+	<?php
+}
+
+
 
 /**
  * Display the content in the metabox 'Option'
@@ -318,6 +362,19 @@ function smd_render_options_hide_dates(){
   <?php
 }
 
+/**
+* Render logo field
+*
+* @since 1.4.1
+*
+*/
+function smd_render_logo_field(){
+	?>
+		<input id="smd_logo_image_url" type="url" name="smd_logo_image_url" style="width:65%;float:left" value="<?php echo wp_get_attachment_image_url(get_option('smd_logo_image_id'), 'full'); ?>" />
+		<input id="smd_upload_image_button" type="button" class="button-primary"  value="Insert Image" />
+		<input id="smd_logo_image_id" type="hidden" name="smd_logo_image_id" value=""></input>
+	<?php
+}
 
 /**
  * is option disabled
@@ -342,3 +399,16 @@ function smd_is_option_disabled($option_net_name){
 
 	return $disabled;
 }
+
+/**
+* Enqueue js for logo metabox
+*
+* @since 1.4.1
+*
+*/
+function smd_enqueue_logo_script() {
+
+	wp_enqueue_media(); // load media uploader
+	wp_enqueue_script( 'smd-logo-box', plugins_url( 'simple-metadata') . '/inc/assets/js/smd-logo-box.js', array( 'jquery' ));
+}
+add_action( 'admin_enqueue_scripts', 'smd_enqueue_logo_script');

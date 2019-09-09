@@ -9,6 +9,12 @@ Types of changes
 
 * **List of Files revised**
 
+## 1.4.1
+
+### Administration
+  * **Added** Logo metabox
+
+
 # 1.4
 
 ## Plugin
