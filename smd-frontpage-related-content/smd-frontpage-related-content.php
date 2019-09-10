@@ -15,7 +15,7 @@
  *
  * @since 1.0
  */
-function smd_print_wsb_field () {
+function smd_print_wsb_field ($post_meta_type) {
 
 
 	if (is_front_page()){
@@ -59,6 +59,10 @@ function smd_print_wsb_field () {
 			}
 			if(is_plugin_active('pressbooks/pressbooks.php')){
 				$metadata = array_merge(smd_get_pressbooks_metadata(), $metadata);
+				// Take the general metadata
+				$general_metadata = smd_get_general_tags($post_meta_type);
+				// Overwrite the publisher with the our publisher
+				$metadata['publisher'] = $general_metadata['publisher'];
 			}
 
 			$metadata = smd_array_filter_recursive($metadata);
