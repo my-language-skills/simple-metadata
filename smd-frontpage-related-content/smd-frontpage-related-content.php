@@ -58,7 +58,7 @@ function smd_print_wsb_field () {
 				$metadata = array_merge($metadata, 	smdre_print_tags());
 			}
 			if(is_plugin_active('pressbooks/pressbooks.php')){
-				$metadata = array_merge($metadata, 	smd_get_pressbooks_metadata());
+				$metadata = array_merge(smd_get_pressbooks_metadata(), $metadata);
 			}
 
 			$metadata = smd_array_filter_recursive($metadata);

@@ -347,7 +347,8 @@ function smd_get_general_tags($post_meta_type) {
   //Delete tags that we already use
   unset($metadata['@context']);
   unset($metadata['@type']);
-
+  unset($metadata['reviewedBy']);
+  
 
   return $metadata;
  }
