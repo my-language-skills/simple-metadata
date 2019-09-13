@@ -344,11 +344,13 @@ function smd_get_general_tags($post_meta_type) {
     unset($metadata['name']);
   }
 
-  //Delete tags that we already use
-  unset($metadata['@context']);
-  unset($metadata['@type']);
+  //Delete tags from pressbook
   unset($metadata['reviewedBy']);
-  
+  if(get_option('smdre_is_translated_from') && is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
+    // Unset isBasedOn because there is already translationOfWork
+    unset($metadata['isBasedOn']);
+  }
+
 
   return $metadata;
  }

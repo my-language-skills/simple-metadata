@@ -30,7 +30,6 @@ function smd_print_wsb_field ($post_meta_type) {
 		$description = get_bloginfo( 'description' );
 		$url = get_bloginfo( 'url' );
 		$language = get_bloginfo( 'language' );
-		$translation_of = get_option('smd_translation_of');
 		if ($type){
 			$metadata = [
 				'@context' => 'http://schema.org/',
@@ -38,10 +37,7 @@ function smd_print_wsb_field ($post_meta_type) {
 				'name'=> $title,
 				'url'=> $url,
 				'inLanguage'=> $language,
-				'description'=> $description,
-				'translationOfWork'=> [
-					'id'	=>	$translation_of
-				]
+				'description'=> $description
 			];
 
 			//printing tags from add-on plugins, if they are active
@@ -55,7 +51,7 @@ function smd_print_wsb_field ($post_meta_type) {
 				$metadata = array_merge($metadata, smdan_print_tags(get_option('smd_website_blog_type')));
 			}
 			if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
-				$metadata = array_merge($metadata, 	smdre_print_tags());
+				$metadata = array_merge($metadata, 	smdre_print_tags($post_meta_type));
 			}
 			if(is_plugin_active('pressbooks/pressbooks.php')){
 				$metadata = array_merge(smd_get_pressbooks_metadata(), $metadata);

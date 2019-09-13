@@ -10,6 +10,8 @@ Types of changes
 * **List of Files revised**
 
 ## 1.4.1
+### Plugin
+  * **Changed** Simple Relation integration
 
 ### Administration
   * **Added** Logo metabox

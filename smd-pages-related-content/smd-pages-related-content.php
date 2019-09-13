@@ -182,7 +182,7 @@ function smd_print_page_meta_fields () {
 			$metadata = array_merge($metadata, smdan_print_tags(get_option('smd_website_blog_type')));
 		}
 		if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
-			$metadata = array_merge($metadata, 	smdre_print_tags());
+			$metadata = array_merge($metadata, 	smdre_print_tags($post_meta_type));
 		}
 
 		$metadata = smd_array_filter_recursive($metadata);

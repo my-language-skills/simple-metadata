@@ -59,24 +59,24 @@ function smd_render_article_type_meta (){
 	$test = get_option('smd_website_blog_type');
 
 
-switch ($test) {
-	case 'Blog':
-		$post_suppose_type = __('Article', 'simple-metadata');
-		break;
-	case 'Course':
-		$post_suppose_type = __('Article', 'simple-metadata');
-		break;
-	case 'Book':
-		$post_suppose_type = __('Chapter', 'simple-metadata');
-		break;
-	case 'WebSite':
-		$post_suppose_type = __('Web Page', 'simple-metadata');
-		break;
+	switch ($test) {
+		case 'Blog':
+			$post_suppose_type = __('Article', 'simple-metadata');
+			break;
+		case 'Course':
+			$post_suppose_type = __('Article', 'simple-metadata');
+			break;
+		case 'Book':
+			$post_suppose_type = __('Chapter', 'simple-metadata');
+			break;
+		case 'WebSite':
+			$post_suppose_type = __('Web Page', 'simple-metadata');
+			break;
 
-	default:
-	  $post_suppose_type = '';
-		break;
-}
+		default:
+		  $post_suppose_type = '';
+			break;
+	}
 
 	$post_meta_types = array(
 					'Article'					=> __('Article', 'simple-metadata'),
@@ -213,6 +213,8 @@ function smd_print_post_meta_fields () {
 
 		$key_words_string = implode(', ', $key_words_arr);
 
+
+
 		$metadata = [
 			'@context'		 			=>	'http://schema.org/',
 			'@type'							=> 	$post_meta_type,
@@ -237,7 +239,7 @@ function smd_print_post_meta_fields () {
 			$metadata = array_merge($metadata, smdan_print_tags($post_meta_type));
 		}
 		if (is_plugin_active('simple-metadata-relation/simple-metadata-relation.php')){
-			$metadata = array_merge($metadata, 	smdre_print_tags());
+			$metadata = array_merge($metadata, 	smdre_print_tags($post_meta_type));
 		}
 		if(is_plugin_active('pressbooks/pressbooks.php')){
 			$metadata = array_merge(smd_get_pressbooks_metadata(), $metadata);
