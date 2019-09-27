@@ -136,7 +136,7 @@ function smd_render_net_options_hide_dates(){
   </label><br>
   <span class="description">
       <?php
-      esc_html_e('If selected the metadata tags "dateCreated" and "datePublished" will be hide');
+      esc_html_e('If selected the metadata tags "dateCreated" and "datePublished" will be hidden.');
       ?>
   </span>
   <?php
@@ -193,7 +193,7 @@ function smd_network_render_metabox_schema_locations(){
           <?php esc_html_e('Activate the public post types where metadata will be available. General Metadata just uses WordPress core fields.',
             'simple-metadata'); ?>
             <br>
-          <?php esc_html_e('If activate, site administrators can not deactivate.',
+          <?php esc_html_e('If activated, site administrators can not deactivate.',
                         'simple-metadata'); ?>
       </span>
     </span>
