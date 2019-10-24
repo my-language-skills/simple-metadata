@@ -42,7 +42,7 @@ function smd_render_googleImage_box ( $post ) {
 	$old_content_width = $content_width;
 	$content_width = 254; //the size to display the image
 	$content = '<p class="description">This image will not be displayed, it is just for metadata. <br>
-For best results, provide a image with one of the following aspect ratios: 16x9, 4x3, or 1x1.</p>';
+For best results, provide a image with one of the following aspect ratios: 16x9, 4x3, or 1x1. Minimun 696 pixels wide.</p>';
 	if ( $image_id && get_post( $image_id ) ) {
 		if ( ! isset( $_wp_additional_image_sizes['post-thumbnail'] ) ) {
 			$thumbnail_html = wp_get_attachment_image( $image_id, array( $content_width, $content_width ) );
