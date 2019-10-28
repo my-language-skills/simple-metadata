@@ -49,11 +49,11 @@ function smd_get_general_tags($post_meta_type) {
   /*--- end Author ---*/
 
   //dateCreated
-  $creation_date = get_the_date();
+  $creation_date = get_the_date('Y-m-d');
   //dateModified
-  $last_modification_date = get_the_modified_date();
+  $last_modification_date = get_the_modified_date('Y-m-d');
   //datePublished
-  $publication_date = get_the_time(get_option( 'date_format' ));
+  $publication_date = get_the_time('Y-m-d');
   //editor
   $last_modifier = get_the_modified_author();
   //inLanguage

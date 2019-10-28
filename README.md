@@ -1,12 +1,12 @@
 # Simple Metadata
 
-* Contributors: @colomet, @danzhik, @huguespages, @davideC00
+* Contributors: @colomet, @danzhik, @huguespages, @davideC00, @!ndeed
 * Donate link: https://opencollective.com/mylanguageskills
 * Tags: simple metadata, extensions, metadata, multisite
 * Requires at least: 5.2
 * Tested up to: 5.2.2
 * Requires PHP: 5.6
-* Stable tag: 1.3
+* Stable tag: 1.4
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.html
 * Gutenberg: compatible
@@ -15,9 +15,9 @@ Plugin for automatic generation of meta fields in web-pages.
 
 ## Description
 
-Wordpress gives you the ability to add metadata to your sites thus helping Google and other search engines to recognise it. The problem comes if you want to expand.
+WordPress gives you the ability to add metadata to your sites thus helping Google and other search engines to recognise it. The problem comes if you want to expand.
 
-Simple metadata, extends the functionality of Wordpress and gives you the flexibility to add automatically metadata in your sites, taking advantage of the schema markup.
+Simple metadata, extends the functionality of WordPress and gives you the flexibility to add automatically metadata in your sites, taking advantage of the schema markup.
 
 * General
 	* [Introduction](/doc/doc-intro.md)
@@ -73,6 +73,24 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.4.2
+* **ADDITIONS**
+	 * Admin metabox related to set book type option (Book/Course/Default) that modifies metadata print.
+
+* **ENHANCEMENTS***
+	* Specify date print format in smd_get_general_tags() functon to 'Y-m-d'
+
+* **List of Files revised**
+	* smd-general-functions.php
+	* smd-posts-related-content.php
+	* smd-set-page-metaboxes.php
+
+### 1.4.1
+* **ADDITIONS**
+	* Admin Logo image metabox
+
+* **List of Files revised**
+	* smd-set-page-metaboxes.php
 
 ### 1.4
 * Metabox 'Options'
@@ -81,7 +99,7 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 * Print metadata from smd-relation
 * Moved network options to sitemeta table
 * Microtags to json-ld (using wp_json_encode #27)
-* Bufixes
+* Bugfixes
 
 ### 1.3
 * **ADDITIONS**
@@ -107,14 +125,14 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 ### 1.2.1
 * **ENHANCEMENTS***
-		* Make in corect order the admin panel. Change name site-meta in home page
+		* Make in correct order the admin panel. Change name site-meta in home page
 * **List of Files revised**
    * smd-general-functions.php
 
 ### 1.2
 * **ADDITIONS***
    * Add new plugins : simple-metadata-annotation
-   * Add new functionality to auto upload with plugin-uptdate-checker
+   * Add new functionality to auto upload with plugin-update-checker
 
 * **List of Files revised**
    * simple-metadata.php
