@@ -10,7 +10,7 @@ For upgrades, download the las stable version from github, delete from FTP the o
 
 ## Integrations
 
-We are focus with the metadata, all the other SEO solutions can be find trough other plugins:
+We focus on the metadata, all the other SEO solutions can be found trough other plugins:
 
 * [The SEO Framework](https://wordpress.org/plugins/autodescription/)
 * [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)

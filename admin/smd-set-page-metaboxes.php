@@ -33,11 +33,16 @@ function smd_add_option_page () {
 			add_submenu_page('smd_set_page',__('Site Settings', 'simple-metadata'), __('Site Settings', 'simple-metadata'), 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
 		}
 
+		if (is_plugin_active('pressbooks/pressbooks.php') ){
+			smd_add_booktype_box(); // metabox 'booktype'
+		}
+	/*
+		(Commented out v1.4.3) adding settings metaboxes and settigns sections
 		add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
+	*/
 		add_meta_box('smd-settings', __('Front Page', 'simple-metadata'), 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
 		smd_add_options_box(); // metabox 'Options'
 		smd_add_logo_box(); // metabox 'Logo'
-		smd_add_booktype_box(); // metabox 'booktype'
 
 		$post_types = smd_get_all_post_types();
 		$locations = get_option('smd_locations');
@@ -208,18 +213,20 @@ function smd_add_logo_box(){
 	register_setting ('smd_set_page_section_logo', 'smd_logo_image_id');
 }
 
-
 /**
  * Adds the metabox 'Book-type' in the settings page
  *
  * @since   1.4.2
  */
 function smd_add_booktype_box(){
-	add_meta_box('smd_book-type_metabox',	__('Book type', 'simple-metadata'), 'smd_render_booktype_box', 'smd_set_page', 'normal', 'low');
+	add_meta_box('smd_book-type_metabox',	__('Metadata print configuration', 'simple-metadata'), 'smd_render_booktype_box', 'smd_set_page', 'normal', 'high');
 	add_settings_section( 'smd_set_page_section_booktype', '', '', 'smd_set_page_section_booktype' );
-	add_settings_field ('smd_booktype_option', __('Set book type', 'simple-metadata'), 'smd_render_booktype_field', 'smd_set_page_section_booktype', 'smd_set_page_section_booktype');
+	add_settings_field ('smd_booktype_option', __('Set book type preset', 'simple-metadata'), 'smd_render_booktype_field', 'smd_set_page_section_booktype', 'smd_set_page_section_booktype');
+	add_settings_field ('smd_booktype_frontaback', __('Disable WebPage type for', 'simple-metadata'), 'smd_render_booktype_frontback', 'smd_set_page_section_booktype', 'smd_set_page_section_booktype');
 	register_setting ('smd_set_page_section_booktype', 'smd_set_booktype_option');
-	add_option('smd_set_booktype_option', 'default');
+
+	register_setting ('smd_set_page_section_booktype', 'smd_disable_frontmatter_type');
+	register_setting ('smd_set_page_section_booktype', 'smd_disable_backmatter_type');
 }
 
 /**
@@ -261,18 +268,12 @@ function smd_render_booktype_box(){
 	?>
   <div class="wrap">
     <form method="post" action="options.php">
-			<span class="description">
-		 		<?php
-						echo "By selecting one of the options, output metadata printed in the front-end get modified based on selection.";
-				?>
-			</span>
 				<?php
 				settings_fields( 'smd_set_page_section_booktype' );
 				do_settings_sections( 'smd_set_page_section_booktype' );
 				submit_button();
 				?>
-			</form>
-		<p></p>
+		</form>
 	</div>
 <?php
 }
@@ -296,7 +297,6 @@ function smd_render_metabox_options(){
   </div>
   <?php
 }
-
 
 /**
  * Simple Metadata Settings
@@ -415,27 +415,47 @@ function smd_render_logo_field(){
 }
 
 /**
-* Render booktype field
+* Render 'Set book type' field
 *
 * @since 1.4.2
 *
 */
 function smd_render_booktype_field(){
 	?>
-			<input type="radio" name="smd_set_booktype_option" id="smd_booktype_option_book"  value="book"
-				<?php checked('book', get_option('smd_set_booktype_option')) ?>
-			/>	<label for="smd_booktype_option_book"><b>Book   </b> (Part -> X | Chapter -> Chapter)</label>
-				<br>
-
-			<input type="radio" name="smd_set_booktype_option" id="smd_booktype_option_course" value="course"
-				<?php checked('course', get_option('smd_set_booktype_option')) ?>
-			/> 	<label for="smd_booktype_option_course"><b>Course</b> (Part -> Chapter | Chapter -> Article)</label>
-			<br>
-
-			<input type="radio" name="smd_set_booktype_option" id="smd_booktype_option_default" value="default"
-				<?php checked('default', get_option('smd_set_booktype_option')) ?>
-			/> 	<label for="smd_booktype_option_default"><b>Default</b> </label>
+		<input type="radio" name="smd_set_booktype_option" id="smd_booktype_option_course" value=""
+			<?php checked('', get_option('smd_set_booktype_option')) ?>
+		/> 	<label for="smd_booktype_option_course"><b>Course</b></label>
+	  <br>
+		<input type="radio" name="smd_set_booktype_option" id="smd_booktype_option_book"  value="book"
+			<?php checked('book', get_option('smd_set_booktype_option')) ?>
+		/>	<label for="smd_booktype_option_book"><b>Book</b></label>
+		<span class="description">
+				<p>By selecting one of the options, output metadata printed in the front-end get modified based on selection.</p>
+		</span>
 	<?php
+}
+
+/**
+* Render 'Disable WebPage type for' field
+*
+* @since 1.4.3
+*
+*/
+function smd_render_booktype_frontback(){
+	?>
+		<input type="checkbox" name="smd_disable_frontmatter_type" id="smd_booktype_option_frontmatter"  value="1"
+			<?php checked('1', get_option('smd_disable_frontmatter_type')) ?>
+		/>	<label for="smd_booktype_option_frontmatter"><b>Front-matter </b> </label>
+
+		<br>
+		<input type="checkbox" name="smd_disable_backmatter_type" id="smd_booktype_option_backmatter"  value ="1"
+			<?php checked('1', get_option('smd_disable_backmatter_type')) ?>
+		/>	<label for="smd_booktype_option_backmatter"><b>Back-matter</b></label>
+		<span class="description">
+				<p>By checking the box, 'WebPage' metadata type will NOT be printed.</p>
+		</span>
+	<?php
+
 }
 
 /**

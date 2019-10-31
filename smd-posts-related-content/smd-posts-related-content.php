@@ -168,18 +168,34 @@ function smd_print_post_meta_fields () {
 	$booktype_option = get_option('smd_set_booktype_option');
 
 	//we print these tags only if location is not active in education and post type is not page
-	if (isset(get_option('smd_locations')[$post_type]) && !is_front_page() && !is_home() && 'page' != $post_type) {
-		//In case of pressbooks installation, always applied Book -> Chapter
-		if (!is_plugin_active('pressbooks/pressbooks.php')){
+	// set different post meta type (or set none) based on post type and book type option (for course and book) or enable option (for front-matter and back-matter)
+	if (!is_front_page() && !is_home() && 'page' != $post_type) {
+		if (!is_plugin_active('pressbooks/pressbooks.php') && isset(get_option('smd_locations')[$post_type]) ){ // in case WP  else cases PB
 			$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
-		} elseif ('course' == $booktype_option && 'chapter' == $post_type) {
+
+		} elseif ('book' != $booktype_option && 'chapter' == $post_type) { // if booktype_option is NOT book (does not exists or is empty in DB) we use booktype setting for Course
 			$post_meta_type = 'Article'; // set post type to 'Article'
-		}  elseif ('course' == $booktype_option && 'part' == $post_type) {
+
+		} elseif ('book' != $booktype_option && 'part' == $post_type) {    // if booktype_option is NOT book (does not exists or is empty in DB) we use booktype setting for Course
 			$post_meta_type = 'Chapter'; // set post type to 'Chapter'
-		}  elseif ('book' == $booktype_option && 'part' == $post_type) {
+
+		} elseif ('book' == $booktype_option && 'chapter' == $post_type) { // if booktype_option is Book, we use setting for Book
+			$post_meta_type = 'Chapter'; // set post type to 'Chapter'
+
+		} elseif ('book' == $booktype_option && 'part' == $post_type) {    // if booktype_option is Book, we use setting for Book
 			return;		// do not print metadata for this post
-		} else {
-			$post_meta_type = 'Chapter'; //default
+
+		}	elseif ('1' == get_option('smd_disable_frontmatter_type') && 'front-matter' == $post_type) {
+					return;
+
+		}	elseif ('1' != get_option('smd_disable_frontmatter_type') && 'front-matter' == $post_type) {
+			$post_meta_type = 'WebPage';
+
+		} elseif ('1' == get_option('smd_disable_backmatter_type') && 'back-matter' == $post_type) { //<<<<<<<<
+			 return;
+
+		}	elseif ('1' != get_option('smd_disable_backmatter_type') && 'back-matter' == $post_type) { //<<<<<<<<
+			 $post_meta_type = 'WebPage';
 		}
 
 		if ('no_type' == $post_meta_type){

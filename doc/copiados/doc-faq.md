@@ -39,7 +39,7 @@ A: Yes, it's ok to mark up extended events, as long as they have a clearly defin
 
 **Q: Does Google understand only official microformats specifications? What about the draft ones, e.g. xFolk? Would you have any specific recommendations?**
 
-A: We have published the formats we understand and you can find them in our Help Center articles. Feel free to use any structured mark up format that suits your site's needs - even though we might not currently support it, we may add it in the future. We love structured data!
+A: We have published the formats we understand and you can find them in our Help Centre articles. Feel free to use any structured mark up format that suits your site's needs - even though we might not currently support it, we may add it in the future. We love structured data!
 
 **Q: Why would anyone want to use Rich Snippets and have Google pull more content from their site? Wouldn't this decrease the clickthrough rate from Google to my website?**
 

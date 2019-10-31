@@ -73,6 +73,21 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.4.3
+Changes in this version are related ONLY to Pressbooks use case.
+* **ADDITIONS**
+	 * Extends and modifies functionality in Book admin 'Book type' metabox for course, book options and for front-matter, back-matter.
+
+* **REMOVED**
+Disabled by commenting out.
+	 * Network admin locations metabox which enables/disables printing metadata for selected post-type.
+	 * Book(site) admin locations metabox which enables/disables printing metadata for selected post-type.
+
+* **List of Files revised**
+	 * smd-posts-related-content.php
+	 * smd-set-page-metaboxes.php	 
+	 * documentation
+
 ### 1.4.2
 * **ADDITIONS**
 	 * Admin metabox related to set book type option (Book/Course/Default) that modifies metadata print.

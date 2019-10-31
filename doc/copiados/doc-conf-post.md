@@ -18,7 +18,18 @@ The top 'type' for the description of the Post, Article, (which is a subtype of 
     * DiscussionForumPosting
   * TechArticle
 
-PB Uses chapter type (non article properties are used)
+## PRESSBOOKS use case:
+In version 1.4.3 rework of the plugin was done related ONLY to Pressbooks Configuration page and subsequent font-end metadata print.
+
+1.
+Locations metaboxes were removed (disabled) from both Network admin settings and Site (book) admin settings.
+These locations settings were replaced by using on of the two Book type presets. Course and Book.
+Course (default) - sets printed metadata type in following way: (Part -> Chapter | Chapter -> Article).
+Book - sets printed metadata type in following way:  (Part -> no metadata | Chapter -> Chapter).
+
+2.
+Front-matter (introduction) and back-matter (appendix) metadata are now printed as a type 'WebPage' by default.
+It is possible to remove printing this metadata by checking the box in 'Disable WebPage type' settings field in Site admin settings.
 
 _No further configuration is necessary, all the properties find the values from WordPress._
 

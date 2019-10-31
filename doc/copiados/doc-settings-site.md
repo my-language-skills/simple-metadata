@@ -4,7 +4,7 @@ Simple metadata offer home page metadata by activation. If metadata in public po
 ## Front Page
 Type of Site have two options which allow the configuration of the metadata. Pick the one that describes better the Site :
 * Local value
-* Blog 
+* Blog
 * WebSite
 * Course
 
@@ -17,7 +17,7 @@ Have several options which allow the configuration of the metadata. in the diffe
 Simple metadata just work in default WP post and pages. Soon Attachments.
 
 ### PB Case
-Pressbooks installations have different options as their requeriments are different (not posts and pages).
+Pressbooks installations have different options as their requirements are different (not posts and pages).
 
 * Front-matter
 * Part
