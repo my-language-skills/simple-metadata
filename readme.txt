@@ -3,9 +3,9 @@ Contributors: colomet, danzhik, huguespages, davideC00
 Donate link: https://opencollective.com/mylanguageskills
 Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippets, wordpress-plugin,
 Requires at least: 5.2
-Tested up to: 5.2.2
-Stable tag: 1.3
+Tested up to: 5.3
 Requires PHP: 5.6
+Stable tag: 1.4.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -47,7 +47,7 @@ through the WordPress plugins screen directly.
 
 = I have a feature request, I've found a bug, a plugin is incompatible... =
 
-Please visit [the support forums](https://wordpress.org/support/plugin/xxxxxxxx)
+Please visit [the support forums](https://wordpress.org/support/plugin/simple-metadata/)
 
 = I am a developer; how can I help? =
 
@@ -85,6 +85,8 @@ Is not a SEO solution. Schemas don’t actually boost the organic search ranking
 
 = Hot to test? =
 Be sure to test your structured data using the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/u/0/) during development, and the [Search Console Structured Data report](https://www.google.com/webmasters/tools/structured-data?pli=1) after deployment, to monitor the health of your pages, which might break after deployment due to templating or serving issues.
+
+Still under development, [Google Rich cards test](https://search.google.com/test/rich-results) can help you with  the test.
 
 = What is Schema.org? =
 [Schema.org](http://schema.org/) is a collaborative, community activity with a mission to create, maintain, and promote schemas for [structured data](https://moz.com/learn/seo/schema-structured-data) on the Internet, on web pages, in email messages, and beyond.
