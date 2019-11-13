@@ -1,5 +1,5 @@
 === Simple metadata ===
-Contributors: colomet, danzhik, huguespages, davideC00
+Contributors: colomet, danzhik, huguespages, dcazzorla
 Donate link: https://opencollective.com/mylanguageskills
 Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippets, wordpress-plugin,
 Requires at least: 5.2
@@ -22,6 +22,62 @@ This plugin provides the ability to set different types of schema types in one c
 >
 > in a PB installation, a site is a Book and a Post is a Chapter
 
+
+
+== Front-page related content =
+
+* Types: **Blog** & **WebSite**
+* Properties
+ * **CreativeWork** type: **inLanguage**
+ * **Thing** type: **name**, **description** & **URL**
+
+= Pages related content =
+
+Types:
+
+* **WebPage** type
+  * **AboutPage** type
+  * **CheckoutPage** type
+  * **CollectionPage** type
+  * **ImageGallery** type
+  * **VideoGallery** type
+  * **ContactPage** type
+  * **FAQPage** type
+  * **ItemPage** type
+  * **MedicalWebPage** type
+  * **ProfilePage** type
+  * **QAPage** type
+  * **SearchResultsPage** type
+
+Properties:
+
+* **WepPage** Type: 
+ * Properties: **lastReviewed**
+* **CreativeWork** type: 
+ * Properties: **author**, **dateCreated**, **datePublished**, **editor**, **headline** & **thumbnailUrl**
+
+= Posts related content =
+
+Types
+
+* **Article** type
+ * **AdvertiserContentArticle** type
+* **Report** type
+* **SatiricalArticle** type
+* **SocialMediaPosting** type
+ * **BlogPosting** type
+   * **LiveBlogPosting** type
+    * **DiscussionForumPosting** type
+* **TechArticle** type
+
+Properties
+
+* **Article** type
+  * Properties: **articleBody**, **articleSection** & **wordCount**
+* **CreativeWork** Type
+  * Properties: **author**, **dateCreated**, **dateModified**, **datePublished**, **editor**, **headline**, **keywords**, **logo**, **publisher**, **thumbnailUrl**
+* **Thing** type
+    * Properties: **image**
 
 === Works with ===
 The SEO framework
