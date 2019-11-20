@@ -1,6 +1,6 @@
 # Simple Metadata
 
-* Contributors: @colomet, @danzhik, @huguespages, @davideC00, @!ndeed
+* Contributors: @colomet, @danzhik, @huguespages, @davideC00, @lukastonhajzer 
 * Donate link: https://opencollective.com/mylanguageskills
 * Tags: simple metadata, extensions, metadata, multisite
 * Requires at least: 5.2
