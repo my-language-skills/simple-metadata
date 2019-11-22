@@ -62,7 +62,7 @@ function smd_print_wsb_field ($post_meta_type) {
 			}
 
 			$metadata = smd_array_filter_recursive($metadata);
-			printf( "<script type='application/ld+json'>\n%s\n</script>", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
+			printf( "\n \n <!-- SIMPLE METADATA FRONT-PAGE --> \n <script type='application/ld+json'>\n%s\n</script>\n<!-- / SIMPLE METADATA FRONT-PAGE --> \n \n", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
 
 		}
 	}

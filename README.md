@@ -73,6 +73,24 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.4.4
+* **ADDITIONS**
+	 * New submenu field "Publisher" with "Organization" metabox where admin is able to set Publisher logo (Network(Site1) level and single site level) and related functionality
+	 * Comments in HTML header signalizing on what type of metadata is printed
+	 * Functionality related thumbnail metadata in case featured_image_for_pressbooks plugin is activated
+
+* **MODIFICATION**
+ 	 * Metadata menu field (and its settings) is now displayed also on Site1
+	 
+* **List of Files revised**
+	 * smd-posts-related-content.php
+	 * smd-front-page-related-content.php
+	 * smd-pages-related-content.php
+	 * smd-set-page-metaboxes.php	 
+	 * smd-logo-box.js
+	 * smd-general-functions.php
+	 * smd-network-admin.php
+
 ### 1.4.3
 Changes in this version are related ONLY to Pressbooks use case.
 * **ADDITIONS**

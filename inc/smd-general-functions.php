@@ -75,7 +75,18 @@ function smd_get_general_tags($post_meta_type) {
 
 
   // get the thumbnail of the post/page/homepage/ecc...
-  $thumbnail_url = get_the_post_thumbnail_url($post_id, 'thumbnail');
+  // If the post thumbnail is set by featured_image_for_pressbooks plugin we use this image for metadata of the post thumbnail (fifp functions are located in featured_image_for_pressbooks plugin)
+  if (is_plugin_active('featured-image-for-pressbooks/featured-image-for-pressbooks.php') && fifp_has_ext_thumbnail() && "print_local_fi" != $fi_info = fifp_get_fi_info()){
+    //$fi_info = fifp_get_fi_info();
+    if (!empty($fi_info)){
+      switch_to_blog(get_option( '_ext_source_id'));
+        $thumbnail_url = wp_get_attachment_url($fi_info );
+      restore_current_blog();
+    }
+  } else {  // if featured_image_for_pressbooks is not active - default
+    $thumbnail_url = get_the_post_thumbnail_url($post_id, 'thumbnail');
+  }
+
 
   /*--- Checking main SEO plugin for publisher information ---*/
   //include to check if YOAST or SEO Framework are installed
@@ -121,8 +132,28 @@ function smd_get_general_tags($post_meta_type) {
    $logo_measures = wp_get_attachment_image_src( $logo_id, 'full'); //retrieve and array (url, width, height)
  }
 
-  /*----- end Data, related to 'CreativeWork' properties */
+  /* --- Checking if Publisher logo is set ---*/
+  $smd_publisher_logo_image_id = get_option('smd_publisher_logo_image_id');
+  $logo_url_publisher = 0;
+  $logo_measures_publisher = 0;
 
+  if (!empty($smd_publisher_logo_image_id)){                        // USE LOCAL PUBLISHER LOGO
+        $logo_url_publisher = wp_get_attachment_image_url( $smd_publisher_logo_image_id, 'full');
+        $logo_measures_publisher = wp_get_attachment_image_src($smd_publisher_logo_image_id, 'full');
+
+  } elseif(empty($smd_publisher_logo_image_id) && is_multisite()) { // IF NOT SET LOCAL USE LOGO FROM SITE 1
+
+      switch_to_blog( 1 );
+         $smd_net_logo_image_id = get_option('smd_publisher_logo_image_id');
+          if (!empty($smd_net_logo_image_id)){
+            $smd_net_logo_image_id = get_option('smd_publisher_logo_image_id');
+            $logo_url_publisher = wp_get_attachment_image_url( $smd_net_logo_image_id, 'full');
+            $logo_measures_publisher = wp_get_attachment_image_src($smd_net_logo_image_id, 'full');
+          }
+       restore_current_blog();
+   }
+
+  /*----- end Data, related to 'CreativeWork' properties */
 
 
  // Start adding metadata
@@ -209,9 +240,9 @@ function smd_get_general_tags($post_meta_type) {
       'name'=> $publisher,
       'logo'=> [
         '@type'=>  'ImageObject',
-        'url'=> $logo_url,
-        'width'=> (string) $logo_measures[1],
-        'height'=> (string) $logo_measures[2]
+        'url'=>  $logo_url_publisher ?: $logo_url,
+        'width'=>  (string) $logo_measures_publisher[1] ?: (string) $logo_measures[1],
+        'height'=> (string) $logo_measures_publisher[2] ?: (string) $logo_measures[2]
       ]
     ]
   ];
@@ -317,9 +348,8 @@ function smd_get_general_tags($post_meta_type) {
    	if ('0' !== $option_value){
    		update_option($option_local_name, $option_value);
    	}
+     restore_current_blog();
    }
-
-   restore_current_blog();
  }
 
  /**
@@ -351,7 +381,6 @@ function smd_get_general_tags($post_meta_type) {
     unset($metadata['isBasedOn']);
   }
 
-
   return $metadata;
  }
 
@@ -371,7 +400,7 @@ function smd_get_general_tags($post_meta_type) {
          }
      }
 
-     return array_filter($input);
+  return array_filter($input);
  }
 
  /**

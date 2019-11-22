@@ -12,37 +12,49 @@
  */
 
 
-/**
- * Add option page 'Metadata'
- *
- * Creates 'Metadata' option page and for it:
- * Site settings page, Settings page and cpt site-meta
- *
- * @since 1.0
- *
- */
+ /**
+  * Add option page 'Metadata'
+  *
+  * Creates 'Metadata' option page and for it:
+  * Site settings page, Settings page and cpt site-meta
+  *
+  * @since 1.0
+  *
+  */
 add_action ('admin_menu', 'smd_add_option_page');
+
 function smd_add_option_page () {
 
-	if (1 != get_current_blog_id() || !is_multisite()){
 		//Adds main menu page for plugin and all addons
 		add_menu_page('Simple Metadata', __('Metadata', 'simple-metadata'), 'manage_options', 'smd_set_page', 'smd_render_options_page', 'dashicons-search');
 		//Fix having different name in admin menu for main subpage
 		add_submenu_page('smd_set_page',__('Settings', 'simple-metadata'), __('Settings', 'simple-metadata'), 'manage_options', 'smd_set_page');
+
+		//Add publisher submenu
+		add_submenu_page('smd_set_page',__('Publisher', 'simple-metadata'), __('Publisher', 'simple-metadata'), 'manage_options', 'smd_set_page_organization', 'smd_render_publisher_page');
+
 		if (!is_plugin_active('pressbooks/pressbooks.php') ){
-			add_submenu_page('smd_set_page',__('Site Settings', 'simple-metadata'), __('Site Settings', 'simple-metadata'), 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
+			add_submenu_page('smd_set_page',__('Site', 'simple-metadata'), __('Site', 'simple-metadata'), 'manage_options', 'smd_set_page_site', 'smd_render_site_page');
 		}
 
 		if (is_plugin_active('pressbooks/pressbooks.php') ){
 			smd_add_booktype_box(); // metabox 'booktype'
 		}
-	/*
-		(Commented out v1.4.3) adding settings metaboxes and settigns sections
-		add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
-	*/
+
+/*
+			(Commented out v1.4.3) adding settings metaboxes and settigns sections
+			add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
+*/
+
+		if (!is_plugin_active('pressbooks/pressbooks.php')){
+			add_meta_box('smd-location-settings', __('General Metadata', 'simple-metadata'), 'smd_render_locations_metabox', 'smd_set_page', 'normal', 'core');
+		}
+
 		add_meta_box('smd-settings', __('Front Page', 'simple-metadata'), 'smd_render_metabox', 'smd_set_page_site', 'normal', 'core');
+
 		smd_add_options_box(); // metabox 'Options'
-		smd_add_logo_box(); // metabox 'Logo'
+
+		smd_add_organization_box(); //metabox 'Organization'
 
 		$post_types = smd_get_all_post_types();
 		$locations = get_option('smd_locations');
@@ -101,7 +113,7 @@ function smd_add_option_page () {
 
 			}, 'smd_locations', 'smd_locations');
 		}
-	}
+
 }
 
 
@@ -169,7 +181,7 @@ function smd_render_site_page () {
 				<p><strong><?php esc_html_e('Settings saved.', 'simple-metadata'); ?></strong></p>
 			</div>
 			<?php } ?>
-			<h1><?php esc_html_e('Simple Metadata Site Configuration', 'simple-metadata'); ?></h1>
+			<h1><?php esc_html_e('Site Settings', 'simple-metadata'); ?></h1>
             <div class="metabox-holder">
 					<?php
 					do_meta_boxes('smd_set_page_site', 'normal','');
@@ -189,6 +201,42 @@ function smd_render_site_page () {
 		<?php
 }
 
+
+/**
+ * Render the Organization metabox
+ *
+ * @since   1.4.4
+ *
+ */
+function smd_render_publisher_page () {
+		if(!current_user_can('manage_options')){
+			return;
+		}
+		?>
+	        <div class="wrap">
+	        	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { //if settings were saved, we show notice?>
+	        	<div class="notice notice-success is-dismissible">
+					<p><strong><?php esc_html_e('Settings saved.', 'simple-metadata'); ?></strong></p>
+				</div>
+				<?php } ?>
+				<h1><?php esc_html_e('Publisher settings', 'simple-metadata'); ?></h1>
+	            <div class="metabox-holder">
+						<?php
+						do_meta_boxes('smd_set_page_organization', 'normal','');
+						?>
+	            </div>
+	        </div>
+	        <script type="text/javascript">
+	            jQuery(document).ready( function($) {
+	                // close postboxes that should be closed
+	                $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+	                // postboxes setup
+	                postboxes.add_postbox_toggles('smd_set_page_site');
+	            });
+	        </script>
+			<?php
+	}
+
 /**
  * Adds the metabox 'Options' in the settings page
  *
@@ -201,17 +249,6 @@ function smd_add_options_box(){
 	register_setting ('smd_set_page_section_options', 'smd_hide_metadata_dates');
 }
 
-/**
- * Adds the metabox 'Logo' in the settings page
- *
- * @since   1.4.1
- */
-function smd_add_logo_box(){
-	add_meta_box('smd_logo_box',	__('Logo', 'simple-metadata'), 'smd_render_logo_box', 'smd_set_page', 'normal', 'low');
-	add_settings_section( 'smd_set_page_section_logo', '', '', 'smd_set_page_section_logo' );
-	add_settings_field ('smd_logo_image', 'Url Image', 'smd_render_logo_field', 'smd_set_page_section_logo', 'smd_set_page_section_logo');
-	register_setting ('smd_set_page_section_logo', 'smd_logo_image_id');
-}
 
 /**
  * Adds the metabox 'Book-type' in the settings page
@@ -230,33 +267,38 @@ function smd_add_booktype_box(){
 }
 
 /**
-* Render the the content of logo Image metabox
+ * Adds the metabox 'Organization' metabox in the Publisher page
+ *
+ * @since   1.4.4
+ */
+function smd_add_organization_box(){
+	add_meta_box('smd_organization_box',	__('Organization', 'simple-metadata'), 'smd_render_organization_box', 'smd_set_page_organization', 'normal', 'low');
+	add_settings_section( 'smd_set_page_section_organization', '', '', 'smd_set_page_section_organization' );
+	add_settings_field ('smd_organization_publisher', 'Publisher name', 'smd_render_publisher_name_field', 'smd_set_page_section_organization', 'smd_set_page_section_organization');
+
+	add_settings_field ('smd_publisher_logo_image', 'Publisher logo', 'smd_render_publisher_logo_field', 'smd_set_page_section_organization', 'smd_set_page_section_organization');
+	register_setting ('smd_set_page_section_organization', 'smd_publisher_logo_image_id');
+}
+
+/**
+* Render organization metabox
 *
-* @since 1.4.1
+* @since 1.4.4
 *
 */
-function smd_render_logo_box ( $post ) {
+function smd_render_organization_box(){
 	?>
-  <div class="wrap">
-    <form method="post" action="options.php">
-			<span class="description">
-		 		<?php
-					esc_html_e('The logo must be a rectangle, not a square.
-					  The logo should fit in a 60x600px rectangle, and either be exactly 60px high (preferred), or exactly 600px wide.', 'simple-metadata');
-					echo "<br>";
-					esc_html_e('For example, 450x45px would not be acceptable, even though it fits within the 600x60px rectangle.', 'simple-metadata');
-				?>
-		  </span>
-      <?php
-			settings_fields( 'smd_set_page_section_logo' );
-			do_settings_sections( 'smd_set_page_section_logo' );
-      submit_button();
-      ?>
-    </form>
-    <p></p>
-  </div>
-	<?php
+	    <form method="post" action="options.php">
+	      <?php
+					settings_fields( 'smd_set_page_section_organization' );
+					do_settings_sections( 'smd_set_page_section_organization' );
+		      submit_button();
+	      ?>
+	    </form>
+
+		<?php
 }
+
 
 /**
 * Render booktype metabox
@@ -355,13 +397,13 @@ function smd_render_switch_set() {
 
 	$disabled = smd_is_option_disabled('smd_net_sites_type');
 	?>
-	<label for="smd_website_blog_type_1"><?php esc_html_e('Blog', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
-	<label for="smd_website_blog_type_2"><?php esc_html_e('WebSite', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite" checked="checked" <?php checked('WebSite', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
+	<br><label for="smd_website_blog_type_1"><input type="radio" id="smd_website_blog_type_1" name="smd_website_blog_type" value="Blog" <?php checked('Blog', get_option('smd_website_blog_type'))?> <?=$disabled?> ><?php esc_html_e('Blog', 'simple-metadata'); ?> </label>
+	<br><label for="smd_website_blog_type_2"><input type="radio" id="smd_website_blog_type_2" name="smd_website_blog_type" value="WebSite"  <?php checked('WebSite', get_option('smd_website_blog_type'))?> <?=$disabled?> ><?php esc_html_e('WebSite', 'simple-metadata'); ?> </label>
 	<?php // if education plugin is active, add new options to select (possibly new values with other addons)
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
-	<label for="smd_website_blog_type_3"><?php esc_html_e('Book', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label>
-	<label for="smd_website_blog_type_4"><?php esc_html_e('Course', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?> <?=$disabled?> ></label><br>
+	<br><label for="smd_website_blog_type_3"> <input type="radio" id="smd_website_blog_type_3" name="smd_website_blog_type" value="Book" <?php checked('Book', get_option('smd_website_blog_type'))?> <?=$disabled?> ><?php esc_html_e('Book', 'simple-metadata'); ?></label>
+	<br><label for="smd_website_blog_type_4"><input type="radio" id="smd_website_blog_type_4" name="smd_website_blog_type" value="Course" <?php checked('Course', get_option('smd_website_blog_type'))?> <?=$disabled?> ><?php esc_html_e('Course', 'simple-metadata'); ?> </label><br>
 		<?php
 
 	if ('disabled' === $disabled){
@@ -400,19 +442,91 @@ function smd_render_options_hide_dates(){
   <?php
 }
 
+
 /**
-* Render logo field
+*  Render and manage Publisher logo field
 *
-* @since 1.4.1
+* @since 1.4.4
 *
 */
-function smd_render_logo_field(){
+function smd_render_publisher_logo_field(){
+	// Unset Publisher logo
+	if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['UnsetLogoImage']))
+		 {
+				 update_option('smd_publisher_logo_image_id', '');
+		 }
+		 	$smd_publisher_logo_image_id = get_option('smd_publisher_logo_image_id');
 	?>
-		<input id="smd_logo_image_url" type="url" name="smd_logo_image_url" style="width:65%;float:left" value="<?php echo wp_get_attachment_image_url(get_option('smd_logo_image_id'), 'full'); ?>" />
-		<input id="smd_upload_image_button" type="button" class="button-primary"  value="Insert Image" />
-		<input id="smd_logo_image_id" type="hidden" name="smd_logo_image_id" value=""></input>
+
+		<input id="smd_upload_image_button" type="button" class="button-primary"  value="Set Image" />
+		   <form action="" method="post">
+				 <input id="smd_publisher_logo_image_id" style="display:none" name="smd_publisher_logo_image_id"  value=""></input>
+				 <input type="submit" name="UnsetLogoImage"  class="button-secondary" value="Unset Image" <?php echo (empty($smd_publisher_logo_image_id)) ?  "disabled" : "" ?> />
+		  </form>
+		<span> <?php esc_html_e('Follow'); ?>  <a href="https://developers.google.com/search/docs/data-types/article#logo-guidelines" target="_blank"><?php esc_html_e('Google recommendations'); ?></a> <?php esc_html_e('for Publisher logo. Required in Article post type.', 'simple-metadata'); ?></span><br><br>
+
 	<?php
+
+		// check if publisher logo was not recently unset
+	  if ( is_null(get_post($smd_publisher_logo_image_id))){
+	      update_option('smd_publisher_logo_image_id', '');
+	  }
+
+
+		//If logo is set we print the logo in metabox
+		if ( !is_null(get_post($smd_publisher_logo_image_id)) && !empty($smd_publisher_logo_image_id) ){
+
+				$smd_logo_image =  wp_get_attachment_image(get_option($smd_publisher_logo_image_id), 'full');
+				echo wp_get_attachment_image($smd_publisher_logo_image_id, array('300', '300'));
+				$logo_measures = wp_get_attachment_image_src($smd_publisher_logo_image_id, 'full');
+
+				echo '<br><b>Width: </b> ' .$logo_measures[1] . ' ';
+				echo '<br><b>Height: </b>' .$logo_measures[2] . ' ';
+			}
+
+			// in case installation is multisite, and is not site1 (that is where we set Publisher logo for all the books in multisite) we print site1 logo
+		if (is_multisite() && 1 != get_current_blog_id()){
+						?>
+						<div style="background-color: #efefef; padding: 10px;">
+							<span > <b> Site1 preset logo: </b> </span><br><br>
+						<?php
+							// get logo from site1
+							switch_to_blog( 1 );
+									$smd_net_logo_image_id = get_option('smd_publisher_logo_image_id');
+									if ( !is_null(get_post($smd_net_logo_image_id)) && !empty($smd_net_logo_image_id) ){
+											$net_logo_image =  wp_get_attachment_image(get_option($smd_net_logo_image_id), 'full');
+											echo wp_get_attachment_image(get_option('smd_publisher_logo_image_id'), array('300', '300'));
+											$logo_measures = wp_get_attachment_image_src($smd_net_logo_image_id, 'full');
+											echo '<br><b>Width: </b> ' .$logo_measures[1] . ' ';
+											echo '<br><b>Height: </b>' .$logo_measures[2] . ' ';
+											echo '<br><br><span class="description">By default network (site1) logo is set. To override for this book set your custom logo on this page.</span>';
+									} else {
+										echo 'not set';
+									}
+							restore_current_blog();
+
+						 ?>
+						</div>
+						<br>
+					<?php }
 }
+
+
+/**
+*  Render Publisher name field
+*
+* @since 1.4.4
+*
+*/
+function smd_render_publisher_name_field(){
+	if (!empty(get_option('smd_publisher_name'))){
+			$publisher_name = get_option('smd_publisher_name');
+	} else {
+			$publisher_name = get_option('blogname');
+	}
+	echo get_option('blogname');
+}
+
 
 /**
 * Render 'Set book type' field
@@ -434,6 +548,7 @@ function smd_render_booktype_field(){
 		</span>
 	<?php
 }
+
 
 /**
 * Render 'Disable WebPage type for' field

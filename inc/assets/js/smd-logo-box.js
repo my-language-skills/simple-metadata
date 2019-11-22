@@ -13,8 +13,8 @@ jQuery(document).ready(function($){
     }, multiple: false });
     mediaUploader.on('select', function() {
       var attachment = mediaUploader.state().get('selection').first().toJSON();
-			$('#smd_logo_image_url').val(attachment.url);
-			$('#smd_logo_image_id').val(attachment.id);
+		//	$('#smd_logo_image_url').val(attachment.url);
+			$('#smd_publisher_logo_image_id').val(attachment.id);
     });
     mediaUploader.open();
   });

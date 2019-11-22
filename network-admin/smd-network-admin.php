@@ -86,8 +86,6 @@ function smd_add_network_settings() {
 			<?php
 		}, 'smd_network_meta_locations', 'smd_network_meta_locations');
 	}
-
-
 }
 
 /**
@@ -99,6 +97,7 @@ function smd_add_net_options_box(){
   //Options metabox
   add_meta_box('smd-net-box-options', __('Options', 'simple-metadata'), 'smd_render_net_metabox_options', 'smd_net_set_page', 'normal', 'low');
   add_settings_section( 'smd_net_section_options', '', '', 'smd_net_section_options' );
+
   add_settings_field ('smd_net_options_hide_dates', __('Hide dates', 'simple-metadata'), 'smd_render_net_options_hide_dates', 'smd_net_section_options', 'smd_net_section_options');
   add_site_option('smd_net_hide_metadata_dates', '');
 }
@@ -142,7 +141,6 @@ function smd_render_net_options_hide_dates(){
   </span>
   <?php
 }
-
 
 /**
  * Function for rendering network settings page
@@ -238,14 +236,14 @@ function smd_network_render_metabox_sites_type(){
  */
 function smd_render_net_switch_set() {
 	?>
-	<label for="smd_website_blog_type_0"><?php esc_html_e('Local value', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_0" name="smd_net_sites_type" value="0" checked="checked" <?php checked('0', get_site_option('smd_net_sites_type'))?>></label>
-	<label for="smd_website_blog_type_1"><?php esc_html_e('Blog', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_1" name="smd_net_sites_type" value="Blog" <?php checked('Blog', get_site_option('smd_net_sites_type'))?>></label>
-  <label for="smd_website_blog_type_2"><?php esc_html_e('WebSite', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_2" name="smd_net_sites_type" value="WebSite" <?php checked('WebSite', get_site_option('smd_net_sites_type'))?>></label>
+	<label for="smd_website_blog_type_0"><input type="radio" id="smd_website_blog_type_0" name="smd_net_sites_type" value="0" checked="checked" <?php checked('0', get_site_option('smd_net_sites_type'))?>><?php esc_html_e('Local value', 'simple-metadata'); ?> </label>
+	<br><label for="smd_website_blog_type_1"><input type="radio" id="smd_website_blog_type_1" name="smd_net_sites_type" value="Blog" <?php checked('Blog', get_site_option('smd_net_sites_type'))?>><?php esc_html_e('Blog', 'simple-metadata'); ?> </label>
+  <br><label for="smd_website_blog_type_2"><input type="radio" id="smd_website_blog_type_2" name="smd_net_sites_type" value="WebSite" <?php checked('WebSite', get_site_option('smd_net_sites_type'))?>><?php esc_html_e('WebSite', 'simple-metadata'); ?> </label>
 	<?php // if education plugin is active, add new options to select (possibly new values with other addons)
 	if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
 		?>
-	<label for="smd_website_blog_type_3"><?php esc_html_e('Book', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_3" name="smd_net_sites_type" value="Book" <?php checked('Book', get_site_option('smd_net_sites_type'))?>></label>
-	<label for="smd_website_blog_type_4"><?php esc_html_e('Course', 'simple-metadata'); ?> <input type="radio" id="smd_website_blog_type_4" name="smd_net_sites_type" value="Course" <?php checked('Course', get_site_option('smd_net_sites_type'))?>></label><br>
+	<br><label for="smd_website_blog_type_3"> <input type="radio" id="smd_website_blog_type_3" name="smd_net_sites_type" value="Book" <?php checked('Book', get_site_option('smd_net_sites_type'))?>><?php esc_html_e('Book', 'simple-metadata'); ?></label>
+	<br><label for="smd_website_blog_type_4"> <input type="radio" id="smd_website_blog_type_4" name="smd_net_sites_type" value="Course" <?php checked('Course', get_site_option('smd_net_sites_type'))?>><?php esc_html_e('Course', 'simple-metadata'); ?></label><br>
 		<?php
 	}
 
