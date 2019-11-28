@@ -5,7 +5,7 @@ Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippet
 Requires at least: 5.2
 Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
