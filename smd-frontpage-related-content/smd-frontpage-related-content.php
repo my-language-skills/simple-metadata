@@ -9,6 +9,7 @@
  * @since 1.0
  */
 
+ use Pressbooks\Book;
 
 /**
  * Function for printing metatag in header of front page
@@ -31,7 +32,16 @@ function smd_print_wsb_field ($post_meta_type) {
 			}
 
 		$title = get_bloginfo();
-		$description = get_bloginfo( 'description' );
+		// If site type is Course then Book tagline (pb_about_140) is used as description 
+		if($type == 'Course'){
+			$metadata = Book::getBookInformation();
+			if ( ! empty( $metadata['pb_about_140'] ) ) {
+				$description = $metadata['pb_about_140'];
+			}
+		} else {
+				$description = get_bloginfo( 'description' );
+		}
+
 		$url = get_bloginfo( 'url' );
 		$language = get_bloginfo( 'language' );
 		if ($type){

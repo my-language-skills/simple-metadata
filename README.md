@@ -73,6 +73,12 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.5.1
+* **ADDITIONS**
+ * If site type is Course then Book tagline (pb_about_140) is used as description 
+* **List of Files revised**
+ * smd-front-page-related-content.php
+
 ### 1.5
 * **ADDITIONS**
 	* Site 1 has now special status in terms of site types and is not overridable by network settings
