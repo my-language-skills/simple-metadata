@@ -16,7 +16,7 @@
  * Plugin Name:       Simple Metadata
  * Plugin URI:        https://github.com/my-language-skills/simple-metadata
  * Description:       This plugin provides auto-generated metadata on the basis of default WP web-pages information.
- * Version:           1.4.4
+ * Version:           1.5
  * Author:            My Language Skills team
  * Author URI:        https://github.com/my-language-skills/
  * License:           GPL 3.0
@@ -80,3 +80,18 @@ function smd_disable_pressbook_metadata() {
 
 // Fires after WordPress has finished loading but before any headers are sent.
 add_action( 'init', 'smd_disable_pressbook_metadata' );
+
+/**
+ *  If PB installation set Course site type as default in all sites on plugin activation
+ *
+ * @since 1.5
+ */
+function smd_set_default_pb_site_type($network_wide){
+	if ($network_wide){
+	 if (is_plugin_active('pressbooks/pressbooks.php')){
+		 $preset_type = 'Course';
+		 smd_net_update_in_all_sites( 'smd_website_blog_type', $preset_type );
+	 }
+	 }
+}
+register_activation_hook( 'simple-metadata/simple-metadata.php', 'smd_set_default_pb_site_type');

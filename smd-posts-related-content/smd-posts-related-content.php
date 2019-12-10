@@ -159,26 +159,36 @@ function smd_print_post_meta_fields () {
 	$post_excerpt = isset($post->post_excerpt) ?	$post->post_excerpt : '';
 
 	$post_type = get_post_type($post_id);
-
+	$post_meta_type = get_post_meta($post_id , 'smd_post_type', true) ?: 'no_type';
 	//we print these tags only if location is not active in education and post type is not page
 	// set different post meta type (or set none) based on post type and book type option (for course and book) or enable option (for front-matter and back-matter)
 	if (!is_front_page() && !is_home() && 'page' != $post_type) {
 		if (!is_plugin_active('pressbooks/pressbooks.php') && isset(get_option('smd_locations')[$post_type]) ){ // in case WP  else cases PB
-			$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';
 
-		} elseif(is_plugin_active('pressbooks/pressbooks.php')) {
-				$booktype_option = get_option('smd_set_booktype_option');
+			//$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-				if ('book' != $booktype_option && 'chapter' == $post_type) { // if booktype_option is NOT book (does not exists or is empty in DB) we use booktype setting for Course
+		} elseif (is_plugin_active('pressbooks/pressbooks.php')) {
+
+			if ( 'disabled' === smd_is_option_disabled('smd_net_sites_type')){   // if local value is disabled by network we get network post_meta_type
+						$site_type_to_set = get_network_option('', 'smd_net_sites_type');
+				} elseif (get_option('smd_website_blog_type')) {
+						$site_type_to_set = get_option('smd_website_blog_type');
+				} else { // site type not set anywhere
+					$site_type_to_set = '';
+					//$post_meta_type = 'no_type' ;
+				}
+
+
+				if ('Course' == $site_type_to_set && 'chapter' == $post_type) { // if booktype_option is
 					$post_meta_type = 'Article'; // set post type to 'Article'
 
-				} elseif ('book' != $booktype_option && 'part' == $post_type) {    // if booktype_option is NOT book (does not exists or is empty in DB) we use booktype setting for Course
+				} elseif ('Course' == $site_type_to_set && 'part' == $post_type) {    // if booktype_option is
 					$post_meta_type = 'Chapter'; // set post type to 'Chapter'
 
-				} elseif ('book' == $booktype_option && 'chapter' == $post_type) { // if booktype_option is Book, we use setting for Book
+				} elseif ('Book' == $site_type_to_set && 'chapter' == $post_type) { // if booktype_option is Book, we use setting for Book
 					$post_meta_type = 'Chapter'; // set post type to 'Chapter'
 
-				} elseif ('book' == $booktype_option && 'part' == $post_type) {    // if booktype_option is Book, we use setting for Book
+				} elseif ('Book' == $site_type_to_set && 'part' == $post_type) {    // if booktype_option is Book, we use setting for Book
 					return;		// do not print metadata for this post
 
 				}	elseif ('1' == get_option('smd_disable_frontmatter_type') && 'front-matter' == $post_type) {
@@ -264,10 +274,11 @@ function smd_print_post_meta_fields () {
 		}
 		if(is_plugin_active('pressbooks/pressbooks.php')){
 			$metadata = array_merge(smd_get_pressbooks_metadata(), $metadata);
+			unset($metadata['illustrator']);
 		}
 
 		$metadata = smd_array_filter_recursive($metadata);
-		printf( "\n \n <!-- SIMPLE METADATA POST --> \n <script type='application/ld+json'>\n%s\n</script>\n<!-- / SIMPLE METADATA POST --> \n \n", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
+		printf( "\n \n <!-- SIMPLE METADATA - POST --> \n <script type='application/ld+json'>\n%s\n</script>\n<!-- / SIMPLE METADATA - POST --> \n \n", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
 	}
 }
 

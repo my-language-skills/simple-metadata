@@ -1,12 +1,12 @@
 # Simple Metadata
 
-* Contributors: @colomet, @danzhik, @huguespages, @davideC00, @lukastonhajzer 
+* Contributors: @colomet, @danzhik, @huguespages, @davideC00, @lukastonhajzer
 * Donate link: https://opencollective.com/mylanguageskills
 * Tags: simple metadata, extensions, metadata, multisite
 * Requires at least: 5.2
 * Tested up to: 5.2.2
 * Requires PHP: 5.6
-* Stable tag: 1.4
+* Stable tag: 1.5
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.html
 * Gutenberg: compatible
@@ -73,6 +73,24 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.5
+* **ADDITIONS**
+	* Site 1 has now special status in terms of site types and is not overridable by network settings
+	* JS alert when Organization image unset
+	* Provider tag
+	* When site type is not Book - Illustrator is printed as contributor
+	* If PB installation set Course site type as default in all sites on plugin activation
+
+* **MODIFICATION**
+	* All Publisher menu settings renamed to Organization
+	* PB - Booktype option removed and default site type approach is used now
+	* Specifying when to display certain metaboxes and fields related to the type of installation and site type
+	* Contributor type - thing changed to person
+	* Minor text and styling fixes
+
+* **REMOVED**
+	* Site submenu page removed
+
 ### 1.4.4
 * **ADDITIONS**
 	 * New submenu field "Publisher" with "Organization" metabox where admin is able to set Publisher logo (Network(Site1) level and single site level) and related functionality
@@ -81,7 +99,7 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 * **MODIFICATION**
  	 * Metadata menu field (and its settings) is now displayed also on Site1
-	 
+
 * **List of Files revised**
 	 * smd-posts-related-content.php
 	 * smd-front-page-related-content.php

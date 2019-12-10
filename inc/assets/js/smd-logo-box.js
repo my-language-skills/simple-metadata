@@ -14,8 +14,14 @@ jQuery(document).ready(function($){
     mediaUploader.on('select', function() {
       var attachment = mediaUploader.state().get('selection').first().toJSON();
 		//	$('#smd_logo_image_url').val(attachment.url);
-			$('#smd_publisher_logo_image_id').val(attachment.id);
+			$('#smd_organization_logo_image_id').val(attachment.id);
     });
     mediaUploader.open();
   });
+
+    $('#smd_unset_image_button').click(function(f){
+      $('#smd_organization_logo_image_id').removeAttr('value');
+      $('#smd_unset_image_button').attr('disabled','disabled');
+      alert("Image unset! Do not forget to save changes bellow");      
+    });
 });

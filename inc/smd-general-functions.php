@@ -132,23 +132,23 @@ function smd_get_general_tags($post_meta_type) {
    $logo_measures = wp_get_attachment_image_src( $logo_id, 'full'); //retrieve and array (url, width, height)
  }
 
-  /* --- Checking if Publisher logo is set ---*/
-  $smd_publisher_logo_image_id = get_option('smd_publisher_logo_image_id');
-  $logo_url_publisher = 0;
-  $logo_measures_publisher = 0;
+  /* --- Checking if Organization logo is set ---*/
+  $smd_organization_logo_image_id = get_option('smd_organization_logo_image_id');
+  $logo_url_organization = 0;
+  $logo_measures_organization = 0;
 
-  if (!empty($smd_publisher_logo_image_id)){                        // USE LOCAL PUBLISHER LOGO
-        $logo_url_publisher = wp_get_attachment_image_url( $smd_publisher_logo_image_id, 'full');
-        $logo_measures_publisher = wp_get_attachment_image_src($smd_publisher_logo_image_id, 'full');
+  if (!empty($smd_organization_logo_image_id)){                        // USE LOCAL ORGANIZATION LOGO
+        $logo_url_organization = wp_get_attachment_image_url( $smd_organization_logo_image_id, 'full');
+        $logo_measures_organization = wp_get_attachment_image_src($smd_organization_logo_image_id, 'full');
 
-  } elseif(empty($smd_publisher_logo_image_id) && is_multisite()) { // IF NOT SET LOCAL USE LOGO FROM SITE 1
+  } elseif(empty($smd_organization_logo_image_id) && is_multisite()) { // IF NOT SET LOCAL USE LOGO FROM SITE 1
 
       switch_to_blog( 1 );
-         $smd_net_logo_image_id = get_option('smd_publisher_logo_image_id');
+         $smd_net_logo_image_id = get_option('smd_organization_logo_image_id');
           if (!empty($smd_net_logo_image_id)){
-            $smd_net_logo_image_id = get_option('smd_publisher_logo_image_id');
-            $logo_url_publisher = wp_get_attachment_image_url( $smd_net_logo_image_id, 'full');
-            $logo_measures_publisher = wp_get_attachment_image_src($smd_net_logo_image_id, 'full');
+            $smd_net_logo_image_id = get_option('smd_organization_logo_image_id');
+            $logo_url_organization = wp_get_attachment_image_url( $smd_net_logo_image_id, 'full');
+            $logo_measures_organization = wp_get_attachment_image_src($smd_net_logo_image_id, 'full');
           }
        restore_current_blog();
    }
@@ -233,20 +233,51 @@ function smd_get_general_tags($post_meta_type) {
     $metadata['image'] = $logo_url;
   }
 
-  // --- Pubblisher tag ---
-  $publisher_metadata = [
-    'publisher' => [
-      '@type'=>  $type,
-      'name'=> $publisher,
-      'logo'=> [
-        '@type'=>  'ImageObject',
-        'url'=>  $logo_url_publisher ?: $logo_url,
-        'width'=>  (string) $logo_measures_publisher[1] ?: (string) $logo_measures[1],
-        'height'=> (string) $logo_measures_publisher[2] ?: (string) $logo_measures[2]
+  if ( 'disabled' === smd_is_option_disabled('smd_net_sites_type') && 1 != get_current_blog_id()){   // if local value is disabled by network we get network post_meta_type
+        $site_type_to_set = get_network_option('', 'smd_net_sites_type');
+    } elseif (get_option('smd_website_blog_type')) {
+        $site_type_to_set = get_option('smd_website_blog_type');
+    } else { // site type not set anywhere
+      $site_type_to_set = '';
+    }
+
+    if($smd_organization_name = get_option('smd_organization_name')){
+      $organization_name = $smd_organization_name;
+    } else {
+      $organization_name = $publisher;
+    }
+
+    // --- Provider tag ---
+    $provider_metadata = [
+      'provider' => [
+        '@type'=>  $type,
+        'name'=> $organization_name,
+        'logo'=> [
+          '@type'=>  'ImageObject',
+          'url'=>  $logo_url_organization ?: $logo_url,
+          'width'=>  (string) $logo_measures_organization[1] ?: (string) $logo_measures[1],
+          'height'=> (string) $logo_measures_organization[2] ?: (string) $logo_measures[2]
+        ]
       ]
-    ]
-  ];
-  $metadata = array_merge($metadata, $publisher_metadata);
+    ];
+    $metadata = array_merge($metadata, $provider_metadata);
+
+
+      // --- Pubblisher tag ---
+      $publisher_metadata = [
+        'publisher' => [
+          '@type'=>  $type,
+          'name'=> $organization_name,
+          'logo'=> [
+            '@type'=>  'ImageObject',
+            'url'=>  $logo_url_organization ?: $logo_url,
+            'width'=>  (string) $logo_measures_organization[1] ?: (string) $logo_measures[1],
+            'height'=> (string) $logo_measures_organization[2] ?: (string) $logo_measures[2]
+          ]
+        ]
+      ];
+      $metadata = array_merge($metadata, $publisher_metadata);
+
 
   // if the pressbook isn't active we use our author metatag
   if(!is_plugin_active('pressbooks/pressbooks.php') || 'page' == $post_meta_type){
@@ -273,7 +304,7 @@ function smd_get_general_tags($post_meta_type) {
  function smd_get_all_post_types(){
  	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
  	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
- 	if(!is_plugin_active('pressbooks/pressbooks.php')){
+ 	if(!is_plugin_active('pressbooks/pressbooks.php') || 1 == get_current_blog_id()){
 
  		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
  		$postTypes1 =array_reverse($postTypes);
@@ -353,10 +384,42 @@ function smd_get_general_tags($post_meta_type) {
  }
 
  /**
+  * Update with it the local option in all sites
+  *
+  * @since 1.4
+  *
+  * @param string $option_local_name The name of site option that you want to overwrite
+  * @param string $option_value The value of the option to overwrite
+  */
+ function smd_net_update_in_all_sites( $option_local_name, $option_value ){
+
+   //Wordpress Database variable for database operations
+   global $wpdb;
+
+ 	//Grabbing all the site IDs
+   $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+
+   //Going through the sites
+   foreach ($siteids as $site_id) {
+   	if (1 == $site_id){
+   		continue;
+   	}
+
+   	switch_to_blog($site_id);
+
+   	//updating local options obly if some option is selected
+   	if ('0' !== $option_value && false == get_option($option_local_name)){
+   		update_option($option_local_name, $option_value);
+   	}
+     restore_current_blog();
+   }
+ }
+
+ /**
   * Get from pressbook the metadata
   *
   * @since 1.4
-  * @return string the html to print
+  * @return string the associative array
   */
  function smd_get_pressbooks_metadata(){
 

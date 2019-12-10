@@ -5,7 +5,7 @@ Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippet
 Requires at least: 5.2
 Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 1.4.4
+Stable tag: 1.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -51,9 +51,9 @@ Types:
 
 Properties:
 
-* **WepPage** Type: 
+* **WepPage** Type:
  * Properties: **lastReviewed**
-* **CreativeWork** type: 
+* **CreativeWork** type:
  * Properties: **author**, **dateCreated**, **datePublished**, **editor**, **headline** & **thumbnailUrl**
 
 = Posts related content =
@@ -157,6 +157,86 @@ Founded by Google, Microsoft, Yahoo and Yandex, Schema.org vocabularies are deve
 https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 
 == Changelog ==
+
+= 1.5 =
+ ADDITIONS
+	* Site 1 has now special status in terms of site types and is not overridable by network settings
+	* JS alert when Organization image unset
+	* Provider tag
+	* When site type is not Book - Illustrator is printed as contributor
+	* If PB installation set Course site type as default in all sites on plugin activation
+
+ MODIFICATION
+	* All Publisher menu settings renamed to Organization
+	* PB - Booktype option removed and default site type approach is used now
+	* Specifying when to display certain metaboxes and fields related to the type of installation and site type
+	* Contributor type - thing changed to person
+	* Minor text and styling fixes
+
+ REMOVED
+	* Site submenu page removed
+
+  List of Files revised
+  	 * smd-posts-related-content.php
+  	 * smd-front-page-related-content.php
+  	 * smd-pages-related-content.php
+  	 * smd-set-page-metaboxes.php
+  	 * smd-logo-box.js
+  	 * smd-general-functions.php
+  	 * smd-network-admin.php
+     * simple-metadada.php
+
+ = 1.4.4  =
+ ADDITIONS
+	 * New submenu field "Publisher" with "Organization" metabox where admin is able to set Publisher logo (Network(Site1) level and single site level) and related functionality
+	 * Comments in HTML header signalizing on what type of metadata is printed
+	 * Functionality related thumbnail metadata in case featured_image_for_pressbooks plugin is activated
+
+ MODIFICATION
+ 	 * Metadata menu field (and its settings) is now displayed also on Site1
+
+List of Files revised
+	 * smd-posts-related-content.php
+	 * smd-front-page-related-content.php
+	 * smd-pages-related-content.php
+	 * smd-set-page-metaboxes.php
+	 * smd-logo-box.js
+	 * smd-general-functions.php
+	 * smd-network-admin.php
+
+ = 1.4.3  =
+Changes in this version are related ONLY to Pressbooks use case.
+ ADDITIONS
+	 * Extends and modifies functionality in Book admin 'Book type' metabox for course, book options and for front-matter, back-matter.
+
+ REMOVED
+    Disabled by commenting out.
+	 * Network admin locations metabox which enables/disables printing metadata for selected post-type.
+	 * Book(site) admin locations metabox which enables/disables printing metadata for selected post-type.
+
+ List of Files revised
+	 * smd-posts-related-content.php
+	 * smd-set-page-metaboxes.php
+	 * documentation
+
+ = 1.4.2  =
+ ADDITIONS
+	 * Admin metabox related to set book type option (Book/Course/Default) that modifies metadata print.
+
+ENHANCEMENTS
+	* Specify date print format in smd_get_general_tags() functon to 'Y-m-d'
+
+ List of Files revised
+	* smd-general-functions.php
+	* smd-posts-related-content.php
+	* smd-set-page-metaboxes.php
+
+ =1.4.1  =
+*ADDITIONS
+	* Admin Logo image metabox
+
+List of Files revised
+	* smd-set-page-metaboxes.php
 
 = 1.4 =
 

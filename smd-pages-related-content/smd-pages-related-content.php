@@ -130,7 +130,6 @@ function smd_save_page_type ($post_id, $post) {
 	}
 }
 
-
 /**
  * Print the metadata on the html page
  *
@@ -168,7 +167,11 @@ function smd_print_page_meta_fields () {
 		$metadata = [
 			'@context' => 'http://schema.org/',
 			'@type'	=> $page_type,
-			'contributor'=> $last_modifier
+			'mainEntityOfPage' 	=>  get_permalink(),
+			'contributor'=> [
+					'type' => 'Person',
+					'name' => $last_modifier
+			]
 		];
 
 		$metadata = array_merge($metadata, smd_get_general_tags($page_type));
@@ -186,9 +189,8 @@ function smd_print_page_meta_fields () {
 		}
 
 		$metadata = smd_array_filter_recursive($metadata);
-		printf( "\n \n <!-- SIMPLE METADATA PAGE --> \n <script type='application/ld+json'>\n%s\n</script>\n<!-- / SIMPLE METADATA PAGE --> \n \n", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
+		printf( "\n \n <!-- SIMPLE METADATA - PAGE --> \n <script type='application/ld+json'>\n%s\n</script>\n<!-- / SIMPLE METADATA - PAGE --> \n \n", wp_json_encode( $metadata, JSON_PRETTY_PRINT ) );
 	}
-
 }
 
 add_action ('add_meta_boxes', 'smd_add_page_type_meta');
