@@ -5,7 +5,7 @@ Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippet
 Requires at least: 5.2
 Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 1.5
+Stable tag: 1.5.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -157,6 +157,31 @@ Founded by Google, Microsoft, Yahoo and Yandex, Schema.org vocabularies are deve
 https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 
 == Changelog ==
+= 1.5.2 =
+* **ADDITIONS**
+	* JS "use strict" mode now and minor modifications
+	* Escape html added to some stings
+
+* **MODIFICATION**
+	* indents
+
+* **BUGFIX**
+	* Book tagline description when Course selected now works properly
+
+* **List of Files revised**
+	* smd-logo-box.js
+	* smd-googleImage-box.js
+	* simple-metadata-admin.js
+	* smd-posts-related-content.php
+	* smd-frontpage-related-content.php
+	* smd-pages-related-content.php
+
+= 1.5.1 =
+* **ADDITIONS**
+ * If site type is Course then Book tagline (pb_about_140) is used as description
+
+* **List of Files revised**
+ * smd-front-page-related-content.php
 
 = 1.5 =
  ADDITIONS

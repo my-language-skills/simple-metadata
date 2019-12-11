@@ -81,6 +81,9 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 * **MODIFICATION**
 	* indents
 
+* **BUGFIX**
+	* Book tagline description when Course selected now works properly
+
 * **List of Files revised**
 	* smd-logo-box.js
 	* smd-googleImage-box.js
