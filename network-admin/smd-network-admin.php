@@ -27,7 +27,7 @@ function smd_add_network_settings() {
   'smd_net_set_page', 'smd_render_network_settings');
 
   add_meta_box('smd-network-metadata-sites-type', __('Home', 'simple-metadata'), 'smd_network_render_metabox_sites_type', 'smd_net_set_page', 'normal', 'core');
-  
+
   //adding settings metaboxes and settigns sections
   if (!is_plugin_active('pressbooks/pressbooks.php')){
   add_meta_box('smd-metadata-network-location', __('General Metadata', 'simple-metadata'), 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
@@ -65,10 +65,10 @@ function smd_add_network_settings() {
     // Translate post type for internalization
     switch ($post_type) {
       case 'post':
-        $label = __('Post', 'simple-metadata');
+        $label = esc_html__('Post', 'simple-metadata');
         break;
       case 'page':
-        $label = __('Page', 'simple-metadata');
+        $label = esc_html__('Page', 'simple-metadata');
         break;
       default:
         $label = ucfirst($post_type);
@@ -361,9 +361,6 @@ function smd_redirect_to_set_page(){
  * smd_update_net_hide_dates(), smdan_update_net_hide_annotation ecc...
  */
 add_action( 'network_admin_edit_smd_update_network_options', 'smd_redirect_to_set_page', 100);
-
-
-
 add_action( 'network_admin_menu', 'smd_add_network_settings');
 add_action( 'network_admin_edit_smd_update_network_locations', 'smd_update_network_locations');
 add_action( 'network_admin_edit_smd_update_network_site_type', 'smd_update_network_site_type');

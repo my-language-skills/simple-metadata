@@ -6,7 +6,7 @@
 * Requires at least: 5.2
 * Tested up to: 5.2.2
 * Requires PHP: 5.6
-* Stable tag: 1.5
+* Stable tag: 1.5.2
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.html
 * Gutenberg: compatible
@@ -73,9 +73,26 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.5.2
+* **ADDITIONS**
+	* JS "use strict" mode now and minor modifications
+	* Escape html added to some stings
+
+* **MODIFICATION**
+	* indents
+
+* **List of Files revised**
+	* smd-logo-box.js
+	* smd-googleImage-box.js
+	* simple-metadata-admin.js
+	* smd-posts-related-content.php
+	* smd-frontpage-related-content.php
+	* smd-pages-related-content.php
+
 ### 1.5.1
 * **ADDITIONS**
- * If site type is Course then Book tagline (pb_about_140) is used as description 
+ * If site type is Course then Book tagline (pb_about_140) is used as description
+
 * **List of Files revised**
  * smd-front-page-related-content.php
 

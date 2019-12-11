@@ -28,12 +28,12 @@ function smd_add_post_type_meta () {
 		}
 		if (isset(get_option('smd_locations')['post']))
 		add_meta_box (
-		'smd_post_type', //Unique ID
-		__('Post Type', 'simple-metadata'), //Title
-		'smd_render_article_type_meta', //Callback function
-		$location, //location
-		'side', //Context
-		'high' //priority
+			'smd_post_type', //Unique ID
+			esc_html__('Post Type', 'simple-metadata'), //Title
+			'smd_render_article_type_meta', //Callback function
+			$location, //location
+			'side', //Context
+			'high' //priority
 		);
 	}
 }
@@ -77,15 +77,15 @@ function smd_render_article_type_meta (){
 	}
 
 	$post_meta_types = array(
-					'Article'					=> __('Article', 'simple-metadata'),
-					'AdvertiserContentArticle'	=> __('Advertisement', 'simple-metadata'),
-					'BlogPosting'				=> __('Blog Posting', 'simple-metadata'),
-					'DiscussionForumPosting'	=> __('Discussion Forum Posting', 'simple-metadata'),
-					'LiveBlogPosting'			=> __('Live Blog Posting', 'simple-metadata'),
-					'Report'					=> __('Report', 'simple-metadata'),
-					'SatiricalArticle' 			=> __('Satirical Article', 'simple-metadata'),
-					'SocialMediaPosting'		=> __('Social Media Posting', 'simple-metadata'),
-					'TechArticle'				=> __('Technology Article', 'simple-metadata')
+					'Article'											=> __('Article', 'simple-metadata'),
+					'AdvertiserContentArticle'		=> __('Advertisement', 'simple-metadata'),
+					'BlogPosting'									=> __('Blog Posting', 'simple-metadata'),
+					'DiscussionForumPosting'			=> __('Discussion Forum Posting', 'simple-metadata'),
+					'LiveBlogPosting'							=> __('Live Blog Posting', 'simple-metadata'),
+					'Report'											=> __('Report', 'simple-metadata'),
+					'SatiricalArticle' 						=> __('Satirical Article', 'simple-metadata'),
+					'SocialMediaPosting'					=> __('Social Media Posting', 'simple-metadata'),
+					'TechArticle'									=> __('Technology Article', 'simple-metadata')
 				  );
 
 	//if Educational add-on is active, we add new possible options
@@ -101,7 +101,7 @@ function smd_render_article_type_meta (){
 				<?php
 					foreach ($post_meta_types as $key => $value) {
 						$selected = $post_type == $key ? 'selected' : '';
-						echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+						echo '<option value="'.$key.'" '.esc_html__($selected).'>'.esc_html__($value).'</option>';
 					}
 				?>
 			</select>
@@ -206,7 +206,6 @@ function smd_print_post_meta_fields () {
 		} else {
 			$post_meta_type = 'no_type';
 		}
-
 
 		if ('no_type' == $post_meta_type){
 			$post_meta_type = get_option('smd_website_blog_type');

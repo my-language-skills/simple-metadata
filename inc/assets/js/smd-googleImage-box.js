@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-
+	"use strict";
 	// Uploading files
 	var file_frame;
 

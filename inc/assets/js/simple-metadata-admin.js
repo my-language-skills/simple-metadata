@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-
+  "use strict";
     //Code used to remove the Button (Add new site metadata) from the CPT Named Site-Meta
     var txt =  $('.page-title-action').text();
 

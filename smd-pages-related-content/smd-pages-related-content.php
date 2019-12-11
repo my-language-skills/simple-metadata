@@ -25,7 +25,7 @@ function smd_add_page_type_meta () {
 		if (isset(get_option('smd_locations')['page']))
 		add_meta_box (
 			'smd_page_type', //Unique ID
-			__('Page Type', 'simple-metadata'), //Title
+			esc_html__('Page Type', 'simple-metadata'), //Title
 			'smd_render_page_type_meta', //Callback function
 			'page', //for pages
 			'side', //Context
@@ -65,31 +65,29 @@ function smd_render_page_type_meta ($object, $box) {
 	if ('no_page_type' == $page_type){
 		$page_type = $page_suppose_type;
 	}
-	$page_types = array(
-					'WebPage'		=> __('Web Page', 'simple-metadata'),
-					'AboutPage' 		=> __('About Page', 'simple-metadata'),
-					'CheckoutPage' 		=> __('Checkout Page', 'simple-metadata'),
-					'CollectionPage' 	=> __('Collection Page', 'simple-metadata'),
-					'ContactPage'		=> __('Contact Page', 'simple-metadata'),
-					'FAQPage'			=> __('FAQ Page', 'simple-metadata'),
-					'ImageGallery'		=> __('Image Gallery', 'simple-metadata'),
-					'ItemPage'			=> __('Item Page', 'simple-metadata'),
-					'MedicalWebPage'	=> __('Medical Web Page', 'simple-metadata'),
-					'ProfilePage'		=> __('Profile Page', 'simple-metadata'),
-					//'QAPage'			=> 'QA Page',
-					'SearchResultsPage'	=> __('Search Results Page', 'simple-metadata'),
-					'VideoGallery'		=> __('Video Gallery', 'simple-metadata'),
-				  );
-	//if (is_plugin_active('simple-metadata-education/simple-metadata-education.php')){
-	//	$page_types['Chapter'] = 'Chapter';
-	//}
+	$page_types = array( // strings are escaped in foreach loop
+			'WebPage'						=> __('Web Page', 'simple-metadata'),
+			'AboutPage' 				=> __('About Page', 'simple-metadata'),
+			'CheckoutPage' 			=> __('Checkout Page', 'simple-metadata'),
+			'CollectionPage' 		=> __('Collection Page', 'simple-metadata'),
+			'ContactPage'				=> __('Contact Page', 'simple-metadata'),
+			'FAQPage'						=> __('FAQ Page', 'simple-metadata'),
+			'ImageGallery'			=> __('Image Gallery', 'simple-metadata'),
+			'ItemPage'					=> __('Item Page', 'simple-metadata'),
+			'MedicalWebPage'		=> __('Medical Web Page', 'simple-metadata'),
+			'ProfilePage'				=> __('Profile Page', 'simple-metadata'),
+			//'QAPage'					=> 'QA Page',
+			'SearchResultsPage'	=> __('Search Results Page', 'simple-metadata'),
+			'VideoGallery'			=> __('Video Gallery', 'simple-metadata'),
+		  );
+
 	?>
 		<p><?php esc_html_e('Page Type', 'simple-metadata'); ?></p>
 			<select style="width: 90%;" name="smd_page_type" id="smd_page_type">
 				<?php
 					foreach ($page_types as $key => $value) {
 						$selected = $page_type == $key ? 'selected' : '';
-						echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+						echo '<option value="'.$key.'" '.esc_html__($selected).'>'.esc_html__($value).'</option>';
 					}
 				?>
 			</select>
