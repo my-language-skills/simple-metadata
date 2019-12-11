@@ -16,18 +16,20 @@ This plugin provides auto-generated metadata on the basis of default WP web-page
 This plugin provides the ability to set different types of schema types in one click (for Blogs and WebSites) by using the default WordPress fields.
 
 > By default:
->
+> a Front page is a Blog type
 > a Page is a WebPage type
 > a Post is an Article type
 >
 > in a PB installation, a site is a Book and a Post is a Chapter
 
-
-
+Demo [here](https://simple-metadata.000webhostapp.com/).
 == Front-page related content =
 
-* Types: **Blog** & **WebSite**
-* Properties
+* Types:
+  * **[Blog](https://simple-metadata.000webhostapp.com/blog/)**
+  * **WebSite**
+
+Properties
  * **CreativeWork** type: **inLanguage**
  * **Thing** type: **name**, **description** & **URL**
 
@@ -35,7 +37,7 @@ This plugin provides the ability to set different types of schema types in one c
 
 Types:
 
-* **WebPage** type
+* **[WebPage](https://simple-metadata.000webhostapp.com/webpage/)** type
   * **AboutPage** type
   * **CheckoutPage** type
   * **CollectionPage** type
@@ -60,7 +62,7 @@ Properties:
 
 Types
 
-* **Article** type
+* **[Article](https://simple-metadata.000webhostapp.com/article/)** type
  * **AdvertiserContentArticle** type
 * **Report** type
 * **SatiricalArticle** type
@@ -96,8 +98,15 @@ through the WordPress plugins screen directly.
 
 == Screenshots ==
 
-1. Settings field in Network Settings
-2. Disabled settings field in single-site settings
+1. Settings - organisation name and logo
+2. Settings - front page, pages and cpt’s
+3. Front page metadata
+4. Settings - new page metabox
+5. Page metadata 1
+6. Page metadata 2
+7. Settings - new post metabox
+8. Post metadata 1
+9. Post metadata 2
 
 == Frequently Asked Questions ==
 
