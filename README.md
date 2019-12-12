@@ -6,7 +6,7 @@
 * Requires at least: 5.2
 * Tested up to: 5.2.2
 * Requires PHP: 5.6
-* Stable tag: 1.5.2
+* Stable tag: 1.5.3
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.html
 * Gutenberg: compatible
@@ -73,6 +73,15 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.5.3
+* **BUGFIX**
+  * Modified condition to proper display correct post types (locations) to fit all the cases
+  * Course description condition fix
+
+* **List of Files revised**
+	* smd-frontpage-related-content.php
+	* smd-frontpage-related-content.php
+
 ### 1.5.2
 * **ADDITIONS**
 	* JS "use strict" mode now and minor modifications

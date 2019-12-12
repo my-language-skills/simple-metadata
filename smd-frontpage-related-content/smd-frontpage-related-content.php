@@ -34,9 +34,8 @@ function smd_print_wsb_field ($post_meta_type) {
 		$title = get_bloginfo();
 
 		// If site type is Course then Book tagline (pb_about_140) is used as description
-    $book_tagline_description = Book::getBookInformation();
-		if($type == 'Course' && !empty( $book_tagline_description['pb_about_140'] )){
-				$description = $book_tagline_description['pb_about_140'];    
+		if($type == 'Course' && is_plugin_active('pressbooks/pressbooks.php') && !empty($book_tagline_description = Book::getBookInformation())) {
+				$description = $book_tagline_description['pb_about_140'];
 		} else {
 				$description = get_bloginfo( 'description' );
 		}

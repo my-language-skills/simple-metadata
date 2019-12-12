@@ -304,17 +304,17 @@ function smd_get_general_tags($post_meta_type) {
  function smd_get_all_post_types(){
  	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
  	//Gathering the post types that are public including the wordpress ones if pressbooks is disabled
- 	if(!is_plugin_active('pressbooks/pressbooks.php') || 1 == get_current_blog_id()){
+  if(is_plugin_active('pressbooks/pressbooks.php') || (is_plugin_active('pressbooks/pressbooks.php') &&  1 != get_current_blog_id()) ){
+    $postTypes1 = ['metadata','front-matter','chapter','part', 'back-matter'];
 
- 		$postTypes = array_keys( get_post_types( array( 'public' => true )) );
- 		$postTypes1 =array_reverse($postTypes);
-
- 		//we unset attachment sa it needs different markup (for future)
- 		if (($key = array_search('attachment', $postTypes1)) !== false){
- 			unset($postTypes1[$key]);
- 		}
  	}else{
- 		$postTypes1 = ['metadata','front-matter','chapter','part', 'back-matter'];
+    $postTypes = array_keys( get_post_types( array( 'public' => true )) );
+    $postTypes1 =array_reverse($postTypes);
+
+    //we unset attachment sa it needs different markup (for future)
+    if (($key = array_search('attachment', $postTypes1)) !== false){
+      unset($postTypes1[$key]);
+    }
  	}
  	return $postTypes1;
  }

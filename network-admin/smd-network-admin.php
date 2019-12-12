@@ -30,7 +30,7 @@ function smd_add_network_settings() {
 
   //adding settings metaboxes and settigns sections
   if (!is_plugin_active('pressbooks/pressbooks.php')){
-  add_meta_box('smd-metadata-network-location', __('General Metadata', 'simple-metadata'), 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
+    add_meta_box('smd-metadata-network-location', __('General Metadata', 'simple-metadata'), 'smd_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
   }
 
   add_settings_section( 'smd_network_meta_locations', '', '', 'smd_network_meta_locations' );

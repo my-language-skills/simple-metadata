@@ -5,7 +5,7 @@ Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippet
 Requires at least: 5.2
 Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -166,6 +166,11 @@ Founded by Google, Microsoft, Yahoo and Yandex, Schema.org vocabularies are deve
 https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 
 == Changelog ==
+= 1.5.3 =
+* **BUGFIX**
+  * m=Modified condition to proper display correct post types (locations) to fit all the cases
+	* Course description condition fix
+
 = 1.5.2 =
 * **ADDITIONS**
 	* JS "use strict" mode now and minor modifications
