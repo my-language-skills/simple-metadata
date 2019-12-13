@@ -5,6 +5,7 @@
 /wp-assets export-ignore
 /doc export-ignore
 /Doxyfile export-ignore
-/CHANGELOG.md export-ignore
 /LICENSE.md export-ignore
 /README.md export-ignore
+/CHANGELOG.md export-ignore
+/PLUGN-STRUCTURE.md export-ignore
