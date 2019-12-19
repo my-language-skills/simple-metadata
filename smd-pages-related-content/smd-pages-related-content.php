@@ -76,7 +76,6 @@ function smd_render_page_type_meta ($object, $box) {
 			'ItemPage'					=> __('Item Page', 'simple-metadata'),
 			'MedicalWebPage'		=> __('Medical Web Page', 'simple-metadata'),
 			'ProfilePage'				=> __('Profile Page', 'simple-metadata'),
-			//'QAPage'					=> 'QA Page',
 			'SearchResultsPage'	=> __('Search Results Page', 'simple-metadata'),
 			'VideoGallery'			=> __('Video Gallery', 'simple-metadata'),
 		  );

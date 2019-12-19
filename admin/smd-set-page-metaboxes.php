@@ -140,6 +140,7 @@ function smd_render_options_page() {
         <script type="text/javascript">
             //<![CDATA[
             jQuery(document).ready( function($) {
+              "use strict";//added this fix for review paper 1.1
                 // close postboxes that should be closed
                 $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
                 // postboxes setup
@@ -244,6 +245,7 @@ function smd_render_organization_box(){
 		<script type="text/javascript">
 				//<![CDATA[
 				jQuery(document).ready( function($) {
+              "use strict";//added this fix for review paper 1.1
 						// close postboxes that should be closed
 						$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
 						// postboxes setup
