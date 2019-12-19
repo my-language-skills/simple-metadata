@@ -165,6 +165,7 @@ function smd_render_network_settings(){
 	    <script type="text/javascript">
             //<![CDATA[
             jQuery(document).ready( function($) {
+              "use strict";//added this fix for review paper 1.1
                 // close postboxes that should be closed
                 $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
                 // postboxes setup

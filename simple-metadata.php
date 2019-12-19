@@ -30,9 +30,11 @@ defined ("ABSPATH") or die ("No script assholes!");
 require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 //if not presbooks and AIOM not installed, load custom_metadata symbiont (when all packages will be organized, second condition can be removed)
-if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_metadata_field')){
-	require_once plugin_dir_path( dirname(__FILE__ ) ) . '/simple-metadata/symbionts/custom-metadata/custom_metadata.php';
+if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_metadata_field') && !is_plugin_active('custom-metadata/custom_metadata.php')){
+	echo '<div class="error"><p>' . __( 'Warning: The plugin Simple Metadata requires Custom Metadata Manager Plugin from in order to function. Activate Custom Metadata Manager Plugin for better experience.', 'my-theme' ) . '</p></div>';
+	//require_once plugin_dir_path( dirname(__FILE__ ) ) . '/simple-metadata/symbionts/custom-metadata/custom_metadata.php';
 }
+
 
 if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') ||
 		is_plugin_active('simple-metadata-lifecycle/simple-metadata-lifecycle.php') ||
