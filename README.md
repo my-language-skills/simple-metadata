@@ -79,7 +79,6 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 	 1 all .js files have the "use_strict" statement.
    - .php files with script tags changed (smd-set-page-metaboxes.php {143,248},smd-network-admin.php-{168})
-   - DONE.
 
 	 2 Nothing changed for this
    - on .js files "jQuery(document).ready(function($)" to "jQuery(function($)" ?
@@ -90,6 +89,9 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 	 4 delete all unused code: - comments.. => no comments..  (problem in sumbionts/custom_metadata.php)
   - not reachable blocks.
+
+	5 smd-general-functions. 216,254
+	changed at smd-pages-related-content.php deleted comment "//'QAPage' at line: 79 deleted " and  line: 36
 
 ### 1.5.3
 * **BUGFIX**
