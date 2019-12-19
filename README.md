@@ -6,7 +6,7 @@
 * Requires at least: 5.2
 * Tested up to: 5.2.2
 * Requires PHP: 5.6
-* Stable tag: 1.5.3
+* Stable tag: 1.6
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.html
 * Gutenberg: compatible
@@ -73,6 +73,24 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 ```
 
 ### Changelog
+### 1.6
+* **MODIFICATION**
+	* CodeCanyon code review
+
+	 1 all .js files have the "use_strict" statement.
+   - .php files with script tags changed (smd-set-page-metaboxes.php {143,248},smd-network-admin.php-{168})
+   - DONE.
+
+	 2 Nothing changed for this
+   - on .js files "jQuery(document).ready(function($)" to "jQuery(function($)" ?
+   - same on php files.
+
+   3 escape all translatable strings?...
+	 - (possible locations:smd-frontpage-related-content.php {$metadata to json}, smd-general-functions.php {213-228},smd-posts-related-content.php{$post_meta_type})
+
+	 4 delete all unused code: - comments.. => no comments..  (problem in sumbionts/custom_metadata.php)
+  - not reachable blocks.
+
 ### 1.5.3
 * **BUGFIX**
   * Modified condition to proper display correct post types (locations) to fit all the cases
@@ -179,6 +197,7 @@ Disabled by commenting out.
 	* smd-set-page-metaboxes.php
 
 ### 1.4
+* Wordpress code review
 * Metabox 'Options'
 * Metabox 'Google image'
 * Pressbook Integration
