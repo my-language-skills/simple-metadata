@@ -16,7 +16,7 @@
  * Plugin Name:       Simple Metadata
  * Plugin URI:        https://github.com/my-language-skills/simple-metadata
  * Description:       This plugin provides auto-generated metadata on the basis of default WP web-pages information.
- * Version:           1.5.2
+ * Version:           1.6
  * Author:            My Language Skills team
  * Author URI:        https://github.com/my-language-skills/
  * License:           GPL 3.0
