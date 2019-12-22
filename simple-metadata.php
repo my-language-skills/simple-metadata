@@ -31,7 +31,7 @@ require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 //if not presbooks and AIOM not installed, load custom_metadata symbiont (when all packages will be organized, second condition can be removed)
 if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_metadata_field') && !is_plugin_active('custom-metadata/custom_metadata.php')){
-	echo '<div class="error"><p>' . __( 'Warning: The plugin Simple Metadata requires Custom Metadata Manager Plugin from in order to function. Activate Custom Metadata Manager Plugin for better experience.', 'my-theme' ) . '</p></div>';
+	echo '<div class="error"><p>' . __( 'Warning: The plugin Simple Metadata requires Custom Metadata Manager Plugin in order to function. Download and install from ', 'my-theme' ) . '<a href="https://wordpress.org/plugins/custom-metadata/">'.__('here','my-theme').' </a></p></div>';
 }
 
 
