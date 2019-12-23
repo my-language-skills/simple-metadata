@@ -83,8 +83,8 @@ function smd_delete_local_options_and_post_meta($blogs_ids, $plugin_abbreviation
   	// Delete plugin related posts' meta
   	//if blog is root, do not add blog number to table name
   	$blog_id = $b->blog_id == 1 || $b == 1 ? '' : $b->blog_id.'_';
-  	//DELETE query to postmeta database
-  	$wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE ".$plugin_abbreviation."'%'");
+	  //DELETE query to postmeta database;
+	  $wpdb->query( "DELETE FROM `".$wpdb->prefix.$blog_id."postmeta` WHERE `meta_key` LIKE '".$plugin_abbreviation."%'");
   }
 }
 
