@@ -5,7 +5,7 @@ Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippet
 Requires at least: 5.2
 Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 1.6
+Stable tag: 1.6.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,12 +168,14 @@ https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 == Changelog ==
 
 = 1.6 =
+* **BUGFIX**
+ * Bug at unistall
+
 * **MODIFICATION**
 	* CodeCanyon code review
 
 	 1 all .js files have the "use_strict" statement.
    - .php files with script tags changed (smd-set-page-metaboxes.php {143,248},smd-network-admin.php-{168})
-   - DONE.
 
 	 2 Nothing changed for this
    - on .js files "jQuery(document).ready(function($)" to "jQuery(function($)" ?
@@ -185,9 +187,16 @@ https://github.com/my-language-skills/simple-metadata/blob/master/doc/doc-faq.md
 	 4 delete all unused code: - comments.. => no comments..  (problem in sumbionts/custom_metadata.php)
   - not reachable blocks.
 
+* **List of Files revised**
+	* smd-network-admin.php
+	* smd-frontpage-related-content.php
+	* smd-general-functions.php
+	* smd-posts-related-content.php
+	* smd-unistall-functions.php
+
 = 1.5.3 =
 * **BUGFIX**
-  * m=Modified condition to proper display correct post types (locations) to fit all the cases
+	* m=Modified condition to proper display correct post types (locations) to fit all the cases
 	* Course description condition fix
 
 = 1.5.2 =

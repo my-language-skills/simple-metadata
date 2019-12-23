@@ -74,6 +74,9 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 ### Changelog
 ### 1.6
+* **BUGFIX**
+ * Bug at unistall
+ 
 * **MODIFICATION**
 	* CodeCanyon code review
 
@@ -92,6 +95,14 @@ if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') 
 
 	5 smd-general-functions. 216,254
 	changed at smd-pages-related-content.php deleted comment "//'QAPage' at line: 79 deleted " and  line: 36
+
+*	**List of Files revised**
+	* smd-network-admin.php
+	* smd-frontpage-related-content.php
+	* smd-general-functions.php
+	* smd-posts-related-content.php
+	* smd-unistall-functions.php
+
 
 ### 1.5.3
 * **BUGFIX**
