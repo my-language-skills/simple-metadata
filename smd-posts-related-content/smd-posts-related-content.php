@@ -165,7 +165,6 @@ function smd_print_post_meta_fields () {
 	if (!is_front_page() && !is_home() && 'page' != $post_type) {
 		if (!is_plugin_active('pressbooks/pressbooks.php') && isset(get_option('smd_locations')[$post_type]) ){ // in case WP  else cases PB
 
-			//$post_meta_type = get_post_meta(get_the_ID(), 'smd_post_type', true) ?: 'no_type';  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 		} elseif (is_plugin_active('pressbooks/pressbooks.php')) {
 
@@ -175,7 +174,6 @@ function smd_print_post_meta_fields () {
 						$site_type_to_set = get_option('smd_website_blog_type');
 				} else { // site type not set anywhere
 					$site_type_to_set = '';
-					//$post_meta_type = 'no_type' ;
 				}
 
 

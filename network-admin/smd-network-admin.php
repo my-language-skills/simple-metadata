@@ -162,18 +162,12 @@ function smd_render_network_settings(){
 			    ?>
 		    </div>
 	    </div>
-	    <script type="text/javascript">
-            //<![CDATA[
-            jQuery(document).ready( function($) {
-              "use strict";//added this fix for review paper 1.1
-                // close postboxes that should be closed
-                $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-                // postboxes setup
-                postboxes.add_postbox_toggles('smd_net_set_page');
-            });
-            //]]>
-		</script>
 		<?php
+	wp_add_inline_script('postbox','jQuery(document).ready( function($) {
+		"use strict";
+		  $(".if-js-closed").removeClass("if-js-closed").addClass("closed");
+		  postboxes.add_postbox_toggles("smd_net_set_page");
+	  });');
 }
 
 /**
@@ -313,7 +307,7 @@ function smd_update_network_site_type() {
   $site_type = isset($_POST['smd_net_sites_type']) ? $_POST['smd_net_sites_type'] : '';
   update_site_option('smd_net_sites_type', $site_type);
 
-  //smd_net_overwrite_in_all_sites('smd_website_blog_type', $site_type);
+
 
   // At the end we redirect back to our options page.
   wp_redirect(add_query_arg(array('page' => 'smd_net_set_page',

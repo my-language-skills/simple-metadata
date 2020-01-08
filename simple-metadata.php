@@ -29,10 +29,6 @@ defined ("ABSPATH") or die ("No script assholes!");
 
 require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
-//if not presbooks and AIOM not installed, load custom_metadata symbiont (when all packages will be organized, second condition can be removed)
-if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_metadata_field') && !is_plugin_active('custom-metadata/custom_metadata.php')){
-	echo '<div class="error"><p>' . __( 'Warning: The plugin Simple Metadata requires Custom Metadata Manager Plugin in order to function. Download and install from ', 'my-theme' ) . '<a href="https://wordpress.org/plugins/custom-metadata/">'.__('here','my-theme').' </a></p></div>';
-}
 
 
 if (is_plugin_active('simple-metadata-education/simple-metadata-education.php') ||
@@ -54,6 +50,23 @@ if (is_multisite()){
 }
 
 /**
+ * Function to show warnings when activating the plugin.
+ */
+function activation_warnings()
+{
+	//if not presbooks and AIOM not installed, load custom_metadata symbiont (when all packages will be organized, second condition can be removed)
+	if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_metadata_field') && !is_plugin_active('custom-metadata/custom_metadata.php')){
+		echo '<div class="error"><p>' . __( 'Warning: The plugin Simple Metadata requires Custom Metadata Manager Plugin in order to function. Download and install from ', 'simple-metadata' ) . '<a href="https://wordpress.org/plugins/custom-metadata/">'.__('here','simple-metadata').' </a></p></div>';
+	}
+}
+
+/**
+ * New action hook
+ * Action to check if other plugins that are recommended are installed.
+ */
+add_action( 'admin_init','activation_warnings') ;
+
+/**
  * Internalization
  * Loads the MO file for plugin's translation.
  *
@@ -63,6 +76,7 @@ if (is_multisite()){
 	function smd_load_plugin_textdomain() {
     load_plugin_textdomain( 'simple-metadata', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
+
 
 /**
  * The activated plugin has been loaded
@@ -88,6 +102,7 @@ add_action( 'init', 'smd_disable_pressbook_metadata' );
  * @since 1.5
  */
 function smd_set_default_pb_site_type($network_wide){
+
 	if ($network_wide){
 	 if (is_plugin_active('pressbooks/pressbooks.php')){
 		 $preset_type = 'Course';
@@ -95,4 +110,10 @@ function smd_set_default_pb_site_type($network_wide){
 	 }
 	 }
 }
+
 register_activation_hook( 'simple-metadata/simple-metadata.php', 'smd_set_default_pb_site_type');
+
+
+
+	
+	
