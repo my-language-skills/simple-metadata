@@ -24,6 +24,8 @@
 * @since 1.0
 *
 */
+
+
 function smd_get_general_tags($post_meta_type) {
 
   $post_id = get_the_ID();

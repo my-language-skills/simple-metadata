@@ -137,18 +137,14 @@ function smd_render_options_page() {
 					?>
             </div>
         </div>
-        <script type="text/javascript">
-            //<![CDATA[
-            jQuery(document).ready( function($) {
-              "use strict";//added this fix for review paper 1.1
-                // close postboxes that should be closed
-                $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-                // postboxes setup
-                postboxes.add_postbox_toggles('smd_set_page');
-            });
-            //]]>
-        </script>
+
 		<?php
+		
+		wp_add_inline_script('postbox','jQuery(document).ready( function($) {
+			"use strict";
+			  $(".if-js-closed").removeClass("if-js-closed").addClass("closed");
+			  postboxes.add_postbox_toggles("smd_set_page");
+		  });');
 }
 
 /**
@@ -241,19 +237,12 @@ function smd_render_organization_box(){
 		 	</form>
 			<p></p>
 		</div>
-
-		<script type="text/javascript">
-				//<![CDATA[
-				jQuery(document).ready( function($) {
-              "use strict";//added this fix for review paper 1.1
-						// close postboxes that should be closed
-						$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-						// postboxes setup
-						postboxes.add_postbox_toggles('smd_set_page_organization');
-				});
-				//]]>
-		</script>
 	<?php
+	wp_add_inline_script('postbox','jQuery(document).ready( function($) {
+		"use strict";
+		  $(".if-js-closed").removeClass("if-js-closed").addClass("closed");
+		  postboxes.add_postbox_toggles("smd_set_page_organization");
+	  });');
 }
 
 /**

@@ -1,9 +1,9 @@
 === Simple metadata ===
-Contributors: colomet, danzhik, huguespages, dcazzorla
+Contributors: colomet, danzhik, huguespages, dcazzorla, lukastonhajzer
 Donate link: https://opencollective.com/mylanguageskills
-Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippets, wordpress-plugin,
+Tags: multisite, pressbooks, simple metadata, schema, schema.org, metadata, rich snippets, structured data
 Requires at least: 5.2
-Tested up to: 5.3
+Tested up to: 5.3.2
 Requires PHP: 5.6
 Stable tag: 1.6
 License: GPLv3 or later
@@ -23,6 +23,7 @@ This plugin provides the ability to set different types of schema types in one c
 > in a PB installation, a site is a Book and a Post is a Chapter
 
 Demo [here](https://simple-metadata.000webhostapp.com/).
+
 == Front-page related content =
 
 * Types:
@@ -82,6 +83,7 @@ Properties
     * Properties: **image**
 
 === Works with ===
+
 The SEO framework
 Yoast SEO
 
