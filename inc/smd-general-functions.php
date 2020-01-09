@@ -79,7 +79,7 @@ function smd_get_general_tags($post_meta_type) {
   // get the thumbnail of the post/page/homepage/ecc...
   // If the post thumbnail is set by featured_image_for_pressbooks plugin we use this image for metadata of the post thumbnail (fifp functions are located in featured_image_for_pressbooks plugin)
   if (is_plugin_active('featured-image-for-pressbooks/featured-image-for-pressbooks.php') && fifp_has_ext_thumbnail() && "print_local_fi" != $fi_info = fifp_get_fi_info()){
-    //$fi_info = fifp_get_fi_info();
+    
     if (!empty($fi_info)){
       switch_to_blog(get_option( '_ext_source_id'));
         $thumbnail_url = wp_get_attachment_url($fi_info );

@@ -330,7 +330,7 @@ function smd_update_net_hide_dates() {
   //updating network options
 	update_site_option('smd_net_hide_metadata_dates', $is_hide_dates);
 
-  // smd-general-function.php
+  //inside smd-general-function.php
   smd_net_overwrite_in_all_sites('smd_hide_metadata_dates', $is_hide_dates );
 
 }
@@ -353,7 +353,7 @@ function smd_redirect_to_set_page(){
 /**
  * When save changes is clicked
  * The priority 100 so it will be excecuted after all plugins update functions:
- * smd_update_net_hide_dates(), smdan_update_net_hide_annotation ecc...
+ * smd_update_net_hide_dates,  smdan_update_net_hide_annotation ecc...
  */
 add_action( 'network_admin_edit_smd_update_network_options', 'smd_redirect_to_set_page', 100);
 add_action( 'network_admin_menu', 'smd_add_network_settings');
