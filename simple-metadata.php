@@ -52,13 +52,19 @@ if (is_multisite()){
 /**
  * Function to show warnings when activating the plugin.
  */
-function activation_warnings()
-{
-	//if not presbooks and AIOM not installed, load custom_metadata symbiont (when all packages will be organized, second condition can be removed)
-	if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_metadata_field') && !is_plugin_active('custom-metadata/custom_metadata.php')){
-		echo '<div class="error"><p>' . esc_html__( 'Warning: The plugin Simple Metadata requires Custom Metadata Manager Plugin in order to function. Download and install from ', 'simple-metadata' ) . '<a href="https://wordpress.org/plugins/custom-metadata/">'.esc_html__('here','simple-metadata').' </a></p></div>';
-	}
+// function activation_warnings()
+// {
+// 	//if not presbooks and AIOM not installed, load custom_metadata symbiont (when all packages will be organized, second condition can be removed)
+// 	if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_metadata_field') && !is_plugin_active('custom-metadata/custom_metadata.php')){
+// 		echo '<div class="error"><p>' . __( 'Warning: The plugin Simple Metadata requires Custom Metadata Manager Plugin in order to function. Download and install from ', 'simple-metadata' ) . '<a href="https://wordpress.org/plugins/custom-metadata/">'.__('here','simple-metadata').' </a></p></div>';
+// 	}
+// }
+
+//if not presbooks and AIOM not installed, load custom_metadata symbiont (when all packages will be organized, second condition can be removed)
+if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_metadata_field')){
+	require_once plugin_dir_path( dirname(__FILE__ ) ) . '/simple-metadata/symbionts/custom-metadata/custom_metadata.php';
 }
+
 
 /**
  * New action hook
@@ -112,8 +118,3 @@ function smd_set_default_pb_site_type($network_wide){
 }
 
 register_activation_hook( 'simple-metadata/simple-metadata.php', 'smd_set_default_pb_site_type');
-
-
-
-	
-	
