@@ -70,7 +70,7 @@ if (!is_plugin_active('pressbooks/pressbooks.php') && !function_exists('x_add_me
  * New action hook
  * Action to check if other plugins that are recommended are installed.
  */
-add_action( 'admin_init','activation_warnings') ;
+//add_action( 'admin_init','activation_warnings') ;
 
 /**
  * Internalization
