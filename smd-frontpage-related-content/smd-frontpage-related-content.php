@@ -35,8 +35,11 @@ function smd_print_wsb_field ($post_meta_type) {
 
 		// If site type is Course then Book tagline (pb_about_140) is used as description
 		if($type == 'Course' && is_plugin_active('pressbooks/pressbooks.php') && !empty($book_tagline_description = Book::getBookInformation())) {
-				$description = $book_tagline_description['pb_about_140'];
-		} else {
+      if( !empty($book_tagline_description['pb_about_140'])){
+        $description = $book_tagline_description['pb_about_140'];
+      }
+      else $description = get_bloginfo( 'description' );
+    } else {
 				$description = get_bloginfo( 'description' );
 		}
 
